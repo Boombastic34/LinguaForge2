@@ -570,9 +570,12 @@
     ]
    ],
    "mistakes": [
-    "~~Me and Tom work…~~ → Tom and I work…",
-    "my vs mine: my + rzeczownik, mine samo",
-    "it's (to jest) ≠ its (jego — rzeczy)"
+    "Me and Tom work here. -> Tom and I work here. (podmiot = I)",
+    "with I -> with me (po przyimku zawsze dopelnieniowy)",
+    "mine badge -> my badge (przed rzeczownikiem: my)",
+    "This is my. -> This is mine. (bez rzeczownika: mine)",
+    "her's / their's -> hers / theirs (bez apostrofu)",
+    "it's box -> its box (its = jego/jej; it's = it is)"
    ],
    "quiz": [
     {
@@ -621,7 +624,276 @@
      "model": "my stoi przed rzeczownikiem (my badge), mine występuje samodzielnie (this badge is mine)."
     }
    ],
-   "nr": 6
+   "nr": 6,
+   "intro": "Po polsku mowimy ja, mnie, moj - i wszystko brzmi podobnie. Po angielsku kazda z tych rol ma OSOBNE slowo i nie da sie ich mieszac. Dobra wiadomosc: sa tylko cztery rodziny i mieszcza sie w jednej tabelce.",
+   "tables": [
+    {
+     "title": "Cztery rodziny zaimkow - pelna tabela",
+     "note": "Czytaj wierszami: to zawsze ta sama osoba w czterech rolach.",
+     "head": [
+      "Osoba",
+      "Podmiotowy (kto robi)",
+      "Dopelnieniowy (komu/kogo)",
+      "Dzierzawczy + rzeczownik",
+      "Dzierzawczy samodzielny"
+     ],
+     "rows": [
+      [
+       "ja",
+       "I",
+       "me",
+       "my",
+       "mine"
+      ],
+      [
+       "ty",
+       "you",
+       "you",
+       "your",
+       "yours"
+      ],
+      [
+       "on",
+       "he",
+       "him",
+       "his",
+       "his"
+      ],
+      [
+       "ona",
+       "she",
+       "her",
+       "her",
+       "hers"
+      ],
+      [
+       "ono / to",
+       "it",
+       "it",
+       "its",
+       "its"
+      ],
+      [
+       "my",
+       "we",
+       "us",
+       "our",
+       "ours"
+      ],
+      [
+       "wy",
+       "you",
+       "you",
+       "your",
+       "yours"
+      ],
+      [
+       "oni / one",
+       "they",
+       "them",
+       "their",
+       "theirs"
+      ]
+     ]
+    }
+   ],
+   "sections": [
+    {
+     "title": "1. Podmiotowe - KTO wykonuje czynnosc",
+     "emoji": "👤",
+     "color": "indigo",
+     "text": "Stoja PRZED czasownikiem i odpowiadaja na pytanie kto?. To jedyna rodzina, ktora moze byc podmiotem zdania.",
+     "examples": [
+      [
+       "I work in a warehouse.",
+       "Ja pracuje w magazynie."
+      ],
+      [
+       "She checks the boxes.",
+       "Ona sprawdza pudla."
+      ],
+      [
+       "They start at six.",
+       "Oni zaczynaja o szostej."
+      ]
+     ],
+     "tip": "Test: jesli mozesz wstawic ja / ty / on i zdanie ma sens - to podmiotowy."
+    },
+    {
+     "title": "2. Dopelnieniowe - KOMU / KOGO",
+     "emoji": "🎯",
+     "color": "teal",
+     "text": "Stoja PO czasowniku albo po przyimku (to, for, with, at). Odpowiadaja na kogo? komu? z kim?",
+     "examples": [
+      [
+       "Give me the scanner.",
+       "Podaj mi skaner."
+      ],
+      [
+       "I told him about it.",
+       "Powiedzialem mu o tym."
+      ],
+      [
+       "Work with us today.",
+       "Pracuj dzis z nami."
+      ]
+     ],
+     "tip": "Po przyimkach ZAWSZE dopelnieniowy: with me (nie with I), for her, to them."
+    },
+    {
+     "title": "3. Dzierzawcze z rzeczownikiem - CZYJ + rzecz",
+     "emoji": "🏷",
+     "color": "violet",
+     "text": "Zawsze MUSI po nich stac rzeczownik. Same nie moga stac na koncu zdania.",
+     "examples": [
+      [
+       "This is my badge.",
+       "To jest moja plakietka."
+      ],
+      [
+       "Their boxes are heavy.",
+       "Ich pudla sa ciezkie."
+      ],
+      [
+       "Check your email.",
+       "Sprawdz swoj e-mail."
+      ]
+     ],
+     "tip": "Zapamietaj: my + RZECZOWNIK. Jesli po zaimku nic nie ma - potrzebujesz mine."
+    },
+    {
+     "title": "4. Dzierzawcze samodzielne - CZYJ bez rzeczownika",
+     "emoji": "🔑",
+     "color": "gold",
+     "text": "Zastepuja caly zwrot moj + rzeczownik. Stoja same, zwykle na koncu zdania.",
+     "examples": [
+      [
+       "This vest is mine.",
+       "Ta kamizelka jest moja."
+      ],
+      [
+       "Is this yours?",
+       "Czy to twoje?"
+      ],
+      [
+       "The blue one is hers.",
+       "Ten niebieski jest jej."
+      ]
+     ],
+     "tip": "Nigdy nie stawiaj po nich rzeczownika: mine badge -> my badge."
+    },
+    {
+     "title": "MY czy MINE? Najczestsze pytanie",
+     "emoji": "⚡",
+     "color": "ember",
+     "text": "Roznica jest mechaniczna: patrzysz, czy PO zaimku stoi rzeczownik.\n- stoi rzeczownik -> MY (my box, my job, my team)\n- nie stoi nic -> MINE (It's mine. The box is mine.)\nTo samo dziala dla calej kolumny: your/yours, her/hers, our/ours, their/theirs.",
+     "examples": [
+      [
+       "My box is here.",
+       "Moje pudlo jest tutaj. (jest rzeczownik -> my)"
+      ],
+      [
+       "This box is mine.",
+       "To pudlo jest moje. (nic po zaimku -> mine)"
+      ],
+      [
+       "The badge is hers.",
+       "Plakietka jest jej."
+      ]
+     ],
+     "tip": "Wyjatek do zapamietania: HIS jest w obu kolumnach - his badge ORAZ it's his."
+    }
+   ],
+   "practice": [
+    {
+     "text": "___ work in a warehouse.",
+     "answer": "I",
+     "options": [
+      "I",
+      "me",
+      "my"
+     ],
+     "pl": "Ja pracuje w magazynie.",
+     "why": "Na poczatku zdania, przed czasownikiem - potrzebny podmiotowy: I."
+    },
+    {
+     "text": "Give ___ the scanner, please.",
+     "answer": "me",
+     "options": [
+      "I",
+      "me",
+      "my"
+     ],
+     "pl": "Podaj mi skaner.",
+     "why": "Po czasowniku give stoi dopelnienie - komu? - me."
+    },
+    {
+     "text": "This is ___ badge.",
+     "answer": "my",
+     "options": [
+      "me",
+      "my",
+      "mine"
+     ],
+     "pl": "To jest moja plakietka.",
+     "why": "Po zaimku stoi rzeczownik badge, wiec dzierzawczy z rzeczownikiem: my."
+    },
+    {
+     "text": "This badge is ___.",
+     "answer": "mine",
+     "options": [
+      "my",
+      "mine",
+      "me"
+     ],
+     "pl": "Ta plakietka jest moja.",
+     "why": "Po zaimku NIE ma rzeczownika - forma samodzielna: mine."
+    },
+    {
+     "text": "Can you help ___? (ona)",
+     "answer": "her",
+     "options": [
+      "she",
+      "her",
+      "hers"
+     ],
+     "pl": "Mozesz jej pomoc?",
+     "why": "Po czasowniku help - dopelnieniowy. Dla she to her."
+    },
+    {
+     "text": "___ boxes are on the pallet. (oni)",
+     "answer": "Their",
+     "options": [
+      "They",
+      "Their",
+      "Theirs"
+     ],
+     "pl": "Ich pudla sa na palecie.",
+     "why": "Po zaimku rzeczownik boxes -> dzierzawczy z rzeczownikiem: their."
+    },
+    {
+     "text": "The blue helmet is ___. (on)",
+     "answer": "his",
+     "options": [
+      "he",
+      "him",
+      "his"
+     ],
+     "pl": "Niebieski kask jest jego.",
+     "why": "Brak rzeczownika po zaimku -> forma samodzielna. Dla he to his."
+    },
+    {
+     "text": "Come with ___. (my)",
+     "answer": "us",
+     "options": [
+      "we",
+      "us",
+      "our"
+     ],
+     "pl": "Chodz z nami.",
+     "why": "Po przyimku with zawsze forma dopelnieniowa: us."
+    }
+   ]
   },
   {
    "id": "kb_articles",
