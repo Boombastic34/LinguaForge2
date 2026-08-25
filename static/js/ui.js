@@ -77,31 +77,54 @@ function confetti() {
   }
 }
 
-// Synteza mowy (angielski). Wewnątrz aplikacji Android WebView nie obsługuje
-// window.speechSynthesis — wtedy korzystamy z natywnego mostu NativeTTS
-// (zarejestrowanego przez MainActivity.kt). W zwykłej przeglądarce działa jak dotąd.
+// ================= SYNTEZA MOWY =================
+// W aplikacji Android (WebView) korzystamy z mostu natywnego NativeTTS.
+// W przeglądarce — z window.speechSynthesis, ale odpornie:
+//  * nie wymuszamy en-GB (brak takiego głosu = cisza bez błędu),
+//  * odblokowujemy mowę przy pierwszym dotknięciu (polityka mobilnych przeglądarek),
+//  * obchodzimy błąd Chrome, w którym mowa zatrzymuje się po cancel().
 const HAS_NATIVE_TTS = (typeof window.NativeTTS !== "undefined" && !!window.NativeTTS);
+const HAS_WEB_TTS = ("speechSynthesis" in window) && typeof SpeechSynthesisUtterance !== "undefined";
 
-let VOICE = null;
-function pickVoice() {
-  if (!("speechSynthesis" in window)) return;
-  const vs = speechSynthesis.getVoices().filter(v => v.lang.startsWith("en"));
-  VOICE = vs.find(v => v.lang === "en-GB") || vs.find(v => v.lang === "en-US") || vs[0] || null;
+let VOICES = [];
+function loadVoices() {
+  if (!HAS_WEB_TTS) return;
+  try { VOICES = speechSynthesis.getVoices() || []; } catch (e) { VOICES = []; }
 }
-if ("speechSynthesis" in window) {
-  pickVoice();
-  speechSynthesis.onvoiceschanged = pickVoice;
+if (HAS_WEB_TTS) {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+  setTimeout(loadVoices, 400);        // część przeglądarek ładuje głosy z opóźnieniem
 }
-let VOICE_PL = null;
-function pickVoicePl() {
-  if (!("speechSynthesis" in window)) return;
-  const vs = speechSynthesis.getVoices().filter(v => v.lang.startsWith("pl"));
-  VOICE_PL = vs[0] || null;
-}
-if ("speechSynthesis" in window) { pickVoicePl(); const prev = speechSynthesis.onvoiceschanged; speechSynthesis.onvoiceschanged = () => { pickVoice(); pickVoicePl(); }; }
 
-// Prędkość lektora zapisana w ustawieniach (0.6–1.2). Używana wszędzie,
-// gdzie moduł nie podał własnej wartości.
+function pickVoiceFor(lang) {
+  if (!VOICES.length) loadVoices();
+  const want = lang === "pl" ? "pl" : "en";
+  const cand = VOICES.filter(v => (v.lang || "").toLowerCase().startsWith(want));
+  if (!cand.length) return null;
+  if (want === "en") {
+    return cand.find(v => /en[-_]GB/i.test(v.lang))
+        || cand.find(v => /en[-_]US/i.test(v.lang))
+        || cand.find(v => v.localService) || cand[0];
+  }
+  return cand.find(v => v.localService) || cand[0];
+}
+
+// Mobilne przeglądarki wymagają gestu, zanim pozwolą mówić — odblokowujemy raz.
+let TTS_UNLOCKED = false;
+function unlockTts() {
+  if (TTS_UNLOCKED || !HAS_WEB_TTS) return;
+  TTS_UNLOCKED = true;
+  try {
+    const u = new SpeechSynthesisUtterance(" ");
+    u.volume = 0;
+    speechSynthesis.speak(u);
+    loadVoices();
+  } catch (e) { /* pomijamy */ }
+}
+document.addEventListener("pointerdown", unlockTts, { once: true });
+document.addEventListener("keydown", unlockTts, { once: true });
+
 function ttsRate() {
   try {
     const v = parseFloat(localStorage.getItem("lf_tts_rate"));
@@ -113,7 +136,6 @@ function setTtsRate(v) {
   API.post("/api/settings", { tts_rate: v }).catch(() => {});
 }
 
-// Pasek wyboru prędkości — wstawiany w modułach ze słuchaniem
 const TTS_SPEEDS = [[0.6, "🐢", "wolno"], [0.85, "▶", "normalnie"], [1.05, "🐇", "szybko"]];
 function speedPicker(current, onChange) {
   const row = el("div", { class: "speed-row" }, el("span", { class: "muted small" }, "tempo:"));
@@ -132,21 +154,51 @@ function speedPicker(current, onChange) {
   return row;
 }
 
+let TTS_WARNED = false;
 function speak(text, rate, lang = "en") {
   if (rate === undefined || rate === null) rate = ttsRate();
   if (!text) return;
+
   if (HAS_NATIVE_TTS) {
     try { window.NativeTTS.speak(String(text), lang === "pl" ? "pl" : "en", rate); }
-    catch (e) { /* most niedostępny mimo detekcji — cicho pomijamy */ }
+    catch (e) { /* most nieosiągalny — pomijamy */ }
     return;
   }
-  if (!("speechSynthesis" in window)) { toast("Brak syntezy mowy w tej przeglądarce", true); return; }
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  if (lang === "pl") { u.lang = "pl-PL"; if (VOICE_PL) u.voice = VOICE_PL; }
-  else { u.lang = "en-GB"; if (VOICE) u.voice = VOICE; }
-  u.rate = rate;
-  speechSynthesis.speak(u);
+  if (!HAS_WEB_TTS) {
+    if (!TTS_WARNED) { TTS_WARNED = true; toast("Ta przeglądarka nie obsługuje lektora", true); }
+    return;
+  }
+
+  unlockTts();
+  try { speechSynthesis.cancel(); } catch (e) {}
+
+  // krótka zwłoka po cancel() — bez niej Chrome bywa cichy
+  setTimeout(() => {
+    try {
+      const u = new SpeechSynthesisUtterance(String(text));
+      const v = pickVoiceFor(lang);
+      if (v) { u.voice = v; u.lang = v.lang; }
+      else { u.lang = lang === "pl" ? "pl-PL" : "en-US"; }
+      u.rate = rate;
+      u.pitch = 1;
+      u.volume = 1;
+      speechSynthesis.speak(u);
+      // znany błąd Chrome: mowa zasypia — budzimy ją
+      setTimeout(() => { try { if (speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {} }, 120);
+    } catch (e) {
+      if (!TTS_WARNED) { TTS_WARNED = true; toast("Lektor niedostępny w tej przeglądarce", true); }
+    }
+  }, 60);
+}
+
+// Diagnostyka dla przycisku „Sprawdź lektora"
+function ttsInfo() {
+  if (HAS_NATIVE_TTS) return "lektor telefonu (aplikacja)";
+  if (!HAS_WEB_TTS) return "brak wsparcia w tej przeglądarce";
+  loadVoices();
+  const en = VOICES.filter(v => (v.lang || "").toLowerCase().startsWith("en")).length;
+  const pl = VOICES.filter(v => (v.lang || "").toLowerCase().startsWith("pl")).length;
+  return `przeglądarka · głosy EN: ${en}, PL: ${pl}`;
 }
 
 // Telefon bez polskich danych głosowych — podpowiadamy, gdzie je włączyć

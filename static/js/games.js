@@ -52,6 +52,33 @@ async function gameSetup(game, title) {
       "Zaznacz kategorie i ustaw, ile słówek z każdej ma trafić do gry."));
 
   const picks = {};
+
+  // --- WSZYSTKIE KATEGORIE: jedna liczba dla całej bazy
+  let allMode = false, allValue = 30;
+  const allNum = el("input", { class: "input short", type: "number", min: 2, max: total,
+    value: Math.min(30, total), disabled: true });
+  const allEvery = el("button", { class: "chip chip-btn", disabled: true }, `wszystkie (${total})`);
+  const allChk = el("input", { type: "checkbox" });
+  allChk.onchange = () => {
+    allMode = allChk.checked;
+    allNum.disabled = !allMode;
+    allEvery.disabled = !allMode;
+    list.classList.toggle("dimmed", allMode);
+    list.querySelectorAll("input,button").forEach(x => { x.disabled = allMode; });
+    updateTotal();
+  };
+  allNum.oninput = () => { allEvery.classList.remove("active"); allValue = +allNum.value || 30; updateTotal(); };
+  allEvery.onclick = () => {
+    allEvery.classList.toggle("active");
+    allValue = allEvery.classList.contains("active") ? "all" : (+allNum.value || 30);
+    allNum.disabled = allEvery.classList.contains("active");
+    updateTotal();
+  };
+  card.append(el("div", { class: "game-all-row" },
+    el("label", { class: "gt-name" }, allChk, " 🎲 Wszystkie kategorie razem"),
+    el("span", { class: "muted small gt-count" }, `${total} słówek`),
+    allNum, allEvery));
+
   const list = el("div", { class: "game-themes" });
   themes.forEach(t => {
     const chk = el("input", { type: "checkbox" });
@@ -87,10 +114,14 @@ async function gameSetup(game, title) {
   const totalBadge = el("div", { class: "pool-badge" }, "wybrano: 0 słówek");
   function updateTotal() {
     let n = 0;
-    Object.entries(picks).forEach(([th, v]) => {
-      const t = themes.find(x => x.theme === th);
-      n += v === "all" ? t.total : v;
-    });
+    if (allMode) {
+      n = allValue === "all" ? total : Math.min(total, allValue);
+    } else {
+      Object.entries(picks).forEach(([th, v]) => {
+        const t = themes.find(x => x.theme === th);
+        n += v === "all" ? t.total : v;
+      });
+    }
     totalBadge.textContent = `wybrano: ${n} słówek`;
   }
 
@@ -98,14 +129,24 @@ async function gameSetup(game, title) {
     el("div", { class: "fb-btns" },
       el("button", { class: "btn primary big", onclick: start }, "▶ Graj"),
       el("button", { class: "btn ghost", onclick: () => {
-        // szybki start: wszystko losowo
-        picks._all = "all";
-        startWith({ picks: {} });
-      } }, "🎲 Losowo z całej bazy"),
+        // zaznacz wszystkie kategorie z ich pełną zawartością
+        allChk.checked = false; allMode = false;
+        allNum.disabled = true; allEvery.disabled = true;
+        list.classList.remove("dimmed");
+        list.querySelectorAll("input,button").forEach(x => { x.disabled = false; });
+        list.querySelectorAll(".game-theme-row").forEach((row, i) => {
+          const chk = row.querySelector("input[type=checkbox]");
+          if (!chk.checked) { chk.checked = true; chk.dispatchEvent(new Event("change")); }
+          const allB = row.querySelector(".chip-btn");
+          if (!allB.classList.contains("active")) allB.click();
+        });
+        toast("Zaznaczono wszystkie kategorie w całości");
+      } }, "✅ Zaznacz wszystkie kategorie"),
       el("button", { class: "btn ghost", onclick: viewGames }, "← Wróć")));
   main.append(card);
 
   async function start() {
+    if (allMode) return startWith({ all_count: allValue });
     if (!Object.keys(picks).length) return toast("Zaznacz przynajmniej jedną kategorię", true);
     startWith({ picks });
   }
@@ -117,19 +158,20 @@ async function gameSetup(game, title) {
   }
 }
 
-// ================= GRA 1: PARY =================
+// ================= GRA 1: PARY (karty zakryte) =================
 function playPairs(words, onBack) {
   clearMain();
   const main = document.querySelector("main");
-  enterFocus({ title: "🃏 Pary", subtitle: "łącz słówko z tłumaczeniem", theme: "indigo",
+  enterFocus({ title: "🃏 Pary", subtitle: "odkrywaj i łącz", theme: "indigo",
     onExit: () => { clearTimers(); onBack(); } });
   const box = el("div", { class: "card" });
   main.append(box);
 
-  const ROUND = 6;                       // par na planszę
+  const ROUND = 6;
   let pool = words.slice();
   let points = 0, streak = 0, bestStreak = 0, correct = 0, wrong = 0;
-  let t0 = Date.now(), timerIv = null;
+  const t0 = Date.now();
+  let timerIv = null;
 
   const scoreBar = el("div", { class: "game-bar" },
     el("span", { class: "badge" }, "0 pkt"),
@@ -147,59 +189,65 @@ function playPairs(words, onBack) {
     const round = pool.splice(0, Math.min(ROUND, pool.length));
     box.innerHTML = "";
     box.append(scoreBar);
-    focusProgress(words.length - pool.length - round.length, words.length, `${points} pkt`);
+    focusProgress(words.length - pool.length - round.length, words.length, points + " pkt");
+    box.append(el("p", { class: "muted small" },
+      "Odkryj kartę po lewej, potem szukaj jej tłumaczenia po prawej."));
 
-    const left = round.map(w => ({ ...w, side: "en" }));
-    const right = round.map(w => ({ ...w, side: "pl" }));
-    left.sort(() => Math.random() - .5);
-    right.sort(() => Math.random() - .5);
+    const left = round.map(w => ({ ...w })).sort(() => Math.random() - .5);
+    const right = round.map(w => ({ ...w })).sort(() => Math.random() - .5);
 
-    let sel = null, remaining = round.length;
+    let selL = null, selR = null, busy = false, remaining = round.length;
     const grid = el("div", { class: "pairs-two" });
     const colL = el("div", { class: "pairs-col" });
     const colR = el("div", { class: "pairs-col" });
-
-    left.forEach(w => colL.append(mkTile(w, w.en, "en")));
-    right.forEach(w => colR.append(mkTile(w, w.pl, "pl")));
+    left.forEach(w => colL.append(mkCard(w, w.en, "en")));
+    right.forEach(w => colR.append(mkCard(w, w.pl, "pl")));
     grid.append(colL, colR);
     box.append(grid);
 
-    function mkTile(w, txt, side) {
-      const b = el("button", { class: "pair-tile pair-" + side }, txt);
+    // karta: zakryta rewersem, odkrywa się po kliknięciu
+    function mkCard(w, txt, side) {
+      const face = el("span", { class: "pc-face" }, txt);
+      const back = el("span", { class: "pc-back" }, side === "en" ? "🇬🇧" : "🇵🇱");
+      const b = el("button", { class: "pair-card pair-" + side }, back, face);
+      b.dataset.side = side;
       b.onclick = () => {
-        if (b.classList.contains("done")) return;
-        if (side === "en") speak(w.en);
-        if (!sel) {
-          if (side !== "en") { flashBad(b); return; }   // zaczynamy od angielskiego
-          sel = { w, b }; b.classList.add("sel");
-          return;
-        }
-        if (sel.b === b) { b.classList.remove("sel"); sel = null; return; }
-        if (side === "en") { sel.b.classList.remove("sel"); sel = { w, b }; b.classList.add("sel"); return; }
-
-        if (sel.w.id === w.id) {
-          correct++; streak++; bestStreak = Math.max(bestStreak, streak);
-          points += 10 + Math.min(20, streak * 2);
-          sel.b.classList.add("done"); b.classList.add("done");
-          sel.b.classList.remove("sel");
-          if (typeof haptic === "function") haptic("good");
-          sel = null; remaining--;
-          paint();
-          if (remaining === 0) setTimeout(deal, 450);
-        } else {
-          wrong++; streak = 0;
-          points = Math.max(0, points - 4);
-          flashBad(b); flashBad(sel.b);
-          sel.b.classList.remove("sel"); sel = null;
-          if (typeof haptic === "function") haptic("bad");
-          paint();
-        }
+        if (busy || b.classList.contains("done") || b.classList.contains("open")) return;
+        // w jednej kolumnie tylko jedna odkryta naraz
+        const cur = side === "en" ? selL : selR;
+        if (cur) { cur.b.classList.remove("open"); }
+        b.classList.add("open");
+        if (side === "en") { selL = { w, b }; speak(w.en); }
+        else { selR = { w, b }; }
+        if (selL && selR) resolve();
       };
       return b;
     }
-    function flashBad(b) {
-      b.classList.add("bad");
-      setTimeout(() => b.classList.remove("bad"), 400);
+
+    function resolve() {
+      busy = true;
+      const a = selL, c = selR;
+      if (a.w.id === c.w.id) {
+        correct++; streak++; bestStreak = Math.max(bestStreak, streak);
+        points += 10 + Math.min(20, streak * 2);
+        a.b.classList.add("done"); c.b.classList.add("done");
+        if (typeof haptic === "function") haptic("good");
+        selL = selR = null; remaining--;
+        paint(); busy = false;
+        if (remaining === 0) setTimeout(deal, 500);
+      } else {
+        wrong++; streak = 0;
+        points = Math.max(0, points - 4);
+        a.b.classList.add("bad"); c.b.classList.add("bad");
+        if (typeof haptic === "function") haptic("bad");
+        paint();
+        // pomyłka: zakrywamy z powrotem kolumnę polską (i zwalniamy angielską)
+        setTimeout(() => {
+          a.b.classList.remove("bad", "open");
+          c.b.classList.remove("bad", "open");
+          selL = selR = null; busy = false;
+        }, 800);
+      }
     }
   }
 
@@ -220,8 +268,9 @@ function playPairs(words, onBack) {
     box.append(el("h3", {}, "🏁 Koniec gry"),
       el("div", { class: "game-result" },
         el("div", { class: "gr-big" }, points + " pkt"),
-        el("div", { class: "muted" }, `${correct} trafień · ${wrong} pomyłek · najdłuższa seria ${bestStreak} · ${secs} s`)),
-      r.rank ? el("p", {}, `Ranga: **${r.rank}** · łącznie ${r.total} pkt`.replace(/\*\*/g, "")) : null,
+        el("div", { class: "muted" },
+          `${correct} trafień · ${wrong} pomyłek · najdłuższa seria ${bestStreak} · ${secs} s`)),
+      r.rank ? el("p", {}, `Ranga: ${r.rank} · łącznie ${r.total} pkt`) : null,
       el("div", { class: "fb-btns" },
         el("button", { class: "btn primary", onclick: onBack }, "▶ Jeszcze raz"),
         el("button", { class: "btn ghost", onclick: viewGames }, "← Gry")));

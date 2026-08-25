@@ -7,6 +7,8 @@ const ROUTES_STUDENT = [
   ["#reading", "📖 Czytanie", viewReading],
   ["#training", "🛠 Mój trening", viewTraining],
   ["#admin", "🛡 Administrator", viewAdmin, "admin"],
+  ["#review", "🔍 Przegląd treści", viewReview, "admin"],
+  ["#notes", "📋 Notatki admina", viewReviewNotes, "admin"],
   ["#verbs", "⚙️ Czasowniki z czasami", viewVerbs],
   ["#knowledge", "📖 Baza wiedzy", viewKnowledge],
   ["#lessons", "📚 Lekcje", viewLessons],
@@ -46,7 +48,7 @@ function boot() {
   const nav = el("nav", {});
   const aside = el("aside", {},
     el("div", { class: "brand" }, "Lingua", el("span", {}, "Forge")),
-    el("div", { class: "brand-sub", id: "verbox" }, "v1.7.0 · kuźnia języka"),
+    el("div", { class: "brand-sub", id: "verbox" }, "v2.0.0 · kuźnia języka"),
     nav,
     el("div", { class: "spacer" }),
     el("div", { class: "userbox" },
@@ -71,7 +73,7 @@ function boot() {
     const box = document.getElementById("verbox");
     if (!box) return;
     box.textContent = "v" + v.version + " · kuźnia języka";
-    if (v.version !== "1.7.0") {
+    if (v.version !== "2.0.0") {
       box.textContent = "v" + v.version + " · odśwież (Ctrl+F5)";
       box.style.color = "#ffd43b";
     }

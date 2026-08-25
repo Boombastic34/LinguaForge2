@@ -29,17 +29,85 @@ async function viewKbArticle(aid) {
   const box = el("div", { class: "card" });
   main.append(box);
 
-  const sec = (title, node) => box.append(el("div", { class: "kb-sec" }, el("h4", {}, title), node));
+  const sec = (title, node, cls) => box.append(
+    el("div", { class: "kb-sec " + (cls || "") }, el("h4", {}, title), node));
 
-  const whenUl = el("ul", {});
-  a.when.forEach(w => whenUl.append(el("li", {}, w)));
-  sec("Kiedy używać?", whenUl);
+  // ---------- pasek: odsłuchaj całą lekcję ----------
+  const lessonText = buildLessonAudio(a);
+  box.append(el("div", { class: "kb-toolbar" },
+    el("button", { class: "btn primary", onclick: () => speak(lessonText, ttsRate(), "pl") },
+      "🔊 Odsłuchaj lekcję"),
+    speedPicker(ttsRate(), v => speak(lessonText, v, "pl")),
+    a.practice && a.practice.length
+      ? el("button", { class: "btn ok", onclick: () => runKbPractice(a) },
+          `✍️ Ćwiczenia (${a.practice.length})`) : null));
 
-  const form = el("div", { class: "kb-form" });
-  if (a.form.plus && a.form.plus !== "—") form.append(el("div", {}, "➕ Twierdzenie: " + a.form.plus));
-  if (a.form.minus && a.form.minus !== "—") form.append(el("div", {}, "➖ Przeczenie: " + a.form.minus));
-  if (a.form.question && a.form.question !== "—") form.append(el("div", {}, "❓ Pytanie: " + a.form.question));
-  sec("Formuła (wzór)", form);
+  if (a.intro) box.append(el("div", { class: "kb-intro" }, a.intro));
+
+  // ---------- TABELE ----------
+  (a.tables || []).forEach(t => {
+    const wrap = el("div", { class: "kb-table-wrap" });
+    if (t.title) wrap.append(el("h4", {}, "📊 " + t.title));
+    if (t.note) wrap.append(el("div", { class: "muted small" }, t.note));
+    const scroll = el("div", { class: "kb-table-scroll" });
+    const tbl = el("table", { class: "kb-table" });
+    const thead = el("tr", {});
+    t.head.forEach((h, i) => thead.append(el("th", { class: "kbt-c" + i }, h)));
+    tbl.append(thead);
+    t.rows.forEach(r => {
+      const tr = el("tr", {});
+      r.forEach((cell, i) => {
+        const td = el("td", { class: "kbt-c" + i }, cell);
+        if (i > 0) {
+          td.classList.add("kbt-en");
+          td.onclick = () => speak(cell);
+          td.title = "kliknij, aby odsłuchać";
+        }
+        tr.append(td);
+      });
+      tbl.append(tr);
+    });
+    scroll.append(tbl);
+    wrap.append(scroll);
+    box.append(wrap);
+  });
+
+  // ---------- SEKCJE OPISOWE ----------
+  (a.sections || []).forEach(s => {
+    const card = el("div", { class: "kb-block kb-" + (s.color || "indigo") });
+    card.append(el("div", { class: "kb-block-head" },
+      el("span", { class: "kb-block-emo" }, s.emoji || "•"),
+      el("b", {}, s.title)));
+    (s.text || "").split("\n").forEach(line => {
+      if (line.trim()) card.append(el("div", { class: "kb-block-txt" }, line));
+    });
+    (s.examples || []).forEach(([en, pl]) => card.append(el("div", { class: "kb-ex" },
+      el("div", { class: "en" }, el("b", {}, en), " ",
+        el("button", { class: "mini-tts", onclick: () => speak(en) }, "🔊")),
+      el("div", { class: "muted" }, pl))));
+    if (s.tip) card.append(el("div", { class: "kb-tip" }, "💡 " + s.tip));
+    box.append(card);
+  });
+
+  // ---------- klasyczne pola (gdy artykuł ich jeszcze nie ma rozbitych) ----------
+  if (!a.sections || !a.sections.length) {
+    const whenUl = el("ul", {});
+    (a.when || []).forEach(w => whenUl.append(el("li", {}, w)));
+    if (whenUl.children.length) sec("Kiedy używać?", whenUl);
+
+    const form = el("div", { class: "kb-form" });
+    if (a.form && a.form.plus && a.form.plus !== "—") form.append(el("div", {}, "➕ Twierdzenie: " + a.form.plus));
+    if (a.form && a.form.minus && a.form.minus !== "—") form.append(el("div", {}, "➖ Przeczenie: " + a.form.minus));
+    if (a.form && a.form.question && a.form.question !== "—") form.append(el("div", {}, "❓ Pytanie: " + a.form.question));
+    if (form.children.length) sec("Formuła (wzór)", form);
+
+    const exs = el("div", {});
+    (a.examples || []).forEach(([en, pl]) => exs.append(el("div", { class: "kb-ex" },
+      el("div", { class: "en" }, el("b", {}, en), " ",
+        el("button", { class: "mini-tts", onclick: () => speak(en) }, "🔊")),
+      el("div", { class: "muted" }, pl))));
+    if (exs.children.length) sec("Przykłady", exs);
+  }
 
   if (a.signals && a.signals.length) {
     const sig = el("div", { class: "kb-sig" });
@@ -47,20 +115,96 @@ async function viewKbArticle(aid) {
     sec("Słowa-sygnały", sig);
   }
 
-  const exs = el("div", {});
-  a.examples.forEach(([en, pl]) => exs.append(el("div", { class: "kb-ex" },
-    el("div", { class: "en" }, el("b", {}, en), " ",
-      el("button", { class: "mini-tts", onclick: () => speak(en) }, "🔊")),
-    el("div", { class: "muted" }, pl))));
-  sec("Przykłady", exs);
-
   const mis = el("div", {});
-  a.mistakes.forEach(x => mis.append(el("div", { class: "kb-mistake" }, "⚠ " + x)));
-  sec("Typowe błędy Polaków", mis);
+  (a.mistakes || []).forEach(x => mis.append(el("div", { class: "kb-mistake" }, "⚠ " + x)));
+  if (mis.children.length) sec("Typowe błędy Polaków", mis, "kb-sec-warn");
 
+  // ---------- co dalej ----------
+  const next = el("div", { class: "fb-btns", style: "margin-top:14px" });
+  if (a.practice && a.practice.length)
+    next.append(el("button", { class: "btn ok big", onclick: () => runKbPractice(a) },
+      `✍️ Poćwicz w praktyce (${a.practice.length} zadań)`));
   if (a.quiz && a.quiz.length)
-    box.append(el("button", { class: "btn primary", style: "margin-top:10px", onclick: () => runKbQuiz(a) },
-      `📝 Sprawdź, czy rozumiesz (${a.quiz.length} pytań opisowych)`));
+    next.append(el("button", { class: "btn primary big", onclick: () => runKbQuiz(a) },
+      `📝 Sprawdzian (${a.quiz.length} pytań)`));
+  box.append(next);
+}
+
+// tekst całej lekcji do odczytania na głos
+function buildLessonAudio(a) {
+  const parts = [a.name, a.intro || a.what || ""];
+  (a.sections || []).forEach(s => {
+    parts.push(s.title);
+    parts.push((s.text || "").replace(/\n/g, ". "));
+    if (s.tip) parts.push("Wskazówka: " + s.tip);
+  });
+  if (!a.sections || !a.sections.length) (a.when || []).forEach(w => parts.push(w));
+  return parts.filter(Boolean).join(". ");
+}
+
+// ---------- ĆWICZENIA PRAKTYCZNE (przed sprawdzianem) ----------
+function runKbPractice(a) {
+  clearMain();
+  const main = document.querySelector("main");
+  enterFocus({ title: "✍️ " + a.name, subtitle: "ćwiczenia", theme: "teal",
+    onExit: () => viewArticle(a.id) });
+  const box = el("div", { class: "card" });
+  main.append(box);
+  let i = 0, good = 0;
+  const items = a.practice;
+
+  show();
+  function show() {
+    if (i >= items.length) return done();
+    const q = items[i];
+    box.innerHTML = "";
+    focusProgress(i, items.length, `poprawnych: ${good}`);
+    box.append(
+      el("div", { class: "pl-top" }, el("span", { class: "badge" }, `${i + 1}/${items.length}`)),
+      el("div", { class: "gap-sentence" },
+        ...q.text.split("___").flatMap((part, n, arr) =>
+          n < arr.length - 1 ? [el("span", {}, part), el("span", { class: "gap-slot" }, "?")]
+                             : [el("span", {}, part)])),
+      el("div", { class: "muted", style: "margin-bottom:10px" }, q.pl));
+    const opts = el("div", { class: "options" });
+    q.options.forEach(o => opts.append(el("button", { class: "option", onclick: () => pick(o) }, o)));
+    box.append(opts);
+  }
+
+  function pick(choice) {
+    const q = items[i];
+    const ok = choice.toLowerCase() === q.answer.toLowerCase();
+    if (ok) good++;
+    if (typeof haptic === "function") haptic(ok ? "good" : "bad");
+    const filled = q.text.replace("___", q.answer);
+    speakAuto(filled);
+    box.innerHTML = "";
+    box.append(el("div", { class: "feedback " + (ok ? "fb-good" : "fb-bad") },
+      el("div", { class: "fb-head" }, ok ? "✔ Dobrze!" : "✘ Niestety nie"),
+      !ok ? el("div", {}, "Twoja odpowiedź: ", el("b", {}, choice)) : null,
+      el("div", { class: "gap-sentence gap-done" }, filled, " ",
+        el("button", { class: "mini-tts", onclick: () => speak(filled) }, "🔊")),
+      el("div", { class: "muted" }, q.pl),
+      el("div", { class: "fb-explain" }, "💡 Dlaczego: " + q.why)));
+    const next = el("button", { class: "btn primary big", onclick: () => { i++; show(); } },
+      i + 1 >= items.length ? "Podsumowanie →" : "Dalej →");
+    box.append(el("div", { class: "fb-btns" }, next));
+    next.focus();
+  }
+
+  function done() {
+    exitFocus();
+    const pct = Math.round(100 * good / items.length);
+    if (pct >= 80) confetti();
+    box.innerHTML = "";
+    box.append(el("h3", {}, "Ćwiczenia zakończone"),
+      el("p", {}, `Wynik: ${good}/${items.length} (${pct}%)`),
+      el("div", { class: "fb-btns" },
+        a.quiz && a.quiz.length
+          ? el("button", { class: "btn primary", onclick: () => runKbQuiz(a) }, "📝 Teraz sprawdzian") : null,
+        el("button", { class: "btn ghost", onclick: () => runKbPractice(a) }, "🔁 Jeszcze raz"),
+        el("button", { class: "btn ghost", onclick: () => viewArticle(a.id) }, "← Teoria")));
+  }
 }
 
 function runKbQuiz(a) {
@@ -85,6 +229,13 @@ function runKbQuiz(a) {
       el("div", { class: "qtext" }, q.q),
       el("div", { class: "muted small" }, "Napisz 1–3 zdania po polsku."));
     const ta = el("textarea", { class: "input", placeholder: "Twoja odpowiedź po polsku…" });
+    box.append(el("details", { class: "kb-criteria" },
+      el("summary", {}, "❓ Jak oceniana jest ta odpowiedź?"),
+      el("div", { class: "muted small" },
+        "System szuka w odpowiedzi kilku POJĘĆ, nie konkretnych zdań. Z każdej grupy pojęć "
+        + "musi paść przynajmniej jedno słowo — wystarczy sam rdzeń, np. „dzierżawcz” zaliczy "
+        + "„dzierżawczy” i „dzierżawcze”. Wynik = ile grup trafiłeś. Odpowiedź krótsza niż "
+        + "3 słowa nie jest oceniana. Po sprawdzeniu zobaczysz, których wątków zabrakło.")));
     const send = el("button", { class: "btn ok", onclick: check }, "Sprawdź");
     box.append(ta, send);
     ta.focus();

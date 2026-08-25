@@ -1123,3 +1123,120 @@ body.dark .rain-opt.ok { background:#12251f; }
 body.dark .access-item { border-color:#2b3542; }
 .acc-emo { font-size:17px; }
 .users-tbl select { padding:5px 8px; border-radius:8px; }
+
+
+/* gra w pary: karty zakryte, odkrywane kliknięciem */
+.pair-card { position:relative; border:2px solid #e3e9ef; background:#fff; border-radius:14px;
+  padding:0; min-height:58px; cursor:pointer; overflow:hidden;
+  font-family:inherit; transition:transform .1s, border-color .15s, opacity .3s; }
+body.dark .pair-card { background:#1a212a; border-color:#2b3542; }
+.pair-card .pc-back, .pair-card .pc-face {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  padding:8px; text-align:center; transition:opacity .18s; }
+.pair-card .pc-back { font-size:22px; opacity:1;
+  background:linear-gradient(135deg,#4c5fd5,#7048e8); color:#fff; }
+.pair-card .pc-face { font-size:15px; color:#1b2430; opacity:0; }
+body.dark .pair-card .pc-face { color:#e6ebf1; }
+.pair-en .pc-face { font-weight:700; }
+.pair-card.open .pc-back { opacity:0; }
+.pair-card.open .pc-face { opacity:1; }
+.pair-card.open { border-color:#4c5fd5; }
+.pair-card:active { transform:scale(.96); }
+.pair-card.done { opacity:.35; border-color:#0ca678; pointer-events:none; }
+.pair-card.done .pc-back { opacity:0; }
+.pair-card.done .pc-face { opacity:1; }
+.pair-card.bad { border-color:#e03131; animation:shake .35s ease; }
+.pair-card.bad .pc-face { color:#c92a2a; }
+
+/* ================= przegląd treści przez administratora ================= */
+.rv-title { font-family:"Sora",sans-serif; font-size:17px; font-weight:700; margin:10px 0 12px; }
+.rv-block { border-radius:12px; padding:12px 14px; margin-bottom:10px; border-left:4px solid #dde5ec; }
+.rv-label { font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:#8a94a0; margin-bottom:5px; }
+.rv-text { font-size:15px; line-height:1.5; white-space:pre-wrap; }
+.rv-q { background:#f4f7fa; border-left-color:#4c5fd5; }
+.rv-good { background:#e6fcf5; border-left-color:#0ca678; }
+.rv-bad { background:#fff5f5; border-left-color:#e03131; }
+.rv-extra { background:#fff9db; border-left-color:#f0a202; }
+body.dark .rv-q { background:#1c2333; } body.dark .rv-good { background:#12251f; }
+body.dark .rv-bad { background:#2a1618; } body.dark .rv-extra { background:#2a2413; }
+.rv-flag { margin-top:14px; padding:14px; border:2px dashed #ffd43b; border-radius:14px;
+  background:#fffbea; }
+body.dark .rv-flag { background:#231e10; border-color:#6b5a10; }
+.rv-flag textarea { min-height:70px; margin-top:8px; }
+.ch-flagged { border-left:4px solid #f0a202; }
+.rv-note { border:1px solid #e9eef4; border-radius:12px; padding:12px; margin-bottom:10px; }
+body.dark .rv-note { border-color:#2b3542; }
+.rv-note-head { display:flex; justify-content:space-between; gap:8px; align-items:center;
+  flex-wrap:wrap; margin-bottom:6px; }
+.rv-note-q { font-size:13.5px; color:#5c6672; margin-bottom:6px; }
+body.dark .rv-note-q { color:#9aa6b4; }
+.rv-note-txt { background:#fff9db; border-radius:8px; padding:8px 10px; font-weight:600; }
+body.dark .rv-note-txt { background:#2a2413; }
+
+/* gry: wiersz "wszystkie kategorie" */
+.game-all-row { display:flex; align-items:center; gap:8px; padding:10px 12px; flex-wrap:wrap;
+  border:2px solid #ffd43b; border-radius:12px; background:#fffbea; margin:10px 0; }
+body.dark .game-all-row { background:#231e10; border-color:#6b5a10; }
+.game-all-row .short { width:82px; }
+.game-themes.dimmed { opacity:.4; pointer-events:none; }
+
+/* fiszka ze słuchu */
+.fc-audio { border-color:#7048e8; background:linear-gradient(180deg,#f6f3ff,#fff); }
+body.dark .fc-audio { background:#1d1830; border-color:#7048e8; }
+.tag-audio { background:#7048e8; color:#fff; }
+.big-play { font-size:19px; padding:16px 34px; margin:10px 0; }
+
+/* ================= TEORIA: tabele, sekcje, ćwiczenia ================= */
+.kb-toolbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+  padding:12px; background:#f4f7fa; border-radius:12px; margin-bottom:14px; }
+body.dark .kb-toolbar { background:#1c2333; }
+.kb-intro { font-size:16px; line-height:1.6; padding:14px 16px; border-radius:12px;
+  background:linear-gradient(135deg,#fff4e6,#fff9db); border-left:4px solid #e8590c;
+  margin-bottom:16px; }
+body.dark .kb-intro { background:#2a1c10; }
+
+.kb-table-wrap { margin:16px 0; }
+.kb-table-wrap h4 { margin:0 0 4px; color:#4c5fd5; }
+.kb-table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; margin-top:8px;
+  border:2px solid #dde5ec; border-radius:12px; }
+body.dark .kb-table-scroll { border-color:#2b3542; }
+.kb-table { border-collapse:collapse; width:100%; min-width:520px; font-size:14px; }
+.kb-table th { background:#4c5fd5; color:#fff; padding:10px 8px; text-align:left;
+  font-size:11.5px; line-height:1.3; font-weight:700; vertical-align:bottom; }
+.kb-table td { padding:9px 8px; border-top:1px solid #e9eef4; }
+body.dark .kb-table td { border-color:#242e3a; }
+.kb-table tr:nth-child(even) td { background:#fbfcfe; }
+body.dark .kb-table tr:nth-child(even) td { background:#171d25; }
+.kb-table .kbt-c0 { font-weight:700; background:#eef2f7 !important; white-space:nowrap; }
+body.dark .kb-table .kbt-c0 { background:#20272f !important; }
+.kb-table .kbt-en { font-family:"IBM Plex Mono",monospace; cursor:pointer; }
+.kb-table .kbt-en:hover { background:#fff4e6 !important; }
+.kb-table th.kbt-c1 { background:#4c5fd5; } .kb-table th.kbt-c2 { background:#0ca678; }
+.kb-table th.kbt-c3 { background:#7048e8; } .kb-table th.kbt-c4 { background:#e8a202; }
+
+.kb-block { border-radius:14px; padding:14px 16px; margin-bottom:12px; border-left:5px solid; }
+.kb-block-head { display:flex; align-items:center; gap:8px; font-size:16px; margin-bottom:8px; }
+.kb-block-emo { font-size:20px; }
+.kb-block-txt { font-size:14.5px; line-height:1.6; margin-bottom:6px; }
+.kb-indigo { background:#eef1ff; border-color:#4c5fd5; } body.dark .kb-indigo { background:#1a2033; }
+.kb-teal   { background:#e6fcf5; border-color:#0ca678; } body.dark .kb-teal   { background:#12251f; }
+.kb-violet { background:#f3f0ff; border-color:#7048e8; } body.dark .kb-violet { background:#1d1830; }
+.kb-gold   { background:#fff9db; border-color:#e8a202; } body.dark .kb-gold   { background:#2a2413; }
+.kb-ember  { background:#fff4e6; border-color:#e8590c; } body.dark .kb-ember  { background:#2a1c10; }
+.kb-tip { margin-top:8px; padding:8px 12px; background:rgba(255,255,255,.7);
+  border-radius:8px; font-size:13.5px; font-weight:600; }
+body.dark .kb-tip { background:rgba(255,255,255,.07); }
+.kb-sec-warn h4 { color:#c92a2a; }
+.kb-criteria { margin:10px 0; padding:8px 12px; background:#f4f7fa; border-radius:10px; }
+body.dark .kb-criteria { background:#1c2333; }
+
+/* ćwiczenia z luką */
+.gap-sentence { font-family:"Sora",sans-serif; font-size:21px; line-height:1.8; margin:12px 0;
+  display:flex; flex-wrap:wrap; align-items:center; gap:4px; }
+.gap-slot { display:inline-flex; align-items:center; justify-content:center;
+  min-width:74px; padding:2px 12px; border-bottom:3px solid #e8590c; color:#e8590c;
+  font-weight:700; }
+.gap-done { color:#087f5b; }
+body.dark .gap-done { color:#38d9a9; }
+@media (max-width:600px){ .gap-sentence { font-size:18px; } .kb-table { min-width:460px; } }

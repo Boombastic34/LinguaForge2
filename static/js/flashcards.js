@@ -1,5 +1,5 @@
 // Fiszki 2.0 — duża karta, wpisywanie w obu kierunkach, skróty klawiszowe, pasek serii
-async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode) {
+async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, audioMode) {
   const m = clearMain();
   const stats = await API.get("/api/content/stats");
   m.append(hero("🃏", theme && theme !== "all" ? "Fiszki: " + theme : "Fiszki",
@@ -76,6 +76,23 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode) {
     const retypeCheck = el("input", { type: "checkbox",
       ...(LFSET.get("fc_retype", false) ? { checked: "" } : {}),
       onchange: e => LFSET.set("fc_retype", e.target.checked) });
+    // tryb ćwiczenia: pisanie z tekstu albo ze słuchu
+    let chosenAudio = LFSET_str("fc_audio", "off");   // off | en | pl
+    const audioRow = el("div", { class: "opt-row-btns" });
+    [["off", "✍️ Zwykłe fiszki", "widzisz słowo, wpisujesz tłumaczenie"],
+     ["en", "🎧 Ze słuchu — angielski", "lektor mówi po angielsku, zapisujesz to słowo"],
+     ["pl", "🎧 Ze słuchu — polski", "lektor mówi po polsku, zapisujesz to słowo"]]
+      .forEach(([v, label, sub]) => {
+        const b = el("button", { class: "mode-btn" + (chosenAudio === v ? " active" : ""),
+          onclick: () => {
+            chosenAudio = v; LFSET_setStr("fc_audio", v);
+            audioRow.querySelectorAll(".mode-btn").forEach(x => x.classList.remove("active"));
+            b.classList.add("active");
+            dirWrap.style.display = v === "off" ? "" : "none";
+          } }, el("b", {}, label), el("div", { class: "small" }, sub));
+        audioRow.append(b);
+      });
+
     // kierunek tłumaczenia
     let chosenDir = LFSET_str("fc_dir", "mix");
     const dirRow = el("div", { class: "opt-row-btns" });
@@ -96,9 +113,13 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode) {
       ...(LFSET.get("fc_learn", false) ? { checked: "" } : {}),
       onchange: e => LFSET.set("fc_learn", e.target.checked) });
 
-    const extraBox = el("div", { style: "margin-top:10px" },
+    const dirWrap = el("div", { style: chosenAudio === "off" ? "" : "display:none" },
       el("div", { class: "muted small", style: "margin-bottom:6px" }, "Kierunek tłumaczenia:"),
-      dirRow,
+      dirRow);
+    const extraBox = el("div", { style: "margin-top:10px" },
+      el("div", { class: "muted small", style: "margin-bottom:6px" }, "Tryb ćwiczenia:"),
+      audioRow,
+      dirWrap,
       el("label", { class: "chip chip-check", style: "margin-top:10px" },
         learnCheck, " 📖 Tryb nauki (najpierw pokaż znaczenie)"),
       el("p", { class: "muted small", style: "margin-top:4px" },
@@ -113,12 +134,13 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode) {
       subtitle: (theme === "all" ? `Cała baza: ${info.pool} fiszek, wybierane losowo` :
         `W tej kategorii jest ${info.pool} fiszek`) +
         (info.due ? `, w tym ${info.due} czeka na powtórkę` : "") + ". Wybierz długość sesji.",
-      onStart: v => viewFlashcards(cat, theme, v, retypeCheck.checked, chosenDir, learnCheck.checked),
+      onStart: v => viewFlashcards(cat, theme, v, retypeCheck.checked, chosenDir, learnCheck.checked, chosenAudio),
       extra: extraBox,
     }));
     return;
   }
   if (retype === undefined) retype = LFSET.get("fc_retype", false);
+  const audio = audioMode || LFSET_str("fc_audio", "off");   // off | en | pl
   const data = await API.get("/api/cards/session?cat=" + cat + (theme ? "&theme=" + theme : "") + "&n=" + count);
   enterFocus({ title: "🃏 Fiszki", subtitle: theme && theme !== "all" ? theme : "sesja nauki",
     onExit: () => viewFlashcards() });
@@ -173,6 +195,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode) {
     // NOWE słówko pokazujemy najpierw do przeczytania — dopiero potem odpytujemy.
     // Bez tego nieznane phrasal verbs sprowadzały się do klikania „Nie wiem".
     if (c.new && !c._seen) { c._seen = true; return renderIntro(c); }
+    if (audio !== "off") return renderAudio(c);
     t0 = Date.now();
     stage.innerHTML = "";
     updateBar();
@@ -231,6 +254,43 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); next(); }
     };
     function next() { document.onkeydown = null; render(); }
+  }
+
+  // ---------- FISZKA ZE SŁUCHU: lektor mówi, uczeń zapisuje ----------
+  function renderAudio(c) {
+    t0 = Date.now();
+    stage.innerHTML = "";
+    updateBar();
+    const lang = audio;                       // "en" albo "pl"
+    const target = lang === "en" ? c.en : plVariants(c.pl)[0];
+    let rate = ttsRate();
+    const say = () => speak(target, rate, lang);
+
+    const card = el("div", { class: "fc-card fc-audio" },
+      el("div", { class: "fc-face" },
+        el("div", { class: "fc-tags" },
+          el("span", { class: "fc-tag tag-audio" }, lang === "en" ? "🎧 SŁUCHAJ · ANGIELSKI" : "🎧 SŁUCHAJ · POLSKI"),
+          el("span", { class: "fc-tag" }, c.theme || "inne"),
+          c.reps === 0 ? el("span", { class: "fc-tag tag-new" }, "NOWE") : null),
+        el("button", { class: "btn primary big-play", onclick: say }, "▶ Odtwórz"),
+        speedPicker(rate, v => { rate = v; say(); }),
+        el("div", { class: "muted small" }, "Zapisz dokładnie to, co słyszysz.")));
+    stage.append(card);
+
+    const inp = el("input", { class: "input fc-input", autocomplete: "off",
+      autocapitalize: "off", spellcheck: "false",
+      placeholder: lang === "en" ? "wpisz po angielsku…" : "wpisz po polsku…" });
+    const send = el("button", { class: "btn ok", onclick: () => judge(inp.value) }, "Sprawdź ⏎");
+    const dunno = el("button", { class: "btn ghost", onclick: () => grade(c, false, "", true) }, "🤷 Nie wiem");
+    inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); judge(inp.value); } };
+    stage.append(inp, el("div", { class: "fb-btns fc-btns" }, send, dunno));
+    inp.focus();
+    setTimeout(say, 400);
+
+    function judge(val) {
+      if (!val.trim()) return;
+      grade(c, answersMatch(val, target), val, false);
+    }
   }
 
   function check(c, val) {
@@ -328,7 +388,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode) {
         el("div", { class: "week-cell" }, el("div", { class: "big" }, String(sessionXp)), el("div", { class: "muted small" }, "XP")),
         el("div", { class: "week-cell" }, el("div", { class: "big" }, "🔥 " + best), el("div", { class: "muted small" }, "najdłuższa seria"))),
       el("div", { class: "fb-btns", style: "justify-content:center" },
-        el("button", { class: "btn primary", onclick: () => viewFlashcards(cat, theme, count, retype, dirMode, learnMode) }, "Jeszcze jedna sesja"),
+        el("button", { class: "btn primary", onclick: () => viewFlashcards(cat, theme, count, retype, dirMode, learnMode, audioMode) }, "Jeszcze jedna sesja"),
         el("button", { class: "btn ghost", onclick: () => viewFlashcards(cat, theme) }, "Inna liczba fiszek"),
         el("button", { class: "btn ghost", onclick: () => viewFlashcards() }, "Zmień kategorię"),
         el("button", { class: "btn ghost", onclick: () => location.hash = "#dashboard" }, "Pulpit"))));

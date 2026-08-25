@@ -273,8 +273,7 @@ async function viewDashboard() {
       el("button", { class: "btn mini", onclick: () => {
         speak("This is a test.", 0.95, "en");
         setTimeout(() => speak("To jest test.", 0.95, "pl"), 1600);
-        toast(typeof window.NativeTTS !== "undefined" && window.NativeTTS
-          ? "Lektor telefonu — sprawdź głośność" : "Lektor przeglądarki — sprawdź głośność");
+        toast("Lektor: " + (typeof ttsInfo === "function" ? ttsInfo() : "?"));
       } }, "🔊 Sprawdź lektora")),
     el("button", { class: "btn ok", onclick: async () => {
       await API.post("/api/settings", { target_level: tgt.value || null, daily_goal_xp: +goalInp.value, domains: [...domains] });
