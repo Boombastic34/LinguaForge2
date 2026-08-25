@@ -7,6 +7,76 @@ async function viewAdmin() {
     "Dodawaj treści, przeglądaj i edytuj pliki materiału, eksportuj i importuj paczki", "gold",
     `${data.files.length} plików`));
 
+  // ---------- ZARZĄDZANIE UŻYTKOWNIKAMI ----------
+  const usersCard = el("div", { class: "card" },
+    el("h3", {}, "👥 Użytkownicy i role"),
+    el("p", { class: "muted small" },
+      "Uczeń widzi tylko działy odblokowane niżej. Nauczyciel i administrator widzą wszystko."));
+  main.append(usersCard);
+  loadUsers();
+
+  async function loadUsers() {
+    try {
+      const { users, roles } = await API.get("/api/admin/users");
+      usersCard.querySelectorAll(".users-tbl").forEach(x => x.remove());
+      const tbl = el("table", { class: "table users-tbl" });
+      tbl.innerHTML = "<tr><th>Konto</th><th>Rola</th><th>Poziom</th><th>XP</th><th>Nauczyciel</th></tr>";
+      users.forEach(u => {
+        const tr = el("tr", {});
+        const sel = el("select", {});
+        roles.forEach(r => sel.append(el("option", {
+          value: r, ...(u.role === r ? { selected: "" } : {}),
+        }, { student: "Uczeń", teacher: "Nauczyciel", admin: "Administrator" }[r])));
+        sel.onchange = async () => {
+          try {
+            await API.post("/api/admin/user_role", { username: u.username, role: sel.value });
+            toast(`${u.username}: rola zmieniona`);
+          } catch (e) { toast(String(e.message || e), true); sel.value = u.role; }
+        };
+        tr.append(el("td", {}, el("b", {}, u.username)));
+        const tdRole = el("td", {}); tdRole.append(sel); tr.append(tdRole);
+        tr.append(el("td", {}, u.level || "—"), el("td", {}, String(u.xp || 0)),
+                  el("td", {}, u.teacher || "—"));
+        tbl.append(tr);
+      });
+      usersCard.append(tbl);
+    } catch (e) { usersCard.append(el("p", { class: "muted" }, "Nie udało się wczytać listy kont.")); }
+  }
+
+  // ---------- DOSTĘP DO DZIAŁÓW ----------
+  const accessCard = el("div", { class: "card" },
+    el("h3", {}, "🔒 Co widzi uczeń"),
+    el("p", { class: "muted small" },
+      "Odznaczone działy znikają uczniom z menu i są blokowane także po wpisaniu adresu. " +
+      "Nauczycieli i administratorów to nie dotyczy."));
+  main.append(accessCard);
+  loadAccess();
+
+  async function loadAccess() {
+    const { modules, student_modules } = await API.get("/api/admin/access");
+    const chosen = new Set(student_modules);
+    const grid = el("div", { class: "access-grid" });
+    modules.forEach(mo => {
+      const chk = el("input", { type: "checkbox", ...(chosen.has(mo.id) ? { checked: "" } : {}) });
+      chk.onchange = () => { chk.checked ? chosen.add(mo.id) : chosen.delete(mo.id); };
+      grid.append(el("label", { class: "access-item" }, chk,
+        el("span", { class: "acc-emo" }, mo.emoji), mo.name));
+    });
+    const save = el("button", { class: "btn ok", onclick: async () => {
+      await API.post("/api/admin/access", { student_modules: [...chosen] });
+      toast("Zapisano — uczniowie zobaczą zmianę po odświeżeniu");
+    } }, "💾 Zapisz dostęp");
+    const all = el("button", { class: "btn ghost", onclick: () => {
+      grid.querySelectorAll("input").forEach(c => { c.checked = true; });
+      modules.forEach(mo => chosen.add(mo.id));
+    } }, "Zaznacz wszystko");
+    const none = el("button", { class: "btn ghost", onclick: () => {
+      grid.querySelectorAll("input").forEach(c => { c.checked = false; });
+      chosen.clear();
+    } }, "Odznacz wszystko");
+    accessCard.append(grid, el("div", { class: "fb-btns" }, save, all, none));
+  }
+
   // ---------- eksport / import ----------
   const io = el("div", { class: "card" },
     el("h3", {}, "📦 Eksport i import materiałów"),

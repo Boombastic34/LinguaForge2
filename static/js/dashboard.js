@@ -238,7 +238,7 @@ async function viewDashboard() {
     adminCard.append(
       el("h3", {}, "🛡 Administrator"),
       el("p", { class: "muted small" },
-        "Wpisz kod administratora, aby dodawać materiały (fiszki, gramatykę, rozmowy, teksty), " +
+        "Hasło administratora: pełne uprawnienia — role kont, widoczność działów, materiały (fiszki, gramatykę, rozmowy, teksty), " +
         "edytować pliki treści oraz eksportować i importować paczki materiałów."),
       el("div", { class: "set-row" }, pass, el("button", { class: "btn ok", onclick: go }, "Zaloguj")));
   }

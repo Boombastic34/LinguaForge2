@@ -18,6 +18,23 @@ const ROUTES_STUDENT = [
   ["#custom", "➕ Własne fiszki", viewCustom],
 ];
 const ROUTES_TEACHER = [["#teacher", "🧑‍🏫 Uczniowie", viewTeacher]];
+
+// hash -> identyfikator modułu (do filtrowania wg uprawnień)
+const ROUTE_MODULE = {
+  "#path": "path", "#flashcards": "flashcards", "#verbs": "verbs", "#dialogs": "dialogs",
+  "#reading": "reading", "#listening": "listening", "#translate": "translate",
+  "#grammar": "grammar", "#knowledge": "knowledge", "#lessons": "lessons",
+  "#training": "training", "#games": "games", "#programs": "programs",
+  "#custom": "custom", "#placement": "placement",
+};
+// lista dozwolonych modułów — uzupełniana z /api/dashboard
+window.LF_ALLOWED = null;
+function moduleAllowed(hash) {
+  const id = ROUTE_MODULE[hash];
+  if (!id) return true;                       // pulpit, administrator itd.
+  if (!window.LF_ALLOWED) return true;        // przed pobraniem nie ukrywamy
+  return window.LF_ALLOWED.includes(id);
+}
 const HIDDEN = { "#placement": viewPlacement, "#student": null };
 
 function boot() {
@@ -29,7 +46,7 @@ function boot() {
   const nav = el("nav", {});
   const aside = el("aside", {},
     el("div", { class: "brand" }, "Lingua", el("span", {}, "Forge")),
-    el("div", { class: "brand-sub", id: "verbox" }, "v1.6.0 · kuźnia języka"),
+    el("div", { class: "brand-sub", id: "verbox" }, "v1.7.0 · kuźnia języka"),
     nav,
     el("div", { class: "spacer" }),
     el("div", { class: "userbox" },
@@ -43,7 +60,10 @@ function boot() {
 
   API.get("/api/dashboard").then(d => {
     applyTheme(d.profile.settings && d.profile.settings.dark);
-    if (d.profile.admin) { window.IS_ADMIN = true; renderNav(); }
+    window.LF_ROLE = d.profile.role || "student";
+    window.LF_ALLOWED = d.profile.allowed || null;
+    if (d.profile.admin || window.LF_ROLE === "admin") window.IS_ADMIN = true;
+    renderNav();
   }).catch(() => {});
 
   // porównanie wersji plików z wersją serwera — ostrzega o starym cache
@@ -51,7 +71,7 @@ function boot() {
     const box = document.getElementById("verbox");
     if (!box) return;
     box.textContent = "v" + v.version + " · kuźnia języka";
-    if (v.version !== "1.6.0") {
+    if (v.version !== "1.7.0") {
       box.textContent = "v" + v.version + " · odśwież (Ctrl+F5)";
       box.style.color = "#ffd43b";
     }
@@ -67,6 +87,7 @@ function boot() {
     nav.innerHTML = "";
     const cur = location.hash || "#dashboard";
     for (const [hash, icon, label] of TABS) {
+      if (!moduleAllowed(hash)) continue;
       nav.append(el("button", {
         class: "tab-btn" + (cur === hash ? " active" : ""),
         onclick: () => { haptic(); location.hash = hash; },
@@ -88,6 +109,7 @@ function boot() {
     for (const [hash, label, , flag] of routes) {
       if (flag === "admin" && !window.IS_ADMIN) continue;
       if (TABS.some(t => t[0] === hash)) continue;
+      if (!moduleAllowed(hash)) continue;
       const parts = label.split(" ");
       grid.append(el("button", {
         class: "sheet-item", onclick: () => { haptic(); close(); location.hash = hash; },
@@ -115,6 +137,14 @@ function boot() {
     if (h.startsWith("#flashcards:")) return viewFlashcards(h.split(":")[1] === "theme" ? "all" : "all", h.split(":")[2]);
     if (h === "#repair") return viewRepair();
     const r = routes.find(x => x[0] === h);
+    if (!moduleAllowed(h)) {
+      clearMain();
+      document.querySelector("main").append(el("div", { class: "card" },
+        el("h3", {}, "🔒 Dział niedostępny"),
+        el("p", { class: "muted" }, "Ten moduł został wyłączony przez administratora."),
+        el("button", { class: "btn primary", onclick: () => { location.hash = "#dashboard"; } }, "← Pulpit")));
+      return;
+    }
     try {
       if (r) await r[2]();
       else if (h === "#placement") await viewPlacement();
