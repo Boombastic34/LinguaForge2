@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "1.6.0"
+APP_VERSION = "1.7.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -358,7 +358,9 @@ async def api_dashboard(request: Request):
     return {
         "profile": {**{k: prof[k] for k in ("username", "role", "level", "target_level",
                                           "domains", "xp", "streak", "placement_done", "settings")},
-                    "admin": prof.get("admin", False)},
+                    "admin": prof.get("admin", False),
+                    "role": user_role(prof),
+                    "allowed": allowed_modules(prof)},
         "skills": prof["skills"], "cefr": sk.cefr_profile(prof["skills"]),
         "overall": sk.overall(prof["skills"]),
         "due": due, "verb_due": vdue, "leeches": leeches, "mature": mature,
@@ -427,7 +429,7 @@ async def placement_confirm(request: Request):
 # ---------------------------------------------------------------- fiszki
 @app.get("/api/cards/session")
 async def cards_session(request: Request, cat: str = "all", n: str = "15"):
-    who = current_user(request)
+    who = guard_module(request, "flashcards")
     prof = storage.load_profile(who["username"])
     cards = load_cards(who["username"])
     now = time.time()
@@ -2005,7 +2007,7 @@ async def translate_check(request: Request):
 # ---------------------------------------------------------------- słuchanie
 @app.get("/api/listen/next")
 async def listen_next(request: Request):
-    who = current_user(request)
+    who = guard_module(request, "listening")
     prof = storage.load_profile(who["username"])
     mode = random.choice(["en", "en", "pl"])   # 2/3 dyktando EN, 1/3 PL->EN
     plc = storage.load_data("testy/poziomujacy.json", {})
@@ -2082,7 +2084,7 @@ def _game_rank(points):
 @app.get("/api/game/themes")
 async def game_themes(request: Request):
     """Kategorie do wyboru w grach + ile słówek każda zawiera."""
-    who = current_user(request)
+    who = guard_module(request, "games")
     prof = storage.load_profile(who["username"])
     pool = vocab_pool(prof)
     agg = {}
@@ -2521,6 +2523,143 @@ async def account_restore(request: Request):
     return {"ok": True, "files": len(restored), "from_device_date": data.get("date")}
 
 
+# ---------------------------------------------------------------- ROLE I DOSTĘP
+ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT = "admin", "teacher", "student"
+ADMIN_UNLOCK = os.environ.get("LF_ADMIN_PASSWORD", "AdminAdministrator")
+
+# Moduły, których widoczność administrator może włączać/wyłączać dla uczniów.
+MODULES = [
+    {"id": "placement", "name": "Test poziomujący", "emoji": "🎯"},
+    {"id": "path",      "name": "Ścieżka nauki",    "emoji": "🧭"},
+    {"id": "flashcards","name": "Fiszki",            "emoji": "🃏"},
+    {"id": "verbs",     "name": "Czasowniki",        "emoji": "⚙️"},
+    {"id": "dialogs",   "name": "Rozmowy",           "emoji": "💬"},
+    {"id": "reading",   "name": "Czytanie",          "emoji": "📖"},
+    {"id": "listening", "name": "Słuchanie",         "emoji": "🎧"},
+    {"id": "translate", "name": "Tłumaczenia",       "emoji": "🌐"},
+    {"id": "grammar",   "name": "Gramatyka",         "emoji": "📐"},
+    {"id": "knowledge", "name": "Baza wiedzy",       "emoji": "📚"},
+    {"id": "lessons",   "name": "Lekcje",            "emoji": "🎓"},
+    {"id": "training",  "name": "Mój trening",       "emoji": "🛠"},
+    {"id": "games",     "name": "Gry",               "emoji": "🎮"},
+    {"id": "programs",  "name": "Programy",          "emoji": "📋"},
+    {"id": "custom",    "name": "Własne fiszki",     "emoji": "➕"},
+]
+ALL_MODULE_IDS = [m["id"] for m in MODULES]
+
+
+def _access_cfg():
+    """Globalna konfiguracja dostępu ustawiana przez administratora."""
+    cfg = storage.load_data("_dostep.json", None)
+    if not cfg:
+        cfg = {"student_modules": list(ALL_MODULE_IDS)}
+        storage.save_data("_dostep.json", cfg)
+    cfg.setdefault("student_modules", list(ALL_MODULE_IDS))
+    return cfg
+
+
+def user_role(prof):
+    """Rola konta. Starsze profile miały tylko flagę admin=True."""
+    r = prof.get("role", ROLE_STUDENT)
+    if prof.get("admin") and r != ROLE_ADMIN:
+        return ROLE_ADMIN
+    return r
+
+
+def allowed_modules(prof):
+    """Do czego konto ma dostęp. Nauczyciel i administrator — do wszystkiego."""
+    role = user_role(prof)
+    if role in (ROLE_ADMIN, ROLE_TEACHER):
+        return list(ALL_MODULE_IDS)
+    return list(_access_cfg()["student_modules"])
+
+
+def require_admin_role(request: Request):
+    who = current_user(request)
+    prof = storage.load_profile(who["username"])
+    if user_role(prof) != ROLE_ADMIN:
+        raise HTTPException(403, "Tylko dla administratora.")
+    return who
+
+
+def guard_module(request: Request, module_id: str):
+    """Blokuje wejście do modułu ukrytego przez administratora."""
+    who = current_user(request)
+    prof = storage.load_profile(who["username"])
+    if module_id not in allowed_modules(prof):
+        raise HTTPException(403, "Ten dział został wyłączony przez administratora.")
+    return who
+
+
+@app.post("/api/admin/unlock")
+async def admin_unlock(request: Request):
+    """Podniesienie konta do roli administratora hasłem."""
+    who = current_user(request)
+    body = await request.json()
+    if body.get("password", "") != ADMIN_UNLOCK:
+        storage.log_event(who["username"], {"type": "admin_login_failed"})
+        raise HTTPException(403, "Błędne hasło administratora.")
+    prof = storage.load_profile(who["username"])
+    prof["role"] = ROLE_ADMIN
+    prof["admin"] = True
+    storage.save_profile(who["username"], prof)
+    storage.log_event(who["username"], {"type": "admin_login"})
+    return {"ok": True, "role": ROLE_ADMIN}
+
+
+@app.get("/api/admin/users")
+async def admin_users(request: Request):
+    require_admin_role(request)
+    out = []
+    for acc in storage.list_accounts():
+        prof = storage.load_profile(acc["username"])
+        out.append({"username": acc["username"], "role": user_role(prof),
+                    "level": prof.get("level"), "xp": prof.get("xp", 0),
+                    "streak": prof.get("streak", {}).get("days", 0)
+                              if isinstance(prof.get("streak"), dict) else prof.get("streak", 0),
+                    "teacher": prof.get("teacher")})
+    out.sort(key=lambda x: (x["role"] != ROLE_ADMIN, x["role"] != ROLE_TEACHER, x["username"]))
+    return {"users": out, "roles": [ROLE_STUDENT, ROLE_TEACHER, ROLE_ADMIN]}
+
+
+@app.post("/api/admin/user_role")
+async def admin_set_role(request: Request):
+    me = require_admin_role(request)
+    body = await request.json()
+    target, role = body.get("username"), body.get("role")
+    if role not in (ROLE_STUDENT, ROLE_TEACHER, ROLE_ADMIN):
+        raise HTTPException(400, "Nieznana rola.")
+    if target == me["username"] and role != ROLE_ADMIN:
+        raise HTTPException(400, "Nie możesz odebrać uprawnień samemu sobie.")
+    if not storage.account_exists(target):
+        raise HTTPException(404, "Nie ma takiego konta.")
+    prof = storage.load_profile(target)
+    prof["role"] = role
+    prof["admin"] = (role == ROLE_ADMIN)
+    storage.save_profile(target, prof)
+    storage.log_event(me["username"], {"type": "role_changed", "user": target, "role": role})
+    return {"ok": True, "username": target, "role": role}
+
+
+@app.get("/api/admin/access")
+async def admin_get_access(request: Request):
+    require_admin_role(request)
+    cfg = _access_cfg()
+    return {"modules": MODULES, "student_modules": cfg["student_modules"]}
+
+
+@app.post("/api/admin/access")
+async def admin_set_access(request: Request):
+    me = require_admin_role(request)
+    body = await request.json()
+    mods = [m for m in (body.get("student_modules") or []) if m in ALL_MODULE_IDS]
+    cfg = _access_cfg()
+    cfg["student_modules"] = mods
+    storage.save_data("_dostep.json", cfg)
+    storage.log_event(me["username"], {"type": "access_changed", "modules": mods})
+    return {"ok": True, "student_modules": mods}
+
+
 # ---------------------------------------------------------------- ADMINISTRATOR
 ADMIN_PASSWORD = os.environ.get("LF_ADMIN_PASSWORD", "administrator")
 
@@ -2564,7 +2703,7 @@ CONTENT_MODULES = [
 def require_admin(request: Request):
     who = current_user(request)
     prof = storage.load_profile(who["username"])
-    if not prof.get("admin"):
+    if user_role(prof) != ROLE_ADMIN:
         raise HTTPException(403, "Wymagane logowanie administratora.")
     return who
 
