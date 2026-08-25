@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "1.7.0"
+APP_VERSION = "2.0.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -2105,18 +2105,29 @@ async def game_words(request: Request):
     prof = storage.load_profile(who["username"])
     pool = vocab_pool(prof)
     picks = body.get("picks") or {}          # {"praca": 10, "dom": "all"}
+    all_count = body.get("all_count")        # tryb "wszystkie kategorie": ile łącznie
     words = []
-    for theme, count in picks.items():
-        items = [it for it in pool if it.get("theme", "inne") == theme]
+    if all_count is not None:                # cała baza, liczba wskazana przez gracza
+        items = pool[:]
         random.shuffle(items)
-        if count != "all":
+        if all_count != "all":
             try:
-                items = items[:max(1, int(count))]
+                items = items[:max(2, int(all_count))]
             except (TypeError, ValueError):
-                items = items[:10]
-        words += items
+                items = items[:30]
+        words = items
+    else:
+        for theme, count in picks.items():
+            items = [it for it in pool if it.get("theme", "inne") == theme]
+            random.shuffle(items)
+            if count != "all":
+                try:
+                    items = items[:max(1, int(count))]
+                except (TypeError, ValueError):
+                    items = items[:10]
+            words += items
     if not words:                            # nic nie wybrano -> losowo z całości
-        words = random.sample(pool, min(20, len(pool)))
+        words = random.sample(pool, min(30, len(pool)))
     # deduplikacja po angielskim haśle (gra z parami nie znosi duplikatów)
     seen, uniq = set(), []
     for it in words:
@@ -2451,6 +2462,347 @@ async def teacher_program(request: Request):
 async def teacher_export(username: str, request: Request, fmt: str = "csv"):
     require_teacher(request)
     return _export(username, fmt, None)
+
+
+# ---------------------------------------------------------------- PRZEGLĄD TREŚCI (ADMIN)
+REVIEW_KINDS = [
+    {"id": "question", "name": "Treść pytania / polecenia"},
+    {"id": "good",     "name": "Poprawna odpowiedź"},
+    {"id": "bad",      "name": "Odpowiedź błędna / komunikat"},
+]
+
+REVIEW_SECTIONS = [
+    {"id": "vocab",     "name": "Fiszki — słownictwo", "emoji": "🃏"},
+    {"id": "verbs",     "name": "Czasowniki (formy)",  "emoji": "⚙️"},
+    {"id": "grammar",   "name": "Gramatyka — ćwiczenia", "emoji": "📐"},
+    {"id": "placement", "name": "Test poziomujący",    "emoji": "🎯"},
+    {"id": "translate", "name": "Tłumaczenia",         "emoji": "🌐"},
+    {"id": "listening", "name": "Słuchanie / dyktanda", "emoji": "🎧"},
+    {"id": "reading",   "name": "Czytanie — pytania",  "emoji": "📖"},
+    {"id": "dialogs",   "name": "Rozmowy",             "emoji": "💬"},
+    {"id": "knowledge", "name": "Baza wiedzy",         "emoji": "📚"},
+]
+
+
+def _review_items(section, username=None):
+    """Ujednolicona lista pozycji danego działu: pytanie + obie odpowiedzi."""
+    out = []
+    if section == "vocab":
+        # pełna baza słownictwa, niezależnie od dziedzin profilu
+        prof = {"username": username or "", "domains": ["general", "warehouse", "work"]}
+        for it in vocab_pool(prof):
+            out.append({
+                "id": it["id"],
+                "title": f"[{it.get('nr','')}] {it['en']}",
+                "question": f"PL→EN: „{it['pl']}”   ·   EN→PL: „{it['en']}”",
+                "good": it["en"] + "  /  " + it["pl"],
+                "bad": f"Poprawnie: {it['en']} = {it['pl']}",
+                "extra": " · ".join(x for x in [it.get("hint", ""), it.get("example", "")] if x),
+                "meta": f"kategoria: {it.get('theme','—')} · poziom {it.get('level','—')}",
+            })
+    elif section == "verbs":
+        for v in storage.load_data("slownictwo/czasowniki_odmiana.json", {}).get("items", []):
+            out.append({
+                "id": v["id"],
+                "title": f"[{v.get('nr','')}] {v['en']}",
+                "question": f"Uzupełnij formy: {v['en']} → ? → ?   (znaczenie: {v['pl_inf']})",
+                "good": f"{v['en']} → {v['past']} → {v['perf']}",
+                "bad": f"Poprawnie: {v['en']} → {v['past']} → {v['perf']} = {v['pl_inf']}",
+                "extra": v.get("example", ""),
+                "meta": "nieregularny" if v["past"].lower() != v["en"].lower() + "ed" else "regularny",
+            })
+    elif section == "grammar":
+        for t in merged_topics():
+            for e in t.get("exercises", []):
+                ans = (e["options"][e["answer"]] if e.get("type") == "choice"
+                       else (e.get("accept") or ["—"])[0])
+                out.append({
+                    "id": f"{t['id']}:{e.get('id', e.get('nr',''))}",
+                    "title": f"{t['name']} [{e.get('nr','')}]",
+                    "question": e.get("text", ""),
+                    "good": str(ans),
+                    "bad": f"Poprawnie: {ans}" + (f" — {e.get('explain','')}" if e.get("explain") else ""),
+                    "extra": " · ".join(x for x in [e.get("pl", ""), e.get("explain", "")] if x),
+                    "meta": f"temat: {t['id']} · poziom {t.get('level','—')}"
+                            + (f" · opcje: {', '.join(e['options'])}" if e.get("options") else ""),
+                })
+    elif section == "placement":
+        p = storage.load_data("testy/poziomujacy.json", {})
+        for key, label in [("grammar", "gramatyka"), ("vocab", "słownictwo"),
+                           ("vocab_produce", "słownictwo — pisanie"),
+                           ("translation", "tłumaczenie"), ("listening", "słuchanie"),
+                           ("listening_pl", "słuchanie PL→EN")]:
+            for i, q in enumerate(p.get(key, []), 1):
+                good = (q["options"][q["answer"]] if q.get("options") is not None and "answer" in q
+                        else q.get("en_ref") or q.get("en") or (q.get("accept") or ["—"])[0])
+                out.append({
+                    "id": f"{key}:{i}",
+                    "title": f"{label} [{i}]",
+                    "question": q.get("text") or q.get("pl") or q.get("en") or "",
+                    "good": str(good),
+                    "bad": f"Poprawnie: {good}",
+                    "extra": q.get("explain", "") or q.get("pl", ""),
+                    "meta": f"grupa: {label} · poziom {q.get('level','—')}"
+                            + (f" · opcje: {', '.join(q['options'])}" if q.get("options") else ""),
+                })
+    elif section == "translate":
+        for it in merged_items("tlumaczenia/"):
+            out.append({
+                "id": it.get("id") or f"tr{it.get('nr','')}",
+                "title": f"[{it.get('nr','')}] {it.get('tense_name','')}",
+                "question": f"Przetłumacz: „{it['pl']}”",
+                "good": it.get("en_ref", ""),
+                "bad": f"Wzorzec: {it.get('en_ref','')}",
+                "extra": "słowa kluczowe: " + "; ".join("/".join(g) for g in it.get("keywords", [])),
+                "meta": f"poziom {it.get('level','—')}",
+            })
+    elif section == "listening":
+        p = storage.load_data("testy/poziomujacy.json", {})
+        items = merged_items("sluchanie/") + p.get("listening", [])
+        for i, it in enumerate(items, 1):
+            en = it.get("en") or it.get("tts") or ""
+            out.append({
+                "id": it.get("id") or f"ls{i}",
+                "title": f"dyktando [{i}]",
+                "question": f"Lektor czyta: „{en}”",
+                "good": en,
+                "bad": f"Poprawnie: {en}",
+                "extra": it.get("pl", ""),
+                "meta": f"poziom {it.get('level','—')}",
+            })
+    elif section == "reading":
+        for t in _reading_texts():
+            for i, q in enumerate(t.get("questions", []), 1):
+                opts = q.get("options", [])
+                good = opts[q["answer"]] if opts else ""
+                out.append({
+                    "id": f"{t['id']}:{i}",
+                    "title": f"{t['title']} [{i}]",
+                    "question": q.get("text", ""),
+                    "good": good,
+                    "bad": f"Poprawnie: {good}" + (f" — {q.get('pl','')}" if q.get("pl") else ""),
+                    "extra": " · ".join(opts),
+                    "meta": f"tekst: {t['id']} · poziom {t.get('level','—')}",
+                })
+    elif section == "dialogs":
+        for f in storage.list_data_files("rozmowy/"):
+            for d in storage.load_data(f, {}).get("dialogs", []):
+                for n in d.get("nodes", []):
+                    if n.get("mode") == "choice":
+                        good = "; ".join(o["en"] for o in n.get("options", []) if o.get("good"))
+                        bad = " | ".join(f"{o['en']} → {o.get('feedback','')}"
+                                         for o in n.get("options", []) if not o.get("good"))
+                    else:
+                        good = n.get("write", {}).get("model", "")
+                        bad = "wzorzec: " + good
+                    out.append({
+                        "id": f"{d['id']}:{n['id']}",
+                        "title": f"{d['name']} · {n['id']}",
+                        "question": f"{n.get('npc_en','')}  ({n.get('npc_pl','')})",
+                        "good": good, "bad": bad,
+                        "extra": n.get("hint", ""),
+                        "meta": f"rozmowa: {d['id']} · poziom {d.get('level','—')}",
+                    })
+    elif section == "knowledge":
+        for a in _kb()["articles"]:
+            for i, q in enumerate(a.get("quiz", []), 1):
+                out.append({
+                    "id": f"{a['id']}:{i}",
+                    "title": f"{a['name']} [{i}]",
+                    "question": q.get("q", ""),
+                    "good": q.get("model", ""),
+                    "bad": "Wzorzec: " + q.get("model", ""),
+                    "extra": "wymagane słowa: " + "; ".join("/".join(g) for g in q.get("keywords", [])),
+                    "meta": f"artykuł: {a['id']} · poziom {a.get('level','—')}",
+                })
+    return out
+
+
+@app.get("/api/review/sections")
+async def review_sections(request: Request):
+    require_admin_role(request)
+    who = current_user(request)
+    notes = storage.user_file(who["username"], "review_notes.json", {})
+    out = []
+    for s in REVIEW_SECTIONS:
+        out.append({**s, "count": len(_review_items(s["id"], who["username"])),
+                    "notes": len(notes.get(s["id"], []))})
+    return {"sections": out, "kinds": REVIEW_KINDS,
+            "notes_total": sum(len(v) for v in notes.values())}
+
+
+@app.get("/api/review/items")
+async def review_items(request: Request, section: str, offset: int = 0, limit: int = 1):
+    require_admin_role(request)
+    who = current_user(request)
+    items = _review_items(section, who["username"])
+    notes = storage.user_file(who["username"], "review_notes.json", {}).get(section, [])
+    flagged = {n["item_id"] for n in notes}
+    sel = items[offset: offset + max(1, min(50, limit))]
+    for it in sel:
+        it["flagged"] = it["id"] in flagged
+    return {"section": section, "total": len(items), "offset": offset, "items": sel}
+
+
+@app.post("/api/review/note")
+async def review_add_note(request: Request):
+    """Oznaczenie pozycji jako 'do poprawy' wraz z notatką."""
+    me = require_admin_role(request)
+    body = await request.json()
+    section = body.get("section")
+    kind = body.get("kind")
+    if kind not in [k["id"] for k in REVIEW_KINDS]:
+        raise HTTPException(400, "Nieznany rodzaj uwagi.")
+    notes = storage.user_file(me["username"], "review_notes.json", {})
+    lst = notes.setdefault(section, [])
+    entry = {"item_id": body.get("item_id"), "kind": kind,
+             "note": (body.get("note") or "").strip(),
+             "title": body.get("title", ""), "question": body.get("question", ""),
+             "good": body.get("good", ""), "bad": body.get("bad", ""),
+             "meta": body.get("meta", ""),
+             "date": datetime.datetime.now().isoformat(timespec="seconds")}
+    lst = [n for n in lst if not (n["item_id"] == entry["item_id"] and n["kind"] == kind)]
+    lst.append(entry)
+    notes[section] = lst
+    storage.save_user_file(me["username"], "review_notes.json", notes)
+    return {"ok": True, "count": len(lst)}
+
+
+@app.get("/api/review/notes")
+async def review_notes(request: Request):
+    me = require_admin_role(request)
+    notes = storage.user_file(me["username"], "review_notes.json", {})
+    names = {s["id"]: s for s in REVIEW_SECTIONS}
+    kinds = {k["id"]: k["name"] for k in REVIEW_KINDS}
+    out = []
+    for sec, lst in notes.items():
+        for n in lst:
+            out.append({**n, "section": sec,
+                        "section_name": names.get(sec, {}).get("name", sec),
+                        "emoji": names.get(sec, {}).get("emoji", "•"),
+                        "kind_name": kinds.get(n["kind"], n["kind"])})
+    out.sort(key=lambda x: x["date"], reverse=True)
+    return {"notes": out, "total": len(out),
+            "by_section": {s: len(v) for s, v in notes.items() if v}}
+
+
+@app.post("/api/review/notes/delete")
+async def review_delete_note(request: Request):
+    me = require_admin_role(request)
+    body = await request.json()
+    notes = storage.user_file(me["username"], "review_notes.json", {})
+    sec = body.get("section")
+    if sec in notes:
+        notes[sec] = [n for n in notes[sec]
+                      if not (n["item_id"] == body.get("item_id") and n["kind"] == body.get("kind"))]
+        storage.save_user_file(me["username"], "review_notes.json", notes)
+    return {"ok": True}
+
+
+@app.post("/api/review/notes/reset")
+async def review_reset_notes(request: Request):
+    """Kasowanie notatek: wszystkich albo z jednego działu."""
+    me = require_admin_role(request)
+    body = await request.json()
+    notes = storage.user_file(me["username"], "review_notes.json", {})
+    sec = body.get("section")
+    if sec and sec != "all":
+        removed = len(notes.get(sec, []))
+        notes[sec] = []
+    else:
+        removed = sum(len(v) for v in notes.values())
+        notes = {}
+    storage.save_user_file(me["username"], "review_notes.json", notes)
+    storage.log_event(me["username"], {"type": "review_notes_reset", "section": sec or "all"})
+    return {"ok": True, "removed": removed}
+
+
+@app.get("/api/review/notes/pdf")
+async def review_notes_pdf(request: Request):
+    """Notatki administratora w PDF (z zapasowym HTML, gdy brak reportlab)."""
+    me = require_admin_role(request)
+    data = (await review_notes(request))["notes"]
+    stamp = datetime.date.today().isoformat()
+    try:
+        from reportlab.lib.pagesizes import A4
+        from reportlab.lib.units import mm
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.lib.colors import HexColor
+        from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+        from reportlab.pdfbase import pdfmetrics
+        from reportlab.pdfbase.ttfonts import TTFont
+        fd = "/usr/share/fonts/truetype/dejavu"
+        if os.path.exists(fd):
+            pdfmetrics.registerFont(TTFont("DV", os.path.join(fd, "DejaVuSans.ttf")))
+            pdfmetrics.registerFont(TTFont("DVB", os.path.join(fd, "DejaVuSans-Bold.ttf")))
+            base, bold = "DV", "DVB"
+        else:
+            base, bold = "Helvetica", "Helvetica-Bold"
+        buf = io.BytesIO()
+        doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=16 * mm, rightMargin=16 * mm,
+                                topMargin=15 * mm, bottomMargin=15 * mm)
+        S = getSampleStyleSheet()
+        h1 = ParagraphStyle("h1", parent=S["Title"], fontName=bold, fontSize=20,
+                            textColor=HexColor("#e8590c"), alignment=0)
+        body = ParagraphStyle("b", parent=S["Normal"], fontName=base, fontSize=9.5, leading=13)
+        small = ParagraphStyle("s", parent=body, fontSize=8.5, textColor=HexColor("#5c6672"))
+        hd = ParagraphStyle("h", parent=body, fontName=bold, fontSize=11,
+                            textColor=HexColor("#4c5fd5"), spaceBefore=10)
+
+        def esc(t):
+            return str(t or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+        story = [Paragraph("Notatki administratora — LinguaForge", h1),
+                 Paragraph(f"{stamp} · pozycji do poprawy: {len(data)}", small), Spacer(1, 10)]
+        cur = None
+        for n in sorted(data, key=lambda x: (x["section_name"], x["title"])):
+            if n["section_name"] != cur:
+                cur = n["section_name"]
+                story.append(Paragraph(f"{n['emoji']} {cur}", hd))
+            rows = [
+                [Paragraph("<b>Pozycja</b>", small), Paragraph(esc(n["title"]), body)],
+                [Paragraph("<b>Uwaga do</b>", small), Paragraph(esc(n["kind_name"]), body)],
+                [Paragraph("<b>Treść</b>", small), Paragraph(esc(n["question"]), body)],
+                [Paragraph("<b>Poprawna</b>", small), Paragraph(esc(n["good"]), body)],
+                [Paragraph("<b>Przy błędzie</b>", small), Paragraph(esc(n["bad"]), body)],
+                [Paragraph("<b>NOTATKA</b>", small),
+                 Paragraph(f"<b>{esc(n['note'])}</b>", body)],
+            ]
+            if n.get("meta"):
+                rows.append([Paragraph("<b>Skąd</b>", small), Paragraph(esc(n["meta"]), small)])
+            t = Table(rows, colWidths=[26 * mm, 152 * mm])
+            t.setStyle(TableStyle([
+                ("GRID", (0, 0), (-1, -1), 0.4, HexColor("#dde5ec")),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("BACKGROUND", (0, 5), (-1, 5), HexColor("#fff9db")),
+                ("LEFTPADDING", (0, 0), (-1, -1), 5),
+                ("TOPPADDING", (0, 0), (-1, -1), 3),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+            ]))
+            story += [t, Spacer(1, 7)]
+        if not data:
+            story.append(Paragraph("Brak zaznaczonych pozycji.", body))
+        doc.build(story)
+        buf.seek(0)
+        return StreamingResponse(iter([buf.getvalue()]), media_type="application/pdf",
+                                 headers={"Content-Disposition":
+                                          f"attachment; filename=notatki_admina_{stamp}.pdf"})
+    except Exception:
+        rows = []
+        for n in data:
+            rows.append(f"<h3>{n['emoji']} {n['section_name']} — {n['title']}</h3>"
+                        f"<p><b>Uwaga do:</b> {n['kind_name']}</p>"
+                        f"<p><b>Treść:</b> {n['question']}</p>"
+                        f"<p><b>Poprawna:</b> {n['good']}</p>"
+                        f"<p><b>Przy błędzie:</b> {n['bad']}</p>"
+                        f"<p style='background:#fff9db;padding:6px'><b>NOTATKA:</b> {n['note']}</p><hr>")
+        html = ("<!doctype html><meta charset='utf-8'><title>Notatki administratora</title>"
+                "<body style=\"font-family:Arial;max-width:900px;margin:24px auto\">"
+                f"<h1 style='color:#e8590c'>Notatki administratora</h1><p>{stamp} · {len(data)} pozycji</p>"
+                + "".join(rows) + "</body>")
+        return StreamingResponse(iter([html.encode("utf-8")]), media_type="text/html",
+                                 headers={"Content-Disposition":
+                                          f"attachment; filename=notatki_admina_{stamp}.html"})
 
 
 # ---------------------------------------------------------------- kopia konta
