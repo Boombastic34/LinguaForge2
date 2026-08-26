@@ -261,7 +261,7 @@ function speak(text, rate, lang = "en", quiet = false) {
     return;
   }
 
-  const mode = LFSET_str ? LFSET_str("tts_mode", "auto") : "auto";
+  const mode = LFSET_str ? LFSET_str("tts_mode", "server") : "server";
   if (mode === "browser") return speakBrowser(text, rate, lang, quiet);
   if (mode === "server" || SERVER_TTS_OK !== false) {
     // domyślnie serwer — jest niezawodny; przy niepowodzeniu wracamy do przeglądarki
@@ -279,7 +279,7 @@ function speak(text, rate, lang = "en", quiet = false) {
 // Diagnostyka dla przycisku „Sprawdź lektora"
 function ttsInfo() {
   if (HAS_NATIVE_TTS) return "lektor telefonu (aplikacja)";
-  const mode = LFSET_str ? LFSET_str("tts_mode", "auto") : "auto";
+  const mode = LFSET_str ? LFSET_str("tts_mode", "server") : "server";
   const srv = SERVER_TTS_OK === true ? "działa" : (SERVER_TTS_OK === false ? "NIE działa" : "nietestowany");
   const pre = `tryb: ${mode} · lektor serwerowy: ${srv} · `;
   if (!HAS_WEB_TTS) return pre + "przeglądarka: brak wsparcia";

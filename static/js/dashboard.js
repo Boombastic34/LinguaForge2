@@ -346,7 +346,7 @@ function ttsDiagnose() {
     el("div", { class: "opt-group-title" }, "Skąd brać głos"),
     (() => {
       const row = el("div", { class: "opt-row-btns" });
-      let cur = LFSET_str("tts_mode", "auto");
+      let cur = LFSET_str("tts_mode", "server");
       [["auto", "🤖 Automatycznie", "najpierw serwer, w razie kłopotów przeglądarka"],
        ["server", "☁️ Zawsze z serwera", "gotowe nagranie — działa nawet gdy przeglądarka zawodzi"],
        ["browser", "📱 Zawsze przeglądarka", "szybsze, ale na części telefonów nie działa"]]
