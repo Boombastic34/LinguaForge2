@@ -1,0 +1,4 @@
+# Railway: doinstaluj silnik mowy offline (eSpeak NG).
+# Dzięki temu lektor działa nawet bez dostępu do usług zewnętrznych.
+[phases.setup]
+aptPkgs = ["espeak-ng"]

@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.3.0"
+APP_VERSION = "2.4.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -2956,11 +2956,29 @@ def _tts_gtts(text, lang, rate):
     return buf.getvalue()
 
 
+def _tts_espeak(text, lang, rate):
+    """Silnik offline (eSpeak NG). Brzmi surowo, ale NIE wymaga internetu —
+    to gwarancja, że lektor odezwie się nawet bez dostępu do usług zewnętrznych."""
+    import subprocess
+    import shutil as _sh
+    exe = _sh.which("espeak-ng") or _sh.which("espeak")
+    if not exe:
+        raise RuntimeError("espeak-ng nie jest zainstalowany")
+    speed = int(max(90, min(200, 165 * float(rate))))
+    voice = "pl" if lang == "pl" else "en-gb"
+    out = subprocess.run(
+        [exe, "-v", voice, "-s", str(speed), "--stdout", text],
+        capture_output=True, timeout=20)
+    if out.returncode != 0 or not out.stdout:
+        raise RuntimeError((out.stderr or b"").decode("utf-8", "ignore")[:120] or "brak wyniku")
+    return out.stdout            # WAV — przeglądarki odtwarzają go tak samo dobrze
+
+
 def _tts_generate(text, lang, rate):
-    """Próbuje kolejnych silników; zwraca (bajty_mp3, nazwa_silnika, komunikaty_błędów)."""
+    """Próbuje kolejnych silników; zwraca (bajty, nazwa_silnika, komunikaty_błędów)."""
     global TTS_ENGINE_USED
     errors = []
-    for name, fn in (("edge", _tts_edge), ("gtts", _tts_gtts)):
+    for name, fn in (("edge", _tts_edge), ("gtts", _tts_gtts), ("espeak", _tts_espeak)):
         try:
             data = fn(text, lang, rate)
             if data and len(data) > 500:
@@ -2985,7 +3003,10 @@ async def tts_audio(request: Request, text: str, lang: str = "en", rate: float =
     path = _tts_cache_path(text, lang, round(rate, 2))
     if os.path.isfile(path) and os.path.getsize(path) > 500:
         with open(path, "rb") as fh:
-            return Response(fh.read(), media_type="audio/mpeg",
+            head = fh.read(4)
+            fh.seek(0)
+            mime = "audio/wav" if head == b"RIFF" else "audio/mpeg"
+            return Response(fh.read(), media_type=mime,
                             headers={"Cache-Control": "public, max-age=604800"})
 
     data, engine, errors = _tts_generate(text, lang, rate)
@@ -2997,7 +3018,8 @@ async def tts_audio(request: Request, text: str, lang: str = "en", rate: float =
             fh.write(data)
     except OSError:
         pass
-    return Response(data, media_type="audio/mpeg",
+    mime = "audio/wav" if engine == "espeak" else "audio/mpeg"
+    return Response(data, media_type=mime,
                     headers={"Cache-Control": "public, max-age=604800",
                              "X-TTS-Engine": engine})
 
