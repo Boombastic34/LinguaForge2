@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.1.3"
+APP_VERSION = "2.2.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -2875,6 +2875,35 @@ async def account_restore(request: Request):
     return {"ok": True, "files": len(restored), "from_device_date": data.get("date")}
 
 
+def _seed_admin_account():
+    """Zakłada konto administratora przy pierwszym uruchomieniu.
+
+    Login: admin
+    Hasło: wartość LF_ADMIN_PASSWORD albo domyślnie AdminAdministrator
+    Jeśli konto już istnieje, tylko upewniamy się, że ma rolę administratora.
+    """
+    login = os.environ.get("LF_ADMIN_LOGIN", "admin").strip() or "admin"
+    pwd = os.environ.get("LF_ADMIN_PASSWORD", "AdminAdministrator")
+    try:
+        if not storage.account_exists(login):
+            auth.register(login, pwd)
+            prof = storage.load_profile(login)
+            prof["role"] = "admin"
+            prof["admin"] = True
+            prof["level"] = prof.get("level") or "B1"
+            prof["placement_done"] = True
+            storage.save_profile(login, prof)
+            print(f"  [i] Utworzono konto administratora: {login}")
+        else:
+            prof = storage.load_profile(login)
+            if prof.get("role") != "admin":
+                prof["role"] = "admin"
+                prof["admin"] = True
+                storage.save_profile(login, prof)
+    except Exception as e:
+        print(f"  [!] Nie udało się przygotować konta administratora: {e}")
+
+
 # ---------------------------------------------------------------- ROLE I DOSTĘP
 ROLE_ADMIN, ROLE_TEACHER, ROLE_STUDENT = "admin", "teacher", "student"
 ADMIN_UNLOCK = os.environ.get("LF_ADMIN_PASSWORD", "AdminAdministrator")
@@ -2898,6 +2927,11 @@ MODULES = [
     {"id": "custom",    "name": "Własne fiszki",     "emoji": "➕"},
 ]
 ALL_MODULE_IDS = [m["id"] for m in MODULES]
+
+
+@app.on_event("startup")
+async def _startup_seed():
+    _seed_admin_account()
 
 
 def _access_cfg():
