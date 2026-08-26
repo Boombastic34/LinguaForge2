@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.1.2"
+APP_VERSION = "2.1.3"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
