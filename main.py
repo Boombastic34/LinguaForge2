@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.0.0"
+APP_VERSION = "2.1.1"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -3064,10 +3064,11 @@ def require_admin(request: Request):
 async def admin_login(request: Request):
     who = current_user(request)
     body = await request.json()
-    if body.get("password", "") != ADMIN_PASSWORD:
+    if body.get("password", "") not in (ADMIN_PASSWORD, ADMIN_UNLOCK):
         storage.log_event(who["username"], {"type": "admin_login_failed"})
         raise HTTPException(403, "Błędne hasło administratora.")
     prof = storage.load_profile(who["username"])
+    prof["role"] = ROLE_ADMIN
     prof["admin"] = True
     storage.save_profile(who["username"], prof)
     storage.log_event(who["username"], {"type": "admin_login"})
