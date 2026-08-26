@@ -114,16 +114,18 @@ function pickVoiceFor(lang) {
 let TTS_UNLOCKED = false;
 function unlockTts() {
   if (TTS_UNLOCKED || !HAS_WEB_TTS) return;
-  TTS_UNLOCKED = true;
   try {
-    const u = new SpeechSynthesisUtterance(" ");
+    const u = new SpeechSynthesisUtterance("ok");
+    TTS_KEEP.push(u);
     u.volume = 0;
+    u.onstart = () => { TTS_UNLOCKED = true; };     // dopiero teraz naprawdę odblokowane
+    u.onend = () => { const i = TTS_KEEP.indexOf(u); if (i >= 0) TTS_KEEP.splice(i, 1); };
     speechSynthesis.speak(u);
     loadVoices();
   } catch (e) { /* pomijamy */ }
 }
-document.addEventListener("pointerdown", unlockTts, { once: true });
-document.addEventListener("keydown", unlockTts, { once: true });
+document.addEventListener("pointerdown", unlockTts);
+document.addEventListener("keydown", unlockTts);
 
 function ttsRate() {
   try {
@@ -157,9 +159,38 @@ function speedPicker(current, onChange) {
 let TTS_WARNED = false;
 let TTS_LAST_ERR = "";
 
-// UWAGA: na Chrome Android mowa MUSI wystartować synchronicznie w obsłudze
-// dotknięcia. Każde setTimeout przed speak() zrywa powiązanie z gestem i
-// przeglądarka po cichu ignoruje żądanie — to była przyczyna ciszy na telefonie.
+// KLUCZOWE: trzymamy referencje do wypowiedzi w tablicy globalnej.
+// Bez tego przeglądarka (zwłaszcza Chrome na Androidzie) usuwa obiekt z pamięci,
+// zanim silnik zacznie mówić — efekt: cisza, brak onstart, czasem synthesis-failed.
+const TTS_KEEP = [];
+
+function _ttsSpeakRaw(text, rate, lang, useVoice, onStarted, onFailed) {
+  const u = new SpeechSynthesisUtterance(String(text));
+  TTS_KEEP.push(u);                       // chroni przed usunięciem z pamięci
+  if (TTS_KEEP.length > 8) TTS_KEEP.shift();
+
+  if (useVoice) {
+    const v = pickVoiceFor(lang);
+    if (v) { u.voice = v; u.lang = v.lang; }
+    else { u.lang = lang === "pl" ? "pl-PL" : "en-US"; }
+  } else {
+    u.lang = lang === "pl" ? "pl-PL" : "en-US";
+  }
+  u.rate = rate; u.pitch = 1; u.volume = 1;
+  u.onstart = () => { TTS_LAST_ERR = ""; if (onStarted) onStarted(); };
+  u.onend = () => {
+    const i = TTS_KEEP.indexOf(u);
+    if (i >= 0) TTS_KEEP.splice(i, 1);
+  };
+  u.onerror = ev => {
+    TTS_LAST_ERR = (ev && ev.error) || "nieznany błąd";
+    if (TTS_LAST_ERR === "interrupted" || TTS_LAST_ERR === "canceled") return;
+    if (onFailed) onFailed(TTS_LAST_ERR);
+  };
+  speechSynthesis.speak(u);
+  return u;
+}
+
 function speak(text, rate, lang = "en", quiet = false) {
   if (rate === undefined || rate === null) rate = ttsRate();
   if (!text) return;
@@ -170,63 +201,54 @@ function speak(text, rate, lang = "en", quiet = false) {
     return;
   }
   if (!HAS_WEB_TTS) {
-    if (!TTS_WARNED) { TTS_WARNED = true; toast("Ta przeglądarka nie obsługuje lektora", true); }
+    if (!TTS_WARNED && !quiet) { TTS_WARNED = true; toast("Ta przeglądarka nie obsługuje lektora", true); }
     return;
   }
 
   try {
     if (!VOICES.length) loadVoices();
-    // cancel() TYLKO gdy faktycznie coś leci — na Androidzie wywołane "na sucho"
-    // powoduje błąd synthesis-failed przy następnej wypowiedzi
     if (speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(String(text));
-    const v = pickVoiceFor(lang);
-    if (v) { u.voice = v; u.lang = v.lang; }
-    else { u.lang = lang === "pl" ? "pl-PL" : "en-US"; }
-    u.rate = rate; u.pitch = 1; u.volume = 1;
 
     let started = false, retried = false;
-    u.onstart = () => { started = true; TTS_LAST_ERR = ""; };
-    u.onerror = ev => {
-      TTS_LAST_ERR = (ev && ev.error) || "nieznany błąd";
-      if (TTS_LAST_ERR === "interrupted" || TTS_LAST_ERR === "canceled") return;
-      // synthesis-failed na Androidzie: silnik odrzucił głos/język.
-      // Próbujemy jeszcze raz najprościej — bez wskazywania głosu i języka.
-      if (TTS_LAST_ERR === "synthesis-failed" && !retried) {
-        retried = true;
-        setTimeout(() => {
-          try {
-            const plain = new SpeechSynthesisUtterance(String(text));
-            plain.rate = rate;
-            plain.onstart = () => { started = true; TTS_LAST_ERR = "naprawione awaryjnie"; };
-            speechSynthesis.speak(plain);
-          } catch (e) { /* pomijamy */ }
-        }, 250);
-        return;
-      }
-      if (!TTS_WARNED && !quiet) {
-        TTS_WARNED = true;
-        toast("Lektor: " + TTS_LAST_ERR + " — sprawdź głośność i silnik mowy w telefonie", true);
-      }
-    };
-    speechSynthesis.speak(u);
-    TTS_UNLOCKED = true;
+    const markStarted = () => { started = true; TTS_UNLOCKED = true; };
 
-    // Chrome bywa wstrzymany — budzimy, ale JUŻ PO wystartowaniu mowy
+    const fallback = () => {
+      if (retried) return;
+      retried = true;
+      // druga próba: bez wskazywania głosu, na domyślnych ustawieniach telefonu
+      setTimeout(() => {
+        try {
+          _ttsSpeakRaw(text, rate, lang, false,
+            () => { markStarted(); TTS_LAST_ERR = "naprawione awaryjnie"; },
+            err => {
+              TTS_LAST_ERR = err;
+              if (!TTS_WARNED && !quiet) {
+                TTS_WARNED = true;
+                toast("Lektor: " + err + " — sprawdź silnik mowy w telefonie", true);
+              }
+            });
+        } catch (e) { /* pomijamy */ }
+      }, 200);
+    };
+
+    _ttsSpeakRaw(text, rate, lang, true, markStarted, fallback);
+
     setTimeout(() => { try { if (speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {} }, 150);
-    // brak startu przez 1,2 s = przeglądarka zignorowała żądanie
+    setTimeout(() => {
+      if (!started && !retried) fallback();      // silnik milczy — próbujemy prościej
+    }, 900);
     setTimeout(() => {
       if (!started) {
         TTS_LAST_ERR = "brak reakcji (przeglądarka zignorowała)";
         if (!TTS_WARNED && !quiet) {
           TTS_WARNED = true;
-          toast("Lektor nie ruszył — dotknij ▶ jeszcze raz. Na telefonie pierwszy dźwięk wymaga dotknięcia.", true);
+          toast("Lektor nie ruszył — dotknij ▶ jeszcze raz.", true);
         }
       }
-    }, 1200);
+    }, 2200);
   } catch (e) {
     TTS_LAST_ERR = String(e && e.message || e);
-    if (!TTS_WARNED) { TTS_WARNED = true; toast("Lektor niedostępny: " + TTS_LAST_ERR, true); }
+    if (!TTS_WARNED && !quiet) { TTS_WARNED = true; toast("Lektor niedostępny: " + TTS_LAST_ERR, true); }
   }
 }
 

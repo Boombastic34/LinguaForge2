@@ -83,13 +83,47 @@ async function viewChapter(uid, cid) {
       el("span", { class: "badge" }, `${label} ${idx + 1}/${list.length}`),
       el("div", { class: "progress" }, el("div", { class: "progress-fill", style: `width:${Math.round(idx / list.length * 100)}%` }))));
     const text = item.text || ("Przetłumacz: „" + (item.pl || "") + "”");
-    box.append(el("div", { class: "qtext" }, text));
     if (item.type === "choice") {
+      box.append(el("div", { class: "qtext" }, text));
       const opts = el("div", { class: "options stagger" });
       item.options.forEach((o, i) => opts.append(
         el("button", { class: "option", style: `animation-delay:${i * 60}ms`, onclick: () => submit(item, i, section) }, o)));
       box.append(opts);
+    } else if (/_{2,}/.test(text)) {
+      // ZDANIE Z LUKAMI: wpisujesz wprost w miejsce luki, w dowolnej kolejności
+      const parts = text.split(/_{2,}/);
+      const line = el("div", { class: "gap-line" });
+      const gaps = [];
+      parts.forEach((part, i) => {
+        if (part) line.append(el("span", { class: "gap-text" }, part));
+        if (i < parts.length - 1) {
+          const g = el("input", {
+            class: "gap-input", type: "text", autocomplete: "off",
+            autocapitalize: "off", spellcheck: "false", size: 6,
+          });
+          g.oninput = () => { g.size = Math.max(6, g.value.length + 1); };
+          g.onkeydown = e => {
+            if (e.key === "Enter") { e.preventDefault(); send.click(); }
+            // Tab/strzałki przechodzą do kolejnej luki
+            if (e.key === "Tab" && !e.shiftKey && gaps[gaps.indexOf(g) + 1]) {
+              e.preventDefault(); gaps[gaps.indexOf(g) + 1].focus();
+            }
+          };
+          gaps.push(g);
+          line.append(g);
+        }
+      });
+      box.append(line,
+        el("div", { class: "muted small" },
+          gaps.length > 1 ? "Kliknij w dowolne miejsce i wpisz — kolejność dowolna, możesz poprawiać."
+                          : "Kliknij w puste miejsce i wpisz odpowiedź."));
+      const send = el("button", { class: "btn ok", onclick: () => {
+        submit(item, gaps.map(g => g.value.trim()).filter(Boolean).join(" "), section);
+      } }, "Sprawdź");
+      box.append(el("div", { class: "fb-btns" }, send));
+      gaps[0].focus();
     } else {
+      box.append(el("div", { class: "qtext" }, text));
       if (item.type === "order") box.append(el("div", { class: "wordbank" },
         ...item.words.map(w => el("span", { class: "chip" }, w))));
       const inp = el("input", { class: "input", placeholder: item.type === "translate" ? "Tłumaczenie po angielsku…" : "Twoja odpowiedź…", autocomplete: "off" });
