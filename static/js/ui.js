@@ -113,16 +113,10 @@ function pickVoiceFor(lang) {
 // Mobilne przeglądarki wymagają gestu, zanim pozwolą mówić — odblokowujemy raz.
 let TTS_UNLOCKED = false;
 function unlockTts() {
-  if (TTS_UNLOCKED || !HAS_WEB_TTS) return;
-  try {
-    const u = new SpeechSynthesisUtterance("ok");
-    TTS_KEEP.push(u);
-    u.volume = 0;
-    u.onstart = () => { TTS_UNLOCKED = true; };     // dopiero teraz naprawdę odblokowane
-    u.onend = () => { const i = TTS_KEEP.indexOf(u); if (i >= 0) TTS_KEEP.splice(i, 1); };
-    speechSynthesis.speak(u);
-    loadVoices();
-  } catch (e) { /* pomijamy */ }
+  // NIE wypowiadamy tu nic. Ciche "ok" plus późniejszy cancel() wprowadzały
+  // silnik Chrome na Androidzie w stan, w którym ignorował kolejne żądania.
+  if (!HAS_WEB_TTS) return;
+  loadVoices();
 }
 document.addEventListener("pointerdown", unlockTts);
 document.addEventListener("keydown", unlockTts);
@@ -188,6 +182,8 @@ function _ttsSpeakRaw(text, rate, lang, useVoice, onStarted, onFailed) {
     if (onFailed) onFailed(TTS_LAST_ERR);
   };
   speechSynthesis.speak(u);
+  // Chrome bywa w stanie "wstrzymany" bez powodu — budzimy od razu, bez sprawdzania
+  try { speechSynthesis.resume(); } catch (e) {}
   return u;
 }
 
@@ -207,7 +203,11 @@ function speak(text, rate, lang = "en", quiet = false) {
 
   try {
     if (!VOICES.length) loadVoices();
-    if (speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel();
+    // cancel() na Androidzie potrafi zablokować silnik na stałe — używamy go
+    // wyłącznie wtedy, gdy naprawdę coś leci, i nigdy "na wszelki wypadek".
+    if (speechSynthesis.speaking) {
+      try { speechSynthesis.cancel(); } catch (e) {}
+    }
 
     let started = false, retried = false;
     const markStarted = () => { started = true; TTS_UNLOCKED = true; };
@@ -233,7 +233,7 @@ function speak(text, rate, lang = "en", quiet = false) {
 
     _ttsSpeakRaw(text, rate, lang, true, markStarted, fallback);
 
-    setTimeout(() => { try { if (speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {} }, 150);
+    setTimeout(() => { try { speechSynthesis.resume(); } catch (e) {} }, 250);
     setTimeout(() => {
       if (!started && !retried) fallback();      // silnik milczy — próbujemy prościej
     }, 900);

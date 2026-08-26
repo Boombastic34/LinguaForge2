@@ -343,6 +343,8 @@ function ttsDiagnose() {
         refresh("odtwarzam po polsku…");
       } }, "▶ Test polski")),
     out,
+    el("button", { class: "btn primary big", style: "width:100%;margin-top:10px",
+      onclick: () => runStrategyTest(out) }, "🔬 Wypróbuj 4 sposoby (diagnoza)"),
     el("div", { class: "fb-btns" },
       el("button", { class: "btn ghost", onclick: () => refresh("odświeżono") }, "🔄 Odśwież stan"),
       el("button", { class: "btn ghost", onclick: () => bg.remove() }, "Zamknij")));
@@ -371,5 +373,60 @@ function ttsDiagnose() {
           "odśwież stronę i dotknij przycisku testu ponownie."));
       }
     }, 1500);
+  }
+}
+
+
+// Wypróbowuje kolejno cztery sposoby uruchomienia mowy i pokazuje, który zadziałał.
+// Dzięki temu nie zgadujemy — telefon sam mówi, co u niego działa.
+function runStrategyTest(out) {
+  if (!("speechSynthesis" in window)) { toast("Brak obsługi mowy", true); return; }
+  out.innerHTML = "";
+  const log = el("div", {});
+  out.append(el("b", {}, "Wynik prób:"), log);
+
+  const strategies = [
+    ["A. najprościej (bez języka i głosu)", u => { }],
+    ["B. z językiem en-US", u => { u.lang = "en-US"; }],
+    ["C. z konkretnym głosem", u => {
+      const v = speechSynthesis.getVoices().filter(x => (x.lang || "").startsWith("en"))[0];
+      if (v) { u.voice = v; u.lang = v.lang; }
+    }],
+    ["D. po przerwaniu kolejki", u => { u.lang = "en-US"; }],
+  ];
+
+  const keep = [];
+  let i = 0;
+  next();
+
+  function next() {
+    if (i >= strategies.length) {
+      log.append(el("div", { class: "muted small", style: "margin-top:8px" },
+        "Koniec prób. Napisz, przy którym punkcie usłyszałeś dźwięk."));
+      return;
+    }
+    const [name, setup] = strategies[i];
+    const row = el("div", { class: "tts-line" }, `${name}: …`);
+    log.append(row);
+    try {
+      if (name.startsWith("D")) { try { speechSynthesis.cancel(); } catch (e) {} }
+      const u = new SpeechSynthesisUtterance("Test " + (i + 1));
+      keep.push(u);
+      setup(u);
+      u.rate = 0.9;
+      let ok = false;
+      u.onstart = () => { ok = true; row.textContent = `${name}: ✅ RUSZYŁ`; };
+      u.onerror = ev => { row.textContent = `${name}: ❌ ${(ev && ev.error) || "błąd"}`; };
+      speechSynthesis.speak(u);
+      try { speechSynthesis.resume(); } catch (e) {}
+      setTimeout(() => {
+        if (!ok && !/❌/.test(row.textContent)) row.textContent = `${name}: ⚪ brak reakcji`;
+        i++;
+        next();
+      }, 2200);
+    } catch (e) {
+      row.textContent = `${name}: ❌ ${e.message}`;
+      i++; setTimeout(next, 300);
+    }
   }
 }
