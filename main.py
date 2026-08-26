@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.4.0"
+APP_VERSION = "2.4.1"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -2991,9 +2991,19 @@ def _tts_generate(text, lang, rate):
 
 
 @app.get("/api/tts")
-async def tts_audio(request: Request, text: str, lang: str = "en", rate: float = 0.95):
-    """Zwraca gotowe nagranie MP3 dla podanego tekstu."""
-    current_user(request)
+async def tts_audio(request: Request, text: str, lang: str = "en",
+                    rate: float = 0.95, token: str = ""):
+    """Zwraca gotowe nagranie dla podanego tekstu.
+
+    Token można podać nagłówkiem (zwykła droga) albo w adresie — to drugie
+    przydaje się, gdy odtwarzacz audio nie potrafi wysłać nagłówków.
+    """
+    if token and not request.headers.get("x-token"):
+        who = auth.who(token)
+        if not who:
+            raise HTTPException(401, "Sesja wygasła.")
+    else:
+        current_user(request)
     text = (text or "").strip()[:400]
     if not text:
         raise HTTPException(400, "Brak tekstu.")
