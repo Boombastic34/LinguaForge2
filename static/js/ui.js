@@ -152,17 +152,52 @@ function speedPicker(current, onChange) {
 
 let TTS_WARNED = false;
 let TTS_LAST_ERR = "";
+let TTS_MODE = "auto";          // auto | server | browser
+const TTS_KEEP = [];            // referencje wypowiedzi (ochrona przed usunięciem z pamięci)
 
-// KLUCZOWE: trzymamy referencje do wypowiedzi w tablicy globalnej.
-// Bez tego przeglądarka (zwłaszcza Chrome na Androidzie) usuwa obiekt z pamięci,
-// zanim silnik zacznie mówić — efekt: cisza, brak onstart, czasem synthesis-failed.
-const TTS_KEEP = [];
+// ---------- LEKTOR Z SERWERA ----------
+// Gotowe nagranie MP3 pobierane z serwera. Działa nawet tam, gdzie własny silnik
+// mowy przeglądarki zawodzi (Chrome na Androidzie bywa zepsuty: zwraca listę głosów,
+// ale synteza kończy się błędem synthesis-failed).
+let AUDIO_EL = null;
+let SERVER_TTS_OK = null;       // null = jeszcze nie wiadomo
 
+function ttsAudioEl() {
+  if (!AUDIO_EL) {
+    AUDIO_EL = new Audio();
+    AUDIO_EL.preload = "auto";
+  }
+  return AUDIO_EL;
+}
+
+function speakServer(text, rate, lang, onFail) {
+  const a = ttsAudioEl();
+  const url = "/api/tts?lang=" + encodeURIComponent(lang)
+            + "&rate=" + encodeURIComponent(rate)
+            + "&text=" + encodeURIComponent(text);
+  try { a.pause(); } catch (e) {}
+  a.onerror = () => {
+    SERVER_TTS_OK = false;
+    TTS_LAST_ERR = "serwer: nie udało się pobrać nagrania";
+    if (onFail) onFail();
+  };
+  a.oncanplay = () => { SERVER_TTS_OK = true; };
+  a.src = url;
+  const p = a.play();
+  if (p && p.catch) {
+    p.then(() => { SERVER_TTS_OK = true; TTS_LAST_ERR = ""; })
+     .catch(err => {
+       TTS_LAST_ERR = "odtwarzanie: " + (err && err.name || err);
+       if (onFail) onFail();
+     });
+  }
+}
+
+// ---------- LEKTOR W PRZEGLĄDARCE (zapasowy) ----------
 function _ttsSpeakRaw(text, rate, lang, useVoice, onStarted, onFailed) {
   const u = new SpeechSynthesisUtterance(String(text));
-  TTS_KEEP.push(u);                       // chroni przed usunięciem z pamięci
+  TTS_KEEP.push(u);
   if (TTS_KEEP.length > 8) TTS_KEEP.shift();
-
   if (useVoice) {
     const v = pickVoiceFor(lang);
     if (v) { u.voice = v; u.lang = v.lang; }
@@ -172,95 +207,88 @@ function _ttsSpeakRaw(text, rate, lang, useVoice, onStarted, onFailed) {
   }
   u.rate = rate; u.pitch = 1; u.volume = 1;
   u.onstart = () => { TTS_LAST_ERR = ""; if (onStarted) onStarted(); };
-  u.onend = () => {
-    const i = TTS_KEEP.indexOf(u);
-    if (i >= 0) TTS_KEEP.splice(i, 1);
-  };
+  u.onend = () => { const i = TTS_KEEP.indexOf(u); if (i >= 0) TTS_KEEP.splice(i, 1); };
   u.onerror = ev => {
     TTS_LAST_ERR = (ev && ev.error) || "nieznany błąd";
     if (TTS_LAST_ERR === "interrupted" || TTS_LAST_ERR === "canceled") return;
     if (onFailed) onFailed(TTS_LAST_ERR);
   };
   speechSynthesis.speak(u);
-  // Chrome bywa w stanie "wstrzymany" bez powodu — budzimy od razu, bez sprawdzania
   try { speechSynthesis.resume(); } catch (e) {}
   return u;
 }
 
-function speak(text, rate, lang = "en", quiet = false) {
-  if (rate === undefined || rate === null) rate = ttsRate();
-  if (!text) return;
-
-  if (HAS_NATIVE_TTS) {
-    try { window.NativeTTS.speak(String(text), lang === "pl" ? "pl" : "en", rate); }
-    catch (e) { /* most nieosiągalny */ }
-    return;
-  }
+function speakBrowser(text, rate, lang, quiet) {
   if (!HAS_WEB_TTS) {
     if (!TTS_WARNED && !quiet) { TTS_WARNED = true; toast("Ta przeglądarka nie obsługuje lektora", true); }
     return;
   }
-
   try {
     if (!VOICES.length) loadVoices();
-    // cancel() na Androidzie potrafi zablokować silnik na stałe — używamy go
-    // wyłącznie wtedy, gdy naprawdę coś leci, i nigdy "na wszelki wypadek".
-    if (speechSynthesis.speaking) {
-      try { speechSynthesis.cancel(); } catch (e) {}
-    }
-
+    if (speechSynthesis.speaking) { try { speechSynthesis.cancel(); } catch (e) {} }
     let started = false, retried = false;
-    const markStarted = () => { started = true; TTS_UNLOCKED = true; };
-
     const fallback = () => {
       if (retried) return;
       retried = true;
-      // druga próba: bez wskazywania głosu, na domyślnych ustawieniach telefonu
       setTimeout(() => {
         try {
-          _ttsSpeakRaw(text, rate, lang, false,
-            () => { markStarted(); TTS_LAST_ERR = "naprawione awaryjnie"; },
-            err => {
-              TTS_LAST_ERR = err;
-              if (!TTS_WARNED && !quiet) {
-                TTS_WARNED = true;
-                toast("Lektor: " + err + " — sprawdź silnik mowy w telefonie", true);
-              }
-            });
-        } catch (e) { /* pomijamy */ }
+          _ttsSpeakRaw(text, rate, lang, false, () => { started = true; }, err => {
+            TTS_LAST_ERR = err;
+            if (!TTS_WARNED && !quiet) {
+              TTS_WARNED = true;
+              toast("Lektor: " + err, true);
+            }
+          });
+        } catch (e) {}
       }, 200);
     };
-
-    _ttsSpeakRaw(text, rate, lang, true, markStarted, fallback);
-
-    setTimeout(() => { try { speechSynthesis.resume(); } catch (e) {} }, 250);
-    setTimeout(() => {
-      if (!started && !retried) fallback();      // silnik milczy — próbujemy prościej
-    }, 900);
-    setTimeout(() => {
-      if (!started) {
-        TTS_LAST_ERR = "brak reakcji (przeglądarka zignorowała)";
-        if (!TTS_WARNED && !quiet) {
-          TTS_WARNED = true;
-          toast("Lektor nie ruszył — dotknij ▶ jeszcze raz.", true);
-        }
-      }
-    }, 2200);
+    _ttsSpeakRaw(text, rate, lang, true, () => { started = true; }, fallback);
+    setTimeout(() => { if (!started && !retried) fallback(); }, 900);
   } catch (e) {
     TTS_LAST_ERR = String(e && e.message || e);
-    if (!TTS_WARNED && !quiet) { TTS_WARNED = true; toast("Lektor niedostępny: " + TTS_LAST_ERR, true); }
   }
+}
+
+// ---------- GŁÓWNA FUNKCJA ----------
+function speak(text, rate, lang = "en", quiet = false) {
+  if (rate === undefined || rate === null) rate = ttsRate();
+  if (!text) return;
+
+  // w aplikacji Android korzystamy z mostu natywnego
+  if (HAS_NATIVE_TTS) {
+    try { window.NativeTTS.speak(String(text), lang === "pl" ? "pl" : "en", rate); }
+    catch (e) {}
+    return;
+  }
+
+  const mode = LFSET_str ? LFSET_str("tts_mode", "auto") : "auto";
+  if (mode === "browser") return speakBrowser(text, rate, lang, quiet);
+  if (mode === "server" || SERVER_TTS_OK !== false) {
+    // domyślnie serwer — jest niezawodny; przy niepowodzeniu wracamy do przeglądarki
+    return speakServer(text, rate, lang, () => {
+      if (mode !== "server") speakBrowser(text, rate, lang, quiet);
+      else if (!TTS_WARNED && !quiet) {
+        TTS_WARNED = true;
+        toast("Lektor serwerowy niedostępny: " + TTS_LAST_ERR, true);
+      }
+    });
+  }
+  return speakBrowser(text, rate, lang, quiet);
 }
 
 // Diagnostyka dla przycisku „Sprawdź lektora"
 function ttsInfo() {
   if (HAS_NATIVE_TTS) return "lektor telefonu (aplikacja)";
+  const mode = LFSET_str ? LFSET_str("tts_mode", "auto") : "auto";
+  const srv = SERVER_TTS_OK === true ? "działa" : (SERVER_TTS_OK === false ? "NIE działa" : "nietestowany");
+  const pre = `tryb: ${mode} · lektor serwerowy: ${srv} · `;
+  if (!HAS_WEB_TTS) return pre + "przeglądarka: brak wsparcia";
   if (!HAS_WEB_TTS) return "brak wsparcia w tej przeglądarce";
   loadVoices();
   const en = VOICES.filter(v => (v.lang || "").toLowerCase().startsWith("en")).length;
   const pl = VOICES.filter(v => (v.lang || "").toLowerCase().startsWith("pl")).length;
   const st = speechSynthesis.speaking ? "mówi" : (speechSynthesis.pending ? "w kolejce" : "bezczynny");
-  return `głosy EN: ${en}, PL: ${pl} · stan: ${st}` +
+  return pre + `głosy EN: ${en}, PL: ${pl} · stan: ${st}` +
          (TTS_LAST_ERR ? ` · ostatni błąd: ${TTS_LAST_ERR}` : "") +
          (VOICES.length ? "" : " · UWAGA: przeglądarka nie zwróciła żadnych głosów");
 }

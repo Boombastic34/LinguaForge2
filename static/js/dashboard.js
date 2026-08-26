@@ -343,8 +343,44 @@ function ttsDiagnose() {
         refresh("odtwarzam po polsku…");
       } }, "▶ Test polski")),
     out,
+    el("div", { class: "opt-group-title" }, "Skąd brać głos"),
+    (() => {
+      const row = el("div", { class: "opt-row-btns" });
+      let cur = LFSET_str("tts_mode", "auto");
+      [["auto", "🤖 Automatycznie", "najpierw serwer, w razie kłopotów przeglądarka"],
+       ["server", "☁️ Zawsze z serwera", "gotowe nagranie — działa nawet gdy przeglądarka zawodzi"],
+       ["browser", "📱 Zawsze przeglądarka", "szybsze, ale na części telefonów nie działa"]]
+        .forEach(([v, label, sub]) => {
+          const b = el("button", { class: "mode-btn" + (cur === v ? " active" : ""),
+            onclick: () => {
+              cur = v; LFSET_setStr("tts_mode", v);
+              row.querySelectorAll(".mode-btn").forEach(x => x.classList.remove("active"));
+              b.classList.add("active");
+              toast("Tryb lektora: " + label);
+            } }, el("b", {}, label), el("div", { class: "small" }, sub));
+          row.append(b);
+        });
+      return row;
+    })(),
+    el("button", { class: "btn ok big", style: "width:100%;margin-top:10px",
+      onclick: async () => {
+        out.innerHTML = "";
+        out.append(el("div", { class: "muted small" }, "sprawdzam serwer…"));
+        try {
+          const s = await API.get("/api/tts/status");
+          out.innerHTML = "";
+          out.append(el("div", { class: "tts-line" },
+            s.ok ? `✅ Lektor serwerowy działa (silnik: ${s.engine})`
+                 : "❌ Lektor serwerowy nie działa"));
+          (s.errors || []).forEach(e => out.append(el("div", { class: "tts-line" }, "• " + e)));
+          out.append(el("div", { class: "muted small" }, `nagrań w pamięci: ${s.cached}`));
+        } catch (e) {
+          out.innerHTML = "";
+          out.append(el("div", { class: "kb-mistake" }, "Błąd sprawdzania: " + (e.message || e)));
+        }
+      } }, "☁️ Sprawdź lektora serwerowego"),
     el("button", { class: "btn primary big", style: "width:100%;margin-top:10px",
-      onclick: () => runStrategyTest(out) }, "🔬 Wypróbuj 4 sposoby (diagnoza)"),
+      onclick: () => runStrategyTest(out) }, "🔬 Wypróbuj 4 sposoby (przeglądarka)"),
     el("div", { class: "fb-btns" },
       el("button", { class: "btn ghost", onclick: () => refresh("odświeżono") }, "🔄 Odśwież stan"),
       el("button", { class: "btn ghost", onclick: () => bg.remove() }, "Zamknij")));
