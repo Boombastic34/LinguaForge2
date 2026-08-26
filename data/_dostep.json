@@ -1,0 +1,19 @@
+{
+ "student_modules": [
+  "placement",
+  "path",
+  "flashcards",
+  "verbs",
+  "dialogs",
+  "reading",
+  "listening",
+  "translate",
+  "grammar",
+  "knowledge",
+  "lessons",
+  "training",
+  "games",
+  "programs",
+  "custom"
+ ]
+}
