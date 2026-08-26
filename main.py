@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.2.1"
+APP_VERSION = "2.3.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -2902,6 +2902,114 @@ def _seed_admin_account():
                 storage.save_profile(login, prof)
     except Exception as e:
         print(f"  [!] Nie udało się przygotować konta administratora: {e}")
+
+
+# ---------------------------------------------------------------- LEKTOR NA SERWERZE
+# Część przeglądarek (zwłaszcza Chrome na Androidzie) ma zepsuty własny silnik mowy —
+# zwraca listę głosów, ale synteza kończy się błędem synthesis-failed. Dlatego dźwięk
+# generujemy na serwerze i odsyłamy jako zwykły plik MP3, który odtwarza się wszędzie.
+
+TTS_CACHE_DIR = os.path.join(
+    os.environ.get("LF_HOME", "").strip() or ROOT, "tts_cache")
+TTS_ENGINE_USED = None          # który silnik ostatnio zadziałał
+
+
+def _tts_cache_path(text, lang, rate):
+    import hashlib
+    key = hashlib.sha256(f"{lang}|{rate}|{text}".encode("utf-8")).hexdigest()[:40]
+    return os.path.join(TTS_CACHE_DIR, f"{lang}_{key}.mp3")
+
+
+def _tts_edge(text, lang, rate):
+    """Microsoft Edge TTS — dobra jakość, darmowy, bez klucza."""
+    import asyncio
+    import edge_tts
+    voice = "en-GB-SoniaNeural" if lang == "en" else "pl-PL-ZofiaNeural"
+    pct = int(round((float(rate) - 1.0) * 100))
+    rate_str = f"{pct:+d}%"
+
+    async def run():
+        buf = b""
+        comm = edge_tts.Communicate(text, voice, rate=rate_str)
+        async for chunk in comm.stream():
+            if chunk["type"] == "audio":
+                buf += chunk["data"]
+        return buf
+
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        loop = None
+    if loop and loop.is_running():
+        import concurrent.futures
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as ex:
+            return ex.submit(lambda: asyncio.run(run())).result(timeout=25)
+    return asyncio.run(run())
+
+
+def _tts_gtts(text, lang, rate):
+    """Zapasowy silnik Google Translate (wolniejsze tempo przy rate < 0.8)."""
+    from gtts import gTTS
+    slow = float(rate) < 0.8
+    buf = io.BytesIO()
+    gTTS(text=text, lang=("pl" if lang == "pl" else "en"), slow=slow).write_to_fp(buf)
+    return buf.getvalue()
+
+
+def _tts_generate(text, lang, rate):
+    """Próbuje kolejnych silników; zwraca (bajty_mp3, nazwa_silnika, komunikaty_błędów)."""
+    global TTS_ENGINE_USED
+    errors = []
+    for name, fn in (("edge", _tts_edge), ("gtts", _tts_gtts)):
+        try:
+            data = fn(text, lang, rate)
+            if data and len(data) > 500:
+                TTS_ENGINE_USED = name
+                return data, name, errors
+            errors.append(f"{name}: pusty wynik")
+        except Exception as e:
+            errors.append(f"{name}: {type(e).__name__} {e}")
+    return None, None, errors
+
+
+@app.get("/api/tts")
+async def tts_audio(request: Request, text: str, lang: str = "en", rate: float = 0.95):
+    """Zwraca gotowe nagranie MP3 dla podanego tekstu."""
+    current_user(request)
+    text = (text or "").strip()[:400]
+    if not text:
+        raise HTTPException(400, "Brak tekstu.")
+    lang = "pl" if lang == "pl" else "en"
+    rate = max(0.5, min(1.5, float(rate)))
+
+    path = _tts_cache_path(text, lang, round(rate, 2))
+    if os.path.isfile(path) and os.path.getsize(path) > 500:
+        with open(path, "rb") as fh:
+            return Response(fh.read(), media_type="audio/mpeg",
+                            headers={"Cache-Control": "public, max-age=604800"})
+
+    data, engine, errors = _tts_generate(text, lang, rate)
+    if not data:
+        raise HTTPException(503, "Lektor serwerowy niedostępny: " + " | ".join(errors))
+    try:
+        os.makedirs(TTS_CACHE_DIR, exist_ok=True)
+        with open(path, "wb") as fh:
+            fh.write(data)
+    except OSError:
+        pass
+    return Response(data, media_type="audio/mpeg",
+                    headers={"Cache-Control": "public, max-age=604800",
+                             "X-TTS-Engine": engine})
+
+
+@app.get("/api/tts/status")
+async def tts_status(request: Request):
+    """Sprawdza, czy lektor serwerowy działa i który silnik odpowiada."""
+    current_user(request)
+    data, engine, errors = _tts_generate("test", "en", 0.95)
+    return {"ok": bool(data), "engine": engine, "errors": errors,
+            "cache_dir": TTS_CACHE_DIR,
+            "cached": len(os.listdir(TTS_CACHE_DIR)) if os.path.isdir(TTS_CACHE_DIR) else 0}
 
 
 # ---------------------------------------------------------------- ROLE I DOSTĘP

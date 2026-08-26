@@ -1,3 +1,5 @@
 fastapi>=0.110
 uvicorn>=0.29
 reportlab>=4.0
+edge-tts>=6.1
+gTTS>=2.5
