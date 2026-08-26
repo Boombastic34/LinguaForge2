@@ -176,18 +176,34 @@ function speak(text, rate, lang = "en", quiet = false) {
 
   try {
     if (!VOICES.length) loadVoices();
-    speechSynthesis.cancel();                 // synchronicznie, bez opóźnienia
+    // cancel() TYLKO gdy faktycznie coś leci — na Androidzie wywołane "na sucho"
+    // powoduje błąd synthesis-failed przy następnej wypowiedzi
+    if (speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(String(text));
     const v = pickVoiceFor(lang);
     if (v) { u.voice = v; u.lang = v.lang; }
     else { u.lang = lang === "pl" ? "pl-PL" : "en-US"; }
     u.rate = rate; u.pitch = 1; u.volume = 1;
 
-    let started = false;
+    let started = false, retried = false;
     u.onstart = () => { started = true; TTS_LAST_ERR = ""; };
     u.onerror = ev => {
       TTS_LAST_ERR = (ev && ev.error) || "nieznany błąd";
       if (TTS_LAST_ERR === "interrupted" || TTS_LAST_ERR === "canceled") return;
+      // synthesis-failed na Androidzie: silnik odrzucił głos/język.
+      // Próbujemy jeszcze raz najprościej — bez wskazywania głosu i języka.
+      if (TTS_LAST_ERR === "synthesis-failed" && !retried) {
+        retried = true;
+        setTimeout(() => {
+          try {
+            const plain = new SpeechSynthesisUtterance(String(text));
+            plain.rate = rate;
+            plain.onstart = () => { started = true; TTS_LAST_ERR = "naprawione awaryjnie"; };
+            speechSynthesis.speak(plain);
+          } catch (e) { /* pomijamy */ }
+        }, 250);
+        return;
+      }
       if (!TTS_WARNED && !quiet) {
         TTS_WARNED = true;
         toast("Lektor: " + TTS_LAST_ERR + " — sprawdź głośność i silnik mowy w telefonie", true);

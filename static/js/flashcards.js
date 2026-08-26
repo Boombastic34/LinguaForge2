@@ -156,6 +156,11 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     return;
   }
   let idx = 0, t0 = Date.now(), sessionXp = 0, done = 0, streak = 0, best = 0;
+  // --- tryb nauki: bloki utrwalenia i lista pomyłek całej sesji ---
+  const LEARN_BLOCK = 5;      // co ile poznanych zwrotów robimy rundę utrwalenia
+  let blockBuf = [];          // zwroty poznane w bieżącym bloku
+  let inReview = false;       // czy trwa runda utrwalenia
+  let wrongAll = [];          // wszystkie pomyłki sesji — do poprawki na koniec
 
   const bar = el("div", { class: "fc-bar" },
     el("div", { class: "fc-progress" }, el("div", { class: "fc-progress-fill", id: "fprog" })),
