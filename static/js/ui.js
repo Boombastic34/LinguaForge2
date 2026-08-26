@@ -170,27 +170,54 @@ function ttsAudioEl() {
   return AUDIO_EL;
 }
 
+const TTS_BLOBS = {};           // pamięć podręczna nagrań w przeglądarce
+
 function speakServer(text, rate, lang, onFail) {
+  const key = lang + "|" + rate + "|" + text;
   const a = ttsAudioEl();
+
+  const play = src => {
+    try { a.pause(); } catch (e) {}
+    a.src = src;
+    const p = a.play();
+    if (p && p.catch) {
+      p.then(() => { SERVER_TTS_OK = true; TTS_LAST_ERR = ""; })
+       .catch(err => {
+         TTS_LAST_ERR = "odtwarzanie: " + ((err && err.name) || err);
+         if (onFail) onFail();
+       });
+    } else {
+      SERVER_TTS_OK = true;
+    }
+  };
+
+  if (TTS_BLOBS[key]) return play(TTS_BLOBS[key]);
+
+  // WAŻNE: pobieramy nagranie zwykłym zapytaniem, żeby dołączyć token logowania.
+  // Sam <audio src="..."> nie wysyła nagłówków, więc serwer odmawiał dostępu,
+  // a przeglądarka zgłaszała NotSupportedError.
   const url = "/api/tts?lang=" + encodeURIComponent(lang)
             + "&rate=" + encodeURIComponent(rate)
             + "&text=" + encodeURIComponent(text);
-  try { a.pause(); } catch (e) {}
-  a.onerror = () => {
-    SERVER_TTS_OK = false;
-    TTS_LAST_ERR = "serwer: nie udało się pobrać nagrania";
-    if (onFail) onFail();
-  };
-  a.oncanplay = () => { SERVER_TTS_OK = true; };
-  a.src = url;
-  const p = a.play();
-  if (p && p.catch) {
-    p.then(() => { SERVER_TTS_OK = true; TTS_LAST_ERR = ""; })
-     .catch(err => {
-       TTS_LAST_ERR = "odtwarzanie: " + (err && err.name || err);
-       if (onFail) onFail();
-     });
-  }
+  fetch(url, { headers: { "x-token": API.token || "" } })
+    .then(r => {
+      if (!r.ok) throw new Error("serwer odpowiedział " + r.status);
+      return r.blob();
+    })
+    .then(blob => {
+      if (!blob || blob.size < 500) throw new Error("puste nagranie");
+      const src = URL.createObjectURL(blob);
+      TTS_BLOBS[key] = src;
+      const keys = Object.keys(TTS_BLOBS);
+      if (keys.length > 40) { URL.revokeObjectURL(TTS_BLOBS[keys[0]]); delete TTS_BLOBS[keys[0]]; }
+      SERVER_TTS_OK = true;
+      play(src);
+    })
+    .catch(err => {
+      SERVER_TTS_OK = false;
+      TTS_LAST_ERR = "pobieranie: " + (err && err.message || err);
+      if (onFail) onFail();
+    });
 }
 
 // ---------- LEKTOR W PRZEGLĄDARCE (zapasowy) ----------
