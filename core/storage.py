@@ -7,8 +7,49 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Na Androidzie (aplikacja z Play) katalog programu jest tylko do odczytu,
 # dlatego pozwalamy wskazać zapisywalny katalog danych przez zmienną LF_HOME.
 LF_HOME = os.environ.get("LF_HOME", "").strip()
-DATA_DIR = os.environ.get("LF_DATA", "").strip() or (
-    os.path.join(LF_HOME, "data") if LF_HOME else os.path.join(ROOT, "data"))
+FACTORY_DATA = os.path.join(ROOT, "data")      # treść dostarczana z kodem aplikacji
+
+
+def _prepare_data_dir():
+    """Katalog z treścią (fiszki, ćwiczenia, teksty).
+
+    Bez LF_HOME: zwykły katalog data/ obok programu.
+    Z LF_HOME (hosting z dyskiem, Android): kopiujemy tam treść fabryczną,
+    dzięki czemu materiały dodane przez administratora przetrwają aktualizacje,
+    a jednocześnie nowe pliki z kolejnych wersji trafiają na dysk.
+    """
+    explicit = os.environ.get("LF_DATA", "").strip()
+    if explicit:
+        return explicit
+    if not LF_HOME:
+        return FACTORY_DATA
+
+    target = os.path.join(LF_HOME, "data")
+    try:
+        os.makedirs(target, exist_ok=True)
+        for dirpath, _dirs, files in os.walk(FACTORY_DATA):
+            rel = os.path.relpath(dirpath, FACTORY_DATA)
+            dst_dir = target if rel == "." else os.path.join(target, rel)
+            os.makedirs(dst_dir, exist_ok=True)
+            for f in files:
+                if not f.endswith(".json"):
+                    continue
+                src, dst = os.path.join(dirpath, f), os.path.join(dst_dir, f)
+                # pliki "dodane_*" należą do administratora — nigdy ich nie nadpisujemy
+                if f.startswith("dodane_") and os.path.exists(dst):
+                    continue
+                # pozostałe pliki fabryczne odświeżamy, gdy w nowej wersji się zmieniły
+                if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(src):
+                    continue
+                with open(src, "rb") as a, open(dst, "wb") as b:
+                    b.write(a.read())
+        return target
+    except OSError as e:
+        print(f"  [!] Nie mogę przygotować katalogu treści w {target}: {e}")
+        return FACTORY_DATA
+
+
+DATA_DIR = _prepare_data_dir()
 
 
 def _writable_accounts_dir():
