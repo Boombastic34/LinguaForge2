@@ -579,49 +579,123 @@
    ],
    "quiz": [
     {
-     "q": "Wymień cztery rodziny zaimków i powiedz, do czego służy każda.",
-     "keywords": [
-      [
-       "podmiot",
-       "kto"
-      ],
-      [
-       "dopełnien",
-       "komu",
-       "kogo"
-      ],
-      [
-       "dzierżawcz",
-       "czyj",
-       "mój"
-      ],
-      [
-       "rzeczownik",
-       "samodzieln",
-       "bez rzeczownika"
-      ]
+     "q": "Wymien cztery rodziny zaimkow i podaj przyklad kazdej.",
+     "fields": [
+      {
+       "label": "Podmiotowy (kto robi)",
+       "hint": "np. I, she",
+       "accept": [
+        "i",
+        "you",
+        "he",
+        "she",
+        "it",
+        "we",
+        "they"
+       ]
+      },
+      {
+       "label": "Dopelnieniowy (komu/kogo)",
+       "hint": "np. me, him",
+       "accept": [
+        "me",
+        "you",
+        "him",
+        "her",
+        "it",
+        "us",
+        "them"
+       ]
+      },
+      {
+       "label": "Dzierzawczy + rzeczownik",
+       "hint": "np. my badge",
+       "accept": [
+        "my",
+        "your",
+        "his",
+        "her",
+        "its",
+        "our",
+        "their"
+       ]
+      },
+      {
+       "label": "Dzierzawczy samodzielny",
+       "hint": "np. mine",
+       "accept": [
+        "mine",
+        "yours",
+        "his",
+        "hers",
+        "its",
+        "ours",
+        "theirs"
+       ]
+      }
      ],
-     "model": "Podmiotowe (I, she — kto robi), dopełnieniowe (me, him — komu/kogo), dzierżawcze przymiotne (my, their — przed rzeczownikiem), dzierżawcze samodzielne (mine, theirs — bez rzeczownika)."
+     "why": "Kazda rodzina pelni inna role: podmiot wykonuje czynnosc, dopelnienie jej podlega, dzierzawczy z rzeczownikiem okresla czyj, a samodzielny zastepuje caly zwrot."
     },
     {
-     "q": "Jaka jest różnica między my a mine? Podaj przykład.",
-     "keywords": [
-      [
-       "my"
-      ],
-      [
-       "mine"
-      ],
-      [
-       "rzeczownik"
-      ],
-      [
-       "bez",
-       "samo",
-       "samodzieln"
-      ]
+     "q": "Uzupelnij tabele dla osoby ON (he).",
+     "fields": [
+      {
+       "label": "Podmiotowy",
+       "hint": "kto robi",
+       "accept": [
+        "he"
+       ]
+      },
+      {
+       "label": "Dopelnieniowy",
+       "hint": "komu/kogo",
+       "accept": [
+        "him"
+       ]
+      },
+      {
+       "label": "Dzierzawczy + rzeczownik",
+       "hint": "czyj + rzecz",
+       "accept": [
+        "his"
+       ]
+      },
+      {
+       "label": "Dzierzawczy samodzielny",
+       "hint": "czyj bez rzeczownika",
+       "accept": [
+        "his"
+       ]
+      }
      ],
-     "model": "my stoi przed rzeczownikiem (my badge), mine występuje samodzielnie (this badge is mine)."
+     "why": "Dla he obie formy dzierzawcze brzmia tak samo: his badge oraz it's his."
+    },
+    {
+     "q": "Kiedy uzywamy MY, a kiedy MINE?",
+     "fields": [
+      {
+       "label": "MY uzywamy gdy...",
+       "hint": "co stoi po zaimku?",
+       "accept": [
+        "rzeczownik",
+        "rzeczownikiem",
+        "jest rzeczownik",
+        "stoi rzeczownik"
+       ]
+      },
+      {
+       "label": "MINE uzywamy gdy...",
+       "hint": "co stoi po zaimku?",
+       "accept": [
+        "nie ma rzeczownika",
+        "brak rzeczownika",
+        "nic",
+        "samodzielnie",
+        "bez rzeczownika"
+       ]
+      }
+     ],
+     "why": "To reguła mechaniczna: stoi rzeczownik -> my, nie stoi nic -> mine."
     }
    ],
    "nr": 6,
