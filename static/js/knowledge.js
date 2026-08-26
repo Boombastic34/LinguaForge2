@@ -228,6 +228,59 @@ function runKbQuiz(a) {
         el("div", { class: "progress" }, el("div", { class: "progress-fill", style: `width:${Math.round(i / a.quiz.length * 100)}%` }))),
       el("div", { class: "qtext" }, q.q),
       el("div", { class: "muted small" }, "Napisz 1–3 zdania po polsku."));
+    // --- pytanie z rozbitymi polami (tabelka) zamiast jednej linijki ---
+    if (q.fields && q.fields.length) {
+      const tbl = el("div", { class: "quiz-fields" });
+      const inputs = [];
+      q.fields.forEach(fd => {
+        const inp = el("input", { class: "input", autocomplete: "off", placeholder: fd.hint || "" });
+        inputs.push({ inp, fd });
+        tbl.append(el("div", { class: "qf-row" },
+          el("div", { class: "qf-label" }, fd.label),
+          inp));
+      });
+      box.append(tbl);
+      const send = el("button", { class: "btn ok big", onclick: checkFields }, "Sprawdź odpowiedzi");
+      box.append(el("div", { class: "fb-btns" }, send));
+      inputs[0].inp.focus();
+      inputs.forEach(({ inp }, n) => {
+        inp.onkeydown = e => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            if (n + 1 < inputs.length) inputs[n + 1].inp.focus(); else checkFields();
+          }
+        };
+      });
+      return;
+
+      function checkFields() {
+        let hits = 0;
+        inputs.forEach(({ inp, fd }) => {
+          const v = (inp.value || "").toLowerCase().trim();
+          const ok = fd.accept.some(a => v === a.toLowerCase()
+            || (v.length > 3 && a.toLowerCase().includes(v))
+            || (a.length > 3 && v.includes(a.toLowerCase())));
+          inp.classList.toggle("qf-ok", ok);
+          inp.classList.toggle("qf-bad", !ok);
+          if (ok) hits++;
+          if (!ok) {
+            inp.after(el("div", { class: "qf-answer" }, "✔ " + fd.accept.slice(0, 3).join(" / ")));
+          }
+        });
+        const pct = hits / inputs.length;
+        total += pct;
+        if (typeof haptic === "function") haptic(pct === 1 ? "good" : "bad");
+        box.querySelectorAll("input").forEach(x => x.disabled = true);
+        box.append(el("div", { class: "feedback " + (pct === 1 ? "fb-good" : pct >= .5 ? "fb-part" : "fb-bad") },
+          el("div", { class: "fb-head" }, `${hits}/${inputs.length} poprawnych`),
+          q.why ? el("div", { class: "fb-explain" }, "💡 " + q.why) : null));
+        const nx = el("button", { class: "btn primary big", onclick: () => { i++; ask(); } },
+          i + 1 >= a.quiz.length ? "Podsumowanie →" : "Dalej →");
+        box.append(el("div", { class: "fb-btns" }, nx));
+        nx.focus();
+      }
+    }
+
     const ta = el("textarea", { class: "input", placeholder: "Twoja odpowiedź po polsku…" });
     box.append(el("details", { class: "kb-criteria" },
       el("summary", {}, "❓ Jak oceniana jest ta odpowiedź?"),

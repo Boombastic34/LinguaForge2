@@ -17,16 +17,16 @@ async function viewListening() {
     const isPl = it.mode === "pl";
     // prędkość lektora — osobna dla tego zadania, zapamiętywana w profilu
     let rate = ttsRate();
-    const say = () => isPl ? speak(it.tts_pl, rate, "pl") : speak(it.tts, rate);
+    const say = (q) => isPl ? speak(it.tts_pl, rate, "pl", q) : speak(it.tts, rate, "en", q);
 
-    const speedRow = speedPicker(rate, v => { rate = v; say(); });
+    const speedRow = speedPicker(rate, v => { rate = v; say(false); });
 
     box.append(
       el("span", { class: "badge " + (isPl ? "tfut" : "") }, isPl ? "🔁 PL → EN" : "🎧 Dyktando EN"),
       el("div", { class: "qtext" }, isPl
         ? "Usłyszysz zdanie po polsku. Zapisz je PO ANGIELSKU."
         : "Posłuchaj i zapisz dokładnie, co słyszysz (po angielsku)."),
-      el("button", { class: "btn primary big-play", onclick: say }, "▶ Odtwórz"),
+      el("button", { class: "btn primary big-play", onclick: () => say(false) }, "▶ Odtwórz"),
       speedRow,
       el("div", { class: "muted", style: "margin-bottom:8px" }, `poziom ${it.level} · możesz słuchać wiele razy`));
     const inp = el("input", { class: "input", placeholder: "Wpisz po angielsku…", autocomplete: "off",
@@ -35,7 +35,7 @@ async function viewListening() {
     send.onclick = () => check(it, inp.value.trim(), rate);
     inp.onkeydown = e => { if (e.key === "Enter") send.click(); };
     box.append(inp, el("div", { class: "fb-btns" }, send));
-    setTimeout(say, 350);
+    setTimeout(() => say(true), 350);   // automat cichy
     inp.focus();
   }
 

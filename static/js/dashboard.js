@@ -227,7 +227,7 @@ async function viewDashboard() {
     const pass = el("input", { class: "input short", type: "password", placeholder: "hasło" });
     const go = async () => {
       try {
-        await API.post("/api/admin/login", { password: pass.value });
+        await API.post("/api/admin/unlock", { password: pass.value });
         window.IS_ADMIN = true;
         toast("Zalogowano jako administrator");
         location.hash = "#admin";
@@ -270,11 +270,7 @@ async function viewDashboard() {
         el("input", { type: "checkbox", ...(LFSET.get("haptics", true) ? { checked: "" } : {}),
           onchange: e => LFSET.set("haptics", e.target.checked) }),
         " 📳 Wibracje przy odpowiedzi"),
-      el("button", { class: "btn mini", onclick: () => {
-        speak("This is a test.", 0.95, "en");
-        setTimeout(() => speak("To jest test.", 0.95, "pl"), 1600);
-        toast("Lektor: " + (typeof ttsInfo === "function" ? ttsInfo() : "?"));
-      } }, "🔊 Sprawdź lektora")),
+      el("button", { class: "btn ok", onclick: ttsDiagnose }, "🔊 Sprawdź lektora")),
     el("button", { class: "btn ok", onclick: async () => {
       await API.post("/api/settings", { target_level: tgt.value || null, daily_goal_xp: +goalInp.value, domains: [...domains] });
       toast("Zapisano ✔"); viewDashboard();
@@ -325,4 +321,55 @@ async function viewDashboard() {
         return el("div", { class: "set-row" }, conf, btn);
       })()));
   main.append(set);
+}
+
+
+// ---------- diagnostyka lektora ----------
+function ttsDiagnose() {
+  const bg = el("div", { class: "modal-bg", onclick: e => { if (e.target === bg) bg.remove(); } });
+  const out = el("div", { class: "tts-diag" });
+  const modal = el("div", { class: "modal card", style: "max-width:560px" },
+    el("h3", {}, "🔊 Sprawdzenie lektora"),
+    el("p", { class: "muted small" },
+      "Dotknij przycisku poniżej. Na telefonie dźwięk odezwie się tylko po Twoim dotknięciu — " +
+      "to zasada przeglądarek, nie błąd aplikacji."),
+    el("div", { class: "fb-btns" },
+      el("button", { class: "btn primary big", onclick: () => {
+        speak("Hello, this is a test of the English voice.", undefined, "en", false);
+        refresh("odtwarzam po angielsku…");
+      } }, "▶ Test angielski"),
+      el("button", { class: "btn ok big", onclick: () => {
+        speak("To jest test polskiego lektora.", undefined, "pl", false);
+        refresh("odtwarzam po polsku…");
+      } }, "▶ Test polski")),
+    out,
+    el("div", { class: "fb-btns" },
+      el("button", { class: "btn ghost", onclick: () => refresh("odświeżono") }, "🔄 Odśwież stan"),
+      el("button", { class: "btn ghost", onclick: () => bg.remove() }, "Zamknij")));
+  bg.append(modal);
+  document.body.append(bg);
+  refresh("");
+
+  function refresh(msg) {
+    out.innerHTML = "";
+    const info = typeof ttsInfo === "function" ? ttsInfo() : "brak danych";
+    out.append(
+      msg ? el("div", { class: "muted small" }, msg) : null,
+      el("div", { class: "tts-line" }, el("b", {}, "Stan: "), info));
+    setTimeout(() => {
+      const i2 = typeof ttsInfo === "function" ? ttsInfo() : "";
+      out.append(el("div", { class: "tts-line" }, el("b", {}, "Po chwili: "), i2));
+      if (/głosy EN: 0/.test(i2)) {
+        out.append(el("div", { class: "kb-mistake" },
+          "⚠ Przeglądarka nie widzi żadnych głosów. Na Androidzie: Ustawienia → " +
+          "Ułatwienia dostępu → Zamiana tekstu na mowę → sprawdź silnik Google " +
+          "i zainstaluj dane głosowe (angielski, polski)."));
+      }
+      if (/brak reakcji/.test(i2)) {
+        out.append(el("div", { class: "kb-mistake" },
+          "⚠ Przeglądarka zignorowała żądanie. Spróbuj: wyłącz tryb oszczędzania danych/baterii, " +
+          "odśwież stronę i dotknij przycisku testu ponownie."));
+      }
+    }, 1500);
+  }
 }

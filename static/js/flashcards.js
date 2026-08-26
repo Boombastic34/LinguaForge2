@@ -126,8 +126,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
         "Każde słówko zobaczysz najpierw z tłumaczeniem i przykładem, dopiero potem je wpiszesz."),
       el("label", { class: "chip chip-check fc-retype-toggle", style: "margin-top:8px" },
         retypeCheck, " ✍️ Przepisz błąd na czysto"),
-      el("p", { class: "muted small", style: "margin-top:4px" },
-        "Gdy błędnie wpiszesz słowo, zanim przejdziesz dalej, przepiszesz je raz poprawnie — pomaga zapamiętać pisownię."),
+
       el("button", { class: "btn ghost", style: "margin-top:8px", onclick: () => viewFlashcards() }, "← Zmień kategorię"));
     m.append(sizePicker({
       title: "Ile fiszek chcesz przerobić?", pool: info.pool, unit: "fiszek", suggested: 15,
@@ -149,9 +148,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     dir: dm === "pl_en" ? "pl_en"
        : dm === "en_pl" ? "en_pl"
        : (Math.random() < 0.55 ? "pl_en" : "en_pl") }));
-  // tryb nauki: KAŻDA karta najpierw pokazywana do przeczytania
+  // tryb nauki: każda karta najpierw pokazywana do przeczytania, potem wpisywana
   const learn = learnMode !== undefined ? learnMode : LFSET.get("fc_learn", false);
-  if (learn) queue.forEach(c => { c.new = true; });
   if (!queue.length) {
     m.append(el("div", { class: "card" }, el("p", {}, "Brak kart w tej kategorii."),
       el("button", { class: "btn primary", onclick: () => viewFlashcards() }, "← Wybierz inną")));
@@ -194,7 +192,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     const c = queue[idx];
     // NOWE słówko pokazujemy najpierw do przeczytania — dopiero potem odpytujemy.
     // Bez tego nieznane phrasal verbs sprowadzały się do klikania „Nie wiem".
-    if (c.new && !c._seen) { c._seen = true; return renderIntro(c); }
+    // karta wprowadzająca wyłącznie w trybie nauki — poza nim od razu pytamy
+    if (learn && !c._seen) { c._seen = true; return renderIntro(c); }
     if (audio !== "off") return renderAudio(c);
     t0 = Date.now();
     stage.innerHTML = "";
@@ -247,14 +246,118 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
           "„" + c.example + "”",
           c.example_pl ? el("div", { class: "muted small" }, c.example_pl) : null) : null));
     stage.append(card);
-    const go = el("button", { class: "btn primary big", onclick: next }, "Rozumiem →");
-    stage.append(el("div", { class: "fb-btns fc-btns" }, go));
+    const go = el("button", { class: "btn primary big", onclick: next }, "Sprawdź →");
+    stage.append(el("div", { class: "fb-btns fc-btns" }, go),
+      el("div", { class: "keyhint" }, "za chwilę wpiszesz to słowo z pamięci"));
     go.focus();
     document.onkeydown = e => {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); next(); }
     };
-    function next() { document.onkeydown = null; render(); }
+    function next() { document.onkeydown = null; renderLearnType(c); }
   }
+
+  // ---------- tryb nauki, etap 2: wpisz poznane słowo po angielsku ----------
+  function renderLearnType(c) {
+    t0 = Date.now();
+    stage.innerHTML = "";
+    updateBar();
+    const card = el("div", { class: "fc-card fc-learn" },
+      el("div", { class: "fc-face" },
+        el("div", { class: "fc-tags" },
+          el("span", { class: "fc-tag tag-new" }, "SPRAWDŹ, CZY ZAPAMIĘTAŁEŚ"),
+          el("span", { class: "fc-tag" }, c.theme || "inne")),
+        el("div", { class: "fc-word fc-word-pl" }, c.pl),
+        c.hint ? el("div", { class: "fc-hint" }, "💡 " + c.hint) : null,
+        el("div", { class: "muted small" }, "Wpisz po angielsku")));
+    stage.append(card);
+    const inp = el("input", { class: "input fc-input", autocomplete: "off",
+      autocapitalize: "off", spellcheck: "false", placeholder: "po angielsku…" });
+    const send = el("button", { class: "btn ok", onclick: () => judge(inp.value) }, "Sprawdź ⏎");
+    const hint = el("button", { class: "btn ghost", onclick: () => {
+      toast("Podpowiedź: " + c.en.slice(0, Math.max(1, Math.ceil(c.en.length / 3))) + "…");
+    } }, "💡 Podpowiedz");
+    inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); judge(inp.value); } };
+    stage.append(inp, el("div", { class: "fb-btns fc-btns" }, send, hint));
+    inp.focus();
+    function judge(val) {
+      if (!val.trim()) return;
+      grade(c, answersMatch(val, c.en), val, false);
+    }
+  }
+
+  // ---------- RUNDA UTRWALENIA: powtórka ostatnich zwrotów ----------
+  function runBlockReview(onDone) {
+    const items = blockBuf.slice().sort(() => Math.random() - .5);
+    blockBuf = [];
+    inReview = true;
+    let j = 0, hits = 0;
+    stage.innerHTML = "";
+    stage.append(el("div", { class: "fc-block-intro" },
+      el("div", { class: "fbi-emo" }, "🔁"),
+      el("h3", {}, "Runda utrwalenia"),
+      el("p", {}, `Powtórzmy ${items.length} zwrotów, które przed chwilą poznałeś — ` +
+        "tym razem w losowej kolejności i w obie strony."),
+      el("button", { class: "btn primary big", onclick: step }, "Zaczynamy →")));
+    document.onkeydown = null;
+
+    function step() {
+      if (j >= items.length) return finishReview();
+      const c = items[j];
+      const askPl = Math.random() < 0.5;           // losowo PL→EN albo EN→PL
+      const shown = askPl ? c.pl : c.en;
+      const target = askPl ? c.en : plVariants(c.pl)[0];
+      stage.innerHTML = "";
+      focusProgress(j, items.length, `runda utrwalenia ${j + 1}/${items.length}`);
+      stage.append(el("div", { class: "fc-card fc-review" },
+        el("div", { class: "fc-face" },
+          el("div", { class: "fc-tags" },
+            el("span", { class: "fc-tag tag-review" }, "🔁 UTRWALENIE " + (j + 1) + "/" + items.length),
+            el("span", { class: "fc-tag" }, askPl ? "PL → EN" : "EN → PL")),
+          el("div", { class: "fc-word" }, shown, " ",
+            !askPl ? el("button", { class: "fc-speak", onclick: () => speak(c.en) }, "🔊") : null))));
+      const inp = el("input", { class: "input fc-input", autocomplete: "off",
+        autocapitalize: "off", spellcheck: "false",
+        placeholder: askPl ? "po angielsku…" : "po polsku…" });
+      const send = el("button", { class: "btn ok", onclick: () => judge(inp.value) }, "Sprawdź ⏎");
+      inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); judge(inp.value); } };
+      stage.append(inp, el("div", { class: "fb-btns fc-btns" }, send));
+      inp.focus();
+
+      function judge(val) {
+        if (!val.trim()) return;
+        const ok = askPl ? answersMatch(val, c.en)
+                         : plVariants(c.pl).some(x => answersMatch(val, x));
+        if (ok) hits++;
+        if (typeof haptic === "function") haptic(ok ? "good" : "bad");
+        speakAuto(c.en);
+        stage.innerHTML = "";
+        stage.append(el("div", { class: "feedback " + (ok ? "fb-good" : "fb-bad") },
+          el("div", { class: "fb-head" }, ok ? "✔ Dobrze!" : "✘ Niestety nie"),
+          !ok ? el("div", {}, "Twoja odpowiedź: ", el("b", {}, val)) : null,
+          el("div", { class: "fb-pair" }, el("b", {}, c.en), " = ", c.pl, " ",
+            el("button", { class: "mini-tts", onclick: () => speak(c.en) }, "🔊"))));
+        const nx = el("button", { class: "btn primary big", onclick: () => { j++; step(); } }, "Dalej →");
+        stage.append(el("div", { class: "fb-btns fc-btns" }, nx));
+        nx.focus();
+        document.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); j++; step(); } };
+      }
+    }
+
+    function finishReview() {
+      document.onkeydown = null;
+      inReview = false;
+      const pct = Math.round(100 * hits / Math.max(1, items.length));
+      if (pct >= 80) confetti();
+      stage.innerHTML = "";
+      stage.append(el("div", { class: "fc-block-intro" },
+        el("div", { class: "fbi-emo" }, pct >= 80 ? "🎉" : "💪"),
+        el("h3", {}, `Runda utrwalenia: ${hits}/${items.length}`),
+        el("p", {}, pct >= 80 ? "Świetnie — te zwroty masz opanowane."
+                              : "Te zwroty wrócą jeszcze w powtórkach."),
+        el("button", { class: "btn primary big", onclick: onDone }, "Uczymy się dalej →")));
+    }
+  }
+
 
   // ---------- FISZKA ZE SŁUCHU: lektor mówi, uczeń zapisuje ----------
   function renderAudio(c) {
@@ -264,7 +367,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     const lang = audio;                       // "en" albo "pl"
     const target = lang === "en" ? c.en : plVariants(c.pl)[0];
     let rate = ttsRate();
-    const say = () => speak(target, rate, lang);
+    const say = (q) => speak(target, rate, lang, q);
 
     const card = el("div", { class: "fc-card fc-audio" },
       el("div", { class: "fc-face" },
@@ -272,8 +375,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
           el("span", { class: "fc-tag tag-audio" }, lang === "en" ? "🎧 SŁUCHAJ · ANGIELSKI" : "🎧 SŁUCHAJ · POLSKI"),
           el("span", { class: "fc-tag" }, c.theme || "inne"),
           c.reps === 0 ? el("span", { class: "fc-tag tag-new" }, "NOWE") : null),
-        el("button", { class: "btn primary big-play", onclick: say }, "▶ Odtwórz"),
-        speedPicker(rate, v => { rate = v; say(); }),
+        el("button", { class: "btn primary big-play", onclick: () => say(false) }, "▶ Odtwórz"),
+        speedPicker(rate, v => { rate = v; say(false); }),
         el("div", { class: "muted small" }, "Zapisz dokładnie to, co słyszysz.")));
     stage.append(card);
 
@@ -285,7 +388,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); judge(inp.value); } };
     stage.append(inp, el("div", { class: "fb-btns fc-btns" }, send, dunno));
     inp.focus();
-    setTimeout(say, 400);
+    setTimeout(() => say(true), 400);   // automat cichy
 
     function judge(val) {
       if (!val.trim()) return;
@@ -326,8 +429,15 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
 
     function go() {
       document.onkeydown = null;
-      if (!ok) queue.push({ ...c });
+      if (!ok) { queue.push({ ...c }); wrongAll.push({ ...c }); }
       idx++;
+      // tryb nauki: co LEARN_BLOCK poznanych zwrotów robimy rundę utrwalenia
+      if (learn && !inReview) {
+        blockBuf.push(c);
+        if (blockBuf.length >= LEARN_BLOCK || idx >= queue.length) {
+          return runBlockReview(() => render());
+        }
+      }
       render();
     }
 
@@ -375,8 +485,73 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     }
   }
 
+  // ---------- RUNDA NAPRAWCZA: przepisz to, co poszło źle ----------
+  function runRepairRound(items, onDone) {
+    let j = 0, fixed = 0;
+    stage.innerHTML = "";
+    stage.append(el("div", { class: "fc-block-intro fc-repair-intro" },
+      el("div", { class: "fbi-emo" }, "🛠"),
+      el("h3", {}, "Poprawka na koniec"),
+      el("p", {}, `Te ${items.length} zwrotów sprawiło Ci kłopot. Wpisz każdy raz poprawnie ` +
+        "— to najlepszy moment, żeby je utrwalić."),
+      el("button", { class: "btn primary big", onclick: step }, "Poprawiamy →")));
+    document.onkeydown = null;
+
+    function step() {
+      if (j >= items.length) return done();
+      const c = items[j];
+      stage.innerHTML = "";
+      focusProgress(j, items.length, `poprawka ${j + 1}/${items.length}`);
+      speakAuto(c.en);
+      stage.append(el("div", { class: "fc-card fc-repair" },
+        el("div", { class: "fc-face" },
+          el("div", { class: "fc-tags" },
+            el("span", { class: "fc-tag tag-repair" }, "🛠 POPRAWKA " + (j + 1) + "/" + items.length)),
+          el("div", { class: "fc-word" }, c.en, " ",
+            el("button", { class: "fc-speak", onclick: () => speak(c.en) }, "🔊")),
+          el("div", { class: "fc-pl" }, c.pl),
+          el("div", { class: "muted small" }, "Przepisz angielskie słowo"))));
+      const inp = el("input", { class: "input fc-input", autocomplete: "off",
+        autocapitalize: "off", spellcheck: "false", placeholder: "przepisz…" });
+      const send = el("button", { class: "btn ok", onclick: check2 }, "Sprawdź ⏎");
+      const skip = el("button", { class: "btn ghost", onclick: () => { j++; step(); } }, "Pomiń");
+      inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); check2(); } };
+      stage.append(inp, el("div", { class: "fb-btns fc-btns" }, send, skip));
+      inp.focus();
+      function check2() {
+        if (!inp.value.trim()) return;
+        if (answersMatch(inp.value, c.en)) {
+          fixed++;
+          if (typeof haptic === "function") haptic("good");
+          j++; step();
+        } else {
+          if (typeof haptic === "function") haptic("bad");
+          inp.classList.add("fc-shake");
+          setTimeout(() => inp.classList.remove("fc-shake"), 350);
+          inp.select();
+        }
+      }
+    }
+    function done() {
+      stage.innerHTML = "";
+      stage.append(el("div", { class: "fc-block-intro" },
+        el("div", { class: "fbi-emo" }, "✅"),
+        el("h3", {}, `Poprawione: ${fixed}/${items.length}`),
+        el("button", { class: "btn primary big", onclick: onDone }, "Podsumowanie →")));
+    }
+  }
+
   function finish() {
     document.onkeydown = null;
+    // na koniec sesji: runda naprawcza z pomyłkami
+    const uniqWrong = [];
+    const seenW = new Set();
+    wrongAll.forEach(c => { if (!seenW.has(c.id)) { seenW.add(c.id); uniqWrong.push(c); } });
+    if (uniqWrong.length && !window._fcRepairDone) {
+      window._fcRepairDone = true;
+      return runRepairRound(uniqWrong, finish);
+    }
+    window._fcRepairDone = false;
     exitFocus();
     confetti();
     stage.innerHTML = "";

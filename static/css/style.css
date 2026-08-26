@@ -1240,3 +1240,52 @@ body.dark .kb-criteria { background:#1c2333; }
 .gap-done { color:#087f5b; }
 body.dark .gap-done { color:#38d9a9; }
 @media (max-width:600px){ .gap-sentence { font-size:18px; } .kb-table { min-width:460px; } }
+
+/* ================= v2.1 — porządki w ustawieniach sesji ================= */
+.size-chosen { text-align:center; font-weight:700; color:#e8590c; margin:10px 0; font-size:15px; }
+.start-btn { width:100%; margin-top:12px; font-size:18px; padding:16px; }
+.size-picker .set-row { justify-content:center; margin-top:10px; }
+
+/* przełączniki opcji — czytelne karty zamiast luźnych chipów */
+.opt-card { display:flex; align-items:flex-start; gap:10px; padding:12px 14px; margin-top:8px;
+  border:2px solid #e9eef4; border-radius:12px; background:#fff; cursor:pointer; text-align:left; }
+body.dark .opt-card { background:#1a212a; border-color:#2b3542; }
+.opt-card input[type=checkbox] { width:20px; height:20px; margin-top:2px; flex:0 0 auto; accent-color:#e8590c; }
+.opt-card-txt b { display:block; font-size:14.5px; }
+.opt-card-txt .small { color:#8a94a0; margin-top:2px; }
+.opt-card.on { border-color:#e8590c; background:#fff7ed; }
+body.dark .opt-card.on { background:#2a1c10; }
+.opt-group-title { font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+  color:#8a94a0; margin:14px 0 4px; }
+
+/* runda utrwalenia / poprawka */
+.fc-block-intro { text-align:center; padding:26px 18px; }
+.fbi-emo { font-size:48px; margin-bottom:8px; }
+.fc-block-intro h3 { margin:4px 0 8px; }
+.fc-block-intro p { color:#5c6672; max-width:420px; margin:0 auto 16px; }
+body.dark .fc-block-intro p { color:#9aa6b4; }
+.fc-review { border-color:#4c5fd5; }
+.fc-repair { border-color:#f0a202; }
+.fc-learn { border-color:#0ca678; }
+.fc-word-pl { color:#4c5fd5; }
+.tag-review { background:#4c5fd5; color:#fff; }
+.tag-repair { background:#f0a202; color:#fff; }
+.fb-pair { margin-top:8px; font-size:17px; }
+
+/* sprawdzian z rozbitymi polami */
+.quiz-fields { display:flex; flex-direction:column; gap:10px; margin:14px 0; }
+.qf-row { display:grid; grid-template-columns:1fr; gap:4px; padding:10px 12px;
+  border:1px solid #e9eef4; border-radius:12px; background:#fbfcfe; }
+body.dark .qf-row { background:#171d25; border-color:#2b3542; }
+.qf-label { font-size:12.5px; font-weight:700; color:#4c5fd5; }
+.qf-row .input { font-size:16px; }
+.input.qf-ok { border-color:#0ca678 !important; background:#e6fcf5; }
+.input.qf-bad { border-color:#e03131 !important; background:#fff5f5; }
+body.dark .input.qf-ok { background:#12251f; } body.dark .input.qf-bad { background:#2a1618; }
+.qf-answer { font-size:13px; color:#087f5b; font-weight:700; margin-top:4px; }
+@media (min-width:620px){ .qf-row { grid-template-columns:210px 1fr; align-items:center; gap:12px; } }
+
+/* diagnostyka lektora */
+.tts-diag { margin:12px 0; padding:12px; background:#f4f7fa; border-radius:10px; font-size:13.5px; }
+body.dark .tts-diag { background:#1c2333; }
+.tts-line { margin:4px 0; font-family:"IBM Plex Mono",monospace; font-size:12.5px; word-break:break-word; }

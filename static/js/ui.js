@@ -155,13 +155,18 @@ function speedPicker(current, onChange) {
 }
 
 let TTS_WARNED = false;
-function speak(text, rate, lang = "en") {
+let TTS_LAST_ERR = "";
+
+// UWAGA: na Chrome Android mowa MUSI wystartować synchronicznie w obsłudze
+// dotknięcia. Każde setTimeout przed speak() zrywa powiązanie z gestem i
+// przeglądarka po cichu ignoruje żądanie — to była przyczyna ciszy na telefonie.
+function speak(text, rate, lang = "en", quiet = false) {
   if (rate === undefined || rate === null) rate = ttsRate();
   if (!text) return;
 
   if (HAS_NATIVE_TTS) {
     try { window.NativeTTS.speak(String(text), lang === "pl" ? "pl" : "en", rate); }
-    catch (e) { /* most nieosiągalny — pomijamy */ }
+    catch (e) { /* most nieosiągalny */ }
     return;
   }
   if (!HAS_WEB_TTS) {
@@ -169,26 +174,44 @@ function speak(text, rate, lang = "en") {
     return;
   }
 
-  unlockTts();
-  try { speechSynthesis.cancel(); } catch (e) {}
+  try {
+    if (!VOICES.length) loadVoices();
+    speechSynthesis.cancel();                 // synchronicznie, bez opóźnienia
+    const u = new SpeechSynthesisUtterance(String(text));
+    const v = pickVoiceFor(lang);
+    if (v) { u.voice = v; u.lang = v.lang; }
+    else { u.lang = lang === "pl" ? "pl-PL" : "en-US"; }
+    u.rate = rate; u.pitch = 1; u.volume = 1;
 
-  // krótka zwłoka po cancel() — bez niej Chrome bywa cichy
-  setTimeout(() => {
-    try {
-      const u = new SpeechSynthesisUtterance(String(text));
-      const v = pickVoiceFor(lang);
-      if (v) { u.voice = v; u.lang = v.lang; }
-      else { u.lang = lang === "pl" ? "pl-PL" : "en-US"; }
-      u.rate = rate;
-      u.pitch = 1;
-      u.volume = 1;
-      speechSynthesis.speak(u);
-      // znany błąd Chrome: mowa zasypia — budzimy ją
-      setTimeout(() => { try { if (speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {} }, 120);
-    } catch (e) {
-      if (!TTS_WARNED) { TTS_WARNED = true; toast("Lektor niedostępny w tej przeglądarce", true); }
-    }
-  }, 60);
+    let started = false;
+    u.onstart = () => { started = true; TTS_LAST_ERR = ""; };
+    u.onerror = ev => {
+      TTS_LAST_ERR = (ev && ev.error) || "nieznany błąd";
+      if (TTS_LAST_ERR === "interrupted" || TTS_LAST_ERR === "canceled") return;
+      if (!TTS_WARNED && !quiet) {
+        TTS_WARNED = true;
+        toast("Lektor: " + TTS_LAST_ERR + " — sprawdź głośność i silnik mowy w telefonie", true);
+      }
+    };
+    speechSynthesis.speak(u);
+    TTS_UNLOCKED = true;
+
+    // Chrome bywa wstrzymany — budzimy, ale JUŻ PO wystartowaniu mowy
+    setTimeout(() => { try { if (speechSynthesis.paused) speechSynthesis.resume(); } catch (e) {} }, 150);
+    // brak startu przez 1,2 s = przeglądarka zignorowała żądanie
+    setTimeout(() => {
+      if (!started) {
+        TTS_LAST_ERR = "brak reakcji (przeglądarka zignorowała)";
+        if (!TTS_WARNED && !quiet) {
+          TTS_WARNED = true;
+          toast("Lektor nie ruszył — dotknij ▶ jeszcze raz. Na telefonie pierwszy dźwięk wymaga dotknięcia.", true);
+        }
+      }
+    }, 1200);
+  } catch (e) {
+    TTS_LAST_ERR = String(e && e.message || e);
+    if (!TTS_WARNED) { TTS_WARNED = true; toast("Lektor niedostępny: " + TTS_LAST_ERR, true); }
+  }
 }
 
 // Diagnostyka dla przycisku „Sprawdź lektora"
@@ -198,7 +221,10 @@ function ttsInfo() {
   loadVoices();
   const en = VOICES.filter(v => (v.lang || "").toLowerCase().startsWith("en")).length;
   const pl = VOICES.filter(v => (v.lang || "").toLowerCase().startsWith("pl")).length;
-  return `przeglądarka · głosy EN: ${en}, PL: ${pl}`;
+  const st = speechSynthesis.speaking ? "mówi" : (speechSynthesis.pending ? "w kolejce" : "bezczynny");
+  return `głosy EN: ${en}, PL: ${pl} · stan: ${st}` +
+         (TTS_LAST_ERR ? ` · ostatni błąd: ${TTS_LAST_ERR}` : "") +
+         (VOICES.length ? "" : " · UWAGA: przeglądarka nie zwróciła żadnych głosów");
 }
 
 // Telefon bez polskich danych głosowych — podpowiadamy, gdzie je włączyć
@@ -400,31 +426,46 @@ document.addEventListener("keydown", e => {
 // opts: {title, subtitle, pool, suggested, unit, onStart(n), extra}
 function sizePicker(opts) {
   const pool = opts.pool || 0;
+  const unit = opts.unit || "zadań";
+  let chosen = Math.min(opts.suggested || 10, pool);
+
   const box = el("div", { class: "card size-picker" });
   box.append(
     el("h3", {}, opts.title || "Ile zadań chcesz przerobić?"),
-    el("p", { class: "muted" },
-      opts.subtitle || `Dostępna pula: ${pool} ${opts.unit || "zadań"}. Wybierz, ile chcesz zrobić teraz.`),
-    el("div", { class: "pool-badge" }, `📚 pula: ${pool} ${opts.unit || "zadań"}`));
+    el("p", { class: "muted" }, opts.subtitle || `Dostępna pula: ${pool} ${unit}.`),
+    el("div", { class: "pool-badge" }, `📚 pula: ${pool} ${unit}`));
+
+  const custom = el("input", { class: "input short", type: "number", min: 1, max: pool, value: chosen });
+  const badge = el("div", { class: "size-chosen" }, `wybrano: ${chosen} ${unit}`);
+
+  function setChosen(v, btn) {
+    chosen = v === "all" ? "all" : Math.max(1, Math.min(pool, +v || 1));
+    badge.textContent = `wybrano: ${chosen === "all" ? pool + " (wszystkie)" : chosen} ${unit}`;
+    grid.querySelectorAll(".size-btn").forEach(x => x.classList.remove("active"));
+    if (btn) btn.classList.add("active");
+    if (chosen !== "all") custom.value = chosen;
+  }
 
   const presets = [5, 10, 15, 20, 30].filter(n => n < pool);
   const grid = el("div", { class: "size-grid" });
-  presets.forEach(n => grid.append(el("button", { class: "size-btn", onclick: () => opts.onStart(n) },
-    el("b", {}, String(n)), el("div", { class: "small" }, opts.unit || "zadań"))));
-  grid.append(el("button", { class: "size-btn size-all", onclick: () => opts.onStart("all") },
-    el("b", {}, "WSZYSTKIE"), el("div", { class: "small" }, `${pool} ${opts.unit || "zadań"} — pełna seria`)));
+  presets.forEach(n => {
+    const b = el("button", { class: "size-btn", onclick: () => setChosen(n, b) },
+      el("b", {}, String(n)), el("div", { class: "small" }, unit));
+    grid.append(b);
+  });
+  const allB = el("button", { class: "size-btn size-all", onclick: () => setChosen("all", allB) },
+    el("b", {}, "WSZYSTKIE"), el("div", { class: "small" }, `${pool} ${unit}`));
+  grid.append(allB);
   box.append(grid);
 
-  const custom = el("input", { class: "input short", type: "number", min: 1, max: pool,
-    value: Math.min(opts.suggested || 10, pool) });
-  custom.onkeydown = e => { if (e.key === "Enter") start(); };
-  const start = () => {
-    const v = Math.max(1, Math.min(pool, +custom.value || 1));
-    opts.onStart(v);
-  };
-  box.append(el("div", { class: "set-row" },
-    "Własna liczba: ", custom,
-    el("button", { class: "btn primary", onclick: start }, "▶ Start")));
+  custom.oninput = () => setChosen(custom.value, null);
+  box.append(el("div", { class: "set-row" }, "Własna liczba: ", custom), badge);
+
   if (opts.extra) box.append(opts.extra);
+
+  // START dopiero po kliknięciu — wybór liczby niczego nie uruchamia
+  box.append(el("button", { class: "btn primary big start-btn", onclick: () => opts.onStart(chosen) },
+    "▶ START"));
   return box;
 }
+

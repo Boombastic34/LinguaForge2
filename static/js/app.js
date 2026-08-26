@@ -48,7 +48,7 @@ function boot() {
   const nav = el("nav", {});
   const aside = el("aside", {},
     el("div", { class: "brand" }, "Lingua", el("span", {}, "Forge")),
-    el("div", { class: "brand-sub", id: "verbox" }, "v2.0.0 · kuźnia języka"),
+    el("div", { class: "brand-sub", id: "verbox" }, "v2.1.1 · kuźnia języka"),
     nav,
     el("div", { class: "spacer" }),
     el("div", { class: "userbox" },
@@ -73,7 +73,7 @@ function boot() {
     const box = document.getElementById("verbox");
     if (!box) return;
     box.textContent = "v" + v.version + " · kuźnia języka";
-    if (v.version !== "2.0.0") {
+    if (v.version !== "2.1.1") {
       box.textContent = "v" + v.version + " · odśwież (Ctrl+F5)";
       box.style.color = "#ffd43b";
     }
@@ -353,7 +353,7 @@ function haptic(kind = "tap") {
 // automatyczne czytanie odpowiedzi (można wyciszyć)
 function speakAuto(text, lang = "en") {
   if (!text || !LFSET.get("tts_auto", true)) return;
-  speak(text, lang === "pl" ? 0.95 : 0.92, lang);
+  speak(text, undefined, lang, true);   // automat: bez ostrzeżeń, gdy telefon zignoruje
 }
 
 // przełącznik głośnika — wstawiany w paskach zadań
