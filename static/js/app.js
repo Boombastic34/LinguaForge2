@@ -23,7 +23,7 @@ const ROUTES_TEACHER = [["#teacher", "🧑‍🏫 Uczniowie", viewTeacher]];
 
 // hash -> identyfikator modułu (do filtrowania wg uprawnień)
 const ROUTE_MODULE = {
-  "#path": "path", "#flashcards": "flashcards", "#verbs": "verbs", "#dialogs": "dialogs",
+  "#basics": "basics", "#path": "path", "#flashcards": "flashcards", "#verbs": "verbs", "#dialogs": "dialogs",
   "#reading": "reading", "#listening": "listening", "#translate": "translate",
   "#grammar": "grammar", "#knowledge": "knowledge", "#lessons": "lessons",
   "#training": "training", "#games": "games", "#programs": "programs",
@@ -48,7 +48,7 @@ function boot() {
   const nav = el("nav", {});
   const aside = el("aside", {},
     el("div", { class: "brand" }, "Lingua", el("span", {}, "Forge")),
-    el("div", { class: "brand-sub", id: "verbox" }, "v2.4.1 · kuźnia języka"),
+    el("div", { class: "brand-sub", id: "verbox" }, "v2.5.0 · kuźnia języka"),
     nav,
     el("div", { class: "spacer" }),
     el("div", { class: "userbox" },
@@ -73,7 +73,7 @@ function boot() {
     const box = document.getElementById("verbox");
     if (!box) return;
     box.textContent = "v" + v.version + " · kuźnia języka";
-    if (v.version !== "2.4.1") {
+    if (v.version !== "2.5.0") {
       box.textContent = "v" + v.version + " · odśwież (Ctrl+F5)";
       box.style.color = "#ffd43b";
     }

@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.4.1"
+APP_VERSION = "2.5.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -2904,6 +2904,68 @@ def _seed_admin_account():
         print(f"  [!] Nie udało się przygotować konta administratora: {e}")
 
 
+# ---------------------------------------------------------------- PODSTAWY (kurs)
+def _basics():
+    out = []
+    for f in storage.list_data_files("podstawy/"):
+        out += storage.load_data(f, {}).get("topics", [])
+    return out
+
+
+@app.get("/api/basics")
+async def basics_list(request: Request):
+    who = guard_module(request, "basics")
+    st = storage.user_file(who["username"], "basics.json", {})
+    items = []
+    for t in _basics():
+        p = st.get(t["id"], {})
+        items.append({"id": t["id"], "name": t["name"], "emoji": t["emoji"],
+                      "level": t["level"], "short": t.get("short", ""),
+                      "pages": len(t.get("pages", [])),
+                      "practice": len(t.get("practice", [])),
+                      "test": len(t.get("test", [])),
+                      "read": p.get("read", False),
+                      "practice_pct": p.get("practice_pct"),
+                      "test_pct": p.get("test_pct")})
+    return {"topics": items}
+
+
+@app.get("/api/basics/{tid}")
+async def basics_topic(tid: str, request: Request):
+    guard_module(request, "basics")
+    t = next((x for x in _basics() if x["id"] == tid), None)
+    if not t:
+        raise HTTPException(404, "Brak tematu.")
+    return t
+
+
+@app.post("/api/basics/progress")
+async def basics_progress(request: Request):
+    """Zapis postępu: przeczytana teoria, wynik ćwiczeń, wynik testu."""
+    who = current_user(request)
+    body = await request.json()
+    tid = body.get("topic")
+    st = storage.user_file(who["username"], "basics.json", {})
+    p = st.setdefault(tid, {})
+    if body.get("read"):
+        p["read"] = True
+    for key in ("practice_pct", "test_pct"):
+        if body.get(key) is not None:
+            p[key] = max(p.get(key) or 0, int(body[key]))
+    p["last"] = datetime.datetime.now().isoformat(timespec="seconds")
+    storage.save_user_file(who["username"], "basics.json", st)
+
+    prof = storage.load_profile(who["username"])
+    xp = int(body.get("xp", 0))
+    if xp:
+        sk.register_activity(prof, True, min(40, xp))
+        storage.save_profile(who["username"], prof)
+    storage.log_event(who["username"], {"type": "basics_progress", "topic": tid,
+                                        "kind": body.get("kind"),
+                                        "pct": body.get("practice_pct") or body.get("test_pct")})
+    return {"ok": True, "xp": min(40, xp)}
+
+
 # ---------------------------------------------------------------- LEKTOR NA SERWERZE
 # Część przeglądarek (zwłaszcza Chrome na Androidzie) ma zepsuty własny silnik mowy —
 # zwraca listę głosów, ale synteza kończy się błędem synthesis-failed. Dlatego dźwięk
@@ -3051,6 +3113,7 @@ ADMIN_UNLOCK = os.environ.get("LF_ADMIN_PASSWORD", "AdminAdministrator")
 # Moduły, których widoczność administrator może włączać/wyłączać dla uczniów.
 MODULES = [
     {"id": "placement", "name": "Test poziomujący", "emoji": "🎯"},
+    {"id": "basics",    "name": "Podstawy (kurs)",   "emoji": "🎒"},
     {"id": "path",      "name": "Ścieżka nauki",    "emoji": "🧭"},
     {"id": "flashcards","name": "Fiszki",            "emoji": "🃏"},
     {"id": "verbs",     "name": "Czasowniki",        "emoji": "⚙️"},

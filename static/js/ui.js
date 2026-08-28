@@ -1,13 +1,19 @@
 
 // ---------- v0.4: porównywanie odpowiedzi wyrozumiałe dla ogonków i literówek ----------
-const PL_FOLD = { "ą":"a","ć":"c","ę":"e","ł":"l","ń":"n","ó":"o","ś":"s","ź":"z","ż":"z" };
+const PL_FOLD = { "ą": "a", "ć": "c", "ę": "e", "ł": "l", "ń": "n",
+                  "ó": "o", "ś": "s", "ź": "z", "ż": "z" };
 function foldPl(s) {
   return (s || "").toLowerCase().replace(/[ąćęłńóśźż]/g, ch => PL_FOLD[ch]);
 }
-function normAns(s) {
-  return foldPl(s).replace(/[.,!?;:„”"'()]/g, "").replace(/\s+/g, " ").trim();
+
+// Normalizacja odpowiedzi. Ogonki spłaszczamy TYLKO przy polskich odpowiedziach —
+// w angielskim słowie polska litera to zwykły błąd, nie wariant zapisu.
+function normAns(s, lang) {
+  const base = lang === "en" ? String(s || "").toLowerCase() : foldPl(s);
+  return base.replace(/[.,!?;:„”"'()]/g, "").replace(/\s+/g, " ").trim();
 }
-// odległość Levenshteina (do 2 znaków tolerancji)
+
+// odległość Levenshteina (liczona najwyżej do 2 różnic)
 function editDist(a, b) {
   const m = a.length, n = b.length;
   if (Math.abs(m - n) > 2) return 99;
@@ -21,14 +27,31 @@ function editDist(a, b) {
   }
   return prev[n];
 }
-// zgodne? (ogonki nieistotne, 1 literówka wybaczona przy dłuższych słowach)
-function answersMatch(given, expected) {
-  const a = normAns(given), b = normAns(expected);
+
+/**
+ * Czy odpowiedź jest poprawna.
+ * opts.lang    — "en" albo "pl" (decyduje o traktowaniu ogonków)
+ * opts.strict  — true przy dyktandzie i pisaniu ze słuchu: zero tolerancji,
+ *                bo wtedy sprawdzamy właśnie pisownię
+ *
+ * Tolerancja: najwyżej JEDNA literówka i tylko w dłuższych hasłach.
+ * Dodatkowo pierwsze dwie litery muszą się zgadzać — literówka nie zmienia
+ * początku wyrazu, a bez tego warunku "wacz out" przechodziło jako "watch out".
+ */
+function answersMatch(given, expected, opts) {
+  const o = opts || {};
+  const lang = o.lang || "en";
+  const a = normAns(given, lang), b = normAns(expected, lang);
   if (!a || !b) return false;
   if (a === b) return true;
-  const tol = b.length >= 8 ? 2 : (b.length >= 5 ? 1 : 0);
-  return tol > 0 && editDist(a, b) <= tol;
+  if (o.strict) return false;
+
+  if (b.length < 7) return false;                 // krótkie słowa: bez taryfy ulgowej
+  if (a.split(" ").length !== b.split(" ").length) return false;   // inna liczba słów
+  if (a.slice(0, 2) !== b.slice(0, 2)) return false;               // inny początek
+  return editDist(a, b) <= 1;                     // najwyżej jedna literówka
 }
+
 // Pomocnicze funkcje interfejsu
 function el(tag, attrs = {}, ...children) {
   const n = document.createElement(tag);
@@ -172,6 +195,21 @@ function ttsAudioEl() {
 
 const TTS_BLOBS = {};           // pamięć podręczna nagrań w przeglądarce
 
+// Pobiera nagranie z wyprzedzeniem, zanim będzie potrzebne — dzięki temu
+// odtworzenie jest natychmiastowe, bez oczekiwania na serwer.
+function prefetchTts(text, rate, lang) {
+  if (!text || HAS_NATIVE_TTS) return;
+  const r = rate || ttsRate();
+  const key = (lang || "en") + "|" + r + "|" + text;
+  if (TTS_BLOBS[key]) return;
+  const url = "/api/tts?lang=" + encodeURIComponent(lang || "en")
+            + "&rate=" + encodeURIComponent(r) + "&text=" + encodeURIComponent(text);
+  fetch(url, { headers: { "x-token": API.token || "" } })
+    .then(res => res.ok ? res.blob() : null)
+    .then(blob => { if (blob && blob.size > 500) TTS_BLOBS[key] = URL.createObjectURL(blob); })
+    .catch(() => {});
+}
+
 function speakServer(text, rate, lang, onFail) {
   const key = lang + "|" + rate + "|" + text;
   const a = ttsAudioEl();
@@ -270,7 +308,7 @@ function speakBrowser(text, rate, lang, quiet) {
       }, 200);
     };
     _ttsSpeakRaw(text, rate, lang, true, () => { started = true; }, fallback);
-    setTimeout(() => { if (!started && !retried) fallback(); }, 900);
+    setTimeout(() => { if (!started && !retried) fallback(); }, 500);
   } catch (e) {
     TTS_LAST_ERR = String(e && e.message || e);
   }
