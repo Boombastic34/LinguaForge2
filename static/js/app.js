@@ -31,11 +31,15 @@ const ROUTE_MODULE = {
 };
 // lista dozwolonych modułów — uzupełniana z /api/dashboard
 window.LF_ALLOWED = null;
+// Moduły dodane w nowszych wersjach mogą nie występować w starej konfiguracji
+// dostępu — wtedy i tak je pokazujemy, zamiast chować bez powodu.
+const NEW_MODULES = ["basics"];
 function moduleAllowed(hash) {
   const id = ROUTE_MODULE[hash];
   if (!id) return true;                       // pulpit, administrator itd.
   if (!window.LF_ALLOWED) return true;        // przed pobraniem nie ukrywamy
-  return window.LF_ALLOWED.includes(id);
+  if (window.LF_ALLOWED.includes(id)) return true;
+  return NEW_MODULES.includes(id);            // nowy dział — domyślnie widoczny
 }
 const HIDDEN = { "#placement": viewPlacement, "#student": null };
 
@@ -48,7 +52,7 @@ function boot() {
   const nav = el("nav", {});
   const aside = el("aside", {},
     el("div", { class: "brand" }, "Lingua", el("span", {}, "Forge")),
-    el("div", { class: "brand-sub", id: "verbox" }, "v2.6.0 · kuźnia języka"),
+    el("div", { class: "brand-sub", id: "verbox" }, "v2.6.1 · kuźnia języka"),
     nav,
     el("div", { class: "spacer" }),
     el("div", { class: "userbox" },
@@ -73,7 +77,7 @@ function boot() {
     const box = document.getElementById("verbox");
     if (!box) return;
     box.textContent = "v" + v.version + " · kuźnia języka";
-    if (v.version !== "2.6.0") {
+    if (v.version !== "2.6.1") {
       box.textContent = "v" + v.version + " · odśwież (Ctrl+F5)";
       box.style.color = "#ffd43b";
     }
@@ -82,8 +86,8 @@ function boot() {
   // pięć głównych zakładek na dole; reszta w arkuszu „Więcej"
   const TABS = API.user.role === "teacher"
     ? [["#teacher", "🧑‍🏫", "Uczniowie"]]
-    : [["#dashboard", "🏠", "Start"], ["#path", "🧭", "Ścieżka"],
-       ["#flashcards", "🃏", "Fiszki"], ["#dialogs", "💬", "Rozmowy"]];
+    : [["#dashboard", "🏠", "Start"], ["#basics", "🎒", "Podstawy"],
+       ["#path", "🧭", "Ścieżka"], ["#flashcards", "🃏", "Fiszki"]];
 
   function renderNav() {
     nav.innerHTML = "";
