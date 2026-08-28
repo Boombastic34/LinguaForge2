@@ -1324,3 +1324,32 @@ body.dark .bc-done { color:#38d9a9; }
   border-radius:999px; padding:4px 10px; }
 body.dark .bc-level { background:#1c2333; }
 .bt-page-title { margin:14px 0 10px; color:#4c5fd5; }
+
+/* ================= v2.6 — uporządkowane kategorie fiszek ================= */
+.cat-group-title { font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+  color:#8a94a0; margin:18px 0 8px; padding-bottom:6px; border-bottom:1px solid #e9eef4; }
+body.dark .cat-group-title { border-color:#2b3542; }
+.cat-row { display:grid; grid-template-columns:repeat(auto-fill,minmax(158px,1fr)); gap:8px; }
+.cat-btn { position:relative; text-align:left; padding:12px 14px 14px; border:1.5px solid #e9eef4;
+  border-radius:14px; background:#fff; cursor:pointer; font-family:inherit; color:#1b2430;
+  overflow:hidden; transition:transform .08s, border-color .15s, box-shadow .15s; }
+body.dark .cat-btn { background:#1a212a; border-color:#2b3542; color:#e6ebf1; }
+.cat-btn b { font-size:14.5px; display:block; }
+.cat-sub { font-size:11.5px; color:#8a94a0; margin-top:3px; }
+.cat-btn:hover { border-color:#e8590c; box-shadow:0 6px 16px rgba(232,89,12,.13); }
+.cat-btn:active { transform:scale(.97); }
+.cat-bar { position:absolute; left:0; right:0; bottom:0; height:4px; background:#eef2f6; }
+body.dark .cat-bar { background:#242e3a; }
+.cat-bar-fill { height:100%; background:linear-gradient(90deg,#e8590c,#f59f00); }
+.cat-weak { border-color:#ffd43b; background:#fffbea; }
+body.dark .cat-weak { background:#231e10; border-color:#6b5a10; }
+.cat-all { background:linear-gradient(135deg,#c2410c,#f59f00); color:#fff; border:none;
+  grid-column:1 / -1; padding:16px; }
+.cat-all b { font-size:17px; }
+.cat-all .cat-sub { color:rgba(255,255,255,.9); }
+
+/* przycisk powtórzenia lektora */
+.fc-repeat { border:1.5px solid #e3e9ef; background:#fff; border-radius:999px; padding:5px 12px;
+  font-size:12px; font-family:inherit; color:#5c6672; cursor:pointer; margin-left:4px; }
+.fc-repeat:active { transform:scale(.94); }
+body.dark .fc-repeat { background:#1a212a; border-color:#2b3542; color:#c3ccd8; }

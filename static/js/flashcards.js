@@ -38,34 +38,65 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
         el("div", { class: "fc-primary-arrow" }, "→")));
     }
 
-    // --- 2) reszta trybów: zwinięta, spokojniejsza sekcja
-    const modes = el("details", { class: "path-sec" });
-    modes.append(el("summary", {}, "🗂 Inne tryby fiszek"));
-    const modeRow = el("div", { class: "fc-mode-row" });
-    [["🎲", "Wszystko losowo", () => viewFlashcards("all", "all")],
-     ["🏃", "Czasowniki — słówka", () => viewFlashcards("verbs")],
-     ["📦", "Rzeczowniki", () => viewFlashcards("nouns")],
-     ["🧩", "Tematyczne", () => viewFlashcards("mixed")],
-     ["🔗", "Phrasal verbs", () => viewFlashcards("phrasal")],
-     ["🪤", "False friends", () => viewFlashcards("traps")]]
-      .forEach(([emo, name, onclick]) => modeRow.append(
-        el("button", { class: "fc-mode-btn", onclick }, el("span", {}, emo), name)));
-    modes.append(modeRow);
-    box.append(modes);
+    // --- 2) JEDNA uporządkowana lista kategorii, pogrupowana tematycznie
+    const GROUPS = [
+      { name: "Cała baza", emoji: "🎲", themes: [],
+        extra: [["all", "Wszystko losowo", "cała baza wymieszana"]] },
+      { name: "Części mowy", emoji: "🔤",
+        themes: ["czasowniki", "przedmioty", "przymiotniki", "liczebniki"] },
+      { name: "Wyrażenia i pułapki", emoji: "🔗",
+        themes: ["phrasal", "zwroty", "pulapki"] },
+      { name: "Praca", emoji: "💼", themes: ["praca", "biuro", "technologia"] },
+      { name: "Życie codzienne", emoji: "🏠",
+        themes: ["dom", "jedzenie", "ubrania", "rodzina", "kalendarz", "kolory", "uczucia"] },
+      { name: "Świat wokół", emoji: "🌍",
+        themes: ["zwierzeta", "natura", "miasto", "transport", "cialo", "ogolne"] },
+    ];
 
-    // --- 3) wszystkie kategorie: zwinięte, bo lista bywa długa
-    if (gaps.themes && gaps.themes.length) {
-      const cats = el("details", { class: "path-sec" });
-      cats.append(el("summary", {}, `📚 Wszystkie kategorie (${gaps.themes.length})`));
-      const themeRow = el("div", { class: "mix-checks" });
-      gaps.themes.forEach(t => themeRow.append(
-        el("button", { class: "chip chip-btn", onclick: () => viewFlashcards("all", t.theme) },
-          `${t.name} (${t.total})`)));
-      cats.append(themeRow,
-        el("p", { class: "muted small", style: "margin-top:8px" },
-          "Odmiana czasowników przez czasy jest w osobnej zakładce „⚙️ Czasowniki z czasami”."));
-      box.append(cats);
+    const byTheme = {};
+    (gaps.themes || []).forEach(t => { byTheme[t.theme] = t; });
+    const used = new Set();
+
+    const catBox = el("div", { class: "card" }, el("h3", {}, "📚 Wybierz, czego chcesz się uczyć"));
+    GROUPS.forEach(g => {
+      const row = el("div", { class: "cat-row" });
+      (g.extra || []).forEach(([theme, label, sub]) => {
+        row.append(el("button", { class: "cat-btn cat-all", onclick: () => viewFlashcards("all", theme) },
+          el("b", {}, label), el("div", { class: "cat-sub" }, sub)));
+      });
+      g.themes.forEach(th => {
+        const t = byTheme[th];
+        if (!t) return;
+        used.add(th);
+        const pct = t.eff == null ? null : Math.round(t.eff);
+        row.append(el("button", {
+          class: "cat-btn" + (pct != null && pct < 55 ? " cat-weak" : ""),
+          onclick: () => viewFlashcards("all", th),
+        },
+          el("b", {}, t.name),
+          el("div", { class: "cat-sub" },
+            `${t.total} słówek` + (pct != null ? ` · opanowane ${pct}%` : " · nietknięte")),
+          el("div", { class: "cat-bar" },
+            el("div", { class: "cat-bar-fill", style: `width:${pct || 0}%` }))));
+      });
+      if (row.children.length) {
+        catBox.append(el("div", { class: "cat-group-title" }, g.emoji + "  " + g.name), row);
+      }
+    });
+
+    // kategorie spoza grup (gdyby doszły nowe) — żeby nic nie zniknęło z listy
+    const rest = (gaps.themes || []).filter(t => !used.has(t.theme));
+    if (rest.length) {
+      const row = el("div", { class: "cat-row" });
+      rest.forEach(t => row.append(el("button", { class: "cat-btn",
+        onclick: () => viewFlashcards("all", t.theme) },
+        el("b", {}, t.name), el("div", { class: "cat-sub" }, `${t.total} słówek`))));
+      catBox.append(el("div", { class: "cat-group-title" }, "📦  Pozostałe"), row);
     }
+
+    catBox.append(el("p", { class: "muted small", style: "margin-top:12px" },
+      "Odmiana czasowników przez czasy jest w osobnej zakładce „⚙️ Czasowniki”."));
+    box.append(catBox);
 
     m.append(box);
     return;
@@ -176,8 +207,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
   // wspólna logika oceny — używana zarówno przy pierwszej odpowiedzi, jak i przy przepisywaniu
   function isCorrect(c, val) {
     return c.dir === "pl_en"
-      ? answersMatch(val, c.en)
-      : plVariants(c.pl).some(x => answersMatch(val, x) ||
+      ? answersMatch(val, c.en, { lang: "en" })
+      : plVariants(c.pl).some(x => answersMatch(val, x, { lang: "pl" }) ||
           (normAns(val).length > 3 && normAns(x).includes(normAns(val))));
   }
   function correctTarget(c) {
@@ -244,7 +275,9 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
           c.nr ? el("span", { class: "fc-tag tag-nr" }, "[" + c.nr + "]") : null),
         el("div", { class: "fc-intro-label" }, "Poznaj — za chwilę Cię z tego zapytam"),
         el("div", { class: "fc-word" }, c.en, " ",
-          el("button", { class: "fc-speak", onclick: e => { e.stopPropagation(); speak(c.en); } }, "🔊")),
+          el("button", { class: "fc-speak", onclick: e => { e.stopPropagation(); speak(c.en); } }, "🔊"),
+          el("button", { class: "fc-repeat", onclick: e => { e.stopPropagation(); speak(c.en, 0.6); } },
+            "🔁 wolniej")),
         el("div", { class: "fc-pl" }, c.pl),
         c.hint ? el("div", { class: "fc-hint" }, "💡 " + c.hint) : null,
         c.example ? el("div", { class: "fc-example", onclick: () => speak(c.example) },
@@ -286,7 +319,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     inp.focus();
     function judge(val) {
       if (!val.trim()) return;
-      grade(c, answersMatch(val, c.en), val, false);
+      grade(c, answersMatch(val, c.en, { lang: "en" }), val, false);
     }
   }
 
@@ -330,8 +363,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
 
       function judge(val) {
         if (!val.trim()) return;
-        const ok = askPl ? answersMatch(val, c.en)
-                         : plVariants(c.pl).some(x => answersMatch(val, x));
+        const ok = askPl ? answersMatch(val, c.en, { lang: "en" })
+                         : plVariants(c.pl).some(x => answersMatch(val, x, { lang: "pl" }));
         if (ok) hits++;
         if (typeof haptic === "function") haptic(ok ? "good" : "bad");
         speakAuto(c.en);
@@ -380,7 +413,10 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
           el("span", { class: "fc-tag tag-audio" }, lang === "en" ? "🎧 SŁUCHAJ · ANGIELSKI" : "🎧 SŁUCHAJ · POLSKI"),
           el("span", { class: "fc-tag" }, c.theme || "inne"),
           c.reps === 0 ? el("span", { class: "fc-tag tag-new" }, "NOWE") : null),
-        el("button", { class: "btn primary big-play", onclick: () => say(false) }, "▶ Odtwórz"),
+        el("div", { class: "fb-btns" },
+          el("button", { class: "btn primary big-play", onclick: () => say(false) }, "▶ Odtwórz"),
+          el("button", { class: "btn ghost", onclick: () => speak(target, 0.6, lang, false) },
+            "🔁 Powtórz wolniej")),
         speedPicker(rate, v => { rate = v; say(false); }),
         el("div", { class: "muted small" }, "Zapisz dokładnie to, co słyszysz.")));
     stage.append(card);
@@ -397,7 +433,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
 
     function judge(val) {
       if (!val.trim()) return;
-      grade(c, answersMatch(val, target), val, false);
+      grade(c, answersMatch(val, target, { lang, strict: true }), val, false);
     }
   }
 
@@ -423,6 +459,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
         el("div", { class: "fc-pair" },
           el("div", { class: "fc-en" }, c.en, " ",
             el("button", { class: "fc-speak", onclick: () => speak(c.en) }, "🔊"),
+            el("button", { class: "fc-repeat", title: "Powtórz wolniej",
+              onclick: () => speak(c.en, 0.6) }, "🔁 wolniej"),
             muteButton()),
           el("div", { class: "fc-pl" }, c.pl)),
         !ok && val ? el("div", { class: "fc-your" }, "Twoja odpowiedź: " + val) : null,
@@ -475,7 +513,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
 
       function tryRetype() {
         if (!rInp.value.trim()) return;
-        if (answersMatch(rInp.value, target)) {
+        if (answersMatch(rInp.value, target, { lang: c.dir === "pl_en" ? "en" : "pl", strict: true })) {
           if (typeof haptic === "function") haptic("good");
           wrap.remove();
           stage.append(el("div", { class: "fc-retype-ok" }, "✔ Zapisane — świetnie!"));
@@ -525,7 +563,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
       inp.focus();
       function check2() {
         if (!inp.value.trim()) return;
-        if (answersMatch(inp.value, c.en)) {
+        if (answersMatch(inp.value, c.en, { lang: "en", strict: true })) {
           fixed++;
           if (typeof haptic === "function") haptic("good");
           j++; step();

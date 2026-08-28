@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.5.0"
+APP_VERSION = "2.6.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -3138,12 +3138,24 @@ async def _startup_seed():
 
 
 def _access_cfg():
-    """Globalna konfiguracja dostępu ustawiana przez administratora."""
+    """Globalna konfiguracja dostępu ustawiana przez administratora.
+
+    Moduły dodane w nowszych wersjach aplikacji są domyślnie WIDOCZNE — inaczej
+    każda aktualizacja z nowym działem wymagałaby ręcznego odblokowania go w panelu.
+    Pamiętamy więc listę modułów, o których konfiguracja już „wie”.
+    """
     cfg = storage.load_data("_dostep.json", None)
     if not cfg:
-        cfg = {"student_modules": list(ALL_MODULE_IDS)}
+        cfg = {"student_modules": list(ALL_MODULE_IDS), "known": list(ALL_MODULE_IDS)}
         storage.save_data("_dostep.json", cfg)
+        return cfg
     cfg.setdefault("student_modules", list(ALL_MODULE_IDS))
+    known = cfg.setdefault("known", list(cfg["student_modules"]))
+    fresh = [m for m in ALL_MODULE_IDS if m not in known]
+    if fresh:                                   # nowe działy — włączamy je od razu
+        cfg["student_modules"] = list(dict.fromkeys(cfg["student_modules"] + fresh))
+        cfg["known"] = list(dict.fromkeys(known + fresh))
+        storage.save_data("_dostep.json", cfg)
     return cfg
 
 
@@ -3244,6 +3256,7 @@ async def admin_set_access(request: Request):
     mods = [m for m in (body.get("student_modules") or []) if m in ALL_MODULE_IDS]
     cfg = _access_cfg()
     cfg["student_modules"] = mods
+    cfg["known"] = list(ALL_MODULE_IDS)
     storage.save_data("_dostep.json", cfg)
     storage.log_event(me["username"], {"type": "access_changed", "modules": mods})
     return {"ok": True, "student_modules": mods}
