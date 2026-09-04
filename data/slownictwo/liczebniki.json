@@ -1,0 +1,330 @@
+{
+ "name": "Liczebniki",
+ "domain": "general",
+ "cat": "nouns",
+ "theme": "liczebniki",
+ "level": "A1",
+ "items": [
+  {
+   "nr": 1,
+   "id": "liczebniki_1",
+   "en": "zero",
+   "pl": "zero",
+   "level": "A1",
+   "rank": 620
+  },
+  {
+   "nr": 2,
+   "id": "liczebniki_2",
+   "en": "one",
+   "pl": "jeden",
+   "level": "A1",
+   "rank": 621
+  },
+  {
+   "nr": 3,
+   "id": "liczebniki_3",
+   "en": "two",
+   "pl": "dwa",
+   "level": "A1",
+   "rank": 622
+  },
+  {
+   "nr": 4,
+   "id": "liczebniki_4",
+   "en": "three",
+   "pl": "trzy",
+   "level": "A1",
+   "rank": 623
+  },
+  {
+   "nr": 5,
+   "id": "liczebniki_5",
+   "en": "four",
+   "pl": "cztery",
+   "level": "A1",
+   "rank": 624
+  },
+  {
+   "nr": 6,
+   "id": "liczebniki_6",
+   "en": "five",
+   "pl": "pięć",
+   "level": "A1",
+   "rank": 625
+  },
+  {
+   "nr": 7,
+   "id": "liczebniki_7",
+   "en": "six",
+   "pl": "sześć",
+   "level": "A1",
+   "rank": 626
+  },
+  {
+   "nr": 8,
+   "id": "liczebniki_8",
+   "en": "seven",
+   "pl": "siedem",
+   "level": "A1",
+   "rank": 627
+  },
+  {
+   "nr": 9,
+   "id": "liczebniki_9",
+   "en": "eight",
+   "pl": "osiem",
+   "level": "A1",
+   "rank": 628
+  },
+  {
+   "nr": 10,
+   "id": "liczebniki_10",
+   "en": "nine",
+   "pl": "dziewięć",
+   "level": "A1",
+   "rank": 629
+  },
+  {
+   "nr": 11,
+   "id": "liczebniki_11",
+   "en": "ten",
+   "pl": "dziesięć",
+   "level": "A1",
+   "rank": 630
+  },
+  {
+   "nr": 12,
+   "id": "liczebniki_12",
+   "en": "eleven",
+   "pl": "jedenaście",
+   "level": "A1",
+   "rank": 631
+  },
+  {
+   "nr": 13,
+   "id": "liczebniki_13",
+   "en": "twelve",
+   "pl": "dwanaście",
+   "level": "A1",
+   "rank": 632
+  },
+  {
+   "nr": 14,
+   "id": "liczebniki_14",
+   "en": "thirteen",
+   "pl": "trzynaście",
+   "level": "A1",
+   "rank": 633
+  },
+  {
+   "nr": 15,
+   "id": "liczebniki_15",
+   "en": "fourteen",
+   "pl": "czternaście",
+   "level": "A1",
+   "rank": 634
+  },
+  {
+   "nr": 16,
+   "id": "liczebniki_16",
+   "en": "fifteen",
+   "pl": "piętnaście",
+   "level": "A1",
+   "rank": 635
+  },
+  {
+   "nr": 17,
+   "id": "liczebniki_17",
+   "en": "sixteen",
+   "pl": "szesnaście",
+   "level": "A1",
+   "rank": 636
+  },
+  {
+   "nr": 18,
+   "id": "liczebniki_18",
+   "en": "seventeen",
+   "pl": "siedemnaście",
+   "level": "A1",
+   "rank": 637
+  },
+  {
+   "nr": 19,
+   "id": "liczebniki_19",
+   "en": "eighteen",
+   "pl": "osiemnaście",
+   "level": "A1",
+   "rank": 638
+  },
+  {
+   "nr": 20,
+   "id": "liczebniki_20",
+   "en": "nineteen",
+   "pl": "dziewiętnaście",
+   "level": "A1",
+   "rank": 639
+  },
+  {
+   "nr": 21,
+   "id": "liczebniki_21",
+   "en": "twenty",
+   "pl": "dwadzieścia",
+   "level": "A1",
+   "rank": 640
+  },
+  {
+   "nr": 22,
+   "id": "liczebniki_22",
+   "en": "thirty",
+   "pl": "trzydzieści",
+   "level": "A1",
+   "rank": 641
+  },
+  {
+   "nr": 23,
+   "id": "liczebniki_23",
+   "en": "forty",
+   "pl": "czterdzieści",
+   "level": "A1",
+   "rank": 642
+  },
+  {
+   "nr": 24,
+   "id": "liczebniki_24",
+   "en": "fifty",
+   "pl": "pięćdziesiąt",
+   "level": "A1",
+   "rank": 643
+  },
+  {
+   "nr": 25,
+   "id": "liczebniki_25",
+   "en": "sixty",
+   "pl": "sześćdziesiąt",
+   "level": "A1",
+   "rank": 644
+  },
+  {
+   "nr": 26,
+   "id": "liczebniki_26",
+   "en": "seventy",
+   "pl": "siedemdziesiąt",
+   "level": "A1",
+   "rank": 645
+  },
+  {
+   "nr": 27,
+   "id": "liczebniki_27",
+   "en": "eighty",
+   "pl": "osiemdziesiąt",
+   "level": "A1",
+   "rank": 646
+  },
+  {
+   "nr": 28,
+   "id": "liczebniki_28",
+   "en": "ninety",
+   "pl": "dziewięćdziesiąt",
+   "level": "A1",
+   "rank": 647
+  },
+  {
+   "nr": 29,
+   "id": "liczebniki_29",
+   "en": "hundred",
+   "pl": "sto",
+   "level": "A1",
+   "rank": 648
+  },
+  {
+   "nr": 30,
+   "id": "liczebniki_30",
+   "en": "thousand",
+   "pl": "tysiąc",
+   "level": "A1",
+   "rank": 649
+  },
+  {
+   "nr": 31,
+   "id": "liczebniki_31",
+   "en": "million",
+   "pl": "milion",
+   "level": "A1",
+   "rank": 650
+  },
+  {
+   "nr": 32,
+   "id": "liczebniki_32",
+   "en": "first",
+   "pl": "pierwszy",
+   "level": "A1",
+   "rank": 651
+  },
+  {
+   "nr": 33,
+   "id": "liczebniki_33",
+   "en": "second",
+   "pl": "drugi",
+   "level": "A1",
+   "rank": 652,
+   "hint": "liczebnik porządkowy"
+  },
+  {
+   "nr": 34,
+   "id": "liczebniki_34",
+   "en": "third",
+   "pl": "trzeci",
+   "level": "A1",
+   "rank": 653
+  },
+  {
+   "nr": 35,
+   "id": "liczebniki_35",
+   "en": "fourth",
+   "pl": "czwarty",
+   "level": "A1",
+   "rank": 654
+  },
+  {
+   "nr": 36,
+   "id": "liczebniki_36",
+   "en": "fifth",
+   "pl": "piąty",
+   "level": "A1",
+   "rank": 655
+  },
+  {
+   "nr": 37,
+   "id": "liczebniki_37",
+   "en": "tenth",
+   "pl": "dziesiąty",
+   "level": "A1",
+   "rank": 656
+  },
+  {
+   "nr": 38,
+   "id": "liczebniki_38",
+   "en": "half",
+   "pl": "połowa / pół",
+   "level": "A1",
+   "rank": 657
+  },
+  {
+   "nr": 39,
+   "id": "liczebniki_39",
+   "en": "quarter",
+   "pl": "ćwierć / kwadrans",
+   "level": "A1",
+   "rank": 658
+  },
+  {
+   "nr": 40,
+   "id": "liczebniki_40",
+   "en": "double",
+   "pl": "podwójny",
+   "level": "A1",
+   "rank": 659
+  }
+ ]
+}

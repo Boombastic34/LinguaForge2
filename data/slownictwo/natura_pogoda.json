@@ -1,0 +1,458 @@
+{
+ "name": "Natura i pogoda",
+ "domain": "general",
+ "cat": "nouns",
+ "theme": "natura",
+ "level": "A1",
+ "items": [
+  {
+   "nr": 1,
+   "id": "natura_1",
+   "en": "sky",
+   "pl": "niebo",
+   "level": "A1",
+   "rank": 560
+  },
+  {
+   "nr": 2,
+   "id": "natura_2",
+   "en": "cloud",
+   "pl": "chmura",
+   "level": "A1",
+   "rank": 561
+  },
+  {
+   "nr": 3,
+   "id": "natura_3",
+   "en": "wind",
+   "pl": "wiatr",
+   "level": "A1",
+   "rank": 562
+  },
+  {
+   "nr": 4,
+   "id": "natura_4",
+   "en": "snow",
+   "pl": "śnieg",
+   "level": "A1",
+   "rank": 563
+  },
+  {
+   "nr": 5,
+   "id": "natura_5",
+   "en": "storm",
+   "pl": "burza",
+   "level": "A1",
+   "rank": 564
+  },
+  {
+   "nr": 6,
+   "id": "natura_6",
+   "en": "fog",
+   "pl": "mgła",
+   "level": "A1",
+   "rank": 565
+  },
+  {
+   "nr": 7,
+   "id": "natura_7",
+   "en": "ice",
+   "pl": "lód",
+   "level": "A1",
+   "rank": 566
+  },
+  {
+   "nr": 8,
+   "id": "natura_8",
+   "en": "moon",
+   "pl": "księżyc",
+   "level": "A1",
+   "rank": 567
+  },
+  {
+   "nr": 9,
+   "id": "natura_9",
+   "en": "star",
+   "pl": "gwiazda",
+   "level": "A1",
+   "rank": 568
+  },
+  {
+   "nr": 10,
+   "id": "natura_10",
+   "en": "sea",
+   "pl": "morze",
+   "level": "A1",
+   "rank": 569
+  },
+  {
+   "nr": 11,
+   "id": "natura_11",
+   "en": "lake",
+   "pl": "jezioro",
+   "level": "A1",
+   "rank": 570
+  },
+  {
+   "nr": 12,
+   "id": "natura_12",
+   "en": "river",
+   "pl": "rzeka",
+   "level": "A1",
+   "rank": 571
+  },
+  {
+   "nr": 13,
+   "id": "natura_13",
+   "en": "mountain",
+   "pl": "góra",
+   "level": "A1",
+   "rank": 572
+  },
+  {
+   "nr": 14,
+   "id": "natura_14",
+   "en": "forest",
+   "pl": "las",
+   "level": "A1",
+   "rank": 573
+  },
+  {
+   "nr": 15,
+   "id": "natura_15",
+   "en": "tree",
+   "pl": "drzewo",
+   "level": "A1",
+   "rank": 574
+  },
+  {
+   "nr": 16,
+   "id": "natura_16",
+   "en": "flower",
+   "pl": "kwiat",
+   "level": "A1",
+   "rank": 575
+  },
+  {
+   "nr": 17,
+   "id": "natura_17",
+   "en": "grass",
+   "pl": "trawa",
+   "level": "A1",
+   "rank": 576
+  },
+  {
+   "nr": 18,
+   "id": "natura_18",
+   "en": "stone",
+   "pl": "kamień",
+   "level": "A1",
+   "rank": 577
+  },
+  {
+   "nr": 19,
+   "id": "natura_19",
+   "en": "beach",
+   "pl": "plaża",
+   "level": "A1",
+   "rank": 578
+  },
+  {
+   "nr": 20,
+   "id": "natura_20",
+   "en": "island",
+   "pl": "wyspa",
+   "level": "A1",
+   "rank": 579
+  },
+  {
+   "nr": 21,
+   "id": "natura_21",
+   "en": "weather forecast",
+   "pl": "prognoza pogody",
+   "level": "A1",
+   "rank": 321
+  },
+  {
+   "nr": 22,
+   "id": "natura_22",
+   "en": "temperature",
+   "pl": "temperatura",
+   "level": "A1",
+   "rank": 322
+  },
+  {
+   "nr": 23,
+   "id": "natura_23",
+   "en": "degree",
+   "pl": "stopień",
+   "level": "A1",
+   "rank": 323
+  },
+  {
+   "nr": 24,
+   "id": "natura_24",
+   "en": "sunny",
+   "pl": "słoneczny",
+   "level": "A1",
+   "rank": 324
+  },
+  {
+   "nr": 25,
+   "id": "natura_25",
+   "en": "cloudy",
+   "pl": "pochmurny",
+   "level": "A1",
+   "rank": 325
+  },
+  {
+   "nr": 26,
+   "id": "natura_26",
+   "en": "rainy",
+   "pl": "deszczowy",
+   "level": "A1",
+   "rank": 326
+  },
+  {
+   "nr": 27,
+   "id": "natura_27",
+   "en": "windy",
+   "pl": "wietrzny",
+   "level": "A1",
+   "rank": 327
+  },
+  {
+   "nr": 28,
+   "id": "natura_28",
+   "en": "snowy",
+   "pl": "śnieżny",
+   "level": "A1",
+   "rank": 328
+  },
+  {
+   "nr": 29,
+   "id": "natura_29",
+   "en": "foggy",
+   "pl": "mglisty",
+   "level": "A1",
+   "rank": 329
+  },
+  {
+   "nr": 30,
+   "id": "natura_30",
+   "en": "freezing",
+   "pl": "mroźny",
+   "level": "A1",
+   "rank": 330
+  },
+  {
+   "nr": 31,
+   "id": "natura_31",
+   "en": "warm",
+   "pl": "ciepły",
+   "level": "A1",
+   "rank": 331
+  },
+  {
+   "nr": 32,
+   "id": "natura_32",
+   "en": "cool",
+   "pl": "chłodny",
+   "level": "A1",
+   "rank": 332
+  },
+  {
+   "nr": 33,
+   "id": "natura_33",
+   "en": "humid",
+   "pl": "wilgotny",
+   "level": "A1",
+   "rank": 333
+  },
+  {
+   "nr": 34,
+   "id": "natura_34",
+   "en": "thunder",
+   "pl": "grzmot",
+   "level": "A1",
+   "rank": 334
+  },
+  {
+   "nr": 35,
+   "id": "natura_35",
+   "en": "lightning",
+   "pl": "błyskawica",
+   "level": "A1",
+   "rank": 335
+  },
+  {
+   "nr": 36,
+   "id": "natura_36",
+   "en": "rainbow",
+   "pl": "tęcza",
+   "level": "A1",
+   "rank": 336
+  },
+  {
+   "nr": 37,
+   "id": "natura_37",
+   "en": "puddle",
+   "pl": "kałuża",
+   "level": "A1",
+   "rank": 337
+  },
+  {
+   "nr": 38,
+   "id": "natura_38",
+   "en": "mud",
+   "pl": "błoto",
+   "level": "A1",
+   "rank": 338
+  },
+  {
+   "nr": 39,
+   "id": "natura_39",
+   "en": "hill",
+   "pl": "wzgórze",
+   "level": "A1",
+   "rank": 339
+  },
+  {
+   "nr": 40,
+   "id": "natura_40",
+   "en": "valley",
+   "pl": "dolina",
+   "level": "A1",
+   "rank": 340
+  },
+  {
+   "nr": 41,
+   "id": "natura_41",
+   "en": "field",
+   "pl": "pole",
+   "level": "A1",
+   "rank": 341
+  },
+  {
+   "nr": 42,
+   "id": "natura_42",
+   "en": "meadow",
+   "pl": "łąka",
+   "level": "A1",
+   "rank": 342
+  },
+  {
+   "nr": 43,
+   "id": "natura_43",
+   "en": "bush",
+   "pl": "krzak",
+   "level": "A1",
+   "rank": 343
+  },
+  {
+   "nr": 44,
+   "id": "natura_44",
+   "en": "leaf",
+   "pl": "liść",
+   "level": "A1",
+   "rank": 344
+  },
+  {
+   "nr": 45,
+   "id": "natura_45",
+   "en": "branch",
+   "pl": "gałąź",
+   "level": "A1",
+   "rank": 345,
+   "hint": "część drzewa"
+  },
+  {
+   "nr": 46,
+   "id": "natura_46",
+   "en": "root",
+   "pl": "korzeń",
+   "level": "A1",
+   "rank": 346
+  },
+  {
+   "nr": 47,
+   "id": "natura_47",
+   "en": "seed",
+   "pl": "nasiono",
+   "level": "A1",
+   "rank": 347
+  },
+  {
+   "nr": 48,
+   "id": "natura_48",
+   "en": "soil",
+   "pl": "gleba",
+   "level": "A1",
+   "rank": 348
+  },
+  {
+   "nr": 49,
+   "id": "natura_49",
+   "en": "sand",
+   "pl": "piasek",
+   "level": "A1",
+   "rank": 349
+  },
+  {
+   "nr": 50,
+   "id": "natura_50",
+   "en": "wave",
+   "pl": "fala",
+   "level": "A1",
+   "rank": 350
+  },
+  {
+   "nr": 51,
+   "id": "natura_51",
+   "en": "coast",
+   "pl": "wybrzeże",
+   "level": "A1",
+   "rank": 351
+  },
+  {
+   "nr": 52,
+   "id": "natura_52",
+   "en": "earth",
+   "pl": "ziemia",
+   "level": "A1",
+   "rank": 352
+  },
+  {
+   "nr": 53,
+   "id": "natura_53",
+   "en": "air",
+   "pl": "powietrze",
+   "level": "A1",
+   "rank": 353
+  },
+  {
+   "nr": 54,
+   "id": "natura_54",
+   "en": "fire",
+   "pl": "ogień",
+   "level": "A1",
+   "rank": 354
+  },
+  {
+   "nr": 55,
+   "id": "natura_55",
+   "en": "pollution",
+   "pl": "zanieczyszczenie",
+   "level": "A1",
+   "rank": 355
+  },
+  {
+   "nr": 56,
+   "id": "natura_56",
+   "en": "climate",
+   "pl": "klimat",
+   "level": "A1",
+   "rank": 356
+  }
+ ]
+}

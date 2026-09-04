@@ -1,0 +1,1374 @@
+{
+ "name": "Phrasal verbs — czasowniki złożone",
+ "domain": "general",
+ "cat": "phrasal",
+ "theme": "phrasal",
+ "level": "A2",
+ "items": [
+  {
+   "nr": 1,
+   "id": "pv_1",
+   "en": "pick up",
+   "pl": "podnieść / odebrać (kogoś, telefon)",
+   "example": "Can you pick up the box? / I'll pick you up at six.",
+   "level": "A2",
+   "rank": 900,
+   "hint": "podnieść coś / odebrać kogoś"
+  },
+  {
+   "nr": 2,
+   "id": "pv_2",
+   "en": "put down",
+   "pl": "położyć / odłożyć",
+   "example": "Put down the pallet carefully.",
+   "level": "A2",
+   "rank": 901
+  },
+  {
+   "nr": 3,
+   "id": "pv_3",
+   "en": "put on",
+   "pl": "założyć (ubranie)",
+   "example": "Put on your safety vest.",
+   "level": "A2",
+   "rank": 902,
+   "hint": "ubranie"
+  },
+  {
+   "nr": 4,
+   "id": "pv_4",
+   "en": "take off",
+   "pl": "zdjąć / wystartować (samolot)",
+   "example": "Take off your gloves before the break.",
+   "level": "A2",
+   "rank": 903,
+   "hint": "ubranie / samolot"
+  },
+  {
+   "nr": 5,
+   "id": "pv_5",
+   "en": "turn on",
+   "pl": "włączyć",
+   "example": "Turn on the scanner.",
+   "level": "A2",
+   "rank": 904
+  },
+  {
+   "nr": 6,
+   "id": "pv_6",
+   "en": "turn off",
+   "pl": "wyłączyć",
+   "example": "Turn off the machine at the end of the shift.",
+   "level": "A2",
+   "rank": 905
+  },
+  {
+   "nr": 7,
+   "id": "pv_7",
+   "en": "fill in",
+   "pl": "wypełnić (formularz)",
+   "example": "Fill in this form, please.",
+   "level": "A2",
+   "rank": 906,
+   "hint": "wypełnić formularz"
+  },
+  {
+   "nr": 8,
+   "id": "pv_8",
+   "en": "find out",
+   "pl": "dowiedzieć się",
+   "example": "I need to find out who ordered this.",
+   "level": "A2",
+   "rank": 907
+  },
+  {
+   "nr": 9,
+   "id": "pv_9",
+   "en": "look for",
+   "pl": "szukać",
+   "example": "I'm looking for aisle seven.",
+   "level": "A2",
+   "rank": 908,
+   "hint": "szukać czegoś"
+  },
+  {
+   "nr": 10,
+   "id": "pv_10",
+   "en": "look after",
+   "pl": "opiekować się",
+   "example": "She looks after the new workers.",
+   "level": "A2",
+   "rank": 909,
+   "hint": "opiekować się kimś"
+  },
+  {
+   "nr": 11,
+   "id": "pv_11",
+   "en": "look forward to",
+   "pl": "nie móc się doczekać",
+   "example": "I look forward to the weekend.",
+   "level": "A2",
+   "rank": 910,
+   "hint": "czekać z niecierpliwością"
+  },
+  {
+   "nr": 12,
+   "id": "pv_12",
+   "en": "give up",
+   "pl": "poddać się / rzucić (nałóg)",
+   "example": "Don't give up, you're learning fast.",
+   "level": "A2",
+   "rank": 911,
+   "hint": "poddać się / rzucić nałóg"
+  },
+  {
+   "nr": 13,
+   "id": "pv_13",
+   "en": "get up",
+   "pl": "wstawać",
+   "example": "I get up at four o'clock.",
+   "level": "A2",
+   "rank": 912
+  },
+  {
+   "nr": 14,
+   "id": "pv_14",
+   "en": "get on with",
+   "pl": "dogadywać się z kimś",
+   "example": "I get on well with my team leader.",
+   "level": "A2",
+   "rank": 913
+  },
+  {
+   "nr": 15,
+   "id": "pv_15",
+   "en": "come back",
+   "pl": "wracać",
+   "example": "Come back after the break.",
+   "level": "A2",
+   "rank": 914
+  },
+  {
+   "nr": 16,
+   "id": "pv_16",
+   "en": "go on",
+   "pl": "kontynuować / dziać się",
+   "example": "Go on, I'm listening. / What's going on?",
+   "level": "A2",
+   "rank": 915
+  },
+  {
+   "nr": 17,
+   "id": "pv_17",
+   "en": "carry on",
+   "pl": "kontynuować",
+   "example": "Carry on with the next pallet.",
+   "level": "A2",
+   "rank": 916,
+   "hint": "kontynuować"
+  },
+  {
+   "nr": 18,
+   "id": "pv_18",
+   "en": "set up",
+   "pl": "ustawić / założyć",
+   "example": "Let's set up the workstation.",
+   "level": "A2",
+   "rank": 917,
+   "hint": "założyć / ustawić"
+  },
+  {
+   "nr": 19,
+   "id": "pv_19",
+   "en": "break down",
+   "pl": "zepsuć się (maszyna)",
+   "example": "The forklift broke down again.",
+   "level": "A2",
+   "rank": 918,
+   "hint": "o maszynie, aucie"
+  },
+  {
+   "nr": 20,
+   "id": "pv_20",
+   "en": "run out of",
+   "pl": "skończyć się (zapas)",
+   "example": "We ran out of labels.",
+   "level": "A2",
+   "rank": 919
+  },
+  {
+   "nr": 21,
+   "id": "pv_21",
+   "en": "throw away",
+   "pl": "wyrzucić",
+   "example": "Don't throw away the packing list.",
+   "level": "A2",
+   "rank": 920,
+   "hint": "wyrzucić"
+  },
+  {
+   "nr": 22,
+   "id": "pv_22",
+   "en": "hand in",
+   "pl": "oddać / złożyć (dokument)",
+   "example": "Hand in your holiday request today.",
+   "level": "A2",
+   "rank": 921,
+   "hint": "oddać dokument"
+  },
+  {
+   "nr": 23,
+   "id": "pv_23",
+   "en": "check in",
+   "pl": "zameldować się / odprawić",
+   "example": "Check in at the gate first.",
+   "level": "A2",
+   "rank": 922,
+   "hint": "zameldować się"
+  },
+  {
+   "nr": 24,
+   "id": "pv_24",
+   "en": "check out",
+   "pl": "wymeldować się / sprawdzić coś",
+   "example": "Check out this new procedure.",
+   "level": "A2",
+   "rank": 923,
+   "hint": "wymeldować się / sprawdzić"
+  },
+  {
+   "nr": 25,
+   "id": "pv_25",
+   "en": "sort out",
+   "pl": "uporządkować / rozwiązać",
+   "example": "I'll sort out the problem with HR.",
+   "level": "A2",
+   "rank": 924,
+   "hint": "uporządkować / rozwiązać"
+  },
+  {
+   "nr": 26,
+   "id": "pv_26",
+   "en": "call back",
+   "pl": "oddzwonić",
+   "example": "I'll call you back after my shift.",
+   "level": "A2",
+   "rank": 925
+  },
+  {
+   "nr": 27,
+   "id": "pv_27",
+   "en": "write down",
+   "pl": "zapisać",
+   "example": "Write down the order number.",
+   "level": "A2",
+   "rank": 926
+  },
+  {
+   "nr": 28,
+   "id": "pv_28",
+   "en": "switch over",
+   "pl": "przełączyć się",
+   "example": "We switched over to the new system.",
+   "level": "A2",
+   "rank": 927
+  },
+  {
+   "nr": 29,
+   "id": "pv_29",
+   "en": "show up",
+   "pl": "pojawić się",
+   "example": "He didn't show up this morning.",
+   "level": "A2",
+   "rank": 928,
+   "hint": "pojawić się"
+  },
+  {
+   "nr": 30,
+   "id": "pv_30",
+   "en": "slow down",
+   "pl": "zwolnić",
+   "example": "Slow down near the ramp.",
+   "level": "A2",
+   "rank": 929
+  },
+  {
+   "nr": 31,
+   "id": "pv_31",
+   "en": "speed up",
+   "pl": "przyspieszyć",
+   "example": "We need to speed up before noon.",
+   "level": "A2",
+   "rank": 930
+  },
+  {
+   "nr": 32,
+   "id": "pv_32",
+   "en": "stand by",
+   "pl": "czekać w gotowości",
+   "example": "Stand by, the truck is late.",
+   "level": "A2",
+   "rank": 931
+  },
+  {
+   "nr": 33,
+   "id": "pv_33",
+   "en": "watch out",
+   "pl": "uważać",
+   "example": "Watch out! The pallet is falling!",
+   "level": "A2",
+   "rank": 932
+  },
+  {
+   "nr": 34,
+   "id": "pv_34",
+   "en": "clean up",
+   "pl": "posprzątać",
+   "example": "Clean up your area before you leave.",
+   "level": "A2",
+   "rank": 933
+  },
+  {
+   "nr": 35,
+   "id": "pv_35",
+   "en": "come in",
+   "pl": "wejść / przychodzić",
+   "example": "Come in, the meeting has started.",
+   "level": "A2",
+   "rank": 934
+  },
+  {
+   "nr": 36,
+   "id": "pv_36",
+   "en": "go back",
+   "pl": "wracać (dokądś)",
+   "example": "Go back to aisle three.",
+   "level": "A2",
+   "rank": 935
+  },
+  {
+   "nr": 37,
+   "id": "pv_37",
+   "en": "get in",
+   "pl": "wsiadać (do auta) / wchodzić",
+   "example": "Get in, I'll drive you home.",
+   "level": "A2",
+   "rank": 936,
+   "hint": "do samochodu"
+  },
+  {
+   "nr": 38,
+   "id": "pv_38",
+   "en": "get out",
+   "pl": "wysiadać / wychodzić",
+   "example": "Get out of the truck, please.",
+   "level": "A2",
+   "rank": 937,
+   "hint": "z samochodu"
+  },
+  {
+   "nr": 39,
+   "id": "pv_39",
+   "en": "get off",
+   "pl": "wysiadać (z autobusu) / schodzić",
+   "example": "Get off at the next stop.",
+   "level": "A2",
+   "rank": 938,
+   "hint": "z autobusu, pociągu"
+  },
+  {
+   "nr": 40,
+   "id": "pv_40",
+   "en": "get on",
+   "pl": "wsiadać (do autobusu)",
+   "example": "Get on the bus quickly.",
+   "level": "A2",
+   "rank": 939,
+   "hint": "do autobusu, pociągu"
+  },
+  {
+   "nr": 41,
+   "id": "pv_41",
+   "en": "get back",
+   "pl": "wracać / odzyskać",
+   "example": "When do you get back from Poland?",
+   "level": "A2",
+   "rank": 940
+  },
+  {
+   "nr": 42,
+   "id": "pv_42",
+   "en": "get through",
+   "pl": "dodzwonić się / przebrnąć",
+   "example": "I can't get through to the office.",
+   "level": "A2",
+   "rank": 941,
+   "hint": "dodzwonić się"
+  },
+  {
+   "nr": 43,
+   "id": "pv_43",
+   "en": "get over",
+   "pl": "dojść do siebie po czymś",
+   "example": "It took me a week to get over the flu.",
+   "level": "A2",
+   "rank": 942,
+   "hint": "po chorobie, po problemie"
+  },
+  {
+   "nr": 44,
+   "id": "pv_44",
+   "en": "go out",
+   "pl": "wychodzić (na miasto) / gasnąć",
+   "example": "We go out every Friday.",
+   "level": "A2",
+   "rank": 943
+  },
+  {
+   "nr": 45,
+   "id": "pv_45",
+   "en": "go over",
+   "pl": "przejrzeć / omówić",
+   "example": "Let's go over the plan again.",
+   "level": "A2",
+   "rank": 944
+  },
+  {
+   "nr": 46,
+   "id": "pv_46",
+   "en": "go through",
+   "pl": "przejrzeć dokładnie / przejść przez coś",
+   "example": "Go through the list before you sign.",
+   "level": "A2",
+   "rank": 945
+  },
+  {
+   "nr": 47,
+   "id": "pv_47",
+   "en": "go ahead",
+   "pl": "śmiało, kontynuuj",
+   "example": "Go ahead, I'm listening.",
+   "level": "A2",
+   "rank": 946
+  },
+  {
+   "nr": 48,
+   "id": "pv_48",
+   "en": "come over",
+   "pl": "wpaść (do kogoś)",
+   "example": "Come over after work.",
+   "level": "A2",
+   "rank": 947
+  },
+  {
+   "nr": 49,
+   "id": "pv_49",
+   "en": "come across",
+   "pl": "natknąć się na coś",
+   "example": "I came across an old photo.",
+   "level": "A2",
+   "rank": 948,
+   "hint": "natknąć się przypadkiem"
+  },
+  {
+   "nr": 50,
+   "id": "pv_50",
+   "en": "come up",
+   "pl": "pojawić się (temat, sprawa)",
+   "example": "Something came up, I'll be late.",
+   "level": "A2",
+   "rank": 949,
+   "hint": "o temacie, sprawie"
+  },
+  {
+   "nr": 51,
+   "id": "pv_51",
+   "en": "come along",
+   "pl": "iść razem / posuwać się naprzód",
+   "example": "Come along, we're leaving.",
+   "level": "A2",
+   "rank": 950
+  },
+  {
+   "nr": 52,
+   "id": "pv_52",
+   "en": "move in",
+   "pl": "wprowadzać się",
+   "example": "We moved in last month.",
+   "level": "A2",
+   "rank": 951
+  },
+  {
+   "nr": 53,
+   "id": "pv_53",
+   "en": "move out",
+   "pl": "wyprowadzać się",
+   "example": "They moved out in May.",
+   "level": "A2",
+   "rank": 952
+  },
+  {
+   "nr": 54,
+   "id": "pv_54",
+   "en": "drop off",
+   "pl": "podrzucić (kogoś/coś)",
+   "example": "Can you drop off the parcel?",
+   "level": "A2",
+   "rank": 953,
+   "hint": "podwieźć / podrzucić"
+  },
+  {
+   "nr": 55,
+   "id": "pv_55",
+   "en": "drop by",
+   "pl": "wpaść na chwilę",
+   "example": "Drop by the office later.",
+   "level": "A2",
+   "rank": 954,
+   "hint": "wpaść na chwilę"
+  },
+  {
+   "nr": 56,
+   "id": "pv_56",
+   "en": "head back",
+   "pl": "wracać (w drogę powrotną)",
+   "example": "Let's head back to the warehouse.",
+   "level": "A2",
+   "rank": 955
+  },
+  {
+   "nr": 57,
+   "id": "pv_57",
+   "en": "set off",
+   "pl": "wyruszać",
+   "example": "We set off at five in the morning.",
+   "level": "A2",
+   "rank": 956,
+   "hint": "wyruszyć w drogę"
+  },
+  {
+   "nr": 58,
+   "id": "pv_58",
+   "en": "set out",
+   "pl": "wyruszać / przedstawiać (plan)",
+   "example": "The manual sets out the safety rules.",
+   "level": "A2",
+   "rank": 957
+  },
+  {
+   "nr": 59,
+   "id": "pv_59",
+   "en": "take back",
+   "pl": "zabrać z powrotem / cofnąć słowa",
+   "example": "I have to take back the damaged goods.",
+   "level": "A2",
+   "rank": 958
+  },
+  {
+   "nr": 60,
+   "id": "pv_60",
+   "en": "bring back",
+   "pl": "przynieść z powrotem",
+   "example": "Bring back the scanner after your shift.",
+   "level": "A2",
+   "rank": 959
+  },
+  {
+   "nr": 61,
+   "id": "pv_61",
+   "en": "send back",
+   "pl": "odesłać",
+   "example": "We sent back the wrong order.",
+   "level": "A2",
+   "rank": 960
+  },
+  {
+   "nr": 62,
+   "id": "pv_62",
+   "en": "put back",
+   "pl": "odłożyć na miejsce",
+   "example": "Put the tools back on the shelf.",
+   "level": "A2",
+   "rank": 961
+  },
+  {
+   "nr": 63,
+   "id": "pv_63",
+   "en": "take over",
+   "pl": "przejmować (obowiązki)",
+   "example": "Anna will take over my shift.",
+   "level": "A2",
+   "rank": 962,
+   "hint": "przejąć obowiązki"
+  },
+  {
+   "nr": 64,
+   "id": "pv_64",
+   "en": "take on",
+   "pl": "podejmować się / zatrudniać",
+   "example": "We're taking on ten new pickers.",
+   "level": "A2",
+   "rank": 963,
+   "hint": "podjąć się / zatrudnić"
+  },
+  {
+   "nr": 65,
+   "id": "pv_65",
+   "en": "carry out",
+   "pl": "przeprowadzać (kontrolę, zadanie)",
+   "example": "They carry out safety checks every month.",
+   "level": "A2",
+   "rank": 964,
+   "hint": "przeprowadzić zadanie"
+  },
+  {
+   "nr": 66,
+   "id": "pv_66",
+   "en": "look into",
+   "pl": "zbadać sprawę",
+   "example": "HR will look into the payment problem.",
+   "level": "A2",
+   "rank": 965
+  },
+  {
+   "nr": 67,
+   "id": "pv_67",
+   "en": "look over",
+   "pl": "przejrzeć pobieżnie",
+   "example": "Look over the report before the meeting.",
+   "level": "A2",
+   "rank": 966
+  },
+  {
+   "nr": 68,
+   "id": "pv_68",
+   "en": "deal with",
+   "pl": "zajmować się / radzić sobie z",
+   "example": "I deal with customer complaints.",
+   "level": "A2",
+   "rank": 967
+  },
+  {
+   "nr": 69,
+   "id": "pv_69",
+   "en": "keep up with",
+   "pl": "nadążać za",
+   "example": "It's hard to keep up with the pace.",
+   "level": "A2",
+   "rank": 968,
+   "hint": "nadążać za kimś"
+  },
+  {
+   "nr": 70,
+   "id": "pv_70",
+   "en": "catch up",
+   "pl": "nadrobić zaległości / dogonić",
+   "example": "I need to catch up with my work.",
+   "level": "A2",
+   "rank": 969,
+   "hint": "nadrobić zaległości"
+  },
+  {
+   "nr": 71,
+   "id": "pv_71",
+   "en": "catch up on",
+   "pl": "nadrobić (sen, zaległości)",
+   "example": "I'll catch up on sleep at the weekend.",
+   "level": "A2",
+   "rank": 970
+  },
+  {
+   "nr": 72,
+   "id": "pv_72",
+   "en": "fill out",
+   "pl": "wypełnić (formularz — amerykański)",
+   "example": "Fill out the accident report.",
+   "level": "A2",
+   "rank": 971,
+   "hint": "wypełnić formularz"
+  },
+  {
+   "nr": 73,
+   "id": "pv_73",
+   "en": "hand out",
+   "pl": "rozdawać",
+   "example": "They handed out new gloves.",
+   "level": "A2",
+   "rank": 972,
+   "hint": "rozdać wielu osobom"
+  },
+  {
+   "nr": 74,
+   "id": "pv_74",
+   "en": "hand over",
+   "pl": "przekazać",
+   "example": "Hand over the keys to the next shift.",
+   "level": "A2",
+   "rank": 973,
+   "hint": "przekazać komuś"
+  },
+  {
+   "nr": 75,
+   "id": "pv_75",
+   "en": "hold on",
+   "pl": "poczekać chwilę",
+   "example": "Hold on, I'll check the system.",
+   "level": "A2",
+   "rank": 974,
+   "hint": "poczekać chwilę"
+  },
+  {
+   "nr": 76,
+   "id": "pv_76",
+   "en": "hold up",
+   "pl": "opóźniać / zatrzymywać",
+   "example": "The traffic held us up.",
+   "level": "A2",
+   "rank": 975,
+   "hint": "opóźniać"
+  },
+  {
+   "nr": 77,
+   "id": "pv_77",
+   "en": "put off",
+   "pl": "odkładać / zniechęcać",
+   "example": "Don't put off the training.",
+   "level": "A2",
+   "rank": 976,
+   "hint": "przełożyć na później"
+  },
+  {
+   "nr": 78,
+   "id": "pv_78",
+   "en": "put up with",
+   "pl": "znosić coś / kogoś",
+   "example": "I can't put up with this noise.",
+   "level": "A2",
+   "rank": 977,
+   "hint": "znosić coś nieprzyjemnego"
+  },
+  {
+   "nr": 79,
+   "id": "pv_79",
+   "en": "call off",
+   "pl": "odwołać",
+   "example": "They called off the meeting.",
+   "level": "A2",
+   "rank": 978,
+   "hint": "odwołać wydarzenie"
+  },
+  {
+   "nr": 80,
+   "id": "pv_80",
+   "en": "turn up",
+   "pl": "pojawić się / podkręcić",
+   "example": "He turned up an hour late.",
+   "level": "A2",
+   "rank": 979,
+   "hint": "pojawić się"
+  },
+  {
+   "nr": 81,
+   "id": "pv_81",
+   "en": "turn down",
+   "pl": "odrzucić (ofertę) / ściszyć",
+   "example": "She turned down the offer.",
+   "level": "A2",
+   "rank": 980,
+   "hint": "odrzucić ofertę / ściszyć"
+  },
+  {
+   "nr": 82,
+   "id": "pv_82",
+   "en": "turn into",
+   "pl": "zmieniać się w coś",
+   "example": "The problem turned into a big delay.",
+   "level": "A2",
+   "rank": 981
+  },
+  {
+   "nr": 83,
+   "id": "pv_83",
+   "en": "work out",
+   "pl": "wypracować / wychodzić na dobre / ćwiczyć",
+   "example": "It worked out well in the end.",
+   "level": "A2",
+   "rank": 982,
+   "hint": "wyjść na dobre / ćwiczyć"
+  },
+  {
+   "nr": 84,
+   "id": "pv_84",
+   "en": "figure out",
+   "pl": "rozgryźć, zrozumieć",
+   "example": "I can't figure out this error.",
+   "level": "A2",
+   "rank": 983,
+   "hint": "rozgryźć problem"
+  },
+  {
+   "nr": 85,
+   "id": "pv_85",
+   "en": "point out",
+   "pl": "zwrócić uwagę na coś",
+   "example": "He pointed out a mistake in the list.",
+   "level": "A2",
+   "rank": 984,
+   "hint": "zwrócić uwagę"
+  },
+  {
+   "nr": 86,
+   "id": "pv_86",
+   "en": "bring up",
+   "pl": "poruszyć temat / wychowywać",
+   "example": "Bring it up at the meeting.",
+   "level": "A2",
+   "rank": 985,
+   "hint": "poruszyć temat / wychowywać"
+  },
+  {
+   "nr": 87,
+   "id": "pv_87",
+   "en": "shut down",
+   "pl": "zamknąć / wyłączyć",
+   "example": "The line shut down for an hour.",
+   "level": "A2",
+   "rank": 986
+  },
+  {
+   "nr": 88,
+   "id": "pv_88",
+   "en": "start over",
+   "pl": "zacząć od nowa",
+   "example": "We had to start over.",
+   "level": "A2",
+   "rank": 987
+  },
+  {
+   "nr": 89,
+   "id": "pv_89",
+   "en": "end up",
+   "pl": "skończyć jako / wylądować gdzieś",
+   "example": "I ended up working nights.",
+   "level": "A2",
+   "rank": 988,
+   "hint": "skończyć gdzieś/jako"
+  },
+  {
+   "nr": 90,
+   "id": "pv_90",
+   "en": "sign up",
+   "pl": "zapisać się",
+   "example": "Sign up for the forklift course.",
+   "level": "A2",
+   "rank": 989
+  },
+  {
+   "nr": 91,
+   "id": "pv_91",
+   "en": "sign in",
+   "pl": "zalogować się / wpisać się",
+   "example": "Sign in at the reception.",
+   "level": "A2",
+   "rank": 990
+  },
+  {
+   "nr": 92,
+   "id": "pv_92",
+   "en": "log in",
+   "pl": "zalogować się",
+   "example": "Log in with your employee number.",
+   "level": "A2",
+   "rank": 991
+  },
+  {
+   "nr": 93,
+   "id": "pv_93",
+   "en": "back up",
+   "pl": "tworzyć kopię / cofać (autem) / wspierać",
+   "example": "Back up your files.",
+   "level": "A2",
+   "rank": 992,
+   "hint": "zrobić kopię / cofnąć autem"
+  },
+  {
+   "nr": 94,
+   "id": "pv_94",
+   "en": "print out",
+   "pl": "wydrukować",
+   "example": "Print out the packing list.",
+   "level": "A2",
+   "rank": 993
+  },
+  {
+   "nr": 95,
+   "id": "pv_95",
+   "en": "cut down on",
+   "pl": "ograniczyć",
+   "example": "We must cut down on mistakes.",
+   "level": "A2",
+   "rank": 994,
+   "hint": "ograniczyć ilość"
+  },
+  {
+   "nr": 96,
+   "id": "pv_96",
+   "en": "cut off",
+   "pl": "odciąć / przerwać",
+   "example": "The call was cut off.",
+   "level": "A2",
+   "rank": 995,
+   "hint": "przerwać połączenie"
+  },
+  {
+   "nr": 97,
+   "id": "pv_97",
+   "en": "wake up",
+   "pl": "budzić się",
+   "example": "I wake up at four.",
+   "level": "A2",
+   "rank": 996
+  },
+  {
+   "nr": 98,
+   "id": "pv_98",
+   "en": "get dressed",
+   "pl": "ubierać się",
+   "example": "Get dressed quickly.",
+   "level": "A2",
+   "rank": 997
+  },
+  {
+   "nr": 99,
+   "id": "pv_99",
+   "en": "eat out",
+   "pl": "jeść na mieście",
+   "example": "We eat out on Saturdays.",
+   "level": "A2",
+   "rank": 998
+  },
+  {
+   "nr": 100,
+   "id": "pv_100",
+   "en": "run into",
+   "pl": "wpaść na kogoś przypadkiem",
+   "example": "I ran into my old boss.",
+   "level": "A2",
+   "rank": 999,
+   "hint": "spotkać przypadkiem"
+  },
+  {
+   "nr": 101,
+   "id": "pv_101",
+   "en": "run away",
+   "pl": "uciekać",
+   "example": "The dog ran away.",
+   "level": "A2",
+   "rank": 1000
+  },
+  {
+   "nr": 102,
+   "id": "pv_102",
+   "en": "grow up",
+   "pl": "dorastać",
+   "example": "I grew up in a small town.",
+   "level": "A2",
+   "rank": 1001
+  },
+  {
+   "nr": 103,
+   "id": "pv_103",
+   "en": "settle down",
+   "pl": "ustatkować się / uspokoić",
+   "example": "They settled down in the Netherlands.",
+   "level": "A2",
+   "rank": 1002,
+   "hint": "ustatkować się"
+  },
+  {
+   "nr": 104,
+   "id": "pv_104",
+   "en": "save up",
+   "pl": "oszczędzać na coś",
+   "example": "I'm saving up for a car.",
+   "level": "A2",
+   "rank": 1003,
+   "hint": "odkładać pieniądze"
+  },
+  {
+   "nr": 105,
+   "id": "pv_105",
+   "en": "pay back",
+   "pl": "oddać pieniądze",
+   "example": "I'll pay you back on Friday.",
+   "level": "A2",
+   "rank": 1004,
+   "hint": "oddać pieniądze"
+  },
+  {
+   "nr": 106,
+   "id": "pv_106",
+   "en": "pay off",
+   "pl": "spłacić / opłacić się",
+   "example": "The hard work paid off.",
+   "level": "A2",
+   "rank": 1005,
+   "hint": "opłacić się"
+  },
+  {
+   "nr": 107,
+   "id": "pv_107",
+   "en": "try on",
+   "pl": "przymierzyć",
+   "example": "Try on these safety shoes.",
+   "level": "A2",
+   "rank": 1006
+  },
+  {
+   "nr": 108,
+   "id": "pv_108",
+   "en": "take up",
+   "pl": "zająć się (hobby) / zajmować miejsce",
+   "example": "I took up running.",
+   "level": "A2",
+   "rank": 1007,
+   "hint": "zająć się hobby"
+  },
+  {
+   "nr": 109,
+   "id": "pv_109",
+   "en": "give back",
+   "pl": "oddać",
+   "example": "Give back the borrowed tools.",
+   "level": "A2",
+   "rank": 1008
+  },
+  {
+   "nr": 110,
+   "id": "pv_110",
+   "en": "give in",
+   "pl": "ustąpić, poddać się",
+   "example": "Don't give in so easily.",
+   "level": "A2",
+   "rank": 1009,
+   "hint": "ustąpić w sporze"
+  },
+  {
+   "nr": 111,
+   "id": "pv_111",
+   "en": "get along",
+   "pl": "dogadywać się",
+   "example": "We get along very well.",
+   "level": "A2",
+   "rank": 1010
+  },
+  {
+   "nr": 112,
+   "id": "pv_112",
+   "en": "break up",
+   "pl": "rozstać się / rozpaść",
+   "example": "They broke up last year.",
+   "level": "A2",
+   "rank": 1011,
+   "hint": "o parze"
+  },
+  {
+   "nr": 113,
+   "id": "pv_113",
+   "en": "split up",
+   "pl": "rozdzielić się / rozstać",
+   "example": "Let's split up and finish faster.",
+   "level": "A2",
+   "rank": 1012
+  },
+  {
+   "nr": 114,
+   "id": "pv_114",
+   "en": "stay up",
+   "pl": "nie kłaść się spać",
+   "example": "I stayed up too late.",
+   "level": "A2",
+   "rank": 1013
+  },
+  {
+   "nr": 115,
+   "id": "pv_115",
+   "en": "lie down",
+   "pl": "położyć się",
+   "example": "Lie down if you feel dizzy.",
+   "level": "A2",
+   "rank": 1014
+  },
+  {
+   "nr": 116,
+   "id": "pv_116",
+   "en": "calm down",
+   "pl": "uspokoić się",
+   "example": "Calm down, it's not your fault.",
+   "level": "A2",
+   "rank": 1015
+  },
+  {
+   "nr": 117,
+   "id": "pv_117",
+   "en": "cheer up",
+   "pl": "rozchmurzyć się",
+   "example": "Cheer up, tomorrow is Friday.",
+   "level": "A2",
+   "rank": 1016
+  },
+  {
+   "nr": 118,
+   "id": "pv_118",
+   "en": "chill out",
+   "pl": "wyluzować",
+   "example": "Chill out, we have time.",
+   "level": "A2",
+   "rank": 1017
+  },
+  {
+   "nr": 119,
+   "id": "pv_119",
+   "en": "hang out",
+   "pl": "spędzać czas",
+   "example": "We hang out after work.",
+   "level": "A2",
+   "rank": 1018
+  },
+  {
+   "nr": 120,
+   "id": "pv_120",
+   "en": "hang on",
+   "pl": "poczekać",
+   "example": "Hang on a second.",
+   "level": "A2",
+   "rank": 1019,
+   "hint": "poczekać chwilę"
+  },
+  {
+   "nr": 121,
+   "id": "pv_121",
+   "en": "hang up",
+   "pl": "odłożyć słuchawkę",
+   "example": "Don't hang up yet.",
+   "level": "A2",
+   "rank": 1020,
+   "hint": "odłożyć słuchawkę"
+  },
+  {
+   "nr": 122,
+   "id": "pv_122",
+   "en": "look up",
+   "pl": "sprawdzić (w słowniku, systemie)",
+   "example": "Look up the word in the app.",
+   "level": "A2",
+   "rank": 1021,
+   "hint": "sprawdzić w słowniku"
+  },
+  {
+   "nr": 123,
+   "id": "pv_123",
+   "en": "look up to",
+   "pl": "podziwiać kogoś",
+   "example": "I look up to my team leader.",
+   "level": "A2",
+   "rank": 1022,
+   "hint": "podziwiać kogoś"
+  },
+  {
+   "nr": 124,
+   "id": "pv_124",
+   "en": "look down on",
+   "pl": "patrzeć na kogoś z góry",
+   "example": "Nobody should look down on new workers.",
+   "level": "A2",
+   "rank": 1023
+  },
+  {
+   "nr": 125,
+   "id": "pv_125",
+   "en": "count on",
+   "pl": "liczyć na kogoś",
+   "example": "You can count on me.",
+   "level": "A2",
+   "rank": 1024
+  },
+  {
+   "nr": 126,
+   "id": "pv_126",
+   "en": "depend on",
+   "pl": "zależeć od",
+   "example": "It depends on the weather.",
+   "level": "A2",
+   "rank": 1025
+  },
+  {
+   "nr": 127,
+   "id": "pv_127",
+   "en": "care for",
+   "pl": "opiekować się / lubić",
+   "example": "She cares for her parents.",
+   "level": "A2",
+   "rank": 1026
+  },
+  {
+   "nr": 128,
+   "id": "pv_128",
+   "en": "stand for",
+   "pl": "oznaczać (skrót) / popierać",
+   "example": "PPE stands for personal protective equipment.",
+   "level": "A2",
+   "rank": 1027,
+   "hint": "oznaczać skrót"
+  },
+  {
+   "nr": 129,
+   "id": "pv_129",
+   "en": "stand up",
+   "pl": "wstać / stanąć w obronie",
+   "example": "Stand up when the manager comes in.",
+   "level": "A2",
+   "rank": 1028
+  },
+  {
+   "nr": 130,
+   "id": "pv_130",
+   "en": "show around",
+   "pl": "oprowadzić",
+   "example": "Kees showed me around the warehouse.",
+   "level": "A2",
+   "rank": 1029
+  },
+  {
+   "nr": 131,
+   "id": "pv_131",
+   "en": "warm up",
+   "pl": "rozgrzać (się)",
+   "example": "Warm up before lifting heavy boxes.",
+   "level": "A2",
+   "rank": 1030
+  },
+  {
+   "nr": 132,
+   "id": "pv_132",
+   "en": "cool down",
+   "pl": "ostudzić / ochłonąć",
+   "example": "Let the machine cool down.",
+   "level": "A2",
+   "rank": 1031
+  },
+  {
+   "nr": 133,
+   "id": "pv_133",
+   "en": "wear out",
+   "pl": "zużyć / wyczerpać",
+   "example": "These gloves wear out quickly.",
+   "level": "A2",
+   "rank": 1032,
+   "hint": "zużyć się"
+  },
+  {
+   "nr": 134,
+   "id": "pv_134",
+   "en": "use up",
+   "pl": "zużyć do końca",
+   "example": "We used up all the tape.",
+   "level": "A2",
+   "rank": 1033,
+   "hint": "zużyć do końca"
+  },
+  {
+   "nr": 135,
+   "id": "pv_135",
+   "en": "throw out",
+   "pl": "wyrzucić / wyrzucić kogoś",
+   "example": "Throw out the broken pallet.",
+   "level": "A2",
+   "rank": 1034,
+   "hint": "wyrzucić / wyprosić"
+  },
+  {
+   "nr": 136,
+   "id": "pv_136",
+   "en": "tidy up",
+   "pl": "posprzątać",
+   "example": "Tidy up your workstation.",
+   "level": "A2",
+   "rank": 1035
+  },
+  {
+   "nr": 137,
+   "id": "pv_137",
+   "en": "wash up",
+   "pl": "umyć naczynia",
+   "example": "I'll wash up after dinner.",
+   "level": "A2",
+   "rank": 1036
+  },
+  {
+   "nr": 138,
+   "id": "pv_138",
+   "en": "put away",
+   "pl": "odłożyć na miejsce",
+   "example": "Put away the scanner.",
+   "level": "A2",
+   "rank": 1037
+  },
+  {
+   "nr": 139,
+   "id": "pv_139",
+   "en": "put on weight",
+   "pl": "przytyć",
+   "example": "I put on weight in winter.",
+   "level": "A2",
+   "rank": 1038
+  },
+  {
+   "nr": 140,
+   "id": "pv_140",
+   "en": "run out",
+   "pl": "kończyć się (zapas)",
+   "example": "The batteries ran out.",
+   "level": "A2",
+   "rank": 1039,
+   "hint": "o zapasach"
+  },
+  {
+   "nr": 141,
+   "id": "pv_141",
+   "en": "break into",
+   "pl": "włamać się",
+   "example": "Someone broke into the office.",
+   "level": "A2",
+   "rank": 1040
+  },
+  {
+   "nr": 142,
+   "id": "pv_142",
+   "en": "blow up",
+   "pl": "wysadzić / wybuchnąć (gniewem)",
+   "example": "Don't blow up over a small mistake.",
+   "level": "A2",
+   "rank": 1041
+  },
+  {
+   "nr": 143,
+   "id": "pv_143",
+   "en": "bring in",
+   "pl": "wprowadzać (zasadę) / przynosić",
+   "example": "They brought in a new rule.",
+   "level": "A2",
+   "rank": 1042
+  },
+  {
+   "nr": 144,
+   "id": "pv_144",
+   "en": "hurry up",
+   "pl": "pospiesz się",
+   "example": "Hurry up, the truck is waiting.",
+   "level": "A2",
+   "rank": 1043
+  }
+ ],
+ "etykieta": "Phrasal verbs"
+}

@@ -1,0 +1,3705 @@
+{
+ "name": "Podstawy",
+ "etykieta": "Podstawy",
+ "topics": [
+  {
+   "id": "to_be",
+   "name": "TO BE - byc (am / is / are)",
+   "emoji": "🅱️",
+   "level": "A1",
+   "short": "Najwazniejszy czasownik angielskiego",
+   "intro": "To pierwszy czasownik, ktorego trzeba sie nauczyc. Po polsku czesto go pomijamy (jestem zmeczony - mozna powiedziec zmeczony), po angielsku NIGDY nie wolno go opuscic.",
+   "pages": [
+    {
+     "title": "Trzy formy i tyle",
+     "sections": [
+      {
+       "title": "Kto dostaje ktora forme",
+       "emoji": "👥",
+       "color": "indigo",
+       "text": "To jedyny czasownik z trzema roznymi formami w czasie terazniejszym.",
+       "examples": [
+        [
+         "I am",
+         "ja jestem"
+        ],
+        [
+         "you are",
+         "ty jestes / wy jestescie"
+        ],
+        [
+         "he / she / it is",
+         "on / ona / ono jest"
+        ],
+        [
+         "we are",
+         "my jestesmy"
+        ],
+        [
+         "they are",
+         "oni sa"
+        ]
+       ],
+       "tip": "Zapamietaj rytm: I am, you are, he is. Reszta idzie za tym."
+      },
+      {
+       "title": "Skroty - tak mowi sie naprawde",
+       "emoji": "💬",
+       "color": "teal",
+       "text": "W mowie prawie zawsze slyszysz skrocona forme. Warto ja znac, zeby rozumiec innych.",
+       "examples": [
+        [
+         "I'm tired.",
+         "Jestem zmeczony."
+        ],
+        [
+         "You're late.",
+         "Spozniles sie."
+        ],
+        [
+         "He's a driver.",
+         "On jest kierowca."
+        ],
+        [
+         "We're ready.",
+         "Jestesmy gotowi."
+        ]
+       ]
+      },
+      {
+       "title": "Nie wolno go pominac",
+       "emoji": "⚠️",
+       "color": "ember",
+       "text": "Po polsku mozna powiedziec samo zmeczony. Po angielsku zdanie bez czasownika nie istnieje.",
+       "examples": [
+        [
+         "I am tired.",
+         "Jestem zmeczony. (nie: I tired)"
+        ],
+        [
+         "She is my colleague.",
+         "Ona jest moja kolezanka. (nie: She my colleague)"
+        ],
+        [
+         "They are at work.",
+         "Oni sa w pracy."
+        ]
+       ],
+       "tip": "To najczestszy blad Polakow na starcie. Zawsze wstaw am/is/are."
+      }
+     ]
+    },
+    {
+     "title": "Pytania, przeczenia, przeszlosc",
+     "sections": [
+      {
+       "title": "Pytanie: zamien miejscami",
+       "emoji": "❓",
+       "color": "violet",
+       "text": "Czasownik idzie przed osobe. Bez do/does!",
+       "examples": [
+        [
+         "Are you ready?",
+         "Jestes gotowy?"
+        ],
+        [
+         "Is he here?",
+         "Czy on tu jest?"
+        ],
+        [
+         "Am I late?",
+         "Czy sie spoznilem?"
+        ]
+       ],
+       "tip": "Do you are ready to blad. Po prostu: Are you ready?"
+      },
+      {
+       "title": "Przeczenie: dodaj not",
+       "emoji": "🚫",
+       "color": "gold",
+       "text": "Am not / is not / are not. W mowie: isn t, aren t.",
+       "examples": [
+        [
+         "I am not tired.",
+         "Nie jestem zmeczony."
+        ],
+        [
+         "She is not here.",
+         "Jej tu nie ma."
+        ],
+        [
+         "We are not ready.",
+         "Nie jestesmy gotowi."
+        ]
+       ]
+      },
+      {
+       "title": "Przeszlosc: was i were",
+       "emoji": "🕰",
+       "color": "indigo",
+       "text": "Tylko dwie formy - o wiele latwiej.",
+       "examples": [
+        [
+         "I was / he was / she was",
+         "ja bylem / on byl / ona byla"
+        ],
+        [
+         "you were / we were / they were",
+         "ty byles / my bylismy / oni byli"
+        ],
+        [
+         "I was at work yesterday.",
+         "Bylem wczoraj w pracy."
+        ]
+       ],
+       "tip": "WAS przy I/he/she/it, WERE przy you/we/they."
+      },
+      {
+       "title": "Wiek, glod, zawod - tu Polacy potykaja sie najczesciej",
+       "emoji": "🎂",
+       "color": "ember",
+       "text": "Po angielsku uzywamy TO BE tam, gdzie po polsku mamy zupelnie inne slowa.",
+       "examples": [
+        [
+         "I am 30 years old.",
+         "Mam 30 lat. (nie: I have 30 years)"
+        ],
+        [
+         "I am hungry.",
+         "Jestem glodny. (nie: I have hunger)"
+        ],
+        [
+         "I am cold.",
+         "Jest mi zimno."
+        ],
+        [
+         "She is right.",
+         "Ona ma racje."
+        ]
+       ],
+       "tip": "Zapamietaj: wiek, glod, zimno, racja - wszystko przez TO BE."
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "choice",
+     "text": "I ___ a picker.",
+     "options": [
+      "am",
+      "is"
+     ],
+     "answer": 0,
+     "why": "Przy I zawsze AM.",
+     "pl": "Jestem kompletatorem."
+    },
+    {
+     "type": "choice",
+     "text": "She ___ my team leader.",
+     "options": [
+      "is",
+      "are"
+     ],
+     "answer": 0,
+     "why": "She - trzecia osoba - IS.",
+     "pl": "Ona jest moja liderka."
+    },
+    {
+     "type": "choice",
+     "text": "___ you ready?",
+     "options": [
+      "Do",
+      "Are"
+     ],
+     "answer": 1,
+     "why": "Przy TO BE nie uzywamy DO - samo ARE tworzy pytanie.",
+     "pl": "Jestes gotowy?"
+    },
+    {
+     "type": "gap",
+     "text": "They ___ at the gate.",
+     "answer": "are",
+     "why": "They -> ARE.",
+     "pl": "Oni sa przy bramie.",
+     "hint": "am / is / are"
+    },
+    {
+     "type": "gap",
+     "text": "I ___ 30 years old.",
+     "answer": "am",
+     "why": "Wiek podajemy przez TO BE, nie przez HAVE.",
+     "pl": "Mam 30 lat.",
+     "hint": "am / is / are"
+    },
+    {
+     "type": "gap",
+     "text": "We ___ at work yesterday.",
+     "answer": "were",
+     "why": "Przeszlosc, we -> WERE.",
+     "pl": "Bylismy wczoraj w pracy.",
+     "hint": "was / were"
+    },
+    {
+     "type": "gap",
+     "text": "He ___ tired after the shift.",
+     "answer": "was",
+     "why": "Przeszlosc, he -> WAS.",
+     "pl": "Byl zmeczony po zmianie.",
+     "hint": "was / were"
+    },
+    {
+     "type": "listen",
+     "en": "I am not tired, I am hungry.",
+     "pl": "Nie jestem zmeczony, jestem glodny.",
+     "why": "Dwa razy TO BE - i glod tez przez am."
+    },
+    {
+     "type": "listen",
+     "en": "Are you the new picker?",
+     "pl": "Czy ty jestes nowym kompletatorem?",
+     "why": "Pytanie przez przestawienie ARE."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "I am",
+       "ja jestem"
+      ],
+      [
+       "he is",
+       "on jest"
+      ],
+      [
+       "they are",
+       "oni sa"
+      ],
+      [
+       "I was",
+       "ja bylem"
+      ]
+     ],
+     "why": "Cztery formy, ktore zalatwiaja wiekszosc zdan."
+    }
+   ],
+   "test": [
+    {
+     "type": "choice",
+     "text": "My colleagues ___ very helpful.",
+     "options": [
+      "is",
+      "are"
+     ],
+     "answer": 1,
+     "why": "Colleagues = liczba mnoga -> ARE.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "___ she at work today?",
+     "options": [
+      "Does",
+      "Is"
+     ],
+     "answer": 1,
+     "why": "Przy TO BE nie uzywamy DOES.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "I ___ hungry, can we take a break?",
+     "answer": "am",
+     "why": "Glod przez TO BE.",
+     "pl": "",
+     "hint": "am / is / are"
+    },
+    {
+     "type": "gap",
+     "text": "There ___ ten people here yesterday.",
+     "answer": "were",
+     "why": "Przeszlosc, liczba mnoga -> WERE.",
+     "pl": "",
+     "hint": "was / were"
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "I tired.",
+      "I am tired."
+     ],
+     "answer": 1,
+     "why": "Nie wolno pomijac czasownika TO BE.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "He ___ not my supervisor.",
+     "options": [
+      "is",
+      "does"
+     ],
+     "answer": 0,
+     "why": "Przeczenie z TO BE: is not.",
+     "pl": ""
+    }
+   ],
+   "order": 1
+  },
+  {
+   "id": "a_an",
+   "name": "A czy AN - samogloski i spolgloski",
+   "emoji": "🅰️",
+   "level": "A1",
+   "short": "Kiedy „a”, a kiedy „an” przed rzeczownikiem",
+   "intro": "Po polsku nie mamy przedimkow, wiec trzeba wyrobic sobie odruch. Dobra wiadomosc: regula jest jedna i nie ma od niej wyjatkow - liczy sie DZWIEK, nie litera.",
+   "pages": [
+    {
+     "title": "Regula podstawowa",
+     "sections": [
+      {
+       "title": "Skad sie bierze A i AN",
+       "emoji": "🔤",
+       "color": "indigo",
+       "text": "A i AN znacza to samo: „jakis, jeden z wielu”. Wybor zalezy wylacznie od tego, jak zaczyna sie NASTEPNE slowo.\n- zaczyna sie od DZWIEKU spolgloski -> A\n- zaczyna sie od DZWIEKU samogloski -> AN",
+       "examples": [
+        [
+         "a box",
+         "pudlo"
+        ],
+        [
+         "an apple",
+         "jablko"
+        ],
+        [
+         "a worker",
+         "pracownik"
+        ],
+        [
+         "an hour",
+         "godzina"
+        ]
+       ],
+       "tip": "Samogloski to a, e, i, o, u. Ale decyduje wymowa, nie pisownia."
+      },
+      {
+       "title": "Dlaczego an hour, a nie a hour",
+       "emoji": "👂",
+       "color": "ember",
+       "text": "Bo w slowie hour litera H jest NIEMA - slyszymy aur, czyli dzwiek samogloski.\nOdwrotnie dziala a university - piszemy U, ale slyszymy ju, czyli dzwiek spolgloski.",
+       "examples": [
+        [
+         "an hour",
+         "godzina (h nieme)"
+        ],
+        [
+         "an honest man",
+         "uczciwy czlowiek (h nieme)"
+        ],
+        [
+         "a university",
+         "uniwersytet (slyszymy juniwersyti)"
+        ],
+        [
+         "a European country",
+         "kraj europejski (slyszymy jropijen)"
+        ]
+       ],
+       "tip": "Test: powiedz slowo na glos. Jesli zaczyna sie od dzwieku samogloski - AN."
+      },
+      {
+       "title": "Litery czytane pojedynczo",
+       "emoji": "🔠",
+       "color": "violet",
+       "text": "Przy skrotach liczy sie nazwa litery, a nie sama litera.",
+       "examples": [
+        [
+         "an MP3 file",
+         "plik MP3 (M czytamy em)"
+        ],
+        [
+         "an SMS",
+         "SMS (S czytamy es)"
+        ],
+        [
+         "a UK company",
+         "firma z Wielkiej Brytanii (U czytamy ju)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Kiedy przedimka NIE ma",
+     "sections": [
+      {
+       "title": "Liczba mnoga i rzeczowniki niepoliczalne",
+       "emoji": "🚫",
+       "color": "teal",
+       "text": "A/AN znaczy jeden, wiec nie da sie go uzyc przy liczbie mnogiej ani przy czyms, czego nie liczymy.",
+       "examples": [
+        [
+         "I need a box.",
+         "Potrzebuje pudla. (jedno)"
+        ],
+        [
+         "I need boxes.",
+         "Potrzebuje pudel. (bez przedimka)"
+        ],
+        [
+         "I need water.",
+         "Potrzebuje wody. (nie liczymy)"
+        ]
+       ],
+       "tip": "Zapamietaj: a boxes, a water to zawsze blad."
+      },
+      {
+       "title": "Zawody - tu Polacy najczesciej gubia przedimek",
+       "emoji": "💼",
+       "color": "gold",
+       "text": "Po angielsku przy zawodzie MUSI byc przedimek. Po polsku nie ma, wiec latwo zapomniec.",
+       "examples": [
+        [
+         "I am a picker.",
+         "Jestem kompletatorem."
+        ],
+        [
+         "She is an engineer.",
+         "Ona jest inzynierem."
+        ],
+        [
+         "He is a driver.",
+         "On jest kierowca."
+        ]
+       ],
+       "tip": "I am picker -> I am A picker. Zawsze."
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "choice",
+     "text": "___ apple a day keeps the doctor away.",
+     "options": [
+      "A",
+      "An"
+     ],
+     "answer": 1,
+     "why": "Apple zaczyna sie od dzwieku samogloski, wiec AN.",
+     "pl": "Jablko dziennie trzyma lekarza z daleka."
+    },
+    {
+     "type": "choice",
+     "text": "I work as ___ picker in a warehouse.",
+     "options": [
+      "a",
+      "an"
+     ],
+     "answer": 0,
+     "why": "Picker zaczyna sie od dzwieku p - spolgloska, wiec A. Przy zawodzie przedimek obowiazkowy.",
+     "pl": "Pracuje jako kompletator w magazynie."
+    },
+    {
+     "type": "choice",
+     "text": "The break is ___ hour long.",
+     "options": [
+      "a",
+      "an"
+     ],
+     "answer": 1,
+     "why": "W hour H jest nieme - slyszymy dzwiek samogloski, wiec AN.",
+     "pl": "Przerwa trwa godzine."
+    },
+    {
+     "type": "choice",
+     "text": "He studies at ___ university.",
+     "options": [
+      "a",
+      "an"
+     ],
+     "answer": 0,
+     "why": "Piszemy U, ale slyszymy ju - to dzwiek spolgloski, wiec A.",
+     "pl": "On studiuje na uniwersytecie."
+    },
+    {
+     "type": "gap",
+     "text": "Can you send me ___ SMS?",
+     "answer": "an",
+     "why": "S czytamy es - dzwiek samogloski, wiec AN.",
+     "pl": "Mozesz wyslac mi SMS-a?",
+     "hint": "a / an"
+    },
+    {
+     "type": "gap",
+     "text": "She is ___ engineer.",
+     "answer": "an",
+     "why": "Engineer zaczyna sie od e - samogloska, wiec AN.",
+     "pl": "Ona jest inzynierem.",
+     "hint": "a / an"
+    },
+    {
+     "type": "gap",
+     "text": "I need ___ new helmet.",
+     "answer": "a",
+     "why": "New zaczyna sie od n - spolgloska, wiec A.",
+     "pl": "Potrzebuje nowego kasku.",
+     "hint": "a / an"
+    },
+    {
+     "type": "listen",
+     "en": "I am a warehouse worker.",
+     "pl": "Jestem pracownikiem magazynu.",
+     "why": "Zwroc uwage: a worker - zawod zawsze z przedimkiem."
+    },
+    {
+     "type": "listen",
+     "en": "It takes an hour and a half.",
+     "pl": "To zajmuje poltorej godziny.",
+     "why": "an hour (h nieme) ale a half (h wymawiane) - obie formy w jednym zdaniu."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "an apple",
+       "jablko"
+      ],
+      [
+       "a box",
+       "pudlo"
+      ],
+      [
+       "an hour",
+       "godzina"
+      ],
+      [
+       "a university",
+       "uniwersytet"
+      ]
+     ],
+     "why": "Powtorz na glos kazda pare - odruch buduje sie przez sluchanie."
+    }
+   ],
+   "test": [
+    {
+     "type": "choice",
+     "text": "___ old man was waiting at the gate.",
+     "options": [
+      "A",
+      "An"
+     ],
+     "answer": 1,
+     "why": "Old = dzwiek samogloski -> AN.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "Do you have ___ pen?",
+     "options": [
+      "a",
+      "an"
+     ],
+     "answer": 0,
+     "why": "Pen = dzwiek spolgloski -> A.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "My brother is ___ honest person.",
+     "options": [
+      "a",
+      "an"
+     ],
+     "answer": 1,
+     "why": "W honest H jest nieme -> AN.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "I bought ___ umbrella yesterday.",
+     "answer": "an",
+     "why": "Umbrella zaczyna sie od a -> AN.",
+     "pl": "",
+     "hint": "a / an"
+    },
+    {
+     "type": "gap",
+     "text": "She works as ___ nurse.",
+     "answer": "a",
+     "why": "Nurse = spolgloska n -> A. Zawod zawsze z przedimkiem.",
+     "pl": "",
+     "hint": "a / an"
+    },
+    {
+     "type": "choice",
+     "text": "We waited ___ hour for the truck.",
+     "options": [
+      "a",
+      "an"
+     ],
+     "answer": 1,
+     "why": "hour -> h nieme -> AN.",
+     "pl": ""
+    }
+   ],
+   "order": 2
+  },
+  {
+   "id": "plural",
+   "name": "Liczba mnoga rzeczownikow",
+   "emoji": "➕",
+   "level": "A1",
+   "short": "Kiedy -s, kiedy -es, a kiedy calkiem inaczej",
+   "intro": "Po polsku liczba mnoga zmienia koncowke na rozne sposoby. Po angielsku w 90 procentach wystarczy dodac -s. Reszta to kilka regul i garstka wyjatkow, ktore trzeba znac.",
+   "pages": [
+    {
+     "title": "Regula i jej odmiany",
+     "sections": [
+      {
+       "title": "Zwykle wystarczy -s",
+       "emoji": "1️⃣",
+       "color": "indigo",
+       "text": "Domyslna zasada.",
+       "examples": [
+        [
+         "box - boxes? nie: box - boxes to wyjatek",
+         "uwaga nizej"
+        ],
+        [
+         "pallet - pallets",
+         "paleta - palety"
+        ],
+        [
+         "worker - workers",
+         "pracownik - pracownicy"
+        ],
+        [
+         "day - days",
+         "dzien - dni"
+        ]
+       ]
+      },
+      {
+       "title": "Po s, x, ch, sh, o dodajemy -es",
+       "emoji": "2️⃣",
+       "color": "teal",
+       "text": "Bo samo -s nie dalo by sie wymowic. Dodatkowa sylaba jest slyszalna.",
+       "examples": [
+        [
+         "box - boxes",
+         "pudlo - pudla"
+        ],
+        [
+         "watch - watches",
+         "zegarek - zegarki"
+        ],
+        [
+         "dish - dishes",
+         "naczynie - naczynia"
+        ],
+        [
+         "tomato - tomatoes",
+         "pomidor - pomidory"
+        ]
+       ],
+       "tip": "Wymow na glos: boksyz, waczyz. Slychac dodatkowa sylabe."
+      },
+      {
+       "title": "Spolgloska + y -> zamieniamy na -ies",
+       "emoji": "3️⃣",
+       "color": "violet",
+       "text": "Ale gdy przed y jest samogloska, zostaje zwykle -s.",
+       "examples": [
+        [
+         "company - companies",
+         "firma - firmy"
+        ],
+        [
+         "city - cities",
+         "miasto - miasta"
+        ],
+        [
+         "day - days",
+         "dzien - dni (przed y jest samogloska a)"
+        ],
+        [
+         "key - keys",
+         "klucz - klucze"
+        ]
+       ]
+      },
+      {
+       "title": "f / fe -> -ves",
+       "emoji": "4️⃣",
+       "color": "gold",
+       "text": "Kilka slow zmienia f na v.",
+       "examples": [
+        [
+         "shelf - shelves",
+         "polka - polki"
+        ],
+        [
+         "knife - knives",
+         "noz - noze"
+        ],
+        [
+         "life - lives",
+         "zycie - zycia"
+        ],
+        [
+         "leaf - leaves",
+         "lisc - liscie"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Wyjatki, ktore trzeba znac",
+     "sections": [
+      {
+       "title": "Zupelnie inna forma",
+       "emoji": "🌀",
+       "color": "ember",
+       "text": "Tych po prostu uczymy sie na pamiec - jest ich niewiele.",
+       "examples": [
+        [
+         "man - men",
+         "mezczyzna - mezczyzni"
+        ],
+        [
+         "woman - women",
+         "kobieta - kobiety"
+        ],
+        [
+         "child - children",
+         "dziecko - dzieci"
+        ],
+        [
+         "person - people",
+         "osoba - ludzie"
+        ],
+        [
+         "foot - feet",
+         "stopa - stopy"
+        ],
+        [
+         "tooth - teeth",
+         "zab - zeby"
+        ]
+       ],
+       "tip": "People to juz liczba mnoga - nie mowimy peoples."
+      },
+      {
+       "title": "Bez zmiany",
+       "emoji": "🔁",
+       "color": "indigo",
+       "text": "Kilka slow wyglada tak samo w obu liczbach.",
+       "examples": [
+        [
+         "fish - fish",
+         "ryba - ryby"
+        ],
+        [
+         "sheep - sheep",
+         "owca - owce"
+        ],
+        [
+         "aircraft - aircraft",
+         "samolot - samoloty"
+        ]
+       ]
+      },
+      {
+       "title": "Rzeczowniki niepoliczalne nie maja liczby mnogiej",
+       "emoji": "🚫",
+       "color": "teal",
+       "text": "To czesty blad - po polsku te slowa maja liczbe mnoga, po angielsku nie.",
+       "examples": [
+        [
+         "information",
+         "informacja / informacje (nigdy informations)"
+        ],
+        [
+         "advice",
+         "rada / rady (nigdy advices)"
+        ],
+        [
+         "money",
+         "pieniadze (juz jest mnoga w znaczeniu)"
+        ],
+        [
+         "furniture",
+         "meble (nigdy furnitures)"
+        ]
+       ],
+       "tip": "Jesli chcesz policzyc: two pieces of information."
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "gap",
+     "text": "one box - two ___",
+     "answer": "boxes",
+     "why": "Po x dodajemy -es.",
+     "pl": "jedno pudlo - dwa pudla",
+     "hint": "boxs / boxes"
+    },
+    {
+     "type": "gap",
+     "text": "one company - three ___",
+     "answer": "companies",
+     "why": "Spolgloska + y -> -ies.",
+     "pl": "jedna firma - trzy firmy",
+     "hint": "companys / companies"
+    },
+    {
+     "type": "gap",
+     "text": "one shelf - two ___",
+     "answer": "shelves",
+     "why": "f zamienia sie na -ves.",
+     "pl": "jedna polka - dwie polki",
+     "hint": "shelfs / shelves"
+    },
+    {
+     "type": "choice",
+     "text": "There are five ___ on the shift.",
+     "options": [
+      "persons",
+      "people"
+     ],
+     "answer": 1,
+     "why": "Liczba mnoga od person to people.",
+     "pl": "Na zmianie jest piec osob."
+    },
+    {
+     "type": "choice",
+     "text": "I need two ___ about this.",
+     "options": [
+      "informations",
+      "pieces of information"
+     ],
+     "answer": 1,
+     "why": "Information nie ma liczby mnogiej.",
+     "pl": "Potrzebuje dwoch informacji."
+    },
+    {
+     "type": "gap",
+     "text": "one child - three ___",
+     "answer": "children",
+     "why": "Nieregularna forma.",
+     "pl": "jedno dziecko - troje dzieci",
+     "hint": "childs / children"
+    },
+    {
+     "type": "gap",
+     "text": "one day - seven ___",
+     "answer": "days",
+     "why": "Przed y jest samogloska, wiec zwykle -s.",
+     "pl": "jeden dzien - siedem dni",
+     "hint": "days / daies"
+    },
+    {
+     "type": "listen",
+     "en": "There are many boxes on the shelves.",
+     "pl": "Na polkach jest duzo pudel.",
+     "why": "Dwie liczby mnogie: boxes i shelves."
+    },
+    {
+     "type": "listen",
+     "en": "How many people work here?",
+     "pl": "Ile osob tu pracuje?",
+     "why": "people - juz liczba mnoga."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "boxes",
+       "pudla"
+      ],
+      [
+       "children",
+       "dzieci"
+      ],
+      [
+       "knives",
+       "noze"
+      ],
+      [
+       "people",
+       "ludzie"
+      ]
+     ],
+     "why": "Cztery typy: -es, nieregularna, -ves, calkiem inna."
+    }
+   ],
+   "test": [
+    {
+     "type": "gap",
+     "text": "one watch - two ___",
+     "answer": "watches",
+     "why": "Po ch dodajemy -es.",
+     "pl": "",
+     "hint": "watchs / watches"
+    },
+    {
+     "type": "choice",
+     "text": "There are three ___ in the office.",
+     "options": [
+      "mans",
+      "men"
+     ],
+     "answer": 1,
+     "why": "man - men, forma nieregularna.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "one city - five ___",
+     "answer": "cities",
+     "why": "Spolgloska + y -> -ies.",
+     "pl": "",
+     "hint": "citys / cities"
+    },
+    {
+     "type": "choice",
+     "text": "She gave me good ___.",
+     "options": [
+      "advices",
+      "advice"
+     ],
+     "answer": 1,
+     "why": "Advice jest niepoliczalne.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "one knife - two ___",
+     "answer": "knives",
+     "why": "fe -> -ves.",
+     "pl": "",
+     "hint": "knifes / knives"
+    },
+    {
+     "type": "choice",
+     "text": "I caught two ___ yesterday.",
+     "options": [
+      "fish",
+      "fishes"
+     ],
+     "answer": 0,
+     "why": "fish nie zmienia formy w liczbie mnogiej.",
+     "pl": ""
+    }
+   ],
+   "order": 3
+  },
+  {
+   "id": "do_does",
+   "name": "DO i DOES - pytania i przeczenia",
+   "emoji": "❓",
+   "level": "A1",
+   "short": "Jak zbudowac pytanie i przeczenie w Present Simple",
+   "intro": "Po polsku pytanie tworzymy sama intonacja: pracujesz tu? Angielski wymaga slowka pomocniczego DO albo DOES. Bez niego zdanie brzmi obco.",
+   "pages": [
+    {
+     "title": "Kiedy DO, a kiedy DOES",
+     "sections": [
+      {
+       "title": "Zasada trzeciej osoby",
+       "emoji": "3️⃣",
+       "color": "indigo",
+       "text": "DOES tylko przy he / she / it. Przy pozostalych - DO.",
+       "examples": [
+        [
+         "Do I...? Do you...? Do we...? Do they...?",
+         "ja, ty, my, oni"
+        ],
+        [
+         "Does he...? Does she...? Does it...?",
+         "on, ona, ono"
+        ]
+       ],
+       "tip": "Podpowiedz: -s z koncowki czasownika przeskakuje na DOES."
+      },
+      {
+       "title": "Uwaga: czasownik traci -s",
+       "emoji": "⚡",
+       "color": "ember",
+       "text": "Najczestszy blad. Po DOES czasownik wraca do formy podstawowej.",
+       "examples": [
+        [
+         "She works here.",
+         "Ona tu pracuje. (twierdzenie: works)"
+        ],
+        [
+         "Does she work here?",
+         "Czy ona tu pracuje? (pytanie: work, bez -s!)"
+        ],
+        [
+         "She does not work here.",
+         "Ona tu nie pracuje. (bez -s!)"
+        ]
+       ],
+       "tip": "Does she works i She does not works to bledy. Jedno -s na zdanie."
+      },
+      {
+       "title": "Przeczenie",
+       "emoji": "🚫",
+       "color": "teal",
+       "text": "do not / does not",
+       "examples": [
+        [
+         "I do not work on Sundays.",
+         "Nie pracuje w niedziele."
+        ],
+        [
+         "He does not like night shifts.",
+         "On nie lubi nocnych zmian."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Krotkie odpowiedzi i wyjatki",
+     "sections": [
+      {
+       "title": "Krotkie odpowiedzi",
+       "emoji": "💬",
+       "color": "violet",
+       "text": "Anglicy rzadko odpowiadaja samym yes - dodaja do/does.",
+       "examples": [
+        [
+         "Do you work here? - Yes, I do.",
+         "Czy tu pracujesz? - Tak."
+        ],
+        [
+         "Does she speak English? - Yes, she does.",
+         "Czy ona mowi po angielsku? - Tak."
+        ]
+       ],
+       "tip": "Samo yes brzmi opryskliwie. Dodaj I do."
+      },
+      {
+       "title": "Wyjatek: czasownik TO BE",
+       "emoji": "🅱️",
+       "color": "gold",
+       "text": "Przy am/is/are NIE uzywamy do/does.",
+       "examples": [
+        [
+         "Are you tired?",
+         "Jestes zmeczony?"
+        ],
+        [
+         "She is not ready.",
+         "Ona nie jest gotowa."
+        ],
+        [
+         "Is he a driver?",
+         "Czy on jest kierowca?"
+        ]
+       ],
+       "tip": "Zapamietaj: mam to be - nie ruszam do/does."
+      },
+      {
+       "title": "Wyjatek: can, could, must",
+       "emoji": "🔑",
+       "color": "indigo",
+       "text": "Te slowa tez radza sobie same.",
+       "examples": [
+        [
+         "Can you help?",
+         "Mozesz pomoc?"
+        ],
+        [
+         "He cannot come.",
+         "On nie moze przyjsc."
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "choice",
+     "text": "___ she work in the warehouse?",
+     "options": [
+      "Do",
+      "Does"
+     ],
+     "answer": 1,
+     "why": "She = trzecia osoba -> DOES.",
+     "pl": "Czy ona pracuje w magazynie?"
+    },
+    {
+     "type": "choice",
+     "text": "___ you speak Polish?",
+     "options": [
+      "Do",
+      "Does"
+     ],
+     "answer": 0,
+     "why": "You -> DO.",
+     "pl": "Czy mowisz po polsku?"
+    },
+    {
+     "type": "choice",
+     "text": "He ___ like working nights.",
+     "options": [
+      "does not",
+      "do not"
+     ],
+     "answer": 0,
+     "why": "He -> DOES NOT.",
+     "pl": "On nie lubi pracowac w nocy."
+    },
+    {
+     "type": "gap",
+     "text": "Does he ___ here?",
+     "answer": "work",
+     "why": "Po DOES czasownik bez -s.",
+     "pl": "Czy on tu pracuje?",
+     "hint": "work / works"
+    },
+    {
+     "type": "gap",
+     "text": "___ they start at six?",
+     "answer": "Do",
+     "why": "They -> DO.",
+     "pl": "Czy oni zaczynaja o szostej?",
+     "hint": "Do / Does"
+    },
+    {
+     "type": "choice",
+     "text": "___ you tired?",
+     "options": [
+      "Do",
+      "Are"
+     ],
+     "answer": 1,
+     "why": "Tired idzie z TO BE - nie uzywamy DO.",
+     "pl": "Jestes zmeczony?"
+    },
+    {
+     "type": "listen",
+     "en": "Does your shift start at six?",
+     "pl": "Czy twoja zmiana zaczyna sie o szostej?",
+     "why": "does ... start, bez -s."
+    },
+    {
+     "type": "listen",
+     "en": "I do not work on Sundays, but she does.",
+     "pl": "Nie pracuje w niedziele, ale ona tak.",
+     "why": "she does to krotka odpowiedz."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "Do you...?",
+       "Czy ty...?"
+      ],
+      [
+       "Does he...?",
+       "Czy on...?"
+      ],
+      [
+       "I do not",
+       "ja nie"
+      ],
+      [
+       "She does not",
+       "ona nie"
+      ]
+     ],
+     "why": "DOES tylko przy on/ona/ono."
+    }
+   ],
+   "test": [
+    {
+     "type": "choice",
+     "text": "___ your brother work here?",
+     "options": [
+      "Do",
+      "Does"
+     ],
+     "answer": 1,
+     "why": "Brother = he -> DOES.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "Does she works here?",
+      "Does she work here?"
+     ],
+     "answer": 1,
+     "why": "Po DOES czasownik bez -s.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "They ___ have any questions.",
+     "answer": "do not",
+     "why": "They -> DO NOT.",
+     "pl": "",
+     "hint": "do not / does not"
+    },
+    {
+     "type": "choice",
+     "text": "___ he a picker?",
+     "options": [
+      "Does",
+      "Is"
+     ],
+     "answer": 1,
+     "why": "a picker to rzeczownik -> TO BE -> IS.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "___ you need help?",
+     "answer": "Do",
+     "why": "You -> DO.",
+     "pl": "",
+     "hint": "Do / Does"
+    },
+    {
+     "type": "choice",
+     "text": "Do you work here? Krotka odpowiedz:",
+     "options": [
+      "Yes, I work.",
+      "Yes, I do."
+     ],
+     "answer": 1,
+     "why": "Krotka odpowiedz powtarza slowo pomocnicze.",
+     "pl": ""
+    }
+   ],
+   "order": 4
+  },
+  {
+   "id": "there_is",
+   "name": "THERE IS / THERE ARE - jest, sa",
+   "emoji": "📍",
+   "level": "A1",
+   "short": "Jak powiedziec, ze cos gdzies jest",
+   "intro": "Po polsku mowimy po prostu na palecie sa trzy pudla. Angielski wymaga specjalnej konstrukcji zaczynajacej sie od THERE - i nie ma ona nic wspolnego ze slowem tam.",
+   "pages": [
+    {
+     "title": "Konstrukcja",
+     "sections": [
+      {
+       "title": "THERE IS - jedna rzecz",
+       "emoji": "1️⃣",
+       "color": "indigo",
+       "text": "Liczba pojedyncza i rzeczowniki niepoliczalne.",
+       "examples": [
+        [
+         "There is a box on the pallet.",
+         "Na palecie jest pudlo."
+        ],
+        [
+         "There is water on the floor.",
+         "Na podlodze jest woda."
+        ],
+        [
+         "There is a problem.",
+         "Jest problem."
+        ]
+       ],
+       "tip": "W mowie prawie zawsze slyszysz skrot theres."
+      },
+      {
+       "title": "THERE ARE - wiele rzeczy",
+       "emoji": "🔢",
+       "color": "teal",
+       "text": "Przy liczbie mnogiej.",
+       "examples": [
+        [
+         "There are three boxes here.",
+         "Sa tu trzy pudla."
+        ],
+        [
+         "There are many people in the canteen.",
+         "W stolowce jest duzo ludzi."
+        ],
+        [
+         "There are no pallets left.",
+         "Nie zostaly zadne palety."
+        ]
+       ]
+      },
+      {
+       "title": "To nie znaczy tam",
+       "emoji": "⚠️",
+       "color": "ember",
+       "text": "THERE w tej konstrukcji jest tylko wypelniaczem - nie tlumaczy sie go osobno. Miejsce podajemy na koncu zdania.",
+       "examples": [
+        [
+         "There is a scanner on the desk.",
+         "Na biurku jest skaner."
+        ],
+        [
+         "There are two trucks at the ramp.",
+         "Przy rampie stoja dwie ciezarowki."
+        ]
+       ],
+       "tip": "Porownaj: The scanner is there = Skaner jest TAM. To inne zdanie."
+      }
+     ]
+    },
+    {
+     "title": "Pytania i przeczenia",
+     "sections": [
+      {
+       "title": "Pytanie: przestawiamy is/are",
+       "emoji": "❓",
+       "color": "violet",
+       "text": "Is there...? / Are there...? - bez do/does.",
+       "examples": [
+        [
+         "Is there a break at ten?",
+         "Czy jest przerwa o dziesiatej?"
+        ],
+        [
+         "Are there any boxes left?",
+         "Czy zostaly jakies pudla?"
+        ],
+        [
+         "How many pallets are there?",
+         "Ile jest palet?"
+        ]
+       ]
+      },
+      {
+       "title": "Przeczenie",
+       "emoji": "🚫",
+       "color": "gold",
+       "text": "Dwa sposoby, oba poprawne.",
+       "examples": [
+        [
+         "There is not any coffee.",
+         "Nie ma kawy."
+        ],
+        [
+         "There is no coffee.",
+         "Nie ma kawy. (mocniej)"
+        ],
+        [
+         "There are not any free pallets.",
+         "Nie ma wolnych palet."
+        ]
+       ],
+       "tip": "Po no nie dajemy any: there is no any coffee to blad."
+      },
+      {
+       "title": "Czas przeszly",
+       "emoji": "🕰",
+       "color": "indigo",
+       "text": "There was / there were - ta sama zasada w przeszlosci.",
+       "examples": [
+        [
+         "There was a problem yesterday.",
+         "Wczoraj byl problem."
+        ],
+        [
+         "There were ten people on the shift.",
+         "Na zmianie bylo dziesiec osob."
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "choice",
+     "text": "___ three boxes on the pallet.",
+     "options": [
+      "There is",
+      "There are"
+     ],
+     "answer": 1,
+     "why": "Trzy pudla = mnoga -> THERE ARE.",
+     "pl": "Na palecie sa trzy pudla."
+    },
+    {
+     "type": "choice",
+     "text": "___ water on the floor - be careful!",
+     "options": [
+      "There is",
+      "There are"
+     ],
+     "answer": 0,
+     "why": "Water niepoliczalne -> THERE IS.",
+     "pl": "Na podlodze jest woda."
+    },
+    {
+     "type": "gap",
+     "text": "___ a break at ten?",
+     "answer": "Is there",
+     "why": "Pytanie o jedna rzecz.",
+     "pl": "Czy jest przerwa o dziesiatej?",
+     "hint": "Is there / Are there"
+    },
+    {
+     "type": "gap",
+     "text": "___ any pallets left?",
+     "answer": "Are there",
+     "why": "Pallets = mnoga.",
+     "pl": "Czy zostaly jakies palety?",
+     "hint": "Is there / Are there"
+    },
+    {
+     "type": "gap",
+     "text": "___ ten people on the night shift yesterday.",
+     "answer": "There were",
+     "why": "Przeszlosc + mnoga.",
+     "pl": "Wczoraj bylo dziesiec osob.",
+     "hint": "There was / There were"
+    },
+    {
+     "type": "listen",
+     "en": "There is a problem with the scanner.",
+     "pl": "Jest problem ze skanerem.",
+     "why": "W mowie slyszysz skrot theres."
+    },
+    {
+     "type": "listen",
+     "en": "Are there any questions before we start?",
+     "pl": "Czy sa jakies pytania, zanim zaczniemy?",
+     "why": "Typowe zdanie z odprawy."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "There is",
+       "jest (jedna rzecz)"
+      ],
+      [
+       "There are",
+       "sa (wiele)"
+      ],
+      [
+       "There was",
+       "byl / byla"
+      ],
+      [
+       "There were",
+       "byli / byly"
+      ]
+     ],
+     "why": "Cztery formy, ktore wystarcza do wszystkiego."
+    }
+   ],
+   "test": [
+    {
+     "type": "choice",
+     "text": "___ a lot of boxes in aisle three.",
+     "options": [
+      "There is",
+      "There are"
+     ],
+     "answer": 1,
+     "why": "Boxes = mnoga.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "___ any milk in the fridge?",
+     "options": [
+      "Is there",
+      "Are there"
+     ],
+     "answer": 0,
+     "why": "Milk niepoliczalne.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "___ a meeting yesterday morning.",
+     "answer": "There was",
+     "why": "Przeszlosc, pojedyncza.",
+     "pl": "",
+     "hint": "There was / There were"
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "There is no any coffee.",
+      "There is no coffee."
+     ],
+     "answer": 1,
+     "why": "Po no nie stawiamy any.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "How many people ___ on your shift?",
+     "answer": "are there",
+     "why": "Pytanie o liczbe mnoga.",
+     "pl": "",
+     "hint": "is there / are there"
+    }
+   ],
+   "order": 5
+  },
+  {
+   "id": "word_order",
+   "name": "Szyk zdania - kolejnosc slow",
+   "emoji": "📐",
+   "level": "A1",
+   "short": "Po angielsku kolejnosc jest sztywna",
+   "intro": "Po polsku mozna powiedziec Marek pracuje w magazynie, W magazynie pracuje Marek albo Pracuje Marek w magazynie - wszystko zrozumiale. Po angielsku kolejnosc jest SZTYWNA i jej zmiana zmienia znaczenie albo psuje zdanie.",
+   "pages": [
+    {
+     "title": "Zelazna zasada",
+     "sections": [
+      {
+       "title": "KTO - CO ROBI - CO - GDZIE - KIEDY",
+       "emoji": "🔢",
+       "color": "indigo",
+       "text": "Ta kolejnosc obowiazuje prawie zawsze. Zapamietaj ja jak wzor.",
+       "examples": [
+        [
+         "I check boxes in aisle seven every morning.",
+         "Ja - sprawdzam - pudla - w alejce siodmej - kazdego ranka."
+        ],
+        [
+         "She drives a forklift at work.",
+         "Ona - prowadzi - wozek - w pracy."
+        ],
+        [
+         "We start the shift at six.",
+         "My - zaczynamy - zmiane - o szostej."
+        ]
+       ],
+       "tip": "Podmiot zawsze przed czasownikiem. Nie da sie tego przestawic."
+      },
+      {
+       "title": "Miejsce przed czasem",
+       "emoji": "📍",
+       "color": "teal",
+       "text": "Gdy masz i miejsce, i czas - miejsce idzie pierwsze.",
+       "examples": [
+        [
+         "I work in Rotterdam every day.",
+         "Pracuje w Rotterdamie codziennie."
+        ],
+        [
+         "She was at the gate at seven.",
+         "Byla przy bramie o siodmej."
+        ]
+       ],
+       "tip": "Czas mozna tez wyjatkowo postawic na poczatku: Every day I work in Rotterdam."
+      },
+      {
+       "title": "Podmiotu nie wolno pominac",
+       "emoji": "⚠️",
+       "color": "ember",
+       "text": "Po polsku mowimy Pracuje - wiadomo, ze ja. Po angielsku ZAWSZE trzeba powiedziec kto.",
+       "examples": [
+        [
+         "I work here.",
+         "Pracuje tutaj. (nie: Work here)"
+        ],
+        [
+         "It is cold today.",
+         "Dzis jest zimno. (nie: Is cold today)"
+        ],
+        [
+         "They are late.",
+         "Spoznili sie. (nie: Are late)"
+        ]
+       ],
+       "tip": "Nawet gdy nie ma o kim mowic, wstawiamy IT: It is raining."
+      }
+     ]
+    },
+    {
+     "title": "Przyslowki czestotliwosci",
+     "sections": [
+      {
+       "title": "Gdzie wstawic always, never, usually",
+       "emoji": "🎯",
+       "color": "violet",
+       "text": "Te slowa maja swoje stale miejsce: PRZED zwyklym czasownikiem, ale PO czasowniku TO BE.",
+       "examples": [
+        [
+         "I always check the list.",
+         "Zawsze sprawdzam liste. (przed czasownikiem)"
+        ],
+        [
+         "She never works nights.",
+         "Ona nigdy nie pracuje w nocy."
+        ],
+        [
+         "I am always tired.",
+         "Zawsze jestem zmeczony. (PO am!)"
+        ],
+        [
+         "He is never late.",
+         "On nigdy sie nie spoznia."
+        ]
+       ],
+       "tip": "Regula: przed zwyklym czasownikiem, po TO BE."
+      },
+      {
+       "title": "Pytania - inna kolejnosc",
+       "emoji": "❓",
+       "color": "gold",
+       "text": "W pytaniu slowo pomocnicze idzie przed podmiot.",
+       "examples": [
+        [
+         "Do you work here?",
+         "Czy tu pracujesz?"
+        ],
+        [
+         "Where do you work?",
+         "Gdzie pracujesz?"
+        ],
+        [
+         "Are you tired?",
+         "Jestes zmeczony?"
+        ],
+        [
+         "When does the shift start?",
+         "Kiedy zaczyna sie zmiana?"
+        ]
+       ],
+       "tip": "Slowo pytajace (where, when, what) idzie na sam poczatek."
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "choice",
+     "text": "Ktore zdanie jest poprawne?",
+     "options": [
+      "Every day I work.",
+      "Work I every day."
+     ],
+     "answer": 0,
+     "why": "Podmiot musi stac przed czasownikiem. Czas moze byc na poczatku.",
+     "pl": "Codziennie pracuje."
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "She always is late.",
+      "She is always late."
+     ],
+     "answer": 1,
+     "why": "Przy TO BE przyslowek idzie PO czasowniku.",
+     "pl": "Ona zawsze sie spoznia."
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "I check always the list.",
+      "I always check the list."
+     ],
+     "answer": 1,
+     "why": "Przy zwyklym czasowniku przyslowek idzie PRZED nim.",
+     "pl": "Zawsze sprawdzam liste."
+    },
+    {
+     "type": "gap",
+     "text": "___ work in a warehouse.",
+     "answer": "I",
+     "why": "Podmiotu nie wolno pominac.",
+     "pl": "Pracuje w magazynie.",
+     "hint": "I / -"
+    },
+    {
+     "type": "gap",
+     "text": "___ is cold in the warehouse today.",
+     "answer": "It",
+     "why": "Gdy nie ma o kim mowic, wstawiamy IT.",
+     "pl": "Dzis jest zimno w magazynie.",
+     "hint": "It / -"
+    },
+    {
+     "type": "choice",
+     "text": "Poprawna kolejnosc:",
+     "options": [
+      "I work every day here.",
+      "I work here every day."
+     ],
+     "answer": 1,
+     "why": "Miejsce (here) idzie przed czasem (every day).",
+     "pl": "Pracuje tu codziennie."
+    },
+    {
+     "type": "listen",
+     "en": "I always start my shift at six in the morning.",
+     "pl": "Zawsze zaczynam zmiane o szostej rano.",
+     "why": "always przed czasownikiem, czas na koncu."
+    },
+    {
+     "type": "listen",
+     "en": "Where do you work?",
+     "pl": "Gdzie pracujesz?",
+     "why": "Slowo pytajace na poczatku, potem do."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "I always work",
+       "zawsze pracuje"
+      ],
+      [
+       "I am always tired",
+       "zawsze jestem zmeczony"
+      ],
+      [
+       "Do you work?",
+       "czy pracujesz?"
+      ],
+      [
+       "Where do you work?",
+       "gdzie pracujesz?"
+      ]
+     ],
+     "why": "Zwroc uwage, gdzie stoi always w kazdym przykladzie."
+    }
+   ],
+   "test": [
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "He never is angry.",
+      "He is never angry."
+     ],
+     "answer": 1,
+     "why": "Po TO BE.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "They usually finish at two.",
+      "They finish usually at two."
+     ],
+     "answer": 0,
+     "why": "Przyslowek przed zwyklym czasownikiem.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "___ is raining.",
+     "answer": "It",
+     "why": "Gdy mowa o pogodzie, podmiotem jest IT.",
+     "pl": "",
+     "hint": "It / -"
+    },
+    {
+     "type": "choice",
+     "text": "Poprawna kolejnosc:",
+     "options": [
+      "She works in the office every day.",
+      "She works every day in the office."
+     ],
+     "answer": 0,
+     "why": "Miejsce przed czasem.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "When the shift starts?",
+      "When does the shift start?"
+     ],
+     "answer": 1,
+     "why": "W pytaniu potrzebne slowo pomocnicze DOES.",
+     "pl": ""
+    }
+   ],
+   "order": 6
+  },
+  {
+   "id": "prepositions",
+   "name": "IN, ON, AT - miejsce i czas",
+   "emoji": "🧭",
+   "level": "A1",
+   "short": "Trzy przyimki, ktore zalatwiaja wiekszosc sytuacji",
+   "intro": "Po polsku mamy w, na, o, przy - i nie przekladaja sie one jeden do jednego. Angielski uzywa glownie trzech przyimkow i ma dla nich dosc jasne zasady.",
+   "pages": [
+    {
+     "title": "MIEJSCE",
+     "sections": [
+      {
+       "title": "IN - wewnatrz czegos",
+       "emoji": "📦",
+       "color": "indigo",
+       "text": "Zamkniete przestrzenie, wieksze obszary.",
+       "examples": [
+        [
+         "in the warehouse",
+         "w magazynie"
+        ],
+        [
+         "in a box",
+         "w pudle"
+        ],
+        [
+         "in Poland",
+         "w Polsce"
+        ],
+        [
+         "in the car",
+         "w samochodzie"
+        ]
+       ]
+      },
+      {
+       "title": "ON - na powierzchni",
+       "emoji": "📋",
+       "color": "teal",
+       "text": "Cos lezy na czyms albo jest przyczepione.",
+       "examples": [
+        [
+         "on the pallet",
+         "na palecie"
+        ],
+        [
+         "on the table",
+         "na stole"
+        ],
+        [
+         "on the wall",
+         "na scianie"
+        ],
+        [
+         "on the bus",
+         "w autobusie (uwaga - po angielsku ON)"
+        ]
+       ],
+       "tip": "Srodki transportu publicznego: on the bus, on the train, on a plane. Ale: IN the car."
+      },
+      {
+       "title": "AT - w konkretnym punkcie",
+       "emoji": "📍",
+       "color": "violet",
+       "text": "Adres, miejsce spotkania, stanowisko.",
+       "examples": [
+        [
+         "at the gate",
+         "przy bramie"
+        ],
+        [
+         "at work",
+         "w pracy"
+        ],
+        [
+         "at home",
+         "w domu"
+        ],
+        [
+         "at the bus stop",
+         "na przystanku"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "CZAS",
+     "sections": [
+      {
+       "title": "AT - godzina",
+       "emoji": "🕐",
+       "color": "ember",
+       "text": "Konkretna pora.",
+       "examples": [
+        [
+         "at six o clock",
+         "o szostej"
+        ],
+        [
+         "at night",
+         "w nocy"
+        ],
+        [
+         "at the weekend",
+         "w weekend"
+        ]
+       ]
+      },
+      {
+       "title": "ON - dzien i data",
+       "emoji": "📅",
+       "color": "gold",
+       "text": "Konkretny dzien.",
+       "examples": [
+        [
+         "on Monday",
+         "w poniedzialek"
+        ],
+        [
+         "on 5 May",
+         "piatego maja"
+        ],
+        [
+         "on my birthday",
+         "w moje urodziny"
+        ]
+       ]
+      },
+      {
+       "title": "IN - dluzszy okres",
+       "emoji": "🗓",
+       "color": "indigo",
+       "text": "Miesiac, rok, pora dnia, pora roku.",
+       "examples": [
+        [
+         "in January",
+         "w styczniu"
+        ],
+        [
+         "in 2026",
+         "w 2026"
+        ],
+        [
+         "in the morning",
+         "rano"
+        ],
+        [
+         "in summer",
+         "latem"
+        ]
+       ],
+       "tip": "Zapamietaj drabinke: AT godzina -> ON dzien -> IN miesiac/rok. Od najmniejszego do najwiekszego."
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "choice",
+     "text": "The boxes are ___ the pallet.",
+     "options": [
+      "in",
+      "on"
+     ],
+     "answer": 1,
+     "why": "Lezace na powierzchni -> ON.",
+     "pl": "Pudla sa na palecie."
+    },
+    {
+     "type": "choice",
+     "text": "I start work ___ six o clock.",
+     "options": [
+      "at",
+      "in"
+     ],
+     "answer": 0,
+     "why": "Konkretna godzina -> AT.",
+     "pl": "Zaczynam prace o szostej."
+    },
+    {
+     "type": "choice",
+     "text": "We have a meeting ___ Monday.",
+     "options": [
+      "on",
+      "in"
+     ],
+     "answer": 0,
+     "why": "Konkretny dzien -> ON.",
+     "pl": "Mamy spotkanie w poniedzialek."
+    },
+    {
+     "type": "gap",
+     "text": "She works ___ a big warehouse.",
+     "answer": "in",
+     "why": "Wewnatrz budynku -> IN.",
+     "pl": "Ona pracuje w duzym magazynie.",
+     "hint": "in / on / at"
+    },
+    {
+     "type": "gap",
+     "text": "Wait for me ___ the gate.",
+     "answer": "at",
+     "why": "Konkretny punkt -> AT.",
+     "pl": "Czekaj na mnie przy bramie.",
+     "hint": "in / on / at"
+    },
+    {
+     "type": "gap",
+     "text": "The truck arrives ___ the morning.",
+     "answer": "in",
+     "why": "Pora dnia -> IN.",
+     "pl": "Ciezarowka przyjezdza rano.",
+     "hint": "in / on / at"
+    },
+    {
+     "type": "gap",
+     "text": "My holiday starts ___ July.",
+     "answer": "in",
+     "why": "Miesiac -> IN.",
+     "pl": "Moj urlop zaczyna sie w lipcu.",
+     "hint": "in / on / at"
+    },
+    {
+     "type": "listen",
+     "en": "I will meet you at the gate at seven.",
+     "pl": "Spotkamy sie przy bramie o siodmej.",
+     "why": "AT dwa razy: miejsce i godzina."
+    },
+    {
+     "type": "listen",
+     "en": "The meeting is on Monday in the morning.",
+     "pl": "Spotkanie jest w poniedzialek rano.",
+     "why": "ON dzien, IN pora dnia."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "at six",
+       "o szostej"
+      ],
+      [
+       "on Monday",
+       "w poniedzialek"
+      ],
+      [
+       "in July",
+       "w lipcu"
+      ],
+      [
+       "at the gate",
+       "przy bramie"
+      ]
+     ],
+     "why": "Drabinka: AT godzina, ON dzien, IN miesiac."
+    }
+   ],
+   "test": [
+    {
+     "type": "choice",
+     "text": "The scanner is ___ the desk.",
+     "options": [
+      "in",
+      "on"
+     ],
+     "answer": 1,
+     "why": "Na powierzchni -> ON.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "I finish ___ two o clock.",
+     "options": [
+      "at",
+      "on"
+     ],
+     "answer": 0,
+     "why": "Godzina -> AT.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "We start the new system ___ September.",
+     "answer": "in",
+     "why": "Miesiac -> IN.",
+     "pl": "",
+     "hint": "in / on / at"
+    },
+    {
+     "type": "gap",
+     "text": "He is not here, he is ___ work.",
+     "answer": "at",
+     "why": "at work to utarty zwrot.",
+     "pl": "",
+     "hint": "in / on / at"
+    },
+    {
+     "type": "choice",
+     "text": "There is a delivery ___ Friday.",
+     "options": [
+      "on",
+      "in"
+     ],
+     "answer": 0,
+     "why": "Dzien tygodnia -> ON.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "She lives ___ Rotterdam.",
+     "options": [
+      "in",
+      "at"
+     ],
+     "answer": 0,
+     "why": "Miasto -> IN.",
+     "pl": ""
+    }
+   ],
+   "order": 7
+  },
+  {
+   "id": "can_could",
+   "name": "CAN i COULD - umiem, moge, czy moglbys",
+   "emoji": "🔑",
+   "level": "A2",
+   "short": "Umiejetnosc, pozwolenie i uprzejma prosba",
+   "intro": "CAN i COULD w ogole sie nie odmieniaja, co bardzo ulatwia sprawe. Roznica dotyczy CZASU i GRZECZNOSCI. To slowa, ktorych w pracy uzyjesz dziesiec razy dziennie.",
+   "pages": [
+    {
+     "title": "Jak to dziala",
+     "sections": [
+      {
+       "title": "Nie odmieniaja sie - nigdy",
+       "emoji": "🧊",
+       "color": "teal",
+       "text": "Dla kazdej osoby forma jest identyczna. Po CAN/COULD zawsze idzie czasownik w formie podstawowej, BEZ to.",
+       "examples": [
+        [
+         "I can help.",
+         "Moge pomoc."
+        ],
+        [
+         "She can help.",
+         "Ona moze pomoc. (bez -s!)"
+        ],
+        [
+         "They can help.",
+         "Oni moga pomoc."
+        ]
+       ],
+       "tip": "Typowe bledy: she cans, I can to help, he can helps. Zawsze: can + help."
+      },
+      {
+       "title": "CAN - terazniejszosc",
+       "emoji": "✅",
+       "color": "indigo",
+       "text": "Trzy zastosowania: umiem, moge (mam pozwolenie), da sie.",
+       "examples": [
+        [
+         "I can drive a forklift.",
+         "Umiem prowadzic wozek widlowy."
+        ],
+        [
+         "You can take a break now.",
+         "Mozesz teraz zrobic przerwe."
+        ],
+        [
+         "We can finish this today.",
+         "Damy rade to dzis skonczyc."
+        ]
+       ]
+      },
+      {
+       "title": "COULD - przeszlosc albo grzecznosc",
+       "emoji": "🕰",
+       "color": "violet",
+       "text": "COULD ma dwa rozne zastosowania i to myli najbardziej.",
+       "examples": [
+        [
+         "I could swim when I was five.",
+         "Umialem plywac, gdy mialem piec lat. (przeszlosc)"
+        ],
+        [
+         "Could you help me?",
+         "Moglbys mi pomoc? (uprzejma prosba)"
+        ],
+        [
+         "Could I leave earlier?",
+         "Czy moglbym wyjsc wczesniej?"
+        ]
+       ],
+       "tip": "W pracy najczesciej uzyjesz COULD jako grzeczniejszej wersji CAN."
+      },
+      {
+       "title": "Can you czy Could you?",
+       "emoji": "🙏",
+       "color": "ember",
+       "text": "Oba poprawne, ale COULD brzmi uprzejmiej.",
+       "examples": [
+        [
+         "Can you pass me the scanner?",
+         "Podasz mi skaner? (do kolegi)"
+        ],
+        [
+         "Could you pass me the scanner?",
+         "Czy moglbys podac mi skaner? (uprzejmiej)"
+        ],
+        [
+         "Could you repeat that, please?",
+         "Czy moglbys powtorzyc?"
+        ]
+       ],
+       "tip": "Could you repeat that, please - zapamietaj to zdanie, uratuje Cie wiele razy."
+      }
+     ]
+    },
+    {
+     "title": "Przeczenia i pytania",
+     "sections": [
+      {
+       "title": "Przeczenie: cannot / could not",
+       "emoji": "🚫",
+       "color": "gold",
+       "text": "Nie uzywamy do ani does - samo can/could dostaje NOT.",
+       "examples": [
+        [
+         "I cannot come tomorrow.",
+         "Nie moge przyjsc jutro."
+        ],
+        [
+         "She cannot drive.",
+         "Ona nie umie prowadzic."
+        ],
+        [
+         "I could not find the box.",
+         "Nie moglem znalezc pudla."
+        ]
+       ],
+       "tip": "I do not can to powazny blad. Zawsze: cannot."
+      },
+      {
+       "title": "Pytanie: przestawiamy szyk",
+       "emoji": "❓",
+       "color": "indigo",
+       "text": "Can/Could idzie na poczatek - nie dodajemy do/does.",
+       "examples": [
+        [
+         "Can you help me?",
+         "Mozesz mi pomoc?"
+        ],
+        [
+         "Could I ask something?",
+         "Czy moge o cos zapytac?"
+        ],
+        [
+         "Can she work nights?",
+         "Czy ona moze pracowac w nocy?"
+        ]
+       ],
+       "tip": "Do you can help -> Can you help?"
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "choice",
+     "text": "___ you repeat that, please? (uprzejmie)",
+     "options": [
+      "Can",
+      "Could"
+     ],
+     "answer": 1,
+     "why": "COULD brzmi uprzejmiej.",
+     "pl": "Czy moglbys powtorzyc?"
+    },
+    {
+     "type": "choice",
+     "text": "She ___ drive a forklift.",
+     "options": [
+      "can",
+      "cans"
+     ],
+     "answer": 0,
+     "why": "CAN nigdy sie nie odmienia.",
+     "pl": "Ona umie prowadzic wozek."
+    },
+    {
+     "type": "choice",
+     "text": "I ___ find my badge this morning.",
+     "options": [
+      "could not",
+      "do not could"
+     ],
+     "answer": 0,
+     "why": "Przeczenie w przeszlosci to COULD NOT.",
+     "pl": "Nie moglem znalezc plakietki."
+    },
+    {
+     "type": "gap",
+     "text": "___ I leave ten minutes earlier today?",
+     "answer": "Could",
+     "why": "Uprzejma prosba o zgode -> COULD.",
+     "pl": "Czy moglbym wyjsc wczesniej?",
+     "hint": "Can / Could"
+    },
+    {
+     "type": "gap",
+     "text": "He ___ speak three languages.",
+     "answer": "can",
+     "why": "Umiejetnosc, terazniejszosc -> CAN, bez -s.",
+     "pl": "On mowi w trzech jezykach.",
+     "hint": "can / could"
+    },
+    {
+     "type": "gap",
+     "text": "We ___ finish it yesterday - the machine broke down.",
+     "answer": "could not",
+     "why": "Przeszlosc, przeczenie.",
+     "pl": "Nie moglismy tego wczoraj skonczyc.",
+     "hint": "cannot / could not"
+    },
+    {
+     "type": "listen",
+     "en": "Could you help me with this pallet, please?",
+     "pl": "Czy moglbys pomoc mi z ta paleta?",
+     "why": "Wzorcowa uprzejma prosba w pracy."
+    },
+    {
+     "type": "listen",
+     "en": "I can start at six, but I cannot work on Sunday.",
+     "pl": "Moge zaczac o szostej, ale nie moge pracowac w niedziele.",
+     "why": "CAN i CANNOT w jednym zdaniu."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "Can you...?",
+       "Mozesz...? (swobodnie)"
+      ],
+      [
+       "Could you...?",
+       "Czy moglbys...? (uprzejmie)"
+      ],
+      [
+       "I cannot",
+       "nie moge / nie umiem"
+      ],
+      [
+       "I could not",
+       "nie moglem"
+      ]
+     ],
+     "why": "COULD to grzeczniejsza wersja CAN."
+    }
+   ],
+   "test": [
+    {
+     "type": "choice",
+     "text": "___ you tell me where aisle seven is?",
+     "options": [
+      "Do",
+      "Could"
+     ],
+     "answer": 1,
+     "why": "Z CAN/COULD nie uzywamy DO.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "My colleague ___ work night shifts.",
+     "options": [
+      "can",
+      "cans"
+     ],
+     "answer": 0,
+     "why": "CAN sie nie odmienia.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "I ___ come to work yesterday, I was ill.",
+     "answer": "could not",
+     "why": "Przeszlosc + przeczenie.",
+     "pl": "",
+     "hint": "cannot / could not"
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "I do not can help.",
+      "I cannot help."
+     ],
+     "answer": 1,
+     "why": "Przeczenie przez CANNOT.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "___ I ask you something?",
+     "answer": "Could",
+     "why": "Uprzejma prosba -> COULD.",
+     "pl": "",
+     "hint": "Can / Could"
+    },
+    {
+     "type": "choice",
+     "text": "She ___ swim when she was six.",
+     "options": [
+      "can",
+      "could"
+     ],
+     "answer": 1,
+     "why": "Umiejetnosc w przeszlosci -> COULD.",
+     "pl": ""
+    }
+   ],
+   "order": 8
+  },
+  {
+   "id": "count_uncount",
+   "name": "Policzalne i niepoliczalne",
+   "emoji": "🔢",
+   "level": "A2",
+   "short": "many/much, some/any, a few/a little",
+   "intro": "Angielski dzieli rzeczowniki na te, ktore da sie policzyc (jedno pudlo, dwa pudla) i te, ktorych nie liczymy (woda, czas, praca). Od tego zalezy, jakich slowek uzyjesz.",
+   "pages": [
+    {
+     "title": "Ktory rzeczownik jest ktory",
+     "sections": [
+      {
+       "title": "Policzalne - da sie powiedziec jeden, dwa, trzy",
+       "emoji": "📦",
+       "color": "indigo",
+       "text": "Maja liczbe mnoga i moga stac z a/an.",
+       "examples": [
+        [
+         "a box - two boxes",
+         "pudlo - dwa pudla"
+        ],
+        [
+         "a pallet - five pallets",
+         "paleta - piec palet"
+        ],
+        [
+         "an hour - three hours",
+         "godzina - trzy godziny"
+        ]
+       ]
+      },
+      {
+       "title": "Niepoliczalne - nie maja liczby mnogiej",
+       "emoji": "💧",
+       "color": "teal",
+       "text": "Traktujemy je jak mase albo pojecie. Nie stawiamy przed nimi a/an i nie dodajemy -s.",
+       "examples": [
+        [
+         "water",
+         "woda"
+        ],
+        [
+         "time",
+         "czas"
+        ],
+        [
+         "work",
+         "praca"
+        ],
+        [
+         "information",
+         "informacja"
+        ],
+        [
+         "advice",
+         "rada"
+        ],
+        [
+         "money",
+         "pieniadze"
+        ]
+       ],
+       "tip": "UWAGA: money, information, advice, news, furniture sa NIEPOLICZALNE. informations, advices to bledy."
+      },
+      {
+       "title": "Jak policzyc niepoliczalne",
+       "emoji": "🥤",
+       "color": "violet",
+       "text": "Dodajemy pojemnik albo jednostke.",
+       "examples": [
+        [
+         "a glass of water",
+         "szklanka wody"
+        ],
+        [
+         "two pieces of advice",
+         "dwie rady"
+        ],
+        [
+         "a lot of information",
+         "duzo informacji"
+        ],
+        [
+         "three bottles of water",
+         "trzy butelki wody"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Ktore slowko przed czym",
+     "sections": [
+      {
+       "title": "MANY czy MUCH",
+       "emoji": "⚖️",
+       "color": "ember",
+       "text": "MANY idzie z policzalnymi, MUCH z niepoliczalnymi. W twierdzeniach czesciej uzywa sie a lot of.",
+       "examples": [
+        [
+         "How many boxes?",
+         "Ile pudel? (policzalne)"
+        ],
+        [
+         "How much water?",
+         "Ile wody? (niepoliczalne)"
+        ],
+        [
+         "a lot of boxes / a lot of water",
+         "duzo pudel / duzo wody"
+        ]
+       ],
+       "tip": "W pytaniach i przeczeniach: many/much. W twierdzeniach: a lot of."
+      },
+      {
+       "title": "A FEW czy A LITTLE",
+       "emoji": "🤏",
+       "color": "gold",
+       "text": "Oba znacza troche, ale a few z policzalnymi, a little z niepoliczalnymi.",
+       "examples": [
+        [
+         "a few boxes",
+         "kilka pudel"
+        ],
+        [
+         "a little water",
+         "troche wody"
+        ],
+        [
+         "a few minutes",
+         "kilka minut"
+        ],
+        [
+         "a little time",
+         "troche czasu"
+        ]
+       ]
+      },
+      {
+       "title": "SOME czy ANY",
+       "emoji": "🔀",
+       "color": "indigo",
+       "text": "SOME w twierdzeniach, ANY w pytaniach i przeczeniach. Wyjatek: SOME w pytaniu, gdy cos proponujesz.",
+       "examples": [
+        [
+         "I need some help.",
+         "Potrzebuje pomocy."
+        ],
+        [
+         "Do you have any questions?",
+         "Masz jakies pytania?"
+        ],
+        [
+         "We do not have any pallets.",
+         "Nie mamy zadnych palet."
+        ],
+        [
+         "Would you like some coffee?",
+         "Chcesz kawy? (propozycja -> some)"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "choice",
+     "text": "How ___ pallets are on the truck?",
+     "options": [
+      "many",
+      "much"
+     ],
+     "answer": 0,
+     "why": "Pallets sa policzalne -> MANY.",
+     "pl": "Ile palet jest na ciezarowce?"
+    },
+    {
+     "type": "choice",
+     "text": "How ___ time do we have?",
+     "options": [
+      "many",
+      "much"
+     ],
+     "answer": 1,
+     "why": "Time jest niepoliczalne -> MUCH.",
+     "pl": "Ile mamy czasu?"
+    },
+    {
+     "type": "choice",
+     "text": "I need ___ advice.",
+     "options": [
+      "an",
+      "some"
+     ],
+     "answer": 1,
+     "why": "Advice niepoliczalne - nie moze byc an advice.",
+     "pl": "Potrzebuje rady."
+    },
+    {
+     "type": "gap",
+     "text": "We do not have ___ boxes left.",
+     "answer": "any",
+     "why": "Zdanie przeczace -> ANY.",
+     "pl": "Nie zostaly nam zadne pudla.",
+     "hint": "some / any"
+    },
+    {
+     "type": "gap",
+     "text": "Can I have ___ water, please?",
+     "answer": "some",
+     "why": "Prosba - mimo pytania uzywamy SOME.",
+     "pl": "Moge prosic wody?",
+     "hint": "some / any"
+    },
+    {
+     "type": "gap",
+     "text": "There are ___ minutes before the break.",
+     "answer": "a few",
+     "why": "Minutes sa policzalne -> A FEW.",
+     "pl": "Zostalo kilka minut do przerwy.",
+     "hint": "a few / a little"
+    },
+    {
+     "type": "gap",
+     "text": "I have ___ money with me.",
+     "answer": "a little",
+     "why": "Money niepoliczalne -> A LITTLE.",
+     "pl": "Mam przy sobie troche pieniedzy.",
+     "hint": "a few / a little"
+    },
+    {
+     "type": "listen",
+     "en": "We need a lot of boxes and a little tape.",
+     "pl": "Potrzebujemy duzo pudel i troche tasmy.",
+     "why": "a lot of boxes (policzalne) i a little tape (niepoliczalne)."
+    },
+    {
+     "type": "listen",
+     "en": "How much time do we have before the truck arrives?",
+     "pl": "Ile mamy czasu, zanim przyjedzie ciezarowka?",
+     "why": "How much time - time jest niepoliczalne."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "many boxes",
+       "duzo pudel"
+      ],
+      [
+       "much water",
+       "duzo wody"
+      ],
+      [
+       "a few people",
+       "kilka osob"
+      ],
+      [
+       "a little sugar",
+       "troche cukru"
+      ]
+     ],
+     "why": "Wzor: policzalne -> many/a few, niepoliczalne -> much/a little."
+    }
+   ],
+   "test": [
+    {
+     "type": "choice",
+     "text": "There is not ___ milk in the fridge.",
+     "options": [
+      "many",
+      "much"
+     ],
+     "answer": 1,
+     "why": "Milk niepoliczalne -> MUCH.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "She gave me ___ good advice.",
+     "options": [
+      "a",
+      "some"
+     ],
+     "answer": 1,
+     "why": "Advice niepoliczalne.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "How ___ colleagues work on your shift?",
+     "answer": "many",
+     "why": "Colleagues policzalne -> MANY.",
+     "pl": "",
+     "hint": "many / much"
+    },
+    {
+     "type": "gap",
+     "text": "I need ___ more minutes.",
+     "answer": "a few",
+     "why": "Minutes policzalne -> A FEW.",
+     "pl": "",
+     "hint": "a few / a little"
+    },
+    {
+     "type": "choice",
+     "text": "Do you have ___ questions?",
+     "options": [
+      "some",
+      "any"
+     ],
+     "answer": 1,
+     "why": "Pytanie -> ANY.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest BLEDNE?",
+     "options": [
+      "two informations",
+      "two pieces of information"
+     ],
+     "answer": 0,
+     "why": "Information nie ma liczby mnogiej.",
+     "pl": ""
+    }
+   ],
+   "order": 9
+  },
+  {
+   "id": "present_simple_cont",
+   "name": "Present Simple czy Continuous",
+   "emoji": "🔄",
+   "level": "A2",
+   "short": "Zwykle robie, a teraz wlasnie robie",
+   "intro": "Po polsku mowimy pracuje i w obu przypadkach brzmi to tak samo. Angielski rozroznia to, co robisz ZAWSZE, od tego, co robisz WLASNIE TERAZ - i uzywa do tego dwoch roznych czasow.",
+   "pages": [
+    {
+     "title": "Dwa czasy, dwa znaczenia",
+     "sections": [
+      {
+       "title": "Present Simple - stale, regularnie",
+       "emoji": "🔁",
+       "color": "indigo",
+       "text": "Rutyna, fakty, powtarzalne czynnosci. Forma: czasownik (przy he/she/it dodajemy -s).",
+       "examples": [
+        [
+         "I work in a warehouse.",
+         "Pracuje w magazynie. (ogolnie, na stale)"
+        ],
+        [
+         "She starts at six.",
+         "Ona zaczyna o szostej. (codziennie)"
+        ],
+        [
+         "We never work on Sundays.",
+         "Nigdy nie pracujemy w niedziele."
+        ]
+       ],
+       "tip": "Slowa-sygnaly: always, usually, often, never, every day."
+      },
+      {
+       "title": "Present Continuous - teraz, w tej chwili",
+       "emoji": "⏱",
+       "color": "teal",
+       "text": "Czynnosc trwajaca w momencie mowienia albo tymczasowa. Forma: am/is/are + czasownik z -ing.",
+       "examples": [
+        [
+         "I am working right now.",
+         "Wlasnie teraz pracuje."
+        ],
+        [
+         "She is loading the truck.",
+         "Ona wlasnie laduje ciezarowke."
+        ],
+        [
+         "They are having a break.",
+         "Oni wlasnie maja przerwe."
+        ]
+       ],
+       "tip": "Slowa-sygnaly: now, right now, at the moment, today."
+      },
+      {
+       "title": "Porownaj te same zdania",
+       "emoji": "⚖️",
+       "color": "ember",
+       "text": "Roznica jest wyrazna, gdy zestawimy je obok siebie.",
+       "examples": [
+        [
+         "I work at night.",
+         "Pracuje w nocy. (taki mam grafik)"
+        ],
+        [
+         "I am working tonight.",
+         "Pracuje dzis w nocy. (wyjatkowo, dzisiaj)"
+        ],
+        [
+         "He drives a forklift.",
+         "On jezdzi wozkiem. (to jego praca)"
+        ],
+        [
+         "He is driving a forklift.",
+         "On wlasnie jedzie wozkiem. (w tej chwili)"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Pisownia -ing i wyjatki",
+     "sections": [
+      {
+       "title": "Jak dodac -ing",
+       "emoji": "✍️",
+       "color": "violet",
+       "text": "Trzy proste zasady.",
+       "examples": [
+        [
+         "work - working",
+         "zwykle po prostu dodajemy -ing"
+        ],
+        [
+         "make - making",
+         "nieme e na koncu znika"
+        ],
+        [
+         "stop - stopping",
+         "krotkie slowo - podwajamy ostatnia spolgloske"
+        ],
+        [
+         "run - running",
+         "to samo"
+        ]
+       ]
+      },
+      {
+       "title": "Czasowniki, ktorych NIE uzywamy w Continuous",
+       "emoji": "🚫",
+       "color": "gold",
+       "text": "Czasowniki opisujace stan, nie czynnosc. Nawet gdy mowa o teraz, uzywamy Simple.",
+       "examples": [
+        [
+         "I know the answer.",
+         "Znam odpowiedz. (nie: I am knowing)"
+        ],
+        [
+         "I like this job.",
+         "Lubie te prace. (nie: I am liking)"
+        ],
+        [
+         "She wants a break.",
+         "Ona chce przerwy. (nie: is wanting)"
+        ],
+        [
+         "I understand.",
+         "Rozumiem. (nie: I am understanding)"
+        ]
+       ],
+       "tip": "Lista do zapamietania: know, like, want, need, understand, remember, believe."
+      },
+      {
+       "title": "Wyjatek: HAVE",
+       "emoji": "🤲",
+       "color": "indigo",
+       "text": "Have w znaczeniu miec - nie w Continuous. Ale w zwrotach - tak.",
+       "examples": [
+        [
+         "I have a car.",
+         "Mam samochod. (nie: I am having a car)"
+        ],
+        [
+         "I am having lunch.",
+         "Wlasnie jem obiad. (tu have = jesc, wiec mozna)"
+        ],
+        [
+         "They are having a meeting.",
+         "Oni wlasnie maja spotkanie."
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "choice",
+     "text": "I usually ___ at six.",
+     "options": [
+      "start",
+      "am starting"
+     ],
+     "answer": 0,
+     "why": "usually = rutyna -> Present Simple.",
+     "pl": "Zwykle zaczynam o szostej."
+    },
+    {
+     "type": "choice",
+     "text": "Look! She ___ the pallet.",
+     "options": [
+      "loads",
+      "is loading"
+     ],
+     "answer": 1,
+     "why": "Look! = dzieje sie teraz -> Continuous.",
+     "pl": "Patrz! Ona laduje palete."
+    },
+    {
+     "type": "choice",
+     "text": "I ___ this job.",
+     "options": [
+      "like",
+      "am liking"
+     ],
+     "answer": 0,
+     "why": "Like to czasownik stanu - nie uzywamy Continuous.",
+     "pl": "Lubie te prace."
+    },
+    {
+     "type": "gap",
+     "text": "He ___ (work) in the office every day.",
+     "answer": "works",
+     "why": "Rutyna + he -> Present Simple z -s.",
+     "pl": "On pracuje w biurze codziennie.",
+     "hint": "work / works / is working"
+    },
+    {
+     "type": "gap",
+     "text": "We ___ (have) a break right now.",
+     "answer": "are having",
+     "why": "right now -> Continuous. Have = jesc/robic, wiec mozna.",
+     "pl": "Wlasnie mamy przerwe.",
+     "hint": "have / are having"
+    },
+    {
+     "type": "gap",
+     "text": "She ___ (not work) today, she is ill.",
+     "answer": "is not working",
+     "why": "today + wyjatkowa sytuacja -> Continuous.",
+     "pl": "Ona dzis nie pracuje, jest chora.",
+     "hint": "does not work / is not working"
+    },
+    {
+     "type": "listen",
+     "en": "I work here, but today I am working in aisle nine.",
+     "pl": "Pracuje tutaj, ale dzis pracuje w alejce dziewiatej.",
+     "why": "Oba czasy w jednym zdaniu - stale i dzisiaj."
+    },
+    {
+     "type": "listen",
+     "en": "What are you doing at the moment?",
+     "pl": "Co teraz robisz?",
+     "why": "at the moment -> Continuous."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "I work",
+       "pracuje (zawsze)"
+      ],
+      [
+       "I am working",
+       "wlasnie pracuje"
+      ],
+      [
+       "she starts",
+       "ona zaczyna (codziennie)"
+      ],
+      [
+       "she is starting",
+       "ona wlasnie zaczyna"
+      ]
+     ],
+     "why": "Ta sama tresc, dwa rozne znaczenia."
+    }
+   ],
+   "test": [
+    {
+     "type": "choice",
+     "text": "___ you speak English?",
+     "options": [
+      "Do",
+      "Are"
+     ],
+     "answer": 0,
+     "why": "Ogolna umiejetnosc -> Present Simple -> DO.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "Be quiet, the manager ___ .",
+     "options": [
+      "talks",
+      "is talking"
+     ],
+     "answer": 1,
+     "why": "Dzieje sie teraz -> Continuous.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "They ___ (finish) at two every day.",
+     "answer": "finish",
+     "why": "every day -> Simple.",
+     "pl": "",
+     "hint": "finish / are finishing"
+    },
+    {
+     "type": "choice",
+     "text": "I ___ what you mean.",
+     "options": [
+      "understand",
+      "am understanding"
+     ],
+     "answer": 0,
+     "why": "Understand to czasownik stanu.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "He ___ (drive) to work now.",
+     "answer": "is driving",
+     "why": "now -> Continuous.",
+     "pl": "",
+     "hint": "drives / is driving"
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "I am having a car.",
+      "I have a car."
+     ],
+     "answer": 1,
+     "why": "Have w znaczeniu miec - bez Continuous.",
+     "pl": ""
+    }
+   ],
+   "order": 10
+  },
+  {
+   "id": "past_simple",
+   "name": "Past Simple - czas przeszly",
+   "emoji": "⏪",
+   "level": "A2",
+   "short": "Jak opowiedziec, co sie wydarzylo",
+   "intro": "Angielski czas przeszly jest prostszy niz polski - nie odmienia sie przez osoby ani rodzaje. Cala trudnosc to koncowka -ed i lista czasownikow nieregularnych.",
+   "pages": [
+    {
+     "title": "Jak go zbudowac",
+     "sections": [
+      {
+       "title": "Regularne: dodajemy -ed",
+       "emoji": "➕",
+       "color": "indigo",
+       "text": "Forma jest TA SAMA dla wszystkich osob - to duze ulatwienie.",
+       "examples": [
+        [
+         "I worked / he worked / they worked",
+         "pracowalem / pracowal / pracowali"
+        ],
+        [
+         "work - worked",
+         "pracowac - pracowal"
+        ],
+        [
+         "check - checked",
+         "sprawdzac - sprawdzil"
+        ],
+        [
+         "start - started",
+         "zaczynac - zaczal"
+        ]
+       ],
+       "tip": "Zadnych koncowek osobowych. Jedna forma na wszystko."
+      },
+      {
+       "title": "Pisownia -ed",
+       "emoji": "✍️",
+       "color": "teal",
+       "text": "Trzy drobne zasady.",
+       "examples": [
+        [
+         "work - worked",
+         "zwykle po prostu -ed"
+        ],
+        [
+         "like - liked",
+         "gdy jest nieme e, dodajemy samo -d"
+        ],
+        [
+         "stop - stopped",
+         "krotkie slowo - podwajamy spolgloske"
+        ],
+        [
+         "carry - carried",
+         "spolgloska + y -> -ied"
+        ]
+       ]
+      },
+      {
+       "title": "Nieregularne - trzeba znac na pamiec",
+       "emoji": "🌀",
+       "color": "ember",
+       "text": "Okolo stu czasownikow ma wlasna forme przeszla. Te najczestsze warto znac od reki.",
+       "examples": [
+        [
+         "go - went",
+         "isc - poszedl"
+        ],
+        [
+         "have - had",
+         "miec - mial"
+        ],
+        [
+         "do - did",
+         "robic - zrobil"
+        ],
+        [
+         "see - saw",
+         "widziec - widzial"
+        ],
+        [
+         "take - took",
+         "brac - wzial"
+        ],
+        [
+         "come - came",
+         "przyjsc - przyszedl"
+        ]
+       ],
+       "tip": "W aplikacji masz osobny dzial Czasowniki - tam przecwiczysz wszystkie formy."
+      }
+     ]
+    },
+    {
+     "title": "Pytania i przeczenia",
+     "sections": [
+      {
+       "title": "DID - i czasownik wraca do formy podstawowej",
+       "emoji": "🔑",
+       "color": "violet",
+       "text": "To najwazniejsza zasada tego czasu. DID juz niesie przeszlosc, wiec czasownik jej nie powtarza.",
+       "examples": [
+        [
+         "Did you work yesterday?",
+         "Czy pracowales wczoraj? (nie: did you worked)"
+        ],
+        [
+         "I did not go to work.",
+         "Nie poszedlem do pracy. (nie: did not went)"
+        ],
+        [
+         "Did she finish the order?",
+         "Czy ona skonczyla zamowienie?"
+        ]
+       ],
+       "tip": "Najczestszy blad: did you worked. Po DID zawsze forma podstawowa."
+      },
+      {
+       "title": "TO BE ma wlasne formy",
+       "emoji": "🅱️",
+       "color": "gold",
+       "text": "Was i were nie potrzebuja DID.",
+       "examples": [
+        [
+         "I was tired.",
+         "Bylem zmeczony."
+        ],
+        [
+         "They were late.",
+         "Spoznili sie."
+        ],
+        [
+         "Were you at work?",
+         "Bylas w pracy? (nie: did you were)"
+        ],
+        [
+         "She was not there.",
+         "Jej tam nie bylo."
+        ]
+       ]
+      },
+      {
+       "title": "Slowa-sygnaly",
+       "emoji": "🚩",
+       "color": "indigo",
+       "text": "Gdy je widzisz, prawie na pewno potrzebujesz Past Simple.",
+       "examples": [
+        [
+         "yesterday",
+         "wczoraj"
+        ],
+        [
+         "last week / last year",
+         "w zeszlym tygodniu / roku"
+        ],
+        [
+         "two days ago",
+         "dwa dni temu"
+        ],
+        [
+         "in 2020",
+         "w 2020 roku"
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "gap",
+     "text": "I ___ (work) here last year.",
+     "answer": "worked",
+     "why": "Regularny czasownik + -ed.",
+     "pl": "Pracowalem tu w zeszlym roku.",
+     "hint": "work / worked"
+    },
+    {
+     "type": "choice",
+     "text": "___ you finish the order yesterday?",
+     "options": [
+      "Did",
+      "Do"
+     ],
+     "answer": 0,
+     "why": "yesterday -> przeszlosc -> DID.",
+     "pl": "Czy skonczyles wczoraj zamowienie?"
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "Did you worked late?",
+      "Did you work late?"
+     ],
+     "answer": 1,
+     "why": "Po DID czasownik wraca do formy podstawowej.",
+     "pl": "Czy pracowales do pozna?"
+    },
+    {
+     "type": "gap",
+     "text": "She ___ (go) to the office this morning.",
+     "answer": "went",
+     "why": "go jest nieregularny -> went.",
+     "pl": "Poszla dzis rano do biura.",
+     "hint": "goed / went"
+    },
+    {
+     "type": "gap",
+     "text": "We ___ (not have) enough pallets.",
+     "answer": "did not have",
+     "why": "Przeczenie: did not + forma podstawowa.",
+     "pl": "Nie mielismy dosc palet.",
+     "hint": "did not have / did not had"
+    },
+    {
+     "type": "gap",
+     "text": "They ___ at the gate at six.",
+     "answer": "were",
+     "why": "TO BE w przeszlosci, they -> WERE.",
+     "pl": "Byli przy bramie o szostej.",
+     "hint": "was / were"
+    },
+    {
+     "type": "choice",
+     "text": "___ you at work yesterday?",
+     "options": [
+      "Did",
+      "Were"
+     ],
+     "answer": 1,
+     "why": "Przy TO BE nie uzywamy DID.",
+     "pl": "Byles wczoraj w pracy?"
+    },
+    {
+     "type": "listen",
+     "en": "I worked late yesterday and I was very tired.",
+     "pl": "Pracowalem wczoraj do pozna i bylem bardzo zmeczony.",
+     "why": "worked (regularny) i was (TO BE) w jednym zdaniu."
+    },
+    {
+     "type": "listen",
+     "en": "Did you see the new schedule?",
+     "pl": "Widziales nowy grafik?",
+     "why": "Po DID forma podstawowa: see, nie saw."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "I worked",
+       "pracowalem"
+      ],
+      [
+       "I went",
+       "poszedlem"
+      ],
+      [
+       "I was",
+       "bylem"
+      ],
+      [
+       "Did you work?",
+       "czy pracowales?"
+      ]
+     ],
+     "why": "Cztery wzorce, ktore pokrywaja wiekszosc zdan w przeszlosci."
+    }
+   ],
+   "test": [
+    {
+     "type": "gap",
+     "text": "He ___ (start) at five yesterday.",
+     "answer": "started",
+     "why": "Regularny + -ed.",
+     "pl": "",
+     "hint": "start / started"
+    },
+    {
+     "type": "choice",
+     "text": "Ktore jest poprawne?",
+     "options": [
+      "I did not went.",
+      "I did not go."
+     ],
+     "answer": 1,
+     "why": "Po DID forma podstawowa.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "They ___ (take) the wrong pallet.",
+     "answer": "took",
+     "why": "take jest nieregularny -> took.",
+     "pl": "",
+     "hint": "taked / took"
+    },
+    {
+     "type": "choice",
+     "text": "___ she late again?",
+     "options": [
+      "Did",
+      "Was"
+     ],
+     "answer": 1,
+     "why": "late idzie z TO BE -> WAS.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "We ___ (finish) the shift at two.",
+     "answer": "finished",
+     "why": "Regularny + -ed.",
+     "pl": "",
+     "hint": "finish / finished"
+    },
+    {
+     "type": "choice",
+     "text": "___ they call you yesterday?",
+     "options": [
+      "Did",
+      "Were"
+     ],
+     "answer": 0,
+     "why": "call to zwykly czasownik -> DID.",
+     "pl": ""
+    }
+   ],
+   "order": 11
+  },
+  {
+   "id": "for_since",
+   "name": "FOR czy SINCE - jak dlugo, od kiedy",
+   "emoji": "⏳",
+   "level": "A2",
+   "short": "Roznica miedzy od a przez w czasie",
+   "intro": "Po polsku mowimy pracuje tu od trzech lat i pracuje tu od 2022 roku - to samo slowo od. Angielski rozroznia te dwa przypadki i na tym polega cala trudnosc.",
+   "pages": [
+    {
+     "title": "Jedna regula, ktora wszystko rozstrzyga",
+     "sections": [
+      {
+       "title": "FOR = jak DLUGO (odcinek czasu)",
+       "emoji": "📏",
+       "color": "indigo",
+       "text": "Po FOR podajesz DLUGOSC: ile to trwalo. Odpowiada na pytanie jak dlugo?",
+       "examples": [
+        [
+         "for three years",
+         "przez trzy lata / od trzech lat"
+        ],
+        [
+         "for two hours",
+         "przez dwie godziny"
+        ],
+        [
+         "I have worked here for six months.",
+         "Pracuje tu od szesciu miesiecy."
+        ]
+       ],
+       "tip": "Podpowiedz: po FOR pada LICZBA + jednostka czasu."
+      },
+      {
+       "title": "SINCE = OD KIEDY (punkt na osi czasu)",
+       "emoji": "📍",
+       "color": "teal",
+       "text": "Po SINCE podajesz MOMENT startu: date, godzine, wydarzenie. Odpowiada na pytanie od kiedy?",
+       "examples": [
+        [
+         "since 2022",
+         "od 2022 roku"
+        ],
+        [
+         "since Monday",
+         "od poniedzialku"
+        ],
+        [
+         "since I moved here",
+         "odkad sie tu przeprowadzilem"
+        ],
+        [
+         "I have worked here since March.",
+         "Pracuje tu od marca."
+        ]
+       ],
+       "tip": "Podpowiedz: po SINCE pada KONKRETNY PUNKT - data, dzien, godzina, zdarzenie."
+      },
+      {
+       "title": "Test w dwie sekundy",
+       "emoji": "⚡",
+       "color": "ember",
+       "text": "Zadaj sobie pytanie: czy to ODCINEK czy PUNKT?\n- trzy lata - odcinek -> FOR\n- 2022 - punkt -> SINCE\nTo samo zdarzenie mozna powiedziec na oba sposoby:",
+       "examples": [
+        [
+         "I have lived here for three years.",
+         "Mieszkam tu od trzech lat. (odcinek)"
+        ],
+        [
+         "I have lived here since 2023.",
+         "Mieszkam tu od 2023. (punkt)"
+        ]
+       ],
+       "tip": "Oba zdania znacza to samo - roznia sie tylko sposobem opisania czasu."
+      }
+     ]
+    },
+    {
+     "title": "Z jakim czasem tego uzywac",
+     "sections": [
+      {
+       "title": "Najczesciej z Present Perfect",
+       "emoji": "🔗",
+       "color": "violet",
+       "text": "FOR i SINCE opisuja cos, co ZACZELO SIE w przeszlosci i TRWA NADAL. Dlatego prawie zawsze ida z konstrukcja have/has + 3. forma.",
+       "examples": [
+        [
+         "I have worked here for two years.",
+         "Pracuje tu od dwoch lat (i nadal)."
+        ],
+        [
+         "She has lived in Poland since 2020.",
+         "Ona mieszka w Polsce od 2020 (i nadal)."
+        ]
+       ],
+       "tip": "Typowy blad Polaka: I work here for two years -> I HAVE WORKED here for two years."
+      },
+      {
+       "title": "FOR bywa tez w innych czasach",
+       "emoji": "🕰",
+       "color": "gold",
+       "text": "FOR moze opisywac zamkniety odcinek w przeszlosci - wtedy idzie z Past Simple.",
+       "examples": [
+        [
+         "I worked there for two years.",
+         "Pracowalem tam przez dwa lata (juz nie pracuje)."
+        ],
+        [
+         "I have worked there for two years.",
+         "Pracuje tam od dwoch lat (nadal)."
+        ]
+       ],
+       "tip": "Roznica jest istotna: Past Simple = skonczone, Present Perfect = trwa."
+      }
+     ]
+    }
+   ],
+   "practice": [
+    {
+     "type": "choice",
+     "text": "I have been a picker ___ 2021.",
+     "options": [
+      "for",
+      "since"
+     ],
+     "answer": 1,
+     "why": "2021 to konkretny punkt -> SINCE.",
+     "pl": "Jestem kompletatorem od 2021."
+    },
+    {
+     "type": "choice",
+     "text": "We have waited ___ twenty minutes.",
+     "options": [
+      "for",
+      "since"
+     ],
+     "answer": 0,
+     "why": "Dwadziescia minut to dlugosc -> FOR.",
+     "pl": "Czekamy od dwudziestu minut."
+    },
+    {
+     "type": "choice",
+     "text": "She has been ill ___ Monday.",
+     "options": [
+      "for",
+      "since"
+     ],
+     "answer": 1,
+     "why": "Poniedzialek to punkt startu -> SINCE.",
+     "pl": "Ona choruje od poniedzialku."
+    },
+    {
+     "type": "gap",
+     "text": "I have known him ___ many years.",
+     "answer": "for",
+     "why": "Many years to dlugosc -> FOR.",
+     "pl": "Znam go od wielu lat.",
+     "hint": "for / since"
+    },
+    {
+     "type": "gap",
+     "text": "They have lived here ___ they got married.",
+     "answer": "since",
+     "why": "Wydarzenie, punkt w czasie -> SINCE.",
+     "pl": "Mieszkaja tu, odkad sie pobrali.",
+     "hint": "for / since"
+    },
+    {
+     "type": "gap",
+     "text": "The machine has been broken ___ three days.",
+     "answer": "for",
+     "why": "Trzy dni to odcinek -> FOR.",
+     "pl": "Maszyna jest zepsuta od trzech dni.",
+     "hint": "for / since"
+    },
+    {
+     "type": "listen",
+     "en": "I have worked in this warehouse for five years.",
+     "pl": "Pracuje w tym magazynie od pieciu lat.",
+     "why": "for five years - dlugosc. Zwroc uwage na have worked."
+    },
+    {
+     "type": "listen",
+     "en": "She has been my team leader since January.",
+     "pl": "Ona jest moja liderka od stycznia.",
+     "why": "since January - punkt startu."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "for two hours",
+       "przez dwie godziny"
+      ],
+      [
+       "since 2020",
+       "od 2020 roku"
+      ],
+      [
+       "for a week",
+       "od tygodnia"
+      ],
+      [
+       "since Friday",
+       "od piatku"
+      ]
+     ],
+     "why": "Po polsku czesto to samo od, po angielsku dwa rozne slowa."
+    }
+   ],
+   "test": [
+    {
+     "type": "choice",
+     "text": "He has been at the gate ___ ten minutes.",
+     "options": [
+      "for",
+      "since"
+     ],
+     "answer": 0,
+     "why": "Dziesiec minut = odcinek -> FOR.",
+     "pl": ""
+    },
+    {
+     "type": "choice",
+     "text": "I have not seen him ___ last summer.",
+     "options": [
+      "for",
+      "since"
+     ],
+     "answer": 1,
+     "why": "Zeszle lato = punkt -> SINCE.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "We have been colleagues ___ three years.",
+     "answer": "for",
+     "why": "Trzy lata = dlugosc -> FOR.",
+     "pl": "",
+     "hint": "for / since"
+    },
+    {
+     "type": "gap",
+     "text": "The shop has been closed ___ 8 o clock.",
+     "answer": "since",
+     "why": "Godzina 8 = punkt -> SINCE.",
+     "pl": "",
+     "hint": "for / since"
+    },
+    {
+     "type": "choice",
+     "text": "Ktore zdanie jest poprawne?",
+     "options": [
+      "I work here for two years.",
+      "I have worked here for two years."
+     ],
+     "answer": 1,
+     "why": "FOR/SINCE z czynnoscia trwajaca wymaga Present Perfect.",
+     "pl": ""
+    },
+    {
+     "type": "gap",
+     "text": "She has had this job ___ she finished school.",
+     "answer": "since",
+     "why": "Wydarzenie -> SINCE.",
+     "pl": "",
+     "hint": "for / since"
+    }
+   ],
+   "order": 12
+  }
+ ]
+}

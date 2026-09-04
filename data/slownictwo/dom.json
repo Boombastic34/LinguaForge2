@@ -1,0 +1,587 @@
+{
+ "name": "Dom i mieszkanie",
+ "domain": "general",
+ "cat": "nouns",
+ "theme": "dom",
+ "level": "A1",
+ "items": [
+  {
+   "nr": 1,
+   "id": "dom_1",
+   "en": "living room",
+   "pl": "salon",
+   "level": "A1",
+   "rank": 380
+  },
+  {
+   "nr": 2,
+   "id": "dom_2",
+   "en": "bedroom",
+   "pl": "sypialnia",
+   "level": "A1",
+   "rank": 381
+  },
+  {
+   "nr": 3,
+   "id": "dom_3",
+   "en": "bathroom",
+   "pl": "łazienka",
+   "level": "A1",
+   "rank": 382
+  },
+  {
+   "nr": 4,
+   "id": "dom_4",
+   "en": "toilet",
+   "pl": "toaleta",
+   "level": "A1",
+   "rank": 383
+  },
+  {
+   "nr": 5,
+   "id": "dom_5",
+   "en": "garage",
+   "pl": "garaż",
+   "level": "A1",
+   "rank": 384
+  },
+  {
+   "nr": 6,
+   "id": "dom_6",
+   "en": "garden",
+   "pl": "ogród",
+   "level": "A1",
+   "rank": 385
+  },
+  {
+   "nr": 7,
+   "id": "dom_7",
+   "en": "stairs",
+   "pl": "schody",
+   "level": "A1",
+   "rank": 386
+  },
+  {
+   "nr": 8,
+   "id": "dom_8",
+   "en": "roof",
+   "pl": "dach",
+   "level": "A1",
+   "rank": 387
+  },
+  {
+   "nr": 9,
+   "id": "dom_9",
+   "en": "ceiling",
+   "pl": "sufit",
+   "level": "A1",
+   "rank": 388
+  },
+  {
+   "nr": 10,
+   "id": "dom_10",
+   "en": "lamp",
+   "pl": "lampa",
+   "level": "A1",
+   "rank": 389
+  },
+  {
+   "nr": 11,
+   "id": "dom_11",
+   "en": "mirror",
+   "pl": "lustro",
+   "level": "A1",
+   "rank": 390
+  },
+  {
+   "nr": 12,
+   "id": "dom_12",
+   "en": "towel",
+   "pl": "ręcznik",
+   "level": "A1",
+   "rank": 391
+  },
+  {
+   "nr": 13,
+   "id": "dom_13",
+   "en": "soap",
+   "pl": "mydło",
+   "level": "A1",
+   "rank": 392
+  },
+  {
+   "nr": 14,
+   "id": "dom_14",
+   "en": "shower",
+   "pl": "prysznic",
+   "level": "A1",
+   "rank": 393
+  },
+  {
+   "nr": 15,
+   "id": "dom_15",
+   "en": "bath",
+   "pl": "wanna / kąpiel",
+   "level": "A1",
+   "rank": 394
+  },
+  {
+   "nr": 16,
+   "id": "dom_16",
+   "en": "fridge",
+   "pl": "lodówka",
+   "level": "A1",
+   "rank": 395
+  },
+  {
+   "nr": 17,
+   "id": "dom_17",
+   "en": "cooker",
+   "pl": "kuchenka",
+   "level": "A1",
+   "rank": 396
+  },
+  {
+   "nr": 18,
+   "id": "dom_18",
+   "en": "oven",
+   "pl": "piekarnik",
+   "level": "A1",
+   "rank": 397
+  },
+  {
+   "nr": 19,
+   "id": "dom_19",
+   "en": "washing machine",
+   "pl": "pralka",
+   "level": "A1",
+   "rank": 398
+  },
+  {
+   "nr": 20,
+   "id": "dom_20",
+   "en": "sink",
+   "pl": "zlew / umywalka",
+   "level": "A1",
+   "rank": 399
+  },
+  {
+   "nr": 21,
+   "id": "dom_21",
+   "en": "cup",
+   "pl": "kubek / filiżanka",
+   "level": "A1",
+   "rank": 400
+  },
+  {
+   "nr": 22,
+   "id": "dom_22",
+   "en": "glass",
+   "pl": "szklanka",
+   "level": "A1",
+   "rank": 401
+  },
+  {
+   "nr": 23,
+   "id": "dom_23",
+   "en": "plate",
+   "pl": "talerz",
+   "level": "A1",
+   "rank": 402
+  },
+  {
+   "nr": 24,
+   "id": "dom_24",
+   "en": "bowl",
+   "pl": "miska",
+   "level": "A1",
+   "rank": 403
+  },
+  {
+   "nr": 25,
+   "id": "dom_25",
+   "en": "knife",
+   "pl": "nóż",
+   "level": "A1",
+   "rank": 404
+  },
+  {
+   "nr": 26,
+   "id": "dom_26",
+   "en": "fork",
+   "pl": "widelec",
+   "level": "A1",
+   "rank": 405
+  },
+  {
+   "nr": 27,
+   "id": "dom_27",
+   "en": "spoon",
+   "pl": "łyżka",
+   "level": "A1",
+   "rank": 406
+  },
+  {
+   "nr": 28,
+   "id": "dom_28",
+   "en": "pot",
+   "pl": "garnek",
+   "level": "A1",
+   "rank": 407
+  },
+  {
+   "nr": 29,
+   "id": "dom_29",
+   "en": "pan",
+   "pl": "patelnia",
+   "level": "A1",
+   "rank": 408
+  },
+  {
+   "nr": 30,
+   "id": "dom_30",
+   "en": "bin",
+   "pl": "kosz na śmieci",
+   "level": "A1",
+   "rank": 409
+  },
+  {
+   "nr": 31,
+   "id": "dom_31",
+   "en": "shelf",
+   "pl": "półka",
+   "level": "A1",
+   "rank": 410
+  },
+  {
+   "nr": 32,
+   "id": "dom_32",
+   "en": "carpet",
+   "pl": "dywan",
+   "level": "A1",
+   "rank": 411
+  },
+  {
+   "nr": 33,
+   "id": "dom_33",
+   "en": "furniture",
+   "pl": "meble",
+   "level": "A1",
+   "rank": 333
+  },
+  {
+   "nr": 34,
+   "id": "dom_34",
+   "en": "sofa",
+   "pl": "kanapa",
+   "level": "A1",
+   "rank": 334
+  },
+  {
+   "nr": 35,
+   "id": "dom_35",
+   "en": "armchair",
+   "pl": "fotel",
+   "level": "A1",
+   "rank": 335
+  },
+  {
+   "nr": 36,
+   "id": "dom_36",
+   "en": "wardrobe",
+   "pl": "szafa",
+   "level": "A1",
+   "rank": 336
+  },
+  {
+   "nr": 37,
+   "id": "dom_37",
+   "en": "drawer",
+   "pl": "szuflada",
+   "level": "A1",
+   "rank": 337
+  },
+  {
+   "nr": 38,
+   "id": "dom_38",
+   "en": "cupboard",
+   "pl": "szafka",
+   "level": "A1",
+   "rank": 338
+  },
+  {
+   "nr": 39,
+   "id": "dom_39",
+   "en": "curtain",
+   "pl": "zasłona",
+   "level": "A1",
+   "rank": 339
+  },
+  {
+   "nr": 40,
+   "id": "dom_40",
+   "en": "blanket",
+   "pl": "koc",
+   "level": "A1",
+   "rank": 340
+  },
+  {
+   "nr": 41,
+   "id": "dom_41",
+   "en": "pillow",
+   "pl": "poduszka",
+   "level": "A1",
+   "rank": 341
+  },
+  {
+   "nr": 42,
+   "id": "dom_42",
+   "en": "sheet",
+   "pl": "prześcieradło",
+   "level": "A1",
+   "rank": 342
+  },
+  {
+   "nr": 43,
+   "id": "dom_43",
+   "en": "mattress",
+   "pl": "materac",
+   "level": "A1",
+   "rank": 343
+  },
+  {
+   "nr": 44,
+   "id": "dom_44",
+   "en": "heater",
+   "pl": "grzejnik",
+   "level": "A1",
+   "rank": 344
+  },
+  {
+   "nr": 45,
+   "id": "dom_45",
+   "en": "air conditioner",
+   "pl": "klimatyzacja",
+   "level": "A1",
+   "rank": 345
+  },
+  {
+   "nr": 46,
+   "id": "dom_46",
+   "en": "socket",
+   "pl": "gniazdko",
+   "level": "A1",
+   "rank": 346
+  },
+  {
+   "nr": 47,
+   "id": "dom_47",
+   "en": "switch",
+   "pl": "włącznik",
+   "level": "A1",
+   "rank": 347,
+   "hint": "rzeczownik: włącznik światła"
+  },
+  {
+   "nr": 48,
+   "id": "dom_48",
+   "en": "bulb",
+   "pl": "żarówka",
+   "level": "A1",
+   "rank": 348
+  },
+  {
+   "nr": 49,
+   "id": "dom_49",
+   "en": "candle",
+   "pl": "świeca",
+   "level": "A1",
+   "rank": 349
+  },
+  {
+   "nr": 50,
+   "id": "dom_50",
+   "en": "clock",
+   "pl": "zegar",
+   "level": "A1",
+   "rank": 350
+  },
+  {
+   "nr": 51,
+   "id": "dom_51",
+   "en": "vacuum cleaner",
+   "pl": "odkurzacz",
+   "level": "A1",
+   "rank": 351
+  },
+  {
+   "nr": 52,
+   "id": "dom_52",
+   "en": "iron",
+   "pl": "żelazko",
+   "level": "A1",
+   "rank": 352
+  },
+  {
+   "nr": 53,
+   "id": "dom_53",
+   "en": "kettle",
+   "pl": "czajnik",
+   "level": "A1",
+   "rank": 353
+  },
+  {
+   "nr": 54,
+   "id": "dom_54",
+   "en": "microwave",
+   "pl": "mikrofalówka",
+   "level": "A1",
+   "rank": 354
+  },
+  {
+   "nr": 55,
+   "id": "dom_55",
+   "en": "dishwasher",
+   "pl": "zmywarka",
+   "level": "A1",
+   "rank": 355
+  },
+  {
+   "nr": 56,
+   "id": "dom_56",
+   "en": "freezer",
+   "pl": "zamrażarka",
+   "level": "A1",
+   "rank": 356
+  },
+  {
+   "nr": 57,
+   "id": "dom_57",
+   "en": "tap",
+   "pl": "kran",
+   "level": "A1",
+   "rank": 357
+  },
+  {
+   "nr": 58,
+   "id": "dom_58",
+   "en": "pipe",
+   "pl": "rura",
+   "level": "A1",
+   "rank": 358
+  },
+  {
+   "nr": 59,
+   "id": "dom_59",
+   "en": "lock",
+   "pl": "zamek",
+   "level": "A1",
+   "rank": 359,
+   "hint": "rzeczownik: zamek w drzwiach"
+  },
+  {
+   "nr": 60,
+   "id": "dom_60",
+   "en": "doorbell",
+   "pl": "dzwonek do drzwi",
+   "level": "A1",
+   "rank": 360
+  },
+  {
+   "nr": 61,
+   "id": "dom_61",
+   "en": "balcony",
+   "pl": "balkon",
+   "level": "A1",
+   "rank": 361
+  },
+  {
+   "nr": 62,
+   "id": "dom_62",
+   "en": "basement",
+   "pl": "piwnica",
+   "level": "A1",
+   "rank": 362
+  },
+  {
+   "nr": 63,
+   "id": "dom_63",
+   "en": "attic",
+   "pl": "strych",
+   "level": "A1",
+   "rank": 363
+  },
+  {
+   "nr": 64,
+   "id": "dom_64",
+   "en": "fence",
+   "pl": "płot",
+   "level": "A1",
+   "rank": 364
+  },
+  {
+   "nr": 65,
+   "id": "dom_65",
+   "en": "gate (garden)",
+   "pl": "furtka",
+   "level": "A1",
+   "rank": 365
+  },
+  {
+   "nr": 66,
+   "id": "dom_66",
+   "en": "rent (housing)",
+   "pl": "czynsz",
+   "level": "A1",
+   "rank": 366
+  },
+  {
+   "nr": 67,
+   "id": "dom_67",
+   "en": "landlord",
+   "pl": "właściciel mieszkania",
+   "level": "A1",
+   "rank": 367
+  },
+  {
+   "nr": 68,
+   "id": "dom_68",
+   "en": "neighbourhood",
+   "pl": "okolica",
+   "level": "A1",
+   "rank": 368
+  },
+  {
+   "nr": 69,
+   "id": "dom_69",
+   "en": "cleaning",
+   "pl": "sprzątanie",
+   "level": "A1",
+   "rank": 369
+  },
+  {
+   "nr": 70,
+   "id": "dom_70",
+   "en": "rubbish",
+   "pl": "śmieci",
+   "level": "A1",
+   "rank": 370
+  },
+  {
+   "nr": 71,
+   "id": "dom_71",
+   "en": "laundry",
+   "pl": "pranie",
+   "level": "A1",
+   "rank": 371
+  },
+  {
+   "nr": 72,
+   "id": "dom_72",
+   "en": "tidy",
+   "pl": "posprzątany / uporządkowany",
+   "level": "A1",
+   "rank": 372
+  }
+ ]
+}

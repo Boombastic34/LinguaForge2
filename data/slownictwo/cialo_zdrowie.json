@@ -1,0 +1,553 @@
+{
+ "name": "Ciało i zdrowie",
+ "domain": "general",
+ "cat": "nouns",
+ "theme": "cialo",
+ "level": "A1",
+ "items": [
+  {
+   "nr": 1,
+   "id": "cialo_1",
+   "en": "hair",
+   "pl": "włosy",
+   "level": "A1",
+   "rank": 440
+  },
+  {
+   "nr": 2,
+   "id": "cialo_2",
+   "en": "face",
+   "pl": "twarz",
+   "level": "A1",
+   "rank": 441
+  },
+  {
+   "nr": 3,
+   "id": "cialo_3",
+   "en": "ear",
+   "pl": "ucho",
+   "level": "A1",
+   "rank": 442
+  },
+  {
+   "nr": 4,
+   "id": "cialo_4",
+   "en": "nose",
+   "pl": "nos",
+   "level": "A1",
+   "rank": 443
+  },
+  {
+   "nr": 5,
+   "id": "cialo_5",
+   "en": "mouth",
+   "pl": "usta",
+   "level": "A1",
+   "rank": 444
+  },
+  {
+   "nr": 6,
+   "id": "cialo_6",
+   "en": "tooth",
+   "pl": "ząb",
+   "level": "A1",
+   "rank": 445
+  },
+  {
+   "nr": 7,
+   "id": "cialo_7",
+   "en": "neck",
+   "pl": "szyja / kark",
+   "level": "A1",
+   "rank": 446
+  },
+  {
+   "nr": 8,
+   "id": "cialo_8",
+   "en": "shoulder",
+   "pl": "ramię / bark",
+   "level": "A1",
+   "rank": 447
+  },
+  {
+   "nr": 9,
+   "id": "cialo_9",
+   "en": "arm",
+   "pl": "ramię (całe)",
+   "level": "A1",
+   "rank": 448
+  },
+  {
+   "nr": 10,
+   "id": "cialo_10",
+   "en": "elbow",
+   "pl": "łokieć",
+   "level": "A1",
+   "rank": 449
+  },
+  {
+   "nr": 11,
+   "id": "cialo_11",
+   "en": "finger",
+   "pl": "palec (u ręki)",
+   "level": "A1",
+   "rank": 450
+  },
+  {
+   "nr": 12,
+   "id": "cialo_12",
+   "en": "back",
+   "pl": "plecy",
+   "level": "A1",
+   "rank": 451
+  },
+  {
+   "nr": 13,
+   "id": "cialo_13",
+   "en": "stomach",
+   "pl": "brzuch / żołądek",
+   "level": "A1",
+   "rank": 452
+  },
+  {
+   "nr": 14,
+   "id": "cialo_14",
+   "en": "leg",
+   "pl": "noga",
+   "level": "A1",
+   "rank": 453
+  },
+  {
+   "nr": 15,
+   "id": "cialo_15",
+   "en": "knee",
+   "pl": "kolano",
+   "level": "A1",
+   "rank": 454
+  },
+  {
+   "nr": 16,
+   "id": "cialo_16",
+   "en": "skin",
+   "pl": "skóra",
+   "level": "A1",
+   "rank": 455
+  },
+  {
+   "nr": 17,
+   "id": "cialo_17",
+   "en": "blood",
+   "pl": "krew",
+   "level": "A1",
+   "rank": 456
+  },
+  {
+   "nr": 18,
+   "id": "cialo_18",
+   "en": "heart",
+   "pl": "serce",
+   "level": "A1",
+   "rank": 457
+  },
+  {
+   "nr": 19,
+   "id": "cialo_19",
+   "en": "pain",
+   "pl": "ból",
+   "level": "A1",
+   "rank": 458
+  },
+  {
+   "nr": 20,
+   "id": "cialo_20",
+   "en": "headache",
+   "pl": "ból głowy",
+   "level": "A1",
+   "rank": 459
+  },
+  {
+   "nr": 21,
+   "id": "cialo_21",
+   "en": "cold (illness)",
+   "pl": "przeziębienie",
+   "level": "A1",
+   "rank": 460
+  },
+  {
+   "nr": 22,
+   "id": "cialo_22",
+   "en": "flu",
+   "pl": "grypa",
+   "level": "A1",
+   "rank": 461
+  },
+  {
+   "nr": 23,
+   "id": "cialo_23",
+   "en": "fever",
+   "pl": "gorączka",
+   "level": "A1",
+   "rank": 462
+  },
+  {
+   "nr": 24,
+   "id": "cialo_24",
+   "en": "cough",
+   "pl": "kaszel",
+   "level": "A1",
+   "rank": 463
+  },
+  {
+   "nr": 25,
+   "id": "cialo_25",
+   "en": "medicine",
+   "pl": "lekarstwo",
+   "level": "A1",
+   "rank": 464
+  },
+  {
+   "nr": 26,
+   "id": "cialo_26",
+   "en": "pill",
+   "pl": "tabletka",
+   "level": "A1",
+   "rank": 465
+  },
+  {
+   "nr": 27,
+   "id": "cialo_27",
+   "en": "doctor",
+   "pl": "lekarz",
+   "level": "A1",
+   "rank": 466
+  },
+  {
+   "nr": 28,
+   "id": "cialo_28",
+   "en": "nurse",
+   "pl": "pielęgniarka",
+   "level": "A1",
+   "rank": 467
+  },
+  {
+   "nr": 29,
+   "id": "cialo_29",
+   "en": "chest",
+   "pl": "klatka piersiowa",
+   "level": "A1",
+   "rank": 329
+  },
+  {
+   "nr": 30,
+   "id": "cialo_30",
+   "en": "wrist",
+   "pl": "nadgarstek",
+   "level": "A1",
+   "rank": 330
+  },
+  {
+   "nr": 31,
+   "id": "cialo_31",
+   "en": "ankle",
+   "pl": "kostka (u nogi)",
+   "level": "A1",
+   "rank": 331
+  },
+  {
+   "nr": 32,
+   "id": "cialo_32",
+   "en": "hip",
+   "pl": "biodro",
+   "level": "A1",
+   "rank": 332
+  },
+  {
+   "nr": 33,
+   "id": "cialo_33",
+   "en": "muscle",
+   "pl": "mięsień",
+   "level": "A1",
+   "rank": 333
+  },
+  {
+   "nr": 34,
+   "id": "cialo_34",
+   "en": "bone",
+   "pl": "kość",
+   "level": "A1",
+   "rank": 334
+  },
+  {
+   "nr": 35,
+   "id": "cialo_35",
+   "en": "joint",
+   "pl": "staw",
+   "level": "A1",
+   "rank": 335
+  },
+  {
+   "nr": 36,
+   "id": "cialo_36",
+   "en": "lung",
+   "pl": "płuco",
+   "level": "A1",
+   "rank": 336
+  },
+  {
+   "nr": 37,
+   "id": "cialo_37",
+   "en": "liver",
+   "pl": "wątroba",
+   "level": "A1",
+   "rank": 337
+  },
+  {
+   "nr": 38,
+   "id": "cialo_38",
+   "en": "kidney",
+   "pl": "nerka",
+   "level": "A1",
+   "rank": 338
+  },
+  {
+   "nr": 39,
+   "id": "cialo_39",
+   "en": "brain",
+   "pl": "mózg",
+   "level": "A1",
+   "rank": 339
+  },
+  {
+   "nr": 40,
+   "id": "cialo_40",
+   "en": "throat",
+   "pl": "gardło",
+   "level": "A1",
+   "rank": 340
+  },
+  {
+   "nr": 41,
+   "id": "cialo_41",
+   "en": "tongue",
+   "pl": "język (w ustach)",
+   "level": "A1",
+   "rank": 341
+  },
+  {
+   "nr": 42,
+   "id": "cialo_42",
+   "en": "lip",
+   "pl": "warga",
+   "level": "A1",
+   "rank": 342
+  },
+  {
+   "nr": 43,
+   "id": "cialo_43",
+   "en": "chin",
+   "pl": "broda (część twarzy)",
+   "level": "A1",
+   "rank": 343
+  },
+  {
+   "nr": 44,
+   "id": "cialo_44",
+   "en": "cheek",
+   "pl": "policzek",
+   "level": "A1",
+   "rank": 344
+  },
+  {
+   "nr": 45,
+   "id": "cialo_45",
+   "en": "forehead",
+   "pl": "czoło",
+   "level": "A1",
+   "rank": 345
+  },
+  {
+   "nr": 46,
+   "id": "cialo_46",
+   "en": "nail",
+   "pl": "paznokieć",
+   "level": "A1",
+   "rank": 346
+  },
+  {
+   "nr": 47,
+   "id": "cialo_47",
+   "en": "injury",
+   "pl": "uraz",
+   "level": "A1",
+   "rank": 347
+  },
+  {
+   "nr": 48,
+   "id": "cialo_48",
+   "en": "wound",
+   "pl": "rana",
+   "level": "A1",
+   "rank": 348
+  },
+  {
+   "nr": 49,
+   "id": "cialo_49",
+   "en": "cut (wound)",
+   "pl": "skaleczenie",
+   "level": "A1",
+   "rank": 349
+  },
+  {
+   "nr": 50,
+   "id": "cialo_50",
+   "en": "bruise",
+   "pl": "siniak",
+   "level": "A1",
+   "rank": 350
+  },
+  {
+   "nr": 51,
+   "id": "cialo_51",
+   "en": "burn (injury)",
+   "pl": "oparzenie",
+   "level": "A1",
+   "rank": 351
+  },
+  {
+   "nr": 52,
+   "id": "cialo_52",
+   "en": "sprain",
+   "pl": "skręcenie",
+   "level": "A1",
+   "rank": 352
+  },
+  {
+   "nr": 53,
+   "id": "cialo_53",
+   "en": "swelling",
+   "pl": "opuchlizna",
+   "level": "A1",
+   "rank": 353
+  },
+  {
+   "nr": 54,
+   "id": "cialo_54",
+   "en": "dizzy",
+   "pl": "zawroty głowy",
+   "level": "A1",
+   "rank": 354
+  },
+  {
+   "nr": 55,
+   "id": "cialo_55",
+   "en": "tired out",
+   "pl": "wyczerpany",
+   "level": "A1",
+   "rank": 355
+  },
+  {
+   "nr": 56,
+   "id": "cialo_56",
+   "en": "allergy",
+   "pl": "alergia",
+   "level": "A1",
+   "rank": 356
+  },
+  {
+   "nr": 57,
+   "id": "cialo_57",
+   "en": "infection",
+   "pl": "infekcja",
+   "level": "A1",
+   "rank": 357
+  },
+  {
+   "nr": 58,
+   "id": "cialo_58",
+   "en": "treatment",
+   "pl": "leczenie",
+   "level": "A1",
+   "rank": 358
+  },
+  {
+   "nr": 59,
+   "id": "cialo_59",
+   "en": "surgery",
+   "pl": "operacja / gabinet",
+   "level": "A1",
+   "rank": 359
+  },
+  {
+   "nr": 60,
+   "id": "cialo_60",
+   "en": "appointment",
+   "pl": "wizyta (umówiona)",
+   "level": "A1",
+   "rank": 360
+  },
+  {
+   "nr": 61,
+   "id": "cialo_61",
+   "en": "prescription",
+   "pl": "recepta",
+   "level": "A1",
+   "rank": 361
+  },
+  {
+   "nr": 62,
+   "id": "cialo_62",
+   "en": "bandage",
+   "pl": "bandaż",
+   "level": "A1",
+   "rank": 362
+  },
+  {
+   "nr": 63,
+   "id": "cialo_63",
+   "en": "plaster",
+   "pl": "plaster",
+   "level": "A1",
+   "rank": 363
+  },
+  {
+   "nr": 64,
+   "id": "cialo_64",
+   "en": "ambulance",
+   "pl": "karetka",
+   "level": "A1",
+   "rank": 365
+  },
+  {
+   "nr": 65,
+   "id": "cialo_65",
+   "en": "emergency",
+   "pl": "nagły wypadek",
+   "level": "A1",
+   "rank": 366
+  },
+  {
+   "nr": 66,
+   "id": "cialo_66",
+   "en": "sick leave",
+   "pl": "zwolnienie lekarskie",
+   "level": "A1",
+   "rank": 367
+  },
+  {
+   "nr": 67,
+   "id": "cialo_67",
+   "en": "recover",
+   "pl": "wracać do zdrowia",
+   "level": "A1",
+   "rank": 368
+  },
+  {
+   "nr": 68,
+   "id": "cialo_68",
+   "en": "healthy",
+   "pl": "zdrowy",
+   "level": "A1",
+   "rank": 369
+  }
+ ]
+}

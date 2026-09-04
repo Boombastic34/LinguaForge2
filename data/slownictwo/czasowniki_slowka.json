@@ -1,0 +1,2795 @@
+{
+ "name": "Czasowniki — słówka (bezokoliczniki)",
+ "domain": "general",
+ "cat": "verbs",
+ "theme": "czasowniki",
+ "level": "A1",
+ "items": [
+  {
+   "nr": 1,
+   "id": "w_vb_1",
+   "en": "work",
+   "pl": "pracować",
+   "level": "A1",
+   "rank": 100,
+   "hint": "czasownik: pracować"
+  },
+  {
+   "nr": 2,
+   "id": "w_vb_2",
+   "en": "go",
+   "pl": "iść / jechać",
+   "level": "A1",
+   "rank": 101
+  },
+  {
+   "nr": 3,
+   "id": "w_vb_3",
+   "en": "do",
+   "pl": "robić",
+   "level": "A1",
+   "rank": 102
+  },
+  {
+   "nr": 4,
+   "id": "w_vb_4",
+   "en": "make",
+   "pl": "robić / tworzyć",
+   "level": "A1",
+   "rank": 103
+  },
+  {
+   "nr": 5,
+   "id": "w_vb_5",
+   "en": "have",
+   "pl": "mieć",
+   "level": "A1",
+   "rank": 104
+  },
+  {
+   "nr": 6,
+   "id": "w_vb_6",
+   "en": "be",
+   "pl": "być",
+   "level": "A1",
+   "rank": 105
+  },
+  {
+   "nr": 7,
+   "id": "w_vb_7",
+   "en": "take",
+   "pl": "brać",
+   "level": "A1",
+   "rank": 106
+  },
+  {
+   "nr": 8,
+   "id": "w_vb_8",
+   "en": "get",
+   "pl": "dostawać",
+   "level": "A1",
+   "rank": 107
+  },
+  {
+   "nr": 9,
+   "id": "w_vb_9",
+   "en": "see",
+   "pl": "widzieć",
+   "level": "A1",
+   "rank": 108
+  },
+  {
+   "nr": 10,
+   "id": "w_vb_10",
+   "en": "know",
+   "pl": "wiedzieć / znać",
+   "level": "A1",
+   "rank": 109
+  },
+  {
+   "nr": 11,
+   "id": "w_vb_11",
+   "en": "come",
+   "pl": "przychodzić",
+   "level": "A1",
+   "rank": 110
+  },
+  {
+   "nr": 12,
+   "id": "w_vb_12",
+   "en": "give",
+   "pl": "dawać",
+   "level": "A1",
+   "rank": 111
+  },
+  {
+   "nr": 13,
+   "id": "w_vb_13",
+   "en": "find",
+   "pl": "znajdować",
+   "level": "A1",
+   "rank": 112
+  },
+  {
+   "nr": 14,
+   "id": "w_vb_14",
+   "en": "say",
+   "pl": "mówić / powiedzieć",
+   "level": "A1",
+   "rank": 113
+  },
+  {
+   "nr": 15,
+   "id": "w_vb_15",
+   "en": "buy",
+   "pl": "kupować",
+   "level": "A1",
+   "rank": 114
+  },
+  {
+   "nr": 16,
+   "id": "w_vb_16",
+   "en": "eat",
+   "pl": "jeść",
+   "level": "A1",
+   "rank": 115
+  },
+  {
+   "nr": 17,
+   "id": "w_vb_17",
+   "en": "drink",
+   "pl": "pić",
+   "level": "A1",
+   "rank": 116
+  },
+  {
+   "nr": 18,
+   "id": "w_vb_18",
+   "en": "write",
+   "pl": "pisać",
+   "level": "A1",
+   "rank": 117
+  },
+  {
+   "nr": 19,
+   "id": "w_vb_19",
+   "en": "read",
+   "pl": "czytać",
+   "level": "A1",
+   "rank": 118
+  },
+  {
+   "nr": 20,
+   "id": "w_vb_20",
+   "en": "speak",
+   "pl": "mówić (językiem)",
+   "level": "A1",
+   "rank": 119
+  },
+  {
+   "nr": 21,
+   "id": "w_vb_21",
+   "en": "start",
+   "pl": "zaczynać",
+   "level": "A1",
+   "rank": 120
+  },
+  {
+   "nr": 22,
+   "id": "w_vb_22",
+   "en": "finish",
+   "pl": "kończyć",
+   "level": "A1",
+   "rank": 121
+  },
+  {
+   "nr": 23,
+   "id": "w_vb_23",
+   "en": "open",
+   "pl": "otwierać",
+   "level": "A1",
+   "rank": 122
+  },
+  {
+   "nr": 24,
+   "id": "w_vb_24",
+   "en": "close",
+   "pl": "zamykać",
+   "level": "A1",
+   "rank": 123
+  },
+  {
+   "nr": 25,
+   "id": "w_vb_25",
+   "en": "help",
+   "pl": "pomagać",
+   "level": "A1",
+   "rank": 124
+  },
+  {
+   "nr": 26,
+   "id": "w_vb_26",
+   "en": "ask",
+   "pl": "pytać",
+   "level": "A1",
+   "rank": 125
+  },
+  {
+   "nr": 27,
+   "id": "w_vb_27",
+   "en": "tell",
+   "pl": "powiedzieć (komuś)",
+   "level": "A1",
+   "rank": 126
+  },
+  {
+   "nr": 28,
+   "id": "w_vb_28",
+   "en": "put",
+   "pl": "kłaść",
+   "level": "A1",
+   "rank": 127
+  },
+  {
+   "nr": 29,
+   "id": "w_vb_29",
+   "en": "carry",
+   "pl": "nosić",
+   "level": "A1",
+   "rank": 128
+  },
+  {
+   "nr": 30,
+   "id": "w_vb_30",
+   "en": "drive",
+   "pl": "prowadzić (pojazd)",
+   "level": "A1",
+   "rank": 129
+  },
+  {
+   "nr": 31,
+   "id": "w_vb_31",
+   "en": "wait",
+   "pl": "czekać",
+   "level": "A1",
+   "rank": 130
+  },
+  {
+   "nr": 32,
+   "id": "w_vb_32",
+   "en": "send",
+   "pl": "wysyłać",
+   "level": "A1",
+   "rank": 131
+  },
+  {
+   "nr": 33,
+   "id": "w_vb_33",
+   "en": "pay",
+   "pl": "płacić",
+   "level": "A1",
+   "rank": 132
+  },
+  {
+   "nr": 34,
+   "id": "w_vb_34",
+   "en": "learn",
+   "pl": "uczyć się",
+   "level": "A1",
+   "rank": 133
+  },
+  {
+   "nr": 35,
+   "id": "w_vb_35",
+   "en": "leave",
+   "pl": "wychodzić / zostawiać",
+   "level": "A1",
+   "rank": 134
+  },
+  {
+   "nr": 36,
+   "id": "w_vb_36",
+   "en": "bring",
+   "pl": "przynosić",
+   "level": "A1",
+   "rank": 135
+  },
+  {
+   "nr": 37,
+   "id": "w_vb_37",
+   "en": "call",
+   "pl": "dzwonić / wołać",
+   "level": "A1",
+   "rank": 136
+  },
+  {
+   "nr": 38,
+   "id": "w_vb_38",
+   "en": "try",
+   "pl": "próbować",
+   "level": "A1",
+   "rank": 137
+  },
+  {
+   "nr": 39,
+   "id": "w_vb_39",
+   "en": "need",
+   "pl": "potrzebować",
+   "level": "A1",
+   "rank": 138
+  },
+  {
+   "nr": 40,
+   "id": "w_vb_40",
+   "en": "want",
+   "pl": "chcieć",
+   "level": "A1",
+   "rank": 139
+  },
+  {
+   "nr": 41,
+   "id": "w_vb_41",
+   "en": "live",
+   "pl": "mieszkać / żyć",
+   "level": "A1",
+   "rank": 140
+  },
+  {
+   "nr": 42,
+   "id": "w_vb_42",
+   "en": "move",
+   "pl": "przesuwać / przeprowadzać się",
+   "level": "A1",
+   "rank": 141
+  },
+  {
+   "nr": 43,
+   "id": "w_vb_43",
+   "en": "turn",
+   "pl": "skręcać / obracać",
+   "level": "A1",
+   "rank": 142
+  },
+  {
+   "nr": 44,
+   "id": "w_vb_44",
+   "en": "push",
+   "pl": "pchać",
+   "level": "A1",
+   "rank": 143
+  },
+  {
+   "nr": 45,
+   "id": "w_vb_45",
+   "en": "pull",
+   "pl": "ciągnąć",
+   "level": "A1",
+   "rank": 144
+  },
+  {
+   "nr": 46,
+   "id": "w_vb_46",
+   "en": "lift",
+   "pl": "podnosić",
+   "level": "A1",
+   "rank": 145
+  },
+  {
+   "nr": 47,
+   "id": "w_vb_47",
+   "en": "check",
+   "pl": "sprawdzać",
+   "level": "A1",
+   "rank": 146
+  },
+  {
+   "nr": 48,
+   "id": "w_vb_48",
+   "en": "count",
+   "pl": "liczyć",
+   "level": "A1",
+   "rank": 147
+  },
+  {
+   "nr": 49,
+   "id": "w_vb_49",
+   "en": "clean",
+   "pl": "sprzątać / czyścić",
+   "level": "A1",
+   "rank": 148,
+   "hint": "czasownik: sprzątać"
+  },
+  {
+   "nr": 50,
+   "id": "w_vb_50",
+   "en": "break",
+   "pl": "łamać / psuć",
+   "level": "A1",
+   "rank": 149,
+   "hint": "czasownik: łamać, psuć"
+  },
+  {
+   "nr": 51,
+   "id": "w_vb_51",
+   "en": "use",
+   "pl": "używać",
+   "level": "A1",
+   "rank": 150
+  },
+  {
+   "nr": 52,
+   "id": "w_vb_52",
+   "en": "play",
+   "pl": "grać / bawić się",
+   "level": "A1",
+   "rank": 151
+  },
+  {
+   "nr": 53,
+   "id": "w_vb_53",
+   "en": "watch",
+   "pl": "oglądać",
+   "level": "A1",
+   "rank": 152
+  },
+  {
+   "nr": 54,
+   "id": "w_vb_54",
+   "en": "listen",
+   "pl": "słuchać",
+   "level": "A1",
+   "rank": 153
+  },
+  {
+   "nr": 55,
+   "id": "w_vb_55",
+   "en": "sleep",
+   "pl": "spać",
+   "level": "A1",
+   "rank": 154
+  },
+  {
+   "nr": 56,
+   "id": "w_vb_56",
+   "en": "run",
+   "pl": "biegać",
+   "level": "A1",
+   "rank": 155
+  },
+  {
+   "nr": 57,
+   "id": "w_vb_57",
+   "en": "walk",
+   "pl": "chodzić / spacerować",
+   "level": "A1",
+   "rank": 156
+  },
+  {
+   "nr": 58,
+   "id": "w_vb_58",
+   "en": "stand",
+   "pl": "stać",
+   "level": "A1",
+   "rank": 157
+  },
+  {
+   "nr": 59,
+   "id": "w_vb_59",
+   "en": "sit",
+   "pl": "siedzieć",
+   "level": "A1",
+   "rank": 158
+  },
+  {
+   "nr": 60,
+   "id": "w_vb_60",
+   "en": "stay",
+   "pl": "zostawać",
+   "level": "A1",
+   "rank": 159
+  },
+  {
+   "nr": 61,
+   "id": "w_vb_61",
+   "en": "change",
+   "pl": "zmieniać",
+   "level": "A1",
+   "rank": 160
+  },
+  {
+   "nr": 62,
+   "id": "w_vb_62",
+   "en": "forget",
+   "pl": "zapominać",
+   "level": "A1",
+   "rank": 161
+  },
+  {
+   "nr": 63,
+   "id": "w_vb_63",
+   "en": "remember",
+   "pl": "pamiętać",
+   "level": "A1",
+   "rank": 162
+  },
+  {
+   "nr": 64,
+   "id": "w_vb_64",
+   "en": "meet",
+   "pl": "spotykać",
+   "level": "A1",
+   "rank": 163
+  },
+  {
+   "nr": 65,
+   "id": "w_vb_65",
+   "en": "talk",
+   "pl": "rozmawiać",
+   "level": "A1",
+   "rank": 164
+  },
+  {
+   "nr": 66,
+   "id": "w_vb_66",
+   "en": "cook",
+   "pl": "gotować",
+   "level": "A1",
+   "rank": 165
+  },
+  {
+   "nr": 67,
+   "id": "w_vb_67",
+   "en": "wash",
+   "pl": "myć / prać",
+   "level": "A1",
+   "rank": 166
+  },
+  {
+   "nr": 68,
+   "id": "w_vb_68",
+   "en": "wear",
+   "pl": "nosić (na sobie)",
+   "level": "A1",
+   "rank": 167
+  },
+  {
+   "nr": 69,
+   "id": "w_vb_69",
+   "en": "feel",
+   "pl": "czuć (się)",
+   "level": "A1",
+   "rank": 168
+  },
+  {
+   "nr": 70,
+   "id": "w_vb_70",
+   "en": "think",
+   "pl": "myśleć",
+   "level": "A1",
+   "rank": 169
+  },
+  {
+   "nr": 71,
+   "id": "w_vb_71",
+   "en": "answer",
+   "pl": "odpowiadać",
+   "level": "A1",
+   "rank": 170,
+   "hint": "czasownik: co robisz"
+  },
+  {
+   "nr": 72,
+   "id": "w_vb_72",
+   "en": "arrive",
+   "pl": "przybywać / docierać",
+   "level": "A1",
+   "rank": 171
+  },
+  {
+   "nr": 73,
+   "id": "w_vb_73",
+   "en": "begin",
+   "pl": "zaczynać (się)",
+   "level": "A1",
+   "rank": 172
+  },
+  {
+   "nr": 74,
+   "id": "w_vb_74",
+   "en": "believe",
+   "pl": "wierzyć",
+   "level": "A1",
+   "rank": 173
+  },
+  {
+   "nr": 75,
+   "id": "w_vb_75",
+   "en": "borrow",
+   "pl": "pożyczać (od kogoś)",
+   "level": "A1",
+   "rank": 174
+  },
+  {
+   "nr": 76,
+   "id": "w_vb_76",
+   "en": "build",
+   "pl": "budować",
+   "level": "A1",
+   "rank": 175
+  },
+  {
+   "nr": 77,
+   "id": "w_vb_77",
+   "en": "catch",
+   "pl": "łapać",
+   "level": "A1",
+   "rank": 176
+  },
+  {
+   "nr": 78,
+   "id": "w_vb_78",
+   "en": "choose",
+   "pl": "wybierać",
+   "level": "A1",
+   "rank": 177
+  },
+  {
+   "nr": 79,
+   "id": "w_vb_79",
+   "en": "cost",
+   "pl": "kosztować",
+   "level": "A1",
+   "rank": 178,
+   "hint": "czasownik: kosztować"
+  },
+  {
+   "nr": 80,
+   "id": "w_vb_80",
+   "en": "cut",
+   "pl": "ciąć",
+   "level": "A1",
+   "rank": 179
+  },
+  {
+   "nr": 81,
+   "id": "w_vb_81",
+   "en": "decide",
+   "pl": "decydować",
+   "level": "A1",
+   "rank": 180
+  },
+  {
+   "nr": 82,
+   "id": "w_vb_82",
+   "en": "drop",
+   "pl": "upuszczać",
+   "level": "A1",
+   "rank": 181
+  },
+  {
+   "nr": 83,
+   "id": "w_vb_83",
+   "en": "explain",
+   "pl": "wyjaśniać",
+   "level": "A1",
+   "rank": 182
+  },
+  {
+   "nr": 84,
+   "id": "w_vb_84",
+   "en": "fall",
+   "pl": "spadać / upadać",
+   "level": "A1",
+   "rank": 183
+  },
+  {
+   "nr": 85,
+   "id": "w_vb_85",
+   "en": "fill",
+   "pl": "napełniać / wypełniać",
+   "level": "A1",
+   "rank": 184
+  },
+  {
+   "nr": 86,
+   "id": "w_vb_86",
+   "en": "fix",
+   "pl": "naprawiać",
+   "level": "A1",
+   "rank": 185
+  },
+  {
+   "nr": 87,
+   "id": "w_vb_87",
+   "en": "fly",
+   "pl": "latać",
+   "level": "A1",
+   "rank": 186,
+   "hint": "czasownik: latać"
+  },
+  {
+   "nr": 88,
+   "id": "w_vb_88",
+   "en": "follow",
+   "pl": "podążać / przestrzegać",
+   "level": "A1",
+   "rank": 187
+  },
+  {
+   "nr": 89,
+   "id": "w_vb_89",
+   "en": "grow",
+   "pl": "rosnąć / uprawiać",
+   "level": "A1",
+   "rank": 188
+  },
+  {
+   "nr": 90,
+   "id": "w_vb_90",
+   "en": "hear",
+   "pl": "słyszeć",
+   "level": "A1",
+   "rank": 189
+  },
+  {
+   "nr": 91,
+   "id": "w_vb_91",
+   "en": "hold",
+   "pl": "trzymać",
+   "level": "A1",
+   "rank": 190
+  },
+  {
+   "nr": 92,
+   "id": "w_vb_92",
+   "en": "hope",
+   "pl": "mieć nadzieję",
+   "level": "A1",
+   "rank": 191
+  },
+  {
+   "nr": 93,
+   "id": "w_vb_93",
+   "en": "hurt",
+   "pl": "ranić / boleć",
+   "level": "A1",
+   "rank": 192
+  },
+  {
+   "nr": 94,
+   "id": "w_vb_94",
+   "en": "keep",
+   "pl": "trzymać / zachowywać",
+   "level": "A1",
+   "rank": 193
+  },
+  {
+   "nr": 95,
+   "id": "w_vb_95",
+   "en": "laugh",
+   "pl": "śmiać się",
+   "level": "A1",
+   "rank": 194
+  },
+  {
+   "nr": 96,
+   "id": "w_vb_96",
+   "en": "lose",
+   "pl": "gubić / przegrywać",
+   "level": "A1",
+   "rank": 195
+  },
+  {
+   "nr": 97,
+   "id": "w_vb_97",
+   "en": "love",
+   "pl": "kochać",
+   "level": "A1",
+   "rank": 196
+  },
+  {
+   "nr": 98,
+   "id": "w_vb_98",
+   "en": "order",
+   "pl": "zamawiać",
+   "level": "A1",
+   "rank": 197,
+   "hint": "czasownik: zamawiać"
+  },
+  {
+   "nr": 99,
+   "id": "w_vb_99",
+   "en": "pack",
+   "pl": "pakować",
+   "level": "A1",
+   "rank": 198
+  },
+  {
+   "nr": 100,
+   "id": "w_vb_100",
+   "en": "plan",
+   "pl": "planować",
+   "level": "A1",
+   "rank": 199,
+   "hint": "czasownik: planować"
+  },
+  {
+   "nr": 101,
+   "id": "w_vb_101",
+   "en": "accept",
+   "pl": "akceptować",
+   "level": "A1",
+   "rank": 200
+  },
+  {
+   "nr": 102,
+   "id": "w_vb_102",
+   "en": "add",
+   "pl": "dodawać",
+   "level": "A1",
+   "rank": 201
+  },
+  {
+   "nr": 103,
+   "id": "w_vb_103",
+   "en": "agree",
+   "pl": "zgadzać się",
+   "level": "A1",
+   "rank": 202
+  },
+  {
+   "nr": 104,
+   "id": "w_vb_104",
+   "en": "allow",
+   "pl": "pozwalać",
+   "level": "A1",
+   "rank": 203
+  },
+  {
+   "nr": 105,
+   "id": "w_vb_105",
+   "en": "appear",
+   "pl": "pojawiać się",
+   "level": "A1",
+   "rank": 204
+  },
+  {
+   "nr": 106,
+   "id": "w_vb_106",
+   "en": "apply",
+   "pl": "aplikować / składać wniosek",
+   "level": "A1",
+   "rank": 205
+  },
+  {
+   "nr": 107,
+   "id": "w_vb_107",
+   "en": "argue",
+   "pl": "kłócić się",
+   "level": "A1",
+   "rank": 206
+  },
+  {
+   "nr": 108,
+   "id": "w_vb_108",
+   "en": "arrange",
+   "pl": "ustalać / organizować",
+   "level": "A1",
+   "rank": 207
+  },
+  {
+   "nr": 109,
+   "id": "w_vb_109",
+   "en": "attack",
+   "pl": "atakować",
+   "level": "A1",
+   "rank": 208
+  },
+  {
+   "nr": 110,
+   "id": "w_vb_110",
+   "en": "avoid",
+   "pl": "unikać",
+   "level": "A1",
+   "rank": 209
+  },
+  {
+   "nr": 111,
+   "id": "w_vb_111",
+   "en": "bake",
+   "pl": "piec",
+   "level": "A1",
+   "rank": 210
+  },
+  {
+   "nr": 112,
+   "id": "w_vb_112",
+   "en": "beat",
+   "pl": "bić / pokonywać",
+   "level": "A1",
+   "rank": 211
+  },
+  {
+   "nr": 113,
+   "id": "w_vb_113",
+   "en": "become",
+   "pl": "stawać się",
+   "level": "A1",
+   "rank": 212
+  },
+  {
+   "nr": 114,
+   "id": "w_vb_114",
+   "en": "belong",
+   "pl": "należeć",
+   "level": "A1",
+   "rank": 213
+  },
+  {
+   "nr": 115,
+   "id": "w_vb_115",
+   "en": "bite",
+   "pl": "gryźć",
+   "level": "A1",
+   "rank": 214
+  },
+  {
+   "nr": 116,
+   "id": "w_vb_116",
+   "en": "blow",
+   "pl": "dmuchać / wiać",
+   "level": "A1",
+   "rank": 215
+  },
+  {
+   "nr": 117,
+   "id": "w_vb_117",
+   "en": "boil",
+   "pl": "gotować (wodę)",
+   "level": "A1",
+   "rank": 216
+  },
+  {
+   "nr": 118,
+   "id": "w_vb_118",
+   "en": "burn",
+   "pl": "palić (się)",
+   "level": "A1",
+   "rank": 217
+  },
+  {
+   "nr": 119,
+   "id": "w_vb_119",
+   "en": "cancel",
+   "pl": "odwoływać",
+   "level": "A1",
+   "rank": 218
+  },
+  {
+   "nr": 120,
+   "id": "w_vb_120",
+   "en": "care",
+   "pl": "dbać / troszczyć się",
+   "level": "A1",
+   "rank": 219
+  },
+  {
+   "nr": 121,
+   "id": "w_vb_121",
+   "en": "celebrate",
+   "pl": "świętować",
+   "level": "A1",
+   "rank": 220
+  },
+  {
+   "nr": 122,
+   "id": "w_vb_122",
+   "en": "climb",
+   "pl": "wspinać się",
+   "level": "A1",
+   "rank": 221
+  },
+  {
+   "nr": 123,
+   "id": "w_vb_123",
+   "en": "collect",
+   "pl": "zbierać",
+   "level": "A1",
+   "rank": 222
+  },
+  {
+   "nr": 124,
+   "id": "w_vb_124",
+   "en": "compare",
+   "pl": "porównywać",
+   "level": "A1",
+   "rank": 223
+  },
+  {
+   "nr": 125,
+   "id": "w_vb_125",
+   "en": "complain",
+   "pl": "narzekać / składać skargę",
+   "level": "A1",
+   "rank": 224
+  },
+  {
+   "nr": 126,
+   "id": "w_vb_126",
+   "en": "complete",
+   "pl": "ukończyć",
+   "level": "A1",
+   "rank": 225
+  },
+  {
+   "nr": 127,
+   "id": "w_vb_127",
+   "en": "connect",
+   "pl": "łączyć",
+   "level": "A1",
+   "rank": 226
+  },
+  {
+   "nr": 128,
+   "id": "w_vb_128",
+   "en": "continue",
+   "pl": "kontynuować",
+   "level": "A1",
+   "rank": 227
+  },
+  {
+   "nr": 129,
+   "id": "w_vb_129",
+   "en": "control",
+   "pl": "kontrolować",
+   "level": "A1",
+   "rank": 228
+  },
+  {
+   "nr": 130,
+   "id": "w_vb_130",
+   "en": "copy",
+   "pl": "kopiować",
+   "level": "A1",
+   "rank": 229,
+   "hint": "czasownik: kopiować"
+  },
+  {
+   "nr": 131,
+   "id": "w_vb_131",
+   "en": "correct",
+   "pl": "poprawiać",
+   "level": "A1",
+   "rank": 230,
+   "hint": "czasownik: poprawiać"
+  },
+  {
+   "nr": 132,
+   "id": "w_vb_132",
+   "en": "cover",
+   "pl": "przykrywać / obejmować",
+   "level": "A1",
+   "rank": 231
+  },
+  {
+   "nr": 133,
+   "id": "w_vb_133",
+   "en": "create",
+   "pl": "tworzyć",
+   "level": "A1",
+   "rank": 232
+  },
+  {
+   "nr": 134,
+   "id": "w_vb_134",
+   "en": "cross",
+   "pl": "przechodzić przez",
+   "level": "A1",
+   "rank": 233
+  },
+  {
+   "nr": 135,
+   "id": "w_vb_135",
+   "en": "cry",
+   "pl": "płakać",
+   "level": "A1",
+   "rank": 234
+  },
+  {
+   "nr": 136,
+   "id": "w_vb_136",
+   "en": "damage",
+   "pl": "uszkadzać",
+   "level": "A1",
+   "rank": 235
+  },
+  {
+   "nr": 137,
+   "id": "w_vb_137",
+   "en": "dance",
+   "pl": "tańczyć",
+   "level": "A1",
+   "rank": 236
+  },
+  {
+   "nr": 138,
+   "id": "w_vb_138",
+   "en": "deliver",
+   "pl": "dostarczać",
+   "level": "A1",
+   "rank": 237
+  },
+  {
+   "nr": 139,
+   "id": "w_vb_139",
+   "en": "describe",
+   "pl": "opisywać",
+   "level": "A1",
+   "rank": 238
+  },
+  {
+   "nr": 140,
+   "id": "w_vb_140",
+   "en": "destroy",
+   "pl": "niszczyć",
+   "level": "A1",
+   "rank": 239
+  },
+  {
+   "nr": 141,
+   "id": "w_vb_141",
+   "en": "die",
+   "pl": "umierać",
+   "level": "A1",
+   "rank": 240
+  },
+  {
+   "nr": 142,
+   "id": "w_vb_142",
+   "en": "dig",
+   "pl": "kopać (w ziemi)",
+   "level": "A1",
+   "rank": 241
+  },
+  {
+   "nr": 143,
+   "id": "w_vb_143",
+   "en": "discuss",
+   "pl": "omawiać",
+   "level": "A1",
+   "rank": 242
+  },
+  {
+   "nr": 144,
+   "id": "w_vb_144",
+   "en": "divide",
+   "pl": "dzielić",
+   "level": "A1",
+   "rank": 243
+  },
+  {
+   "nr": 145,
+   "id": "w_vb_145",
+   "en": "draw",
+   "pl": "rysować / ciągnąć",
+   "level": "A1",
+   "rank": 244
+  },
+  {
+   "nr": 146,
+   "id": "w_vb_146",
+   "en": "dream",
+   "pl": "śnić / marzyć",
+   "level": "A1",
+   "rank": 245
+  },
+  {
+   "nr": 147,
+   "id": "w_vb_147",
+   "en": "dress",
+   "pl": "ubierać (się)",
+   "level": "A1",
+   "rank": 246,
+   "hint": "czasownik: ubierać się"
+  },
+  {
+   "nr": 148,
+   "id": "w_vb_148",
+   "en": "earn",
+   "pl": "zarabiać",
+   "level": "A1",
+   "rank": 247
+  },
+  {
+   "nr": 149,
+   "id": "w_vb_149",
+   "en": "enjoy",
+   "pl": "cieszyć się / lubić",
+   "level": "A1",
+   "rank": 248
+  },
+  {
+   "nr": 150,
+   "id": "w_vb_150",
+   "en": "enter",
+   "pl": "wchodzić",
+   "level": "A1",
+   "rank": 249
+  },
+  {
+   "nr": 151,
+   "id": "w_vb_151",
+   "en": "expect",
+   "pl": "oczekiwać",
+   "level": "A1",
+   "rank": 250
+  },
+  {
+   "nr": 152,
+   "id": "w_vb_152",
+   "en": "fail",
+   "pl": "zawodzić / oblewać",
+   "level": "A1",
+   "rank": 251
+  },
+  {
+   "nr": 153,
+   "id": "w_vb_153",
+   "en": "fight",
+   "pl": "walczyć",
+   "level": "A1",
+   "rank": 252
+  },
+  {
+   "nr": 154,
+   "id": "w_vb_154",
+   "en": "fit",
+   "pl": "pasować (rozmiarem)",
+   "level": "A1",
+   "rank": 253
+  },
+  {
+   "nr": 155,
+   "id": "w_vb_155",
+   "en": "forgive",
+   "pl": "wybaczać",
+   "level": "A1",
+   "rank": 254
+  },
+  {
+   "nr": 156,
+   "id": "w_vb_156",
+   "en": "freeze",
+   "pl": "zamarzać / mrozić",
+   "level": "A1",
+   "rank": 255
+  },
+  {
+   "nr": 157,
+   "id": "w_vb_157",
+   "en": "guess",
+   "pl": "zgadywać",
+   "level": "A1",
+   "rank": 256
+  },
+  {
+   "nr": 158,
+   "id": "w_vb_158",
+   "en": "hang",
+   "pl": "wieszać",
+   "level": "A1",
+   "rank": 257
+  },
+  {
+   "nr": 159,
+   "id": "w_vb_159",
+   "en": "happen",
+   "pl": "zdarzać się",
+   "level": "A1",
+   "rank": 258
+  },
+  {
+   "nr": 160,
+   "id": "w_vb_160",
+   "en": "hate",
+   "pl": "nienawidzić",
+   "level": "A1",
+   "rank": 259
+  },
+  {
+   "nr": 161,
+   "id": "w_vb_161",
+   "en": "hide",
+   "pl": "chować (się)",
+   "level": "A1",
+   "rank": 260
+  },
+  {
+   "nr": 162,
+   "id": "w_vb_162",
+   "en": "hit",
+   "pl": "uderzać",
+   "level": "A1",
+   "rank": 261
+  },
+  {
+   "nr": 163,
+   "id": "w_vb_163",
+   "en": "hurry",
+   "pl": "spieszyć się",
+   "level": "A1",
+   "rank": 262
+  },
+  {
+   "nr": 164,
+   "id": "w_vb_164",
+   "en": "imagine",
+   "pl": "wyobrażać sobie",
+   "level": "A1",
+   "rank": 263
+  },
+  {
+   "nr": 165,
+   "id": "w_vb_165",
+   "en": "improve",
+   "pl": "poprawiać / ulepszać",
+   "level": "A1",
+   "rank": 264
+  },
+  {
+   "nr": 166,
+   "id": "w_vb_166",
+   "en": "include",
+   "pl": "zawierać / obejmować",
+   "level": "A1",
+   "rank": 265
+  },
+  {
+   "nr": 167,
+   "id": "w_vb_167",
+   "en": "increase",
+   "pl": "zwiększać",
+   "level": "A1",
+   "rank": 266
+  },
+  {
+   "nr": 168,
+   "id": "w_vb_168",
+   "en": "introduce",
+   "pl": "przedstawiać / wprowadzać",
+   "level": "A1",
+   "rank": 267
+  },
+  {
+   "nr": 169,
+   "id": "w_vb_169",
+   "en": "invite",
+   "pl": "zapraszać",
+   "level": "A1",
+   "rank": 268
+  },
+  {
+   "nr": 170,
+   "id": "w_vb_170",
+   "en": "join",
+   "pl": "dołączać",
+   "level": "A1",
+   "rank": 269
+  },
+  {
+   "nr": 171,
+   "id": "w_vb_171",
+   "en": "jump",
+   "pl": "skakać",
+   "level": "A1",
+   "rank": 270
+  },
+  {
+   "nr": 172,
+   "id": "w_vb_172",
+   "en": "kick",
+   "pl": "kopać (nogą)",
+   "level": "A1",
+   "rank": 271
+  },
+  {
+   "nr": 173,
+   "id": "w_vb_173",
+   "en": "kill",
+   "pl": "zabijać",
+   "level": "A1",
+   "rank": 272
+  },
+  {
+   "nr": 174,
+   "id": "w_vb_174",
+   "en": "kiss",
+   "pl": "całować",
+   "level": "A1",
+   "rank": 273
+  },
+  {
+   "nr": 175,
+   "id": "w_vb_175",
+   "en": "knock",
+   "pl": "pukać",
+   "level": "A1",
+   "rank": 274
+  },
+  {
+   "nr": 176,
+   "id": "w_vb_176",
+   "en": "lend",
+   "pl": "pożyczać (komuś)",
+   "level": "A1",
+   "rank": 275
+  },
+  {
+   "nr": 177,
+   "id": "w_vb_177",
+   "en": "lie (down)",
+   "pl": "leżeć / kłaść się",
+   "level": "A1",
+   "rank": 276
+  },
+  {
+   "nr": 178,
+   "id": "w_vb_178",
+   "en": "lie (not truth)",
+   "pl": "kłamać",
+   "level": "A1",
+   "rank": 277
+  },
+  {
+   "nr": 179,
+   "id": "w_vb_179",
+   "en": "lock",
+   "pl": "zamykać na klucz",
+   "level": "A1",
+   "rank": 278,
+   "hint": "czasownik: zamykać na klucz"
+  },
+  {
+   "nr": 180,
+   "id": "w_vb_180",
+   "en": "look",
+   "pl": "patrzeć / wyglądać",
+   "level": "A1",
+   "rank": 279
+  },
+  {
+   "nr": 181,
+   "id": "w_vb_181",
+   "en": "manage",
+   "pl": "zarządzać / dawać radę",
+   "level": "A1",
+   "rank": 280
+  },
+  {
+   "nr": 182,
+   "id": "w_vb_182",
+   "en": "mark",
+   "pl": "zaznaczać",
+   "level": "A1",
+   "rank": 281
+  },
+  {
+   "nr": 183,
+   "id": "w_vb_183",
+   "en": "marry",
+   "pl": "poślubiać",
+   "level": "A1",
+   "rank": 282
+  },
+  {
+   "nr": 184,
+   "id": "w_vb_184",
+   "en": "mean",
+   "pl": "znaczyć / mieć na myśli",
+   "level": "A1",
+   "rank": 283
+  },
+  {
+   "nr": 185,
+   "id": "w_vb_185",
+   "en": "measure",
+   "pl": "mierzyć",
+   "level": "A1",
+   "rank": 284
+  },
+  {
+   "nr": 186,
+   "id": "w_vb_186",
+   "en": "mention",
+   "pl": "wspominać (o czymś)",
+   "level": "A1",
+   "rank": 285
+  },
+  {
+   "nr": 187,
+   "id": "w_vb_187",
+   "en": "miss",
+   "pl": "tęsknić / przegapiać",
+   "level": "A1",
+   "rank": 286
+  },
+  {
+   "nr": 188,
+   "id": "w_vb_188",
+   "en": "mix",
+   "pl": "mieszać",
+   "level": "A1",
+   "rank": 287
+  },
+  {
+   "nr": 189,
+   "id": "w_vb_189",
+   "en": "notice",
+   "pl": "zauważać",
+   "level": "A1",
+   "rank": 288
+  },
+  {
+   "nr": 190,
+   "id": "w_vb_190",
+   "en": "offer",
+   "pl": "oferować",
+   "level": "A1",
+   "rank": 289
+  },
+  {
+   "nr": 191,
+   "id": "w_vb_191",
+   "en": "own",
+   "pl": "posiadać",
+   "level": "A1",
+   "rank": 290
+  },
+  {
+   "nr": 192,
+   "id": "w_vb_192",
+   "en": "paint",
+   "pl": "malować",
+   "level": "A1",
+   "rank": 291
+  },
+  {
+   "nr": 193,
+   "id": "w_vb_193",
+   "en": "park",
+   "pl": "parkować",
+   "level": "A1",
+   "rank": 292,
+   "hint": "czasownik: parkować"
+  },
+  {
+   "nr": 194,
+   "id": "w_vb_194",
+   "en": "pass",
+   "pl": "podawać / zdawać / mijać",
+   "level": "A1",
+   "rank": 293
+  },
+  {
+   "nr": 195,
+   "id": "w_vb_195",
+   "en": "pick",
+   "pl": "wybierać / zbierać (zamówienia)",
+   "level": "A1",
+   "rank": 294
+  },
+  {
+   "nr": 196,
+   "id": "w_vb_196",
+   "en": "point",
+   "pl": "wskazywać",
+   "level": "A1",
+   "rank": 295
+  },
+  {
+   "nr": 197,
+   "id": "w_vb_197",
+   "en": "practise",
+   "pl": "ćwiczyć",
+   "level": "A1",
+   "rank": 296
+  },
+  {
+   "nr": 198,
+   "id": "w_vb_198",
+   "en": "prefer",
+   "pl": "woleć",
+   "level": "A1",
+   "rank": 297
+  },
+  {
+   "nr": 199,
+   "id": "w_vb_199",
+   "en": "prepare",
+   "pl": "przygotowywać",
+   "level": "A1",
+   "rank": 298
+  },
+  {
+   "nr": 200,
+   "id": "w_vb_200",
+   "en": "press",
+   "pl": "naciskać",
+   "level": "A1",
+   "rank": 299
+  },
+  {
+   "nr": 201,
+   "id": "w_vb_201",
+   "en": "print",
+   "pl": "drukować",
+   "level": "A1",
+   "rank": 300
+  },
+  {
+   "nr": 202,
+   "id": "w_vb_202",
+   "en": "promise",
+   "pl": "obiecywać",
+   "level": "A1",
+   "rank": 301,
+   "hint": "czasownik: obiecywać"
+  },
+  {
+   "nr": 203,
+   "id": "w_vb_203",
+   "en": "protect",
+   "pl": "chronić",
+   "level": "A1",
+   "rank": 302
+  },
+  {
+   "nr": 204,
+   "id": "w_vb_204",
+   "en": "prove",
+   "pl": "udowadniać",
+   "level": "A1",
+   "rank": 303
+  },
+  {
+   "nr": 205,
+   "id": "w_vb_205",
+   "en": "receive",
+   "pl": "otrzymywać",
+   "level": "A1",
+   "rank": 304
+  },
+  {
+   "nr": 206,
+   "id": "w_vb_206",
+   "en": "recognise",
+   "pl": "rozpoznawać",
+   "level": "A1",
+   "rank": 305
+  },
+  {
+   "nr": 207,
+   "id": "w_vb_207",
+   "en": "recommend",
+   "pl": "polecać",
+   "level": "A1",
+   "rank": 306
+  },
+  {
+   "nr": 208,
+   "id": "w_vb_208",
+   "en": "refuse",
+   "pl": "odmawiać",
+   "level": "A1",
+   "rank": 307
+  },
+  {
+   "nr": 209,
+   "id": "w_vb_209",
+   "en": "relax",
+   "pl": "odpoczywać",
+   "level": "A1",
+   "rank": 308
+  },
+  {
+   "nr": 210,
+   "id": "w_vb_210",
+   "en": "repair",
+   "pl": "naprawiać",
+   "level": "A1",
+   "rank": 309
+  },
+  {
+   "nr": 211,
+   "id": "w_vb_211",
+   "en": "repeat",
+   "pl": "powtarzać",
+   "level": "A1",
+   "rank": 310
+  },
+  {
+   "nr": 212,
+   "id": "w_vb_212",
+   "en": "replace",
+   "pl": "zastępować / wymieniać",
+   "level": "A1",
+   "rank": 311
+  },
+  {
+   "nr": 213,
+   "id": "w_vb_213",
+   "en": "reply",
+   "pl": "odpowiadać (na wiadomość)",
+   "level": "A1",
+   "rank": 312
+  },
+  {
+   "nr": 214,
+   "id": "w_vb_214",
+   "en": "rest",
+   "pl": "odpoczywać",
+   "level": "A1",
+   "rank": 313
+  },
+  {
+   "nr": 215,
+   "id": "w_vb_215",
+   "en": "return",
+   "pl": "wracać / zwracać",
+   "level": "A1",
+   "rank": 314
+  },
+  {
+   "nr": 216,
+   "id": "w_vb_216",
+   "en": "ride",
+   "pl": "jeździć (rowerem/konno)",
+   "level": "A1",
+   "rank": 315
+  },
+  {
+   "nr": 217,
+   "id": "w_vb_217",
+   "en": "ring",
+   "pl": "dzwonić (dzwonek)",
+   "level": "A1",
+   "rank": 316,
+   "hint": "czasownik: dzwonić"
+  },
+  {
+   "nr": 218,
+   "id": "w_vb_218",
+   "en": "rise",
+   "pl": "wschodzić / rosnąć",
+   "level": "A1",
+   "rank": 317
+  },
+  {
+   "nr": 219,
+   "id": "w_vb_219",
+   "en": "save",
+   "pl": "oszczędzać / ratować / zapisywać",
+   "level": "A1",
+   "rank": 318
+  },
+  {
+   "nr": 220,
+   "id": "w_vb_220",
+   "en": "scan",
+   "pl": "skanować",
+   "level": "A1",
+   "rank": 319
+  },
+  {
+   "nr": 221,
+   "id": "w_vb_221",
+   "en": "select",
+   "pl": "wybierać",
+   "level": "A2",
+   "rank": 321
+  },
+  {
+   "nr": 222,
+   "id": "w_vb_222",
+   "en": "separate",
+   "pl": "oddzielać",
+   "level": "A2",
+   "rank": 322
+  },
+  {
+   "nr": 223,
+   "id": "w_vb_223",
+   "en": "serve",
+   "pl": "obsługiwać / podawać",
+   "level": "A2",
+   "rank": 323
+  },
+  {
+   "nr": 224,
+   "id": "w_vb_224",
+   "en": "share (verb)",
+   "pl": "dzielić się",
+   "level": "A2",
+   "rank": 324
+  },
+  {
+   "nr": 225,
+   "id": "w_vb_225",
+   "en": "shout",
+   "pl": "krzyczeć",
+   "level": "A2",
+   "rank": 325
+  },
+  {
+   "nr": 226,
+   "id": "w_vb_226",
+   "en": "show",
+   "pl": "pokazywać",
+   "level": "A2",
+   "rank": 326
+  },
+  {
+   "nr": 227,
+   "id": "w_vb_227",
+   "en": "sign",
+   "pl": "podpisywać",
+   "level": "A2",
+   "rank": 327
+  },
+  {
+   "nr": 228,
+   "id": "w_vb_228",
+   "en": "sing",
+   "pl": "śpiewać",
+   "level": "A2",
+   "rank": 328
+  },
+  {
+   "nr": 229,
+   "id": "w_vb_229",
+   "en": "sit down",
+   "pl": "siadać",
+   "level": "A2",
+   "rank": 329
+  },
+  {
+   "nr": 230,
+   "id": "w_vb_230",
+   "en": "smell",
+   "pl": "pachnieć / wąchać",
+   "level": "A2",
+   "rank": 330
+  },
+  {
+   "nr": 231,
+   "id": "w_vb_231",
+   "en": "smile",
+   "pl": "uśmiechać się",
+   "level": "A2",
+   "rank": 331
+  },
+  {
+   "nr": 232,
+   "id": "w_vb_232",
+   "en": "sound",
+   "pl": "brzmieć",
+   "level": "A2",
+   "rank": 332
+  },
+  {
+   "nr": 233,
+   "id": "w_vb_233",
+   "en": "spend",
+   "pl": "spędzać / wydawać",
+   "level": "A2",
+   "rank": 333
+  },
+  {
+   "nr": 234,
+   "id": "w_vb_234",
+   "en": "stop",
+   "pl": "zatrzymywać",
+   "level": "A2",
+   "rank": 334
+  },
+  {
+   "nr": 235,
+   "id": "w_vb_235",
+   "en": "study",
+   "pl": "uczyć się / studiować",
+   "level": "A2",
+   "rank": 335
+  },
+  {
+   "nr": 236,
+   "id": "w_vb_236",
+   "en": "suggest",
+   "pl": "sugerować",
+   "level": "A2",
+   "rank": 336
+  },
+  {
+   "nr": 237,
+   "id": "w_vb_237",
+   "en": "suppose",
+   "pl": "przypuszczać",
+   "level": "A2",
+   "rank": 337
+  },
+  {
+   "nr": 238,
+   "id": "w_vb_238",
+   "en": "swim",
+   "pl": "pływać",
+   "level": "A2",
+   "rank": 338
+  },
+  {
+   "nr": 239,
+   "id": "w_vb_239",
+   "en": "switch",
+   "pl": "przełączać",
+   "level": "A2",
+   "rank": 339,
+   "hint": "czasownik: przełączać"
+  },
+  {
+   "nr": 240,
+   "id": "w_vb_240",
+   "en": "teach",
+   "pl": "uczyć (kogoś)",
+   "level": "A2",
+   "rank": 340
+  },
+  {
+   "nr": 241,
+   "id": "w_vb_241",
+   "en": "thank",
+   "pl": "dziękować",
+   "level": "A2",
+   "rank": 341
+  },
+  {
+   "nr": 242,
+   "id": "w_vb_242",
+   "en": "throw",
+   "pl": "rzucać",
+   "level": "A2",
+   "rank": 342
+  },
+  {
+   "nr": 243,
+   "id": "w_vb_243",
+   "en": "touch",
+   "pl": "dotykać",
+   "level": "A2",
+   "rank": 343
+  },
+  {
+   "nr": 244,
+   "id": "w_vb_244",
+   "en": "travel",
+   "pl": "podróżować",
+   "level": "A2",
+   "rank": 344
+  },
+  {
+   "nr": 245,
+   "id": "w_vb_245",
+   "en": "trust",
+   "pl": "ufać",
+   "level": "A2",
+   "rank": 345
+  },
+  {
+   "nr": 246,
+   "id": "w_vb_246",
+   "en": "understand",
+   "pl": "rozumieć",
+   "level": "A2",
+   "rank": 346
+  },
+  {
+   "nr": 247,
+   "id": "w_vb_247",
+   "en": "visit",
+   "pl": "odwiedzać",
+   "level": "A2",
+   "rank": 347
+  },
+  {
+   "nr": 248,
+   "id": "w_vb_248",
+   "en": "vote",
+   "pl": "głosować",
+   "level": "A2",
+   "rank": 348
+  },
+  {
+   "nr": 249,
+   "id": "w_vb_249",
+   "en": "warn",
+   "pl": "ostrzegać",
+   "level": "A2",
+   "rank": 349
+  },
+  {
+   "nr": 250,
+   "id": "w_vb_250",
+   "en": "weigh",
+   "pl": "ważyć",
+   "level": "A2",
+   "rank": 350
+  },
+  {
+   "nr": 251,
+   "id": "w_vb_251",
+   "en": "welcome",
+   "pl": "witać",
+   "level": "A2",
+   "rank": 351
+  },
+  {
+   "nr": 252,
+   "id": "w_vb_252",
+   "en": "win",
+   "pl": "wygrywać",
+   "level": "A2",
+   "rank": 352
+  },
+  {
+   "nr": 253,
+   "id": "w_vb_253",
+   "en": "wish",
+   "pl": "życzyć",
+   "level": "A2",
+   "rank": 353
+  },
+  {
+   "nr": 254,
+   "id": "w_vb_254",
+   "en": "wonder",
+   "pl": "zastanawiać się",
+   "level": "A2",
+   "rank": 354
+  },
+  {
+   "nr": 255,
+   "id": "w_vb_255",
+   "en": "worry",
+   "pl": "martwić się",
+   "level": "A2",
+   "rank": 355
+  },
+  {
+   "nr": 256,
+   "id": "w_vb_256",
+   "en": "wrap",
+   "pl": "zawijać / pakować",
+   "level": "A2",
+   "rank": 356,
+   "hint": "czasownik: zawijać, pakować"
+  },
+  {
+   "nr": 257,
+   "id": "w_vb_257",
+   "en": "accept (verb)",
+   "pl": "przyjmować",
+   "level": "A2",
+   "rank": 357
+  },
+  {
+   "nr": 258,
+   "id": "w_vb_258",
+   "en": "achieve",
+   "pl": "osiągać",
+   "level": "A2",
+   "rank": 358
+  },
+  {
+   "nr": 259,
+   "id": "w_vb_259",
+   "en": "admit",
+   "pl": "przyznawać",
+   "level": "A2",
+   "rank": 359
+  },
+  {
+   "nr": 260,
+   "id": "w_vb_260",
+   "en": "advise",
+   "pl": "radzić",
+   "level": "A2",
+   "rank": 360
+  },
+  {
+   "nr": 261,
+   "id": "w_vb_261",
+   "en": "afford",
+   "pl": "pozwolić sobie (finansowo)",
+   "level": "A2",
+   "rank": 361
+  },
+  {
+   "nr": 262,
+   "id": "w_vb_262",
+   "en": "announce",
+   "pl": "ogłaszać",
+   "level": "A2",
+   "rank": 362
+  },
+  {
+   "nr": 263,
+   "id": "w_vb_263",
+   "en": "apologise",
+   "pl": "przepraszać",
+   "level": "A2",
+   "rank": 363
+  },
+  {
+   "nr": 264,
+   "id": "w_vb_264",
+   "en": "appreciate",
+   "pl": "doceniać",
+   "level": "A2",
+   "rank": 364
+  },
+  {
+   "nr": 265,
+   "id": "w_vb_265",
+   "en": "arrange (verb)",
+   "pl": "organizować",
+   "level": "A2",
+   "rank": 365
+  },
+  {
+   "nr": 266,
+   "id": "w_vb_266",
+   "en": "attend",
+   "pl": "uczestniczyć",
+   "level": "A2",
+   "rank": 366
+  },
+  {
+   "nr": 267,
+   "id": "w_vb_267",
+   "en": "behave",
+   "pl": "zachowywać się",
+   "level": "A2",
+   "rank": 367
+  },
+  {
+   "nr": 268,
+   "id": "w_vb_268",
+   "en": "belong to",
+   "pl": "należeć do",
+   "level": "A2",
+   "rank": 368
+  },
+  {
+   "nr": 269,
+   "id": "w_vb_269",
+   "en": "borrow (verb)",
+   "pl": "pożyczać od",
+   "level": "A2",
+   "rank": 369
+  },
+  {
+   "nr": 270,
+   "id": "w_vb_270",
+   "en": "calculate",
+   "pl": "obliczać",
+   "level": "A2",
+   "rank": 370
+  },
+  {
+   "nr": 271,
+   "id": "w_vb_271",
+   "en": "charge",
+   "pl": "ładować / pobierać opłatę",
+   "level": "A2",
+   "rank": 371
+  },
+  {
+   "nr": 272,
+   "id": "w_vb_272",
+   "en": "checkout",
+   "pl": "kasować / wymeldować",
+   "level": "A2",
+   "rank": 372
+  },
+  {
+   "nr": 273,
+   "id": "w_vb_273",
+   "en": "claim",
+   "pl": "twierdzić / rościć",
+   "level": "A2",
+   "rank": 373
+  },
+  {
+   "nr": 274,
+   "id": "w_vb_274",
+   "en": "confirm",
+   "pl": "potwierdzać",
+   "level": "A2",
+   "rank": 374
+  },
+  {
+   "nr": 275,
+   "id": "w_vb_275",
+   "en": "consider",
+   "pl": "rozważać",
+   "level": "A2",
+   "rank": 375
+  },
+  {
+   "nr": 276,
+   "id": "w_vb_276",
+   "en": "contain",
+   "pl": "zawierać",
+   "level": "A2",
+   "rank": 376
+  },
+  {
+   "nr": 277,
+   "id": "w_vb_277",
+   "en": "deliver (verb)",
+   "pl": "dostarczać",
+   "level": "A2",
+   "rank": 377
+  },
+  {
+   "nr": 278,
+   "id": "w_vb_278",
+   "en": "deny",
+   "pl": "zaprzeczać",
+   "level": "A2",
+   "rank": 378
+  },
+  {
+   "nr": 279,
+   "id": "w_vb_279",
+   "en": "depend",
+   "pl": "zależeć",
+   "level": "A2",
+   "rank": 379
+  },
+  {
+   "nr": 280,
+   "id": "w_vb_280",
+   "en": "design",
+   "pl": "projektować",
+   "level": "A2",
+   "rank": 380
+  },
+  {
+   "nr": 281,
+   "id": "w_vb_281",
+   "en": "develop",
+   "pl": "rozwijać",
+   "level": "A2",
+   "rank": 381
+  },
+  {
+   "nr": 282,
+   "id": "w_vb_282",
+   "en": "disappear",
+   "pl": "znikać",
+   "level": "A2",
+   "rank": 382
+  },
+  {
+   "nr": 283,
+   "id": "w_vb_283",
+   "en": "discover",
+   "pl": "odkrywać",
+   "level": "A2",
+   "rank": 383
+  },
+  {
+   "nr": 284,
+   "id": "w_vb_284",
+   "en": "doubt",
+   "pl": "wątpić",
+   "level": "A2",
+   "rank": 384
+  },
+  {
+   "nr": 285,
+   "id": "w_vb_285",
+   "en": "earn (verb)",
+   "pl": "zarabiać",
+   "level": "A2",
+   "rank": 385
+  },
+  {
+   "nr": 286,
+   "id": "w_vb_286",
+   "en": "employ",
+   "pl": "zatrudniać",
+   "level": "A2",
+   "rank": 386
+  },
+  {
+   "nr": 287,
+   "id": "w_vb_287",
+   "en": "encourage",
+   "pl": "zachęcać",
+   "level": "A2",
+   "rank": 387
+  },
+  {
+   "nr": 288,
+   "id": "w_vb_288",
+   "en": "ensure",
+   "pl": "zapewniać",
+   "level": "A2",
+   "rank": 388
+  },
+  {
+   "nr": 289,
+   "id": "w_vb_289",
+   "en": "examine",
+   "pl": "badać",
+   "level": "A2",
+   "rank": 389
+  },
+  {
+   "nr": 290,
+   "id": "w_vb_290",
+   "en": "expect (verb)",
+   "pl": "spodziewać się",
+   "level": "A2",
+   "rank": 390
+  },
+  {
+   "nr": 291,
+   "id": "w_vb_291",
+   "en": "explore",
+   "pl": "badać / zwiedzać",
+   "level": "A2",
+   "rank": 391
+  },
+  {
+   "nr": 292,
+   "id": "w_vb_292",
+   "en": "express",
+   "pl": "wyrażać",
+   "level": "A2",
+   "rank": 392
+  },
+  {
+   "nr": 293,
+   "id": "w_vb_293",
+   "en": "focus",
+   "pl": "skupiać się",
+   "level": "A2",
+   "rank": 393
+  },
+  {
+   "nr": 294,
+   "id": "w_vb_294",
+   "en": "handle",
+   "pl": "obsługiwać / radzić sobie",
+   "level": "A2",
+   "rank": 394
+  },
+  {
+   "nr": 295,
+   "id": "w_vb_295",
+   "en": "identify",
+   "pl": "rozpoznawać",
+   "level": "A2",
+   "rank": 395
+  },
+  {
+   "nr": 296,
+   "id": "w_vb_296",
+   "en": "influence",
+   "pl": "wpływać",
+   "level": "A2",
+   "rank": 396
+  },
+  {
+   "nr": 297,
+   "id": "w_vb_297",
+   "en": "inform",
+   "pl": "informować",
+   "level": "A2",
+   "rank": 397
+  },
+  {
+   "nr": 298,
+   "id": "w_vb_298",
+   "en": "insist",
+   "pl": "nalegać",
+   "level": "A2",
+   "rank": 398
+  },
+  {
+   "nr": 299,
+   "id": "w_vb_299",
+   "en": "intend",
+   "pl": "zamierzać",
+   "level": "A2",
+   "rank": 399
+  },
+  {
+   "nr": 300,
+   "id": "w_vb_300",
+   "en": "invest",
+   "pl": "inwestować",
+   "level": "A2",
+   "rank": 400
+  },
+  {
+   "nr": 301,
+   "id": "w_vb_301",
+   "en": "involve",
+   "pl": "obejmować / angażować",
+   "level": "A2",
+   "rank": 401
+  },
+  {
+   "nr": 302,
+   "id": "w_vb_302",
+   "en": "judge",
+   "pl": "oceniać",
+   "level": "A2",
+   "rank": 402
+  },
+  {
+   "nr": 303,
+   "id": "w_vb_303",
+   "en": "maintain",
+   "pl": "utrzymywać / konserwować",
+   "level": "A2",
+   "rank": 403
+  },
+  {
+   "nr": 304,
+   "id": "w_vb_304",
+   "en": "manage to",
+   "pl": "zdołać coś zrobić",
+   "level": "A2",
+   "rank": 404
+  },
+  {
+   "nr": 305,
+   "id": "w_vb_305",
+   "en": "matter",
+   "pl": "mieć znaczenie",
+   "level": "A2",
+   "rank": 405
+  },
+  {
+   "nr": 306,
+   "id": "w_vb_306",
+   "en": "obtain",
+   "pl": "uzyskiwać",
+   "level": "A2",
+   "rank": 406
+  },
+  {
+   "nr": 307,
+   "id": "w_vb_307",
+   "en": "occur",
+   "pl": "zdarzać się",
+   "level": "A2",
+   "rank": 407
+  },
+  {
+   "nr": 308,
+   "id": "w_vb_308",
+   "en": "operate",
+   "pl": "obsługiwać (maszynę)",
+   "level": "A2",
+   "rank": 408
+  },
+  {
+   "nr": 309,
+   "id": "w_vb_309",
+   "en": "owe",
+   "pl": "być winnym (pieniądze)",
+   "level": "A2",
+   "rank": 409
+  },
+  {
+   "nr": 310,
+   "id": "w_vb_310",
+   "en": "perform",
+   "pl": "wykonywać",
+   "level": "A2",
+   "rank": 410
+  },
+  {
+   "nr": 311,
+   "id": "w_vb_311",
+   "en": "permit",
+   "pl": "zezwalać",
+   "level": "A2",
+   "rank": 411
+  },
+  {
+   "nr": 312,
+   "id": "w_vb_312",
+   "en": "persuade",
+   "pl": "przekonywać",
+   "level": "A2",
+   "rank": 412
+  },
+  {
+   "nr": 313,
+   "id": "w_vb_313",
+   "en": "prevent",
+   "pl": "zapobiegać",
+   "level": "A2",
+   "rank": 413
+  },
+  {
+   "nr": 314,
+   "id": "w_vb_314",
+   "en": "produce",
+   "pl": "produkować",
+   "level": "A2",
+   "rank": 414
+  },
+  {
+   "nr": 315,
+   "id": "w_vb_315",
+   "en": "provide",
+   "pl": "zapewniać",
+   "level": "A2",
+   "rank": 415
+  },
+  {
+   "nr": 316,
+   "id": "w_vb_316",
+   "en": "realise",
+   "pl": "uświadamiać sobie",
+   "level": "A2",
+   "rank": 416
+  },
+  {
+   "nr": 317,
+   "id": "w_vb_317",
+   "en": "reduce",
+   "pl": "zmniejszać",
+   "level": "A2",
+   "rank": 417
+  },
+  {
+   "nr": 318,
+   "id": "w_vb_318",
+   "en": "refer",
+   "pl": "odnosić się",
+   "level": "A2",
+   "rank": 418
+  },
+  {
+   "nr": 319,
+   "id": "w_vb_319",
+   "en": "regret",
+   "pl": "żałować",
+   "level": "A2",
+   "rank": 419
+  },
+  {
+   "nr": 320,
+   "id": "w_vb_320",
+   "en": "relate",
+   "pl": "wiązać się",
+   "level": "A2",
+   "rank": 420
+  },
+  {
+   "nr": 321,
+   "id": "w_vb_321",
+   "en": "release",
+   "pl": "wypuszczać",
+   "level": "A2",
+   "rank": 421
+  },
+  {
+   "nr": 322,
+   "id": "w_vb_322",
+   "en": "rely on",
+   "pl": "polegać na",
+   "level": "A2",
+   "rank": 422
+  },
+  {
+   "nr": 323,
+   "id": "w_vb_323",
+   "en": "remain",
+   "pl": "pozostawać",
+   "level": "A2",
+   "rank": 423
+  },
+  {
+   "nr": 324,
+   "id": "w_vb_324",
+   "en": "remind",
+   "pl": "przypominać (komuś)",
+   "level": "A2",
+   "rank": 424
+  },
+  {
+   "nr": 325,
+   "id": "w_vb_325",
+   "en": "remove",
+   "pl": "usuwać",
+   "level": "A2",
+   "rank": 425
+  },
+  {
+   "nr": 326,
+   "id": "w_vb_326",
+   "en": "require",
+   "pl": "wymagać",
+   "level": "A2",
+   "rank": 426
+  },
+  {
+   "nr": 327,
+   "id": "w_vb_327",
+   "en": "respond",
+   "pl": "odpowiadać",
+   "level": "A2",
+   "rank": 427
+  },
+  {
+   "nr": 328,
+   "id": "w_vb_328",
+   "en": "retire",
+   "pl": "przechodzić na emeryturę",
+   "level": "A2",
+   "rank": 428
+  },
+  {
+   "nr": 329,
+   "id": "w_vb_329",
+   "en": "reveal",
+   "pl": "ujawniać",
+   "level": "A2",
+   "rank": 429
+  },
+  {
+   "nr": 330,
+   "id": "w_vb_330",
+   "en": "satisfy",
+   "pl": "zadowalać",
+   "level": "A2",
+   "rank": 430
+  },
+  {
+   "nr": 331,
+   "id": "w_vb_331",
+   "en": "search",
+   "pl": "szukać",
+   "level": "A2",
+   "rank": 431
+  },
+  {
+   "nr": 332,
+   "id": "w_vb_332",
+   "en": "secure",
+   "pl": "zabezpieczać",
+   "level": "A2",
+   "rank": 432
+  },
+  {
+   "nr": 333,
+   "id": "w_vb_333",
+   "en": "select (choose)",
+   "pl": "wybierać",
+   "level": "A2",
+   "rank": 433
+  },
+  {
+   "nr": 334,
+   "id": "w_vb_334",
+   "en": "settle",
+   "pl": "układać / osiedlać",
+   "level": "A2",
+   "rank": 434
+  },
+  {
+   "nr": 335,
+   "id": "w_vb_335",
+   "en": "sort",
+   "pl": "sortować",
+   "level": "A2",
+   "rank": 435
+  },
+  {
+   "nr": 336,
+   "id": "w_vb_336",
+   "en": "stack",
+   "pl": "układać w stos",
+   "level": "A2",
+   "rank": 436
+  },
+  {
+   "nr": 337,
+   "id": "w_vb_337",
+   "en": "store",
+   "pl": "przechowywać",
+   "level": "A2",
+   "rank": 437
+  },
+  {
+   "nr": 338,
+   "id": "w_vb_338",
+   "en": "supply",
+   "pl": "dostarczać",
+   "level": "A2",
+   "rank": 438
+  },
+  {
+   "nr": 339,
+   "id": "w_vb_339",
+   "en": "support",
+   "pl": "wspierać",
+   "level": "A2",
+   "rank": 439
+  },
+  {
+   "nr": 340,
+   "id": "w_vb_340",
+   "en": "survive",
+   "pl": "przetrwać",
+   "level": "A2",
+   "rank": 440
+  },
+  {
+   "nr": 341,
+   "id": "w_vb_341",
+   "en": "swap",
+   "pl": "zamieniać się",
+   "level": "A2",
+   "rank": 441
+  },
+  {
+   "nr": 342,
+   "id": "w_vb_342",
+   "en": "transfer",
+   "pl": "przenosić",
+   "level": "A2",
+   "rank": 442
+  },
+  {
+   "nr": 343,
+   "id": "w_vb_343",
+   "en": "unload",
+   "pl": "rozładowywać",
+   "level": "A2",
+   "rank": 443
+  },
+  {
+   "nr": 344,
+   "id": "w_vb_344",
+   "en": "load",
+   "pl": "ładować",
+   "level": "A2",
+   "rank": 444
+  },
+  {
+   "nr": 345,
+   "id": "w_vb_345",
+   "en": "verify",
+   "pl": "weryfikować",
+   "level": "A2",
+   "rank": 445
+  },
+  {
+   "nr": 346,
+   "id": "w_vb_346",
+   "en": "waste",
+   "pl": "marnować",
+   "level": "A2",
+   "rank": 446
+  }
+ ],
+ "etykieta": "Czasowniki — bezokoliczniki"
+}

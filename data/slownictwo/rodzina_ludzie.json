@@ -1,0 +1,425 @@
+{
+ "name": "Rodzina i ludzie",
+ "domain": "general",
+ "cat": "nouns",
+ "theme": "rodzina",
+ "level": "A1",
+ "items": [
+  {
+   "nr": 1,
+   "id": "rodzina_1",
+   "en": "mother",
+   "pl": "matka / mama",
+   "level": "A1",
+   "rank": 470
+  },
+  {
+   "nr": 2,
+   "id": "rodzina_2",
+   "en": "father",
+   "pl": "ojciec / tata",
+   "level": "A1",
+   "rank": 471
+  },
+  {
+   "nr": 3,
+   "id": "rodzina_3",
+   "en": "parents",
+   "pl": "rodzice",
+   "level": "A1",
+   "rank": 472
+  },
+  {
+   "nr": 4,
+   "id": "rodzina_4",
+   "en": "son",
+   "pl": "syn",
+   "level": "A1",
+   "rank": 473
+  },
+  {
+   "nr": 5,
+   "id": "rodzina_5",
+   "en": "daughter",
+   "pl": "córka",
+   "level": "A1",
+   "rank": 474
+  },
+  {
+   "nr": 6,
+   "id": "rodzina_6",
+   "en": "brother",
+   "pl": "brat",
+   "level": "A1",
+   "rank": 475
+  },
+  {
+   "nr": 7,
+   "id": "rodzina_7",
+   "en": "sister",
+   "pl": "siostra",
+   "level": "A1",
+   "rank": 476
+  },
+  {
+   "nr": 8,
+   "id": "rodzina_8",
+   "en": "grandmother",
+   "pl": "babcia",
+   "level": "A1",
+   "rank": 477
+  },
+  {
+   "nr": 9,
+   "id": "rodzina_9",
+   "en": "grandfather",
+   "pl": "dziadek",
+   "level": "A1",
+   "rank": 478
+  },
+  {
+   "nr": 10,
+   "id": "rodzina_10",
+   "en": "uncle",
+   "pl": "wujek",
+   "level": "A1",
+   "rank": 479
+  },
+  {
+   "nr": 11,
+   "id": "rodzina_11",
+   "en": "aunt",
+   "pl": "ciocia",
+   "level": "A1",
+   "rank": 480
+  },
+  {
+   "nr": 12,
+   "id": "rodzina_12",
+   "en": "cousin",
+   "pl": "kuzyn / kuzynka",
+   "level": "A1",
+   "rank": 481
+  },
+  {
+   "nr": 13,
+   "id": "rodzina_13",
+   "en": "husband",
+   "pl": "mąż",
+   "level": "A1",
+   "rank": 482
+  },
+  {
+   "nr": 14,
+   "id": "rodzina_14",
+   "en": "wife",
+   "pl": "żona",
+   "level": "A1",
+   "rank": 483
+  },
+  {
+   "nr": 15,
+   "id": "rodzina_15",
+   "en": "baby",
+   "pl": "niemowlę",
+   "level": "A1",
+   "rank": 484
+  },
+  {
+   "nr": 16,
+   "id": "rodzina_16",
+   "en": "boy",
+   "pl": "chłopiec",
+   "level": "A1",
+   "rank": 485
+  },
+  {
+   "nr": 17,
+   "id": "rodzina_17",
+   "en": "girl",
+   "pl": "dziewczynka",
+   "level": "A1",
+   "rank": 486
+  },
+  {
+   "nr": 18,
+   "id": "rodzina_18",
+   "en": "neighbour",
+   "pl": "sąsiad",
+   "level": "A1",
+   "rank": 487
+  },
+  {
+   "nr": 19,
+   "id": "rodzina_19",
+   "en": "guest",
+   "pl": "gość",
+   "level": "A1",
+   "rank": 488
+  },
+  {
+   "nr": 20,
+   "id": "rodzina_20",
+   "en": "stranger",
+   "pl": "obcy / nieznajomy",
+   "level": "A1",
+   "rank": 489
+  },
+  {
+   "nr": 21,
+   "id": "rodzina_21",
+   "en": "adult",
+   "pl": "dorosły",
+   "level": "A1",
+   "rank": 490
+  },
+  {
+   "nr": 22,
+   "id": "rodzina_22",
+   "en": "teenager",
+   "pl": "nastolatek",
+   "level": "A1",
+   "rank": 491
+  },
+  {
+   "nr": 23,
+   "id": "rodzina_23",
+   "en": "people",
+   "pl": "ludzie",
+   "level": "A1",
+   "rank": 492
+  },
+  {
+   "nr": 24,
+   "id": "rodzina_24",
+   "en": "person",
+   "pl": "osoba",
+   "level": "A1",
+   "rank": 493
+  },
+  {
+   "nr": 25,
+   "id": "rodzina_25",
+   "en": "nephew",
+   "pl": "siostrzeniec / bratanek",
+   "level": "A1",
+   "rank": 325
+  },
+  {
+   "nr": 26,
+   "id": "rodzina_26",
+   "en": "niece",
+   "pl": "siostrzenica / bratanica",
+   "level": "A1",
+   "rank": 326
+  },
+  {
+   "nr": 27,
+   "id": "rodzina_27",
+   "en": "grandson",
+   "pl": "wnuk",
+   "level": "A1",
+   "rank": 327
+  },
+  {
+   "nr": 28,
+   "id": "rodzina_28",
+   "en": "granddaughter",
+   "pl": "wnuczka",
+   "level": "A1",
+   "rank": 328
+  },
+  {
+   "nr": 29,
+   "id": "rodzina_29",
+   "en": "mother-in-law",
+   "pl": "teściowa",
+   "level": "A1",
+   "rank": 329
+  },
+  {
+   "nr": 30,
+   "id": "rodzina_30",
+   "en": "father-in-law",
+   "pl": "teść",
+   "level": "A1",
+   "rank": 330
+  },
+  {
+   "nr": 31,
+   "id": "rodzina_31",
+   "en": "partner",
+   "pl": "partner / partnerka",
+   "level": "A1",
+   "rank": 331
+  },
+  {
+   "nr": 32,
+   "id": "rodzina_32",
+   "en": "girlfriend",
+   "pl": "dziewczyna (sympatia)",
+   "level": "A1",
+   "rank": 332
+  },
+  {
+   "nr": 33,
+   "id": "rodzina_33",
+   "en": "boyfriend",
+   "pl": "chłopak (sympatia)",
+   "level": "A1",
+   "rank": 333
+  },
+  {
+   "nr": 34,
+   "id": "rodzina_34",
+   "en": "relative",
+   "pl": "krewny",
+   "level": "A1",
+   "rank": 334
+  },
+  {
+   "nr": 35,
+   "id": "rodzina_35",
+   "en": "twins",
+   "pl": "bliźnięta",
+   "level": "A1",
+   "rank": 335
+  },
+  {
+   "nr": 36,
+   "id": "rodzina_36",
+   "en": "only child",
+   "pl": "jedynak",
+   "level": "A1",
+   "rank": 336
+  },
+  {
+   "nr": 37,
+   "id": "rodzina_37",
+   "en": "widow",
+   "pl": "wdowa",
+   "level": "A1",
+   "rank": 337
+  },
+  {
+   "nr": 38,
+   "id": "rodzina_38",
+   "en": "engaged",
+   "pl": "zaręczony",
+   "level": "A1",
+   "rank": 338
+  },
+  {
+   "nr": 39,
+   "id": "rodzina_39",
+   "en": "married",
+   "pl": "żonaty / zamężna",
+   "level": "A1",
+   "rank": 339
+  },
+  {
+   "nr": 40,
+   "id": "rodzina_40",
+   "en": "divorced",
+   "pl": "rozwiedziony",
+   "level": "A1",
+   "rank": 340
+  },
+  {
+   "nr": 41,
+   "id": "rodzina_41",
+   "en": "single",
+   "pl": "stanu wolnego",
+   "level": "A1",
+   "rank": 341
+  },
+  {
+   "nr": 42,
+   "id": "rodzina_42",
+   "en": "birthday",
+   "pl": "urodziny",
+   "level": "A1",
+   "rank": 342
+  },
+  {
+   "nr": 43,
+   "id": "rodzina_43",
+   "en": "wedding",
+   "pl": "ślub",
+   "level": "A1",
+   "rank": 343
+  },
+  {
+   "nr": 44,
+   "id": "rodzina_44",
+   "en": "funeral",
+   "pl": "pogrzeb",
+   "level": "A1",
+   "rank": 344
+  },
+  {
+   "nr": 45,
+   "id": "rodzina_45",
+   "en": "childhood",
+   "pl": "dzieciństwo",
+   "level": "A1",
+   "rank": 345
+  },
+  {
+   "nr": 46,
+   "id": "rodzina_46",
+   "en": "generation",
+   "pl": "pokolenie",
+   "level": "A1",
+   "rank": 346
+  },
+  {
+   "nr": 47,
+   "id": "rodzina_47",
+   "en": "elderly",
+   "pl": "starszy (o osobie)",
+   "level": "A1",
+   "rank": 347
+  },
+  {
+   "nr": 48,
+   "id": "rodzina_48",
+   "en": "landlady",
+   "pl": "właścicielka mieszkania",
+   "level": "A1",
+   "rank": 348
+  },
+  {
+   "nr": 49,
+   "id": "rodzina_49",
+   "en": "classmate",
+   "pl": "kolega z klasy",
+   "level": "A1",
+   "rank": 349
+  },
+  {
+   "nr": 50,
+   "id": "rodzina_50",
+   "en": "teammate",
+   "pl": "kolega z zespołu",
+   "level": "A1",
+   "rank": 350
+  },
+  {
+   "nr": 51,
+   "id": "rodzina_51",
+   "en": "crowd",
+   "pl": "tłum",
+   "level": "A1",
+   "rank": 351
+  },
+  {
+   "nr": 52,
+   "id": "rodzina_52",
+   "en": "group",
+   "pl": "grupa",
+   "level": "A1",
+   "rank": 352
+  }
+ ]
+}

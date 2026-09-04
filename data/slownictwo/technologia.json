@@ -1,0 +1,306 @@
+{
+ "name": "Technologia i internet",
+ "etykieta": "Technologia i internet",
+ "domain": "general",
+ "cat": "nouns",
+ "theme": "technologia",
+ "level": "A2",
+ "items": [
+  {
+   "nr": 1,
+   "id": "technologia_1",
+   "en": "computer",
+   "pl": "komputer",
+   "level": "A2",
+   "rank": 800
+  },
+  {
+   "nr": 2,
+   "id": "technologia_2",
+   "en": "laptop",
+   "pl": "laptop",
+   "level": "A2",
+   "rank": 801
+  },
+  {
+   "nr": 3,
+   "id": "technologia_3",
+   "en": "tablet",
+   "pl": "tablet",
+   "level": "A2",
+   "rank": 802
+  },
+  {
+   "nr": 4,
+   "id": "technologia_4",
+   "en": "smartphone",
+   "pl": "smartfon",
+   "level": "A2",
+   "rank": 803
+  },
+  {
+   "nr": 5,
+   "id": "technologia_5",
+   "en": "app",
+   "pl": "aplikacja",
+   "level": "A2",
+   "rank": 804
+  },
+  {
+   "nr": 6,
+   "id": "technologia_6",
+   "en": "program",
+   "pl": "program",
+   "level": "A2",
+   "rank": 805
+  },
+  {
+   "nr": 7,
+   "id": "technologia_7",
+   "en": "file",
+   "pl": "plik",
+   "level": "A2",
+   "rank": 806
+  },
+  {
+   "nr": 8,
+   "id": "technologia_8",
+   "en": "folder",
+   "pl": "folder",
+   "level": "A2",
+   "rank": 807
+  },
+  {
+   "nr": 9,
+   "id": "technologia_9",
+   "en": "password",
+   "pl": "hasło",
+   "level": "A2",
+   "rank": 808
+  },
+  {
+   "nr": 10,
+   "id": "technologia_10",
+   "en": "username",
+   "pl": "nazwa użytkownika",
+   "level": "A2",
+   "rank": 809
+  },
+  {
+   "nr": 11,
+   "id": "technologia_11",
+   "en": "account",
+   "pl": "konto",
+   "level": "A2",
+   "rank": 810
+  },
+  {
+   "nr": 12,
+   "id": "technologia_12",
+   "en": "website",
+   "pl": "strona internetowa",
+   "level": "A2",
+   "rank": 811
+  },
+  {
+   "nr": 13,
+   "id": "technologia_13",
+   "en": "link",
+   "pl": "link",
+   "level": "A2",
+   "rank": 812
+  },
+  {
+   "nr": 14,
+   "id": "technologia_14",
+   "en": "browser",
+   "pl": "przeglądarka",
+   "level": "A2",
+   "rank": 813
+  },
+  {
+   "nr": 15,
+   "id": "technologia_15",
+   "en": "search engine",
+   "pl": "wyszukiwarka",
+   "level": "A2",
+   "rank": 814
+  },
+  {
+   "nr": 16,
+   "id": "technologia_16",
+   "en": "download",
+   "pl": "pobierać",
+   "level": "A2",
+   "rank": 815
+  },
+  {
+   "nr": 17,
+   "id": "technologia_17",
+   "en": "upload",
+   "pl": "wysyłać (na serwer)",
+   "level": "A2",
+   "rank": 816
+  },
+  {
+   "nr": 18,
+   "id": "technologia_18",
+   "en": "install",
+   "pl": "instalować",
+   "level": "A2",
+   "rank": 817
+  },
+  {
+   "nr": 19,
+   "id": "technologia_19",
+   "en": "update",
+   "pl": "aktualizacja / aktualizować",
+   "level": "A2",
+   "rank": 818
+  },
+  {
+   "nr": 20,
+   "id": "technologia_20",
+   "en": "delete",
+   "pl": "usuwać",
+   "level": "A2",
+   "rank": 819
+  },
+  {
+   "nr": 21,
+   "id": "technologia_21",
+   "en": "save (file)",
+   "pl": "zapisać",
+   "level": "A2",
+   "rank": 820
+  },
+  {
+   "nr": 22,
+   "id": "technologia_22",
+   "en": "share",
+   "pl": "udostępniać",
+   "level": "A2",
+   "rank": 821
+  },
+  {
+   "nr": 23,
+   "id": "technologia_23",
+   "en": "message",
+   "pl": "wiadomość",
+   "level": "A2",
+   "rank": 822
+  },
+  {
+   "nr": 24,
+   "id": "technologia_24",
+   "en": "chat",
+   "pl": "czat",
+   "level": "A2",
+   "rank": 823
+  },
+  {
+   "nr": 25,
+   "id": "technologia_25",
+   "en": "video call",
+   "pl": "rozmowa wideo",
+   "level": "A2",
+   "rank": 824
+  },
+  {
+   "nr": 26,
+   "id": "technologia_26",
+   "en": "screen (display)",
+   "pl": "ekran",
+   "level": "A2",
+   "rank": 825
+  },
+  {
+   "nr": 27,
+   "id": "technologia_27",
+   "en": "settings",
+   "pl": "ustawienia",
+   "level": "A2",
+   "rank": 826
+  },
+  {
+   "nr": 28,
+   "id": "technologia_28",
+   "en": "notification",
+   "pl": "powiadomienie",
+   "level": "A2",
+   "rank": 827
+  },
+  {
+   "nr": 29,
+   "id": "technologia_29",
+   "en": "wi-fi",
+   "pl": "wi-fi",
+   "level": "A2",
+   "rank": 828
+  },
+  {
+   "nr": 30,
+   "id": "technologia_30",
+   "en": "network",
+   "pl": "sieć",
+   "level": "A2",
+   "rank": 829
+  },
+  {
+   "nr": 31,
+   "id": "technologia_31",
+   "en": "signal",
+   "pl": "zasięg / sygnał",
+   "level": "A2",
+   "rank": 830
+  },
+  {
+   "nr": 32,
+   "id": "technologia_32",
+   "en": "memory",
+   "pl": "pamięć",
+   "level": "A2",
+   "rank": 832
+  },
+  {
+   "nr": 33,
+   "id": "technologia_33",
+   "en": "device",
+   "pl": "urządzenie",
+   "level": "A2",
+   "rank": 833
+  },
+  {
+   "nr": 34,
+   "id": "technologia_34",
+   "en": "charger cable",
+   "pl": "kabel do ładowania",
+   "level": "A2",
+   "rank": 834
+  },
+  {
+   "nr": 35,
+   "id": "technologia_35",
+   "en": "plug",
+   "pl": "wtyczka",
+   "level": "A2",
+   "rank": 835
+  },
+  {
+   "nr": 36,
+   "id": "technologia_36",
+   "en": "turn it on",
+   "pl": "włączyć to",
+   "level": "A2",
+   "rank": 836
+  },
+  {
+   "nr": 37,
+   "id": "technologia_37",
+   "en": "bug (error)",
+   "pl": "błąd programu",
+   "level": "A2",
+   "rank": 837
+  }
+ ]
+}
