@@ -379,7 +379,8 @@
    "en": "switch",
    "pl": "włącznik",
    "level": "A1",
-   "rank": 347
+   "rank": 347,
+   "hint": "rzeczownik: włącznik światła"
   },
   {
    "nr": 48,
@@ -475,7 +476,8 @@
    "en": "lock",
    "pl": "zamek",
    "level": "A1",
-   "rank": 359
+   "rank": 359,
+   "hint": "rzeczownik: zamek w drzwiach"
   },
   {
    "nr": 60,

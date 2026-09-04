@@ -203,7 +203,8 @@
    "example": "This order is urgent.",
    "example_pl": "To zamówienie jest pilne.",
    "img": "📋",
-   "nr": 20
+   "nr": 20,
+   "hint": "rzeczownik: zamówienie"
   },
   {
    "id": "praca_21",
@@ -213,7 +214,8 @@
    "example": "Lunch break is at 12:30.",
    "example_pl": "Przerwa obiadowa jest o 12:30.",
    "img": "☕",
-   "nr": 21
+   "nr": 21,
+   "hint": "rzeczownik: przerwa w pracy"
   },
   {
    "id": "praca_22",
@@ -296,16 +298,6 @@
    "nr": 29
   },
   {
-   "id": "praca_30",
-   "rank": 155,
-   "en": "wrap",
-   "pl": "owijać (folią)",
-   "example": "Wrap the pallet before shipping.",
-   "example_pl": "Owiń paletę przed wysyłką.",
-   "img": "🎞️",
-   "nr": 30
-  },
-  {
    "id": "praca_31",
    "rank": 160,
    "en": "conveyor belt",
@@ -313,7 +305,7 @@
    "example": "The conveyor belt stopped again.",
    "example_pl": "Taśmociąg znów się zatrzymał.",
    "img": "➡️",
-   "nr": 31
+   "nr": 30
   },
   {
    "id": "praca_32",
@@ -323,7 +315,7 @@
    "example": "Fragile goods go on top.",
    "example_pl": "Delikatne towary idą na górę.",
    "img": "📦",
-   "nr": 32
+   "nr": 31
   },
   {
    "id": "praca_33",
@@ -333,7 +325,7 @@
    "example": "Check the quantity on the screen.",
    "example_pl": "Sprawdź ilość na ekranie.",
    "img": "#️⃣",
-   "nr": 33
+   "nr": 32
   },
   {
    "id": "praca_34",
@@ -343,7 +335,7 @@
    "example": "Go to location B-14-3.",
    "example_pl": "Idź do lokalizacji B-14-3.",
    "img": "📍",
-   "nr": 34
+   "nr": 33
   },
   {
    "id": "praca_35",
@@ -353,7 +345,7 @@
    "example": "Don't forget to clock in.",
    "example_pl": "Nie zapomnij się odbić na wejściu.",
    "img": "🕐",
-   "nr": 35
+   "nr": 34
   },
   {
    "id": "praca_36",
@@ -363,7 +355,7 @@
    "example": "The new roster is on the board.",
    "example_pl": "Nowy grafik jest na tablicy.",
    "img": "🗓️",
-   "nr": 36
+   "nr": 35
   },
   {
    "id": "praca_37",
@@ -373,7 +365,7 @@
    "example": "The briefing starts in five minutes.",
    "example_pl": "Odprawa zaczyna się za pięć minut.",
    "img": "📣",
-   "nr": 37
+   "nr": 36
   },
   {
    "id": "praca_38",
@@ -383,7 +375,7 @@
    "example": "We reached our daily target.",
    "example_pl": "Osiągnęliśmy dzienną normę.",
    "img": "🎯",
-   "nr": 38
+   "nr": 37
   },
   {
    "id": "praca_39",
@@ -393,7 +385,7 @@
    "example": "Can I have a day off on Friday?",
    "example_pl": "Mogę mieć wolne w piątek?",
    "img": "🏖️",
-   "nr": 39
+   "nr": 38
   },
   {
    "id": "praca_40",
@@ -403,7 +395,7 @@
    "example": "Check your payslip online.",
    "example_pl": "Sprawdź swój pasek wypłaty online.",
    "img": "💰",
-   "nr": 40
+   "nr": 39
   },
   {
    "id": "praca_41",
@@ -413,293 +405,283 @@
    "example": "Put the returns in the red zone.",
    "example_pl": "Zwroty odkładaj do czerwonej strefy.",
    "img": "↩️",
-   "nr": 41
+   "nr": 40
   },
   {
+   "nr": 41,
    "id": "praca_42",
-   "rank": 215,
-   "en": "stack",
-   "pl": "układać w stos",
-   "example": "Don't stack more than five boxes.",
-   "example_pl": "Nie układaj więcej niż pięciu pudeł.",
-   "img": "🧱",
-   "nr": 42
-  },
-  {
-   "nr": 43,
-   "id": "praca_43",
    "en": "packing station",
    "pl": "stanowisko pakowania",
    "level": "A2",
    "rank": 343
   },
   {
-   "nr": 44,
-   "id": "praca_44",
+   "nr": 42,
+   "id": "praca_43",
    "en": "label printer",
    "pl": "drukarka etykiet",
    "level": "A2",
    "rank": 344
   },
   {
-   "nr": 45,
-   "id": "praca_45",
+   "nr": 43,
+   "id": "praca_44",
    "en": "inventory",
    "pl": "inwentaryzacja / stan magazynu",
    "level": "A2",
    "rank": 345
   },
   {
-   "nr": 46,
-   "id": "praca_46",
+   "nr": 44,
+   "id": "praca_45",
    "en": "stocktaking",
    "pl": "spis z natury",
    "level": "A2",
    "rank": 346
   },
   {
-   "nr": 47,
-   "id": "praca_47",
+   "nr": 45,
+   "id": "praca_46",
    "en": "picking list",
    "pl": "lista kompletacyjna",
    "level": "A2",
    "rank": 347
   },
   {
-   "nr": 48,
-   "id": "praca_48",
+   "nr": 46,
+   "id": "praca_47",
    "en": "packing slip",
    "pl": "list przewozowy",
    "level": "A2",
    "rank": 348
   },
   {
-   "nr": 49,
-   "id": "praca_49",
+   "nr": 47,
+   "id": "praca_48",
    "en": "dispatch",
    "pl": "wysyłka",
    "level": "A2",
    "rank": 349
   },
   {
-   "nr": 50,
-   "id": "praca_50",
+   "nr": 48,
+   "id": "praca_49",
    "en": "goods in",
    "pl": "przyjęcie towaru",
    "level": "A2",
    "rank": 350
   },
   {
-   "nr": 51,
-   "id": "praca_51",
+   "nr": 49,
+   "id": "praca_50",
    "en": "goods out",
    "pl": "wydanie towaru",
    "level": "A2",
    "rank": 351
   },
   {
-   "nr": 52,
-   "id": "praca_52",
+   "nr": 50,
+   "id": "praca_51",
    "en": "supplier",
    "pl": "dostawca",
    "level": "A2",
    "rank": 352
   },
   {
-   "nr": 53,
-   "id": "praca_53",
+   "nr": 51,
+   "id": "praca_52",
    "en": "customer order",
    "pl": "zamówienie klienta",
    "level": "A2",
    "rank": 353
   },
   {
-   "nr": 54,
-   "id": "praca_54",
+   "nr": 52,
+   "id": "praca_53",
    "en": "returns",
    "pl": "zwroty",
    "level": "A2",
    "rank": 354
   },
   {
-   "nr": 55,
-   "id": "praca_55",
+   "nr": 53,
+   "id": "praca_54",
    "en": "damaged goods",
    "pl": "towar uszkodzony",
    "level": "A2",
    "rank": 355
   },
   {
-   "nr": 56,
-   "id": "praca_56",
+   "nr": 54,
+   "id": "praca_55",
    "en": "expiry date",
    "pl": "data ważności",
    "level": "A2",
    "rank": 356
   },
   {
-   "nr": 57,
-   "id": "praca_57",
+   "nr": 55,
+   "id": "praca_56",
    "en": "batch",
    "pl": "partia towaru",
    "level": "A2",
    "rank": 357
   },
   {
-   "nr": 58,
-   "id": "praca_58",
+   "nr": 56,
+   "id": "praca_57",
    "en": "rack",
    "pl": "regał",
    "level": "A2",
    "rank": 358
   },
   {
-   "nr": 59,
-   "id": "praca_59",
+   "nr": 57,
+   "id": "praca_58",
    "en": "shelf level",
    "pl": "poziom regału",
    "level": "A2",
    "rank": 359
   },
   {
-   "nr": 60,
-   "id": "praca_60",
+   "nr": 58,
+   "id": "praca_59",
    "en": "aisle number",
    "pl": "numer alejki",
    "level": "A2",
    "rank": 360
   },
   {
-   "nr": 61,
-   "id": "praca_61",
+   "nr": 59,
+   "id": "praca_60",
    "en": "weight",
    "pl": "waga",
    "level": "A2",
    "rank": 361
   },
   {
-   "nr": 62,
-   "id": "praca_62",
+   "nr": 60,
+   "id": "praca_61",
    "en": "height",
    "pl": "wysokość",
    "level": "A2",
    "rank": 362
   },
   {
-   "nr": 63,
-   "id": "praca_63",
+   "nr": 61,
+   "id": "praca_62",
    "en": "fragile goods",
    "pl": "towar delikatny",
    "level": "A2",
    "rank": 363
   },
   {
-   "nr": 64,
-   "id": "praca_64",
+   "nr": 62,
+   "id": "praca_63",
    "en": "heavy goods",
    "pl": "towar ciężki",
    "level": "A2",
    "rank": 364
   },
   {
-   "nr": 65,
-   "id": "praca_65",
+   "nr": 63,
+   "id": "praca_64",
    "en": "protective equipment",
    "pl": "środki ochrony",
    "level": "A2",
    "rank": 365
   },
   {
-   "nr": 66,
-   "id": "praca_66",
+   "nr": 64,
+   "id": "praca_65",
    "en": "safety rules",
    "pl": "zasady bezpieczeństwa",
    "level": "A2",
    "rank": 366
   },
   {
-   "nr": 67,
-   "id": "praca_67",
+   "nr": 65,
+   "id": "praca_66",
    "en": "hazard sign",
    "pl": "znak ostrzegawczy",
    "level": "A2",
    "rank": 367
   },
   {
-   "nr": 68,
-   "id": "praca_68",
+   "nr": 66,
+   "id": "praca_67",
    "en": "fire extinguisher",
    "pl": "gaśnica",
    "level": "A2",
    "rank": 368
   },
   {
-   "nr": 69,
-   "id": "praca_69",
+   "nr": 67,
+   "id": "praca_68",
    "en": "first aid kit",
    "pl": "apteczka",
    "level": "A2",
    "rank": 369
   },
   {
-   "nr": 70,
-   "id": "praca_70",
+   "nr": 68,
+   "id": "praca_69",
    "en": "supervisor",
    "pl": "kierownik zmiany",
    "level": "A2",
    "rank": 370
   },
   {
-   "nr": 71,
-   "id": "praca_71",
+   "nr": 69,
+   "id": "praca_70",
    "en": "colleague on shift",
    "pl": "zmiennik",
    "level": "A2",
    "rank": 371
   },
   {
-   "nr": 72,
-   "id": "praca_72",
+   "nr": 70,
+   "id": "praca_71",
    "en": "shift handover",
    "pl": "przekazanie zmiany",
    "level": "A2",
    "rank": 372
   },
   {
-   "nr": 73,
-   "id": "praca_73",
+   "nr": 71,
+   "id": "praca_72",
    "en": "productivity",
    "pl": "wydajność",
    "level": "A2",
    "rank": 373
   },
   {
-   "nr": 74,
-   "id": "praca_74",
+   "nr": 72,
+   "id": "praca_73",
    "en": "bonus",
    "pl": "premia",
    "level": "A2",
    "rank": 374
   },
   {
-   "nr": 75,
-   "id": "praca_75",
+   "nr": 73,
+   "id": "praca_74",
    "en": "timesheet",
    "pl": "karta pracy",
    "level": "A2",
    "rank": 375
   },
   {
-   "nr": 76,
-   "id": "praca_76",
+   "nr": 74,
+   "id": "praca_75",
    "en": "clock in",
    "pl": "odbić wejście",
    "level": "A2",
    "rank": 376
   },
   {
-   "nr": 77,
-   "id": "praca_77",
+   "nr": 75,
+   "id": "praca_76",
    "en": "clock out",
    "pl": "odbić wyjście",
    "level": "A2",

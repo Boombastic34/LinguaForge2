@@ -4,827 +4,448 @@
  "name": "Ogólne A1 — fundament",
  "items": [
   {
-   "id": "ogolne_1",
-   "rank": 10,
-   "en": "work",
-   "pl": "praca / pracować",
-   "example": "I work five days a week.",
-   "example_pl": "Pracuję pięć dni w tygodniu.",
-   "img": "💼",
-   "nr": 1
-  },
-  {
    "id": "ogolne_2",
-   "rank": 15,
-   "en": "time",
-   "pl": "czas",
-   "example": "What time is it?",
-   "example_pl": "Która jest godzina?",
-   "img": "⏰",
-   "nr": 2
-  },
-  {
-   "id": "ogolne_3",
-   "rank": 20,
-   "en": "day",
-   "pl": "dzień",
-   "example": "Have a nice day!",
-   "example_pl": "Miłego dnia!",
-   "img": "🌤️",
-   "nr": 3
-  },
-  {
-   "id": "ogolne_4",
    "rank": 25,
    "en": "good",
    "pl": "dobry",
    "example": "This is a good idea.",
    "example_pl": "To dobry pomysł.",
    "img": "👍",
-   "nr": 4
+   "nr": 1
   },
   {
-   "id": "ogolne_5",
-   "rank": 30,
-   "en": "new",
-   "pl": "nowy",
-   "example": "I need new shoes.",
-   "example_pl": "Potrzebuję nowych butów.",
-   "img": "✨",
-   "nr": 5
-  },
-  {
-   "id": "ogolne_6",
-   "rank": 35,
-   "en": "people",
-   "pl": "ludzie",
-   "example": "Many people work here.",
-   "example_pl": "Pracuje tu wielu ludzi.",
-   "img": "👥",
-   "nr": 6
-  },
-  {
-   "id": "ogolne_7",
-   "rank": 40,
-   "en": "go",
-   "pl": "iść, jechać",
-   "example": "I go to work by bike.",
-   "example_pl": "Jeżdżę do pracy rowerem.",
-   "img": "🚲",
-   "nr": 7
-  },
-  {
-   "id": "ogolne_8",
-   "rank": 45,
-   "en": "make",
-   "pl": "robić, tworzyć",
-   "example": "Don't make a mistake.",
-   "example_pl": "Nie zrób błędu.",
-   "hint": "make a decision, make coffee",
-   "img": "🛠️",
-   "nr": 8
-  },
-  {
-   "id": "ogolne_9",
-   "rank": 50,
-   "en": "know",
-   "pl": "wiedzieć, znać",
-   "example": "I know the answer.",
-   "example_pl": "Znam odpowiedź.",
-   "img": "🧠",
-   "nr": 9
-  },
-  {
-   "id": "ogolne_10",
-   "rank": 55,
-   "en": "take",
-   "pl": "brać, wziąć",
-   "example": "Take a break.",
-   "example_pl": "Zrób sobie przerwę.",
-   "hint": "take a break, take time",
-   "img": "✋",
-   "nr": 10
-  },
-  {
-   "id": "ogolne_11",
-   "rank": 60,
-   "en": "see",
-   "pl": "widzieć",
-   "example": "See you tomorrow!",
-   "example_pl": "Do zobaczenia jutro!",
-   "img": "👀",
-   "nr": 11
-  },
-  {
-   "id": "ogolne_12",
-   "rank": 65,
-   "en": "come",
-   "pl": "przychodzić",
-   "example": "Come here, please.",
-   "example_pl": "Podejdź tu, proszę.",
-   "img": "🚶",
-   "nr": 12
-  },
-  {
-   "id": "ogolne_13",
-   "rank": 70,
-   "en": "want",
-   "pl": "chcieć",
-   "example": "I want to learn English.",
-   "example_pl": "Chcę nauczyć się angielskiego.",
-   "img": "🎯",
-   "nr": 13
-  },
-  {
-   "id": "ogolne_14",
-   "rank": 75,
-   "en": "give",
-   "pl": "dawać",
-   "example": "Give me a minute.",
-   "example_pl": "Daj mi minutę.",
-   "img": "🎁",
-   "nr": 14
-  },
-  {
-   "id": "ogolne_15",
-   "rank": 80,
-   "en": "find",
-   "pl": "znajdować",
-   "example": "I can't find my keys.",
-   "example_pl": "Nie mogę znaleźć kluczy.",
-   "img": "🔍",
-   "nr": 15
-  },
-  {
-   "id": "ogolne_16",
-   "rank": 85,
-   "en": "help",
-   "pl": "pomoc / pomagać",
-   "example": "Can you help me?",
-   "example_pl": "Możesz mi pomóc?",
-   "img": "🤝",
-   "nr": 16
-  },
-  {
-   "id": "ogolne_17",
-   "rank": 90,
-   "en": "talk",
-   "pl": "rozmawiać",
-   "example": "Let's talk later.",
-   "example_pl": "Porozmawiajmy później.",
-   "img": "💬",
-   "nr": 17
-  },
-  {
-   "id": "ogolne_18",
-   "rank": 95,
-   "en": "ask",
-   "pl": "pytać, prosić",
-   "example": "Ask the boss.",
-   "example_pl": "Zapytaj szefa.",
-   "img": "❓",
-   "nr": 18
-  },
-  {
-   "id": "ogolne_19",
-   "rank": 100,
-   "en": "early",
-   "pl": "wcześnie",
-   "example": "I get up early.",
-   "example_pl": "Wstaję wcześnie.",
-   "img": "🌅",
-   "nr": 19
-  },
-  {
-   "id": "ogolne_20",
-   "rank": 105,
-   "en": "late",
-   "pl": "późno / spóźniony",
-   "example": "Sorry, I'm late.",
-   "example_pl": "Przepraszam za spóźnienie.",
-   "img": "🕙",
-   "nr": 20
-  },
-  {
-   "id": "ogolne_21",
-   "rank": 110,
-   "en": "big",
-   "pl": "duży",
-   "example": "It's a big company.",
-   "example_pl": "To duża firma.",
-   "img": "🐘",
-   "nr": 21
-  },
-  {
-   "id": "ogolne_22",
-   "rank": 115,
-   "en": "small",
-   "pl": "mały",
-   "example": "A small problem.",
-   "example_pl": "Mały problem.",
-   "img": "🐜",
-   "nr": 22
-  },
-  {
-   "id": "ogolne_23",
-   "rank": 120,
-   "en": "buy",
-   "pl": "kupować",
-   "example": "Where can I buy tickets?",
-   "example_pl": "Gdzie mogę kupić bilety?",
-   "img": "🛒",
-   "nr": 23
-  },
-  {
-   "id": "ogolne_24",
-   "rank": 125,
-   "en": "eat",
-   "pl": "jeść",
-   "example": "What do you eat for breakfast?",
-   "example_pl": "Co jesz na śniadanie?",
-   "img": "🍽️",
-   "nr": 24
-  },
-  {
-   "id": "ogolne_25",
-   "rank": 130,
-   "en": "drink",
-   "pl": "pić / napój",
-   "example": "Drink some water.",
-   "example_pl": "Napij się wody.",
-   "img": "🥤",
-   "nr": 25
-  },
-  {
-   "id": "ogolne_26",
-   "rank": 135,
-   "en": "house",
-   "pl": "dom (budynek)",
-   "example": "My house is near the park.",
-   "example_pl": "Mój dom jest blisko parku.",
-   "img": "🏠",
-   "nr": 26
-  },
-  {
-   "id": "ogolne_27",
-   "rank": 140,
-   "en": "money",
-   "pl": "pieniądze",
-   "example": "I need to save money.",
-   "example_pl": "Muszę oszczędzać pieniądze.",
-   "img": "💶",
-   "nr": 27
-  },
-  {
-   "id": "ogolne_28",
-   "rank": 145,
-   "en": "week",
-   "pl": "tydzień",
-   "example": "Next week I have a day off.",
-   "example_pl": "W przyszłym tygodniu mam wolne.",
-   "img": "📅",
-   "nr": 28
-  },
-  {
-   "id": "ogolne_29",
-   "rank": 150,
-   "en": "friend",
-   "pl": "przyjaciel, kolega",
-   "example": "He is my best friend.",
-   "example_pl": "On jest moim najlepszym przyjacielem.",
-   "img": "🫂",
-   "nr": 29
-  },
-  {
-   "id": "ogolne_30",
+   "id": "ogolne_3",
    "rank": 155,
    "en": "tired",
    "pl": "zmęczony",
    "example": "I'm tired after work.",
    "example_pl": "Jestem zmęczony po pracy.",
    "img": "🥱",
-   "nr": 30
+   "nr": 2
   },
   {
-   "id": "ogolne_31",
-   "rank": 160,
-   "en": "hungry",
-   "pl": "głodny",
-   "example": "Are you hungry?",
-   "example_pl": "Jesteś głodny?",
-   "img": "🍕",
-   "nr": 31
-  },
-  {
-   "id": "ogolne_32",
-   "rank": 165,
-   "en": "open",
-   "pl": "otwierać / otwarty",
-   "example": "Open the window, please.",
-   "example_pl": "Otwórz okno, proszę.",
-   "img": "🚪",
-   "nr": 32
-  },
-  {
-   "id": "ogolne_33",
-   "rank": 170,
-   "en": "close",
-   "pl": "zamykać / blisko",
-   "example": "The shop closes at 8.",
-   "example_pl": "Sklep zamyka o 20.",
-   "hint": "close /kləʊz/ = zamykać; close /kləʊs/ = blisko",
-   "img": "🔒",
-   "nr": 33
-  },
-  {
-   "id": "ogolne_34",
-   "rank": 175,
-   "en": "start",
-   "pl": "zaczynać",
-   "example": "We start at 6 a.m.",
-   "example_pl": "Zaczynamy o 6 rano.",
-   "img": "🟢",
-   "nr": 34
-  },
-  {
-   "id": "ogolne_35",
-   "rank": 180,
-   "en": "finish",
-   "pl": "kończyć",
-   "example": "When do you finish work?",
-   "example_pl": "Kiedy kończysz pracę?",
-   "img": "🏁",
-   "nr": 35
-  },
-  {
-   "id": "ogolne_36",
-   "rank": 185,
-   "en": "understand",
-   "pl": "rozumieć",
-   "example": "I don't understand this word.",
-   "example_pl": "Nie rozumiem tego słowa.",
-   "img": "💡",
-   "nr": 36
-  },
-  {
-   "id": "ogolne_37",
-   "rank": 190,
-   "en": "speak",
-   "pl": "mówić (językiem)",
-   "example": "Do you speak English?",
-   "example_pl": "Mówisz po angielsku?",
-   "img": "🗣️",
-   "nr": 37
-  },
-  {
-   "id": "ogolne_38",
-   "rank": 195,
-   "en": "write",
-   "pl": "pisać",
-   "example": "Write your name here.",
-   "example_pl": "Napisz tu swoje imię.",
-   "img": "✍️",
-   "nr": 38
-  },
-  {
-   "id": "ogolne_39",
-   "rank": 200,
-   "en": "read",
-   "pl": "czytać",
-   "example": "Read the instructions.",
-   "example_pl": "Przeczytaj instrukcję.",
-   "img": "📖",
-   "nr": 39
-  },
-  {
-   "id": "ogolne_40",
-   "rank": 205,
-   "en": "important",
-   "pl": "ważny",
-   "example": "Safety is very important.",
-   "example_pl": "Bezpieczeństwo jest bardzo ważne.",
-   "img": "⭐",
-   "nr": 40
-  },
-  {
-   "nr": 41,
-   "id": "ogolne_41",
+   "nr": 3,
+   "id": "ogolne_4",
    "en": "problem",
    "pl": "problem",
    "level": "A1",
    "rank": 341
   },
   {
-   "nr": 42,
-   "id": "ogolne_42",
+   "nr": 4,
+   "id": "ogolne_5",
    "en": "solution",
    "pl": "rozwiązanie",
    "level": "A1",
    "rank": 342
   },
   {
-   "nr": 43,
-   "id": "ogolne_43",
+   "nr": 5,
+   "id": "ogolne_6",
    "en": "idea",
    "pl": "pomysł",
    "level": "A1",
    "rank": 343
   },
   {
-   "nr": 44,
-   "id": "ogolne_44",
+   "nr": 6,
+   "id": "ogolne_7",
    "en": "reason",
    "pl": "powód",
    "level": "A1",
    "rank": 344
   },
   {
-   "nr": 45,
-   "id": "ogolne_45",
+   "nr": 7,
+   "id": "ogolne_8",
    "en": "result",
    "pl": "wynik",
    "level": "A1",
    "rank": 345
   },
   {
-   "nr": 46,
-   "id": "ogolne_46",
+   "nr": 8,
+   "id": "ogolne_9",
    "en": "example",
    "pl": "przykład",
    "level": "A1",
    "rank": 346
   },
   {
-   "nr": 47,
-   "id": "ogolne_47",
+   "nr": 9,
+   "id": "ogolne_10",
    "en": "difference",
    "pl": "różnica",
    "level": "A1",
    "rank": 347
   },
   {
-   "nr": 48,
-   "id": "ogolne_48",
+   "nr": 10,
+   "id": "ogolne_11",
    "en": "choice",
    "pl": "wybór",
    "level": "A1",
    "rank": 348
   },
   {
-   "nr": 49,
-   "id": "ogolne_49",
+   "nr": 11,
+   "id": "ogolne_12",
    "en": "chance",
    "pl": "szansa",
    "level": "A1",
    "rank": 349
   },
   {
-   "nr": 50,
-   "id": "ogolne_50",
+   "nr": 12,
+   "id": "ogolne_13",
    "en": "mistake",
    "pl": "błąd",
    "level": "A1",
    "rank": 350
   },
   {
-   "nr": 51,
-   "id": "ogolne_51",
+   "nr": 13,
+   "id": "ogolne_14",
    "en": "truth",
    "pl": "prawda",
    "level": "A1",
    "rank": 351
   },
   {
-   "nr": 52,
-   "id": "ogolne_52",
+   "nr": 14,
+   "id": "ogolne_15",
    "en": "lie",
    "pl": "kłamstwo",
    "level": "A1",
    "rank": 352
   },
   {
-   "nr": 53,
-   "id": "ogolne_53",
+   "nr": 15,
+   "id": "ogolne_16",
    "en": "promise",
    "pl": "obietnica",
    "level": "A1",
-   "rank": 353
+   "rank": 353,
+   "hint": "rzeczownik: obietnica"
   },
   {
-   "nr": 54,
-   "id": "ogolne_54",
+   "nr": 16,
+   "id": "ogolne_17",
    "en": "advice",
    "pl": "rada",
    "level": "A1",
    "rank": 354
   },
   {
-   "nr": 55,
-   "id": "ogolne_55",
+   "nr": 17,
+   "id": "ogolne_18",
    "en": "information",
    "pl": "informacja",
    "level": "A1",
    "rank": 355
   },
   {
-   "nr": 56,
-   "id": "ogolne_56",
+   "nr": 18,
+   "id": "ogolne_19",
    "en": "news",
    "pl": "wiadomości",
    "level": "A1",
    "rank": 356
   },
   {
-   "nr": 57,
-   "id": "ogolne_57",
+   "nr": 19,
+   "id": "ogolne_20",
    "en": "story",
    "pl": "historia",
    "level": "A1",
    "rank": 357
   },
   {
-   "nr": 58,
-   "id": "ogolne_58",
+   "nr": 20,
+   "id": "ogolne_21",
    "en": "plan",
    "pl": "plan",
    "level": "A1",
-   "rank": 358
+   "rank": 358,
+   "hint": "rzeczownik: plan"
   },
   {
-   "nr": 59,
-   "id": "ogolne_59",
+   "nr": 21,
+   "id": "ogolne_22",
    "en": "rule",
    "pl": "zasada",
    "level": "A1",
    "rank": 359
   },
   {
-   "nr": 60,
-   "id": "ogolne_60",
+   "nr": 22,
+   "id": "ogolne_23",
    "en": "law",
    "pl": "prawo",
    "level": "A1",
    "rank": 360
   },
   {
-   "nr": 61,
-   "id": "ogolne_61",
+   "nr": 23,
+   "id": "ogolne_24",
    "en": "right (entitlement)",
    "pl": "prawo (do czegoś)",
    "level": "A1",
    "rank": 361
   },
   {
-   "nr": 62,
-   "id": "ogolne_62",
+   "nr": 24,
+   "id": "ogolne_25",
    "en": "duty",
    "pl": "obowiązek",
    "level": "A1",
    "rank": 362
   },
   {
-   "nr": 63,
-   "id": "ogolne_63",
+   "nr": 25,
+   "id": "ogolne_26",
    "en": "permission",
    "pl": "pozwolenie",
    "level": "A1",
    "rank": 363
   },
   {
-   "nr": 64,
-   "id": "ogolne_64",
+   "nr": 26,
+   "id": "ogolne_27",
    "en": "meeting",
    "pl": "spotkanie",
    "level": "A1",
    "rank": 364
   },
   {
-   "nr": 65,
-   "id": "ogolne_65",
+   "nr": 27,
+   "id": "ogolne_28",
    "en": "agreement",
    "pl": "porozumienie / umowa",
    "level": "A1",
    "rank": 365
   },
   {
-   "nr": 66,
-   "id": "ogolne_66",
+   "nr": 28,
+   "id": "ogolne_29",
    "en": "contract",
    "pl": "umowa",
    "level": "A1",
    "rank": 366
   },
   {
-   "nr": 67,
-   "id": "ogolne_67",
+   "nr": 29,
+   "id": "ogolne_30",
    "en": "document",
    "pl": "dokument",
    "level": "A1",
    "rank": 367
   },
   {
-   "nr": 68,
-   "id": "ogolne_68",
+   "nr": 30,
+   "id": "ogolne_31",
    "en": "form",
    "pl": "formularz",
    "level": "A1",
    "rank": 368
   },
   {
-   "nr": 69,
-   "id": "ogolne_69",
+   "nr": 31,
+   "id": "ogolne_32",
    "en": "signature",
    "pl": "podpis",
    "level": "A1",
    "rank": 369
   },
   {
-   "nr": 70,
-   "id": "ogolne_70",
+   "nr": 32,
+   "id": "ogolne_33",
    "en": "copy",
    "pl": "kopia",
    "level": "A1",
-   "rank": 370
+   "rank": 370,
+   "hint": "rzeczownik: egzemplarz"
   },
   {
-   "nr": 71,
-   "id": "ogolne_71",
+   "nr": 33,
+   "id": "ogolne_34",
    "en": "note",
    "pl": "notatka",
    "level": "A1",
    "rank": 371
   },
   {
-   "nr": 72,
-   "id": "ogolne_72",
+   "nr": 34,
+   "id": "ogolne_35",
    "en": "list",
    "pl": "lista",
    "level": "A1",
    "rank": 372
   },
   {
-   "nr": 73,
-   "id": "ogolne_73",
+   "nr": 35,
+   "id": "ogolne_36",
    "en": "number (amount)",
    "pl": "liczba",
    "level": "A1",
    "rank": 373
   },
   {
-   "nr": 74,
-   "id": "ogolne_74",
+   "nr": 36,
+   "id": "ogolne_37",
    "en": "amount",
    "pl": "ilość / kwota",
    "level": "A1",
    "rank": 374
   },
   {
-   "nr": 75,
-   "id": "ogolne_75",
+   "nr": 37,
+   "id": "ogolne_38",
    "en": "cost",
    "pl": "koszt",
    "level": "A1",
-   "rank": 375
+   "rank": 375,
+   "hint": "rzeczownik: koszt"
   },
   {
-   "nr": 76,
-   "id": "ogolne_76",
+   "nr": 38,
+   "id": "ogolne_39",
    "en": "value",
    "pl": "wartość",
    "level": "A1",
    "rank": 376
   },
   {
-   "nr": 77,
-   "id": "ogolne_77",
+   "nr": 39,
+   "id": "ogolne_40",
    "en": "quality",
    "pl": "jakość",
    "level": "A1",
    "rank": 377
   },
   {
-   "nr": 78,
-   "id": "ogolne_78",
+   "nr": 40,
+   "id": "ogolne_41",
    "en": "condition",
    "pl": "stan / warunek",
    "level": "A1",
    "rank": 378
   },
   {
-   "nr": 79,
-   "id": "ogolne_79",
+   "nr": 41,
+   "id": "ogolne_42",
    "en": "level",
    "pl": "poziom",
    "level": "A1",
    "rank": 379
   },
   {
-   "nr": 80,
-   "id": "ogolne_80",
+   "nr": 42,
+   "id": "ogolne_43",
    "en": "progress",
    "pl": "postęp",
    "level": "A1",
    "rank": 380
   },
   {
-   "nr": 81,
-   "id": "ogolne_81",
+   "nr": 43,
+   "id": "ogolne_44",
    "en": "experience",
    "pl": "doświadczenie",
    "level": "A1",
    "rank": 381
   },
   {
-   "nr": 82,
-   "id": "ogolne_82",
+   "nr": 44,
+   "id": "ogolne_45",
    "en": "skill",
    "pl": "umiejętność",
    "level": "A1",
    "rank": 382
   },
   {
-   "nr": 83,
-   "id": "ogolne_83",
+   "nr": 45,
+   "id": "ogolne_46",
    "en": "training course",
    "pl": "szkolenie",
    "level": "A1",
    "rank": 383
   },
   {
-   "nr": 84,
-   "id": "ogolne_84",
+   "nr": 46,
+   "id": "ogolne_47",
    "en": "knowledge",
    "pl": "wiedza",
    "level": "A1",
    "rank": 384
   },
   {
-   "nr": 85,
-   "id": "ogolne_85",
+   "nr": 47,
+   "id": "ogolne_48",
    "en": "effort",
    "pl": "wysiłek",
    "level": "A1",
    "rank": 385
   },
   {
-   "nr": 86,
-   "id": "ogolne_86",
+   "nr": 48,
+   "id": "ogolne_49",
    "en": "success",
    "pl": "sukces",
    "level": "A1",
    "rank": 386
   },
   {
-   "nr": 87,
-   "id": "ogolne_87",
+   "nr": 49,
+   "id": "ogolne_50",
    "en": "failure",
    "pl": "porażka",
    "level": "A1",
    "rank": 387
   },
   {
-   "nr": 88,
-   "id": "ogolne_88",
+   "nr": 50,
+   "id": "ogolne_51",
    "en": "risk",
    "pl": "ryzyko",
    "level": "A1",
    "rank": 388
   },
   {
-   "nr": 89,
-   "id": "ogolne_89",
+   "nr": 51,
+   "id": "ogolne_52",
    "en": "safety",
    "pl": "bezpieczeństwo",
    "level": "A1",
    "rank": 389
   },
   {
-   "nr": 90,
-   "id": "ogolne_90",
+   "nr": 52,
+   "id": "ogolne_53",
    "en": "health",
    "pl": "zdrowie",
    "level": "A1",
    "rank": 390
   },
   {
-   "nr": 91,
-   "id": "ogolne_91",
+   "nr": 53,
+   "id": "ogolne_54",
    "en": "free time",
    "pl": "czas wolny",
    "level": "A1",
    "rank": 391
   },
   {
-   "nr": 92,
-   "id": "ogolne_92",
+   "nr": 54,
+   "id": "ogolne_55",
    "en": "holiday (leave)",
    "pl": "urlop",
    "level": "A1",
    "rank": 392
   },
   {
-   "nr": 93,
-   "id": "ogolne_93",
+   "nr": 55,
+   "id": "ogolne_56",
    "en": "trip (journey)",
    "pl": "wyjazd",
    "level": "A1",

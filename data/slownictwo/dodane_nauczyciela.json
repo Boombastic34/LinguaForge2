@@ -4,16 +4,5 @@
  "cat": "mixed",
  "theme": "praca",
  "level": "A1",
- "items": [
-  {
-   "nr": 1,
-   "id": "tchw_1786061799054",
-   "en": "hammer",
-   "pl": "młotek",
-   "theme": "praca",
-   "example": "",
-   "level": "A1",
-   "rank": 5001
-  }
- ]
+ "items": []
 }

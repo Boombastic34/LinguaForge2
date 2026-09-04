@@ -11,7 +11,8 @@
    "en": "work",
    "pl": "pracować",
    "level": "A1",
-   "rank": 100
+   "rank": 100,
+   "hint": "czasownik: pracować"
   },
   {
    "nr": 2,
@@ -395,7 +396,8 @@
    "en": "clean",
    "pl": "sprzątać / czyścić",
    "level": "A1",
-   "rank": 148
+   "rank": 148,
+   "hint": "czasownik: sprzątać"
   },
   {
    "nr": 50,
@@ -403,7 +405,8 @@
    "en": "break",
    "pl": "łamać / psuć",
    "level": "A1",
-   "rank": 149
+   "rank": 149,
+   "hint": "czasownik: łamać, psuć"
   },
   {
    "nr": 51,
@@ -571,7 +574,8 @@
    "en": "answer",
    "pl": "odpowiadać",
    "level": "A1",
-   "rank": 170
+   "rank": 170,
+   "hint": "czasownik: co robisz"
   },
   {
    "nr": 72,
@@ -635,7 +639,8 @@
    "en": "cost",
    "pl": "kosztować",
    "level": "A1",
-   "rank": 178
+   "rank": 178,
+   "hint": "czasownik: kosztować"
   },
   {
    "nr": 80,
@@ -699,7 +704,8 @@
    "en": "fly",
    "pl": "latać",
    "level": "A1",
-   "rank": 186
+   "rank": 186,
+   "hint": "czasownik: latać"
   },
   {
    "nr": 88,
@@ -787,7 +793,8 @@
    "en": "order",
    "pl": "zamawiać",
    "level": "A1",
-   "rank": 197
+   "rank": 197,
+   "hint": "czasownik: zamawiać"
   },
   {
    "nr": 99,
@@ -803,7 +810,8 @@
    "en": "plan",
    "pl": "planować",
    "level": "A1",
-   "rank": 199
+   "rank": 199,
+   "hint": "czasownik: planować"
   },
   {
    "nr": 101,
@@ -1043,7 +1051,8 @@
    "en": "copy",
    "pl": "kopiować",
    "level": "A1",
-   "rank": 229
+   "rank": 229,
+   "hint": "czasownik: kopiować"
   },
   {
    "nr": 131,
@@ -1051,7 +1060,8 @@
    "en": "correct",
    "pl": "poprawiać",
    "level": "A1",
-   "rank": 230
+   "rank": 230,
+   "hint": "czasownik: poprawiać"
   },
   {
    "nr": 132,
@@ -1179,7 +1189,8 @@
    "en": "dress",
    "pl": "ubierać (się)",
    "level": "A1",
-   "rank": 246
+   "rank": 246,
+   "hint": "czasownik: ubierać się"
   },
   {
    "nr": 148,
@@ -1435,7 +1446,8 @@
    "en": "lock",
    "pl": "zamykać na klucz",
    "level": "A1",
-   "rank": 278
+   "rank": 278,
+   "hint": "czasownik: zamykać na klucz"
   },
   {
    "nr": 180,
@@ -1547,7 +1559,8 @@
    "en": "park",
    "pl": "parkować",
    "level": "A1",
-   "rank": 292
+   "rank": 292,
+   "hint": "czasownik: parkować"
   },
   {
    "nr": 194,
@@ -1619,7 +1632,8 @@
    "en": "promise",
    "pl": "obiecywać",
    "level": "A1",
-   "rank": 301
+   "rank": 301,
+   "hint": "czasownik: obiecywać"
   },
   {
    "nr": 203,
@@ -1739,7 +1753,8 @@
    "en": "ring",
    "pl": "dzwonić (dzwonek)",
    "level": "A1",
-   "rank": 316
+   "rank": 316,
+   "hint": "czasownik: dzwonić"
   },
   {
    "nr": 218,
@@ -1915,7 +1930,8 @@
    "en": "switch",
    "pl": "przełączać",
    "level": "A2",
-   "rank": 339
+   "rank": 339,
+   "hint": "czasownik: przełączać"
   },
   {
    "nr": 240,
@@ -2051,7 +2067,8 @@
    "en": "wrap",
    "pl": "zawijać / pakować",
    "level": "A2",
-   "rank": 356
+   "rank": 356,
+   "hint": "czasownik: zawijać, pakować"
   },
   {
    "nr": 257,

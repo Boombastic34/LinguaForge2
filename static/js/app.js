@@ -52,7 +52,7 @@ function boot() {
   const nav = el("nav", {});
   const aside = el("aside", {},
     el("div", { class: "brand" }, "Lingua", el("span", {}, "Forge")),
-    el("div", { class: "brand-sub", id: "verbox" }, "v2.6.1 · kuźnia języka"),
+    el("div", { class: "brand-sub", id: "verbox" }, "v2.8.1 · kuźnia języka"),
     nav,
     el("div", { class: "spacer" }),
     el("div", { class: "userbox" },
@@ -77,7 +77,7 @@ function boot() {
     const box = document.getElementById("verbox");
     if (!box) return;
     box.textContent = "v" + v.version + " · kuźnia języka";
-    if (v.version !== "2.6.1") {
+    if (v.version !== "2.8.1") {
       box.textContent = "v" + v.version + " · odśwież (Ctrl+F5)";
       box.style.color = "#ffd43b";
     }

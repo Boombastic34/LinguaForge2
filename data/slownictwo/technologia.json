@@ -257,54 +257,46 @@
   {
    "nr": 32,
    "id": "technologia_32",
-   "en": "data",
-   "pl": "dane",
-   "level": "A2",
-   "rank": 831
-  },
-  {
-   "nr": 33,
-   "id": "technologia_33",
    "en": "memory",
    "pl": "pamięć",
    "level": "A2",
    "rank": 832
   },
   {
-   "nr": 34,
-   "id": "technologia_34",
+   "nr": 33,
+   "id": "technologia_33",
    "en": "device",
    "pl": "urządzenie",
    "level": "A2",
    "rank": 833
   },
   {
-   "nr": 35,
-   "id": "technologia_35",
+   "nr": 34,
+   "id": "technologia_34",
    "en": "charger cable",
    "pl": "kabel do ładowania",
    "level": "A2",
    "rank": 834
   },
   {
-   "nr": 36,
-   "id": "technologia_36",
+   "nr": 35,
+   "id": "technologia_35",
    "en": "plug",
    "pl": "wtyczka",
    "level": "A2",
    "rank": 835
   },
   {
-   "nr": 37,
-   "id": "technologia_37",
+   "nr": 36,
+   "id": "technologia_36",
    "en": "turn it on",
    "pl": "włączyć to",
    "level": "A2",
    "rank": 836
   },
   {
-   "nr": 38,
-   "id": "technologia_38",
+   "nr": 37,
+   "id": "technologia_37",
    "en": "bug (error)",
    "pl": "błąd programu",
    "level": "A2",

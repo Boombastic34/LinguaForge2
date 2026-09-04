@@ -512,46 +512,38 @@
   {
    "nr": 64,
    "id": "cialo_64",
-   "en": "first aid",
-   "pl": "pierwsza pomoc",
-   "level": "A1",
-   "rank": 364
-  },
-  {
-   "nr": 65,
-   "id": "cialo_65",
    "en": "ambulance",
    "pl": "karetka",
    "level": "A1",
    "rank": 365
   },
   {
-   "nr": 66,
-   "id": "cialo_66",
+   "nr": 65,
+   "id": "cialo_65",
    "en": "emergency",
    "pl": "nagły wypadek",
    "level": "A1",
    "rank": 366
   },
   {
-   "nr": 67,
-   "id": "cialo_67",
+   "nr": 66,
+   "id": "cialo_66",
    "en": "sick leave",
    "pl": "zwolnienie lekarskie",
    "level": "A1",
    "rank": 367
   },
   {
-   "nr": 68,
-   "id": "cialo_68",
+   "nr": 67,
+   "id": "cialo_67",
    "en": "recover",
    "pl": "wracać do zdrowia",
    "level": "A1",
    "rank": 368
   },
   {
-   "nr": 69,
-   "id": "cialo_69",
+   "nr": 68,
+   "id": "cialo_68",
    "en": "healthy",
    "pl": "zdrowy",
    "level": "A1",

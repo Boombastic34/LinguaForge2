@@ -10,7 +10,8 @@
    "pl": "dom (budynek)",
    "level": "A1",
    "rank": 200,
-   "nr": 1
+   "nr": 1,
+   "example": "My house is near the park."
   },
   {
    "id": "przedmioty_2",
@@ -26,7 +27,8 @@
    "pl": "praca",
    "level": "A1",
    "rank": 202,
-   "nr": 3
+   "nr": 3,
+   "hint": "rzeczownik: praca"
   },
   {
    "id": "przedmioty_4",
@@ -42,7 +44,8 @@
    "pl": "pieniądze",
    "level": "A1",
    "rank": 204,
-   "nr": 5
+   "nr": 5,
+   "example": "I need to save money."
   },
   {
    "id": "przedmioty_6",
@@ -50,7 +53,8 @@
    "pl": "czas",
    "level": "A1",
    "rank": 205,
-   "nr": 6
+   "nr": 6,
+   "example": "What time is it?"
   },
   {
    "id": "przedmioty_7",
@@ -58,7 +62,8 @@
    "pl": "dzień",
    "level": "A1",
    "rank": 206,
-   "nr": 7
+   "nr": 7,
+   "example": "Have a nice day!"
   },
   {
    "id": "przedmioty_8",
@@ -74,7 +79,8 @@
    "pl": "tydzień",
    "level": "A1",
    "rank": 208,
-   "nr": 9
+   "nr": 9,
+   "example": "Next week I have a day off."
   },
   {
    "id": "przedmioty_10",
@@ -94,727 +100,705 @@
   },
   {
    "id": "przedmioty_12",
-   "en": "hour",
-   "pl": "godzina",
-   "level": "A1",
-   "rank": 211,
-   "nr": 12
-  },
-  {
-   "id": "przedmioty_13",
-   "en": "minute",
-   "pl": "minuta",
-   "level": "A1",
-   "rank": 212,
-   "nr": 13
-  },
-  {
-   "id": "przedmioty_14",
    "en": "morning",
    "pl": "ranek",
    "level": "A1",
    "rank": 213,
-   "nr": 14
+   "nr": 12
   },
   {
-   "id": "przedmioty_15",
+   "id": "przedmioty_13",
    "en": "evening",
    "pl": "wieczór",
    "level": "A1",
    "rank": 214,
-   "nr": 15
+   "nr": 13
   },
   {
-   "id": "przedmioty_16",
+   "id": "przedmioty_14",
    "en": "man",
    "pl": "mężczyzna",
    "level": "A1",
    "rank": 215,
-   "nr": 16
+   "nr": 14
   },
   {
-   "id": "przedmioty_17",
+   "id": "przedmioty_15",
    "en": "woman",
    "pl": "kobieta",
    "level": "A1",
    "rank": 216,
-   "nr": 17
+   "nr": 15
   },
   {
-   "id": "przedmioty_18",
+   "id": "przedmioty_16",
    "en": "child",
    "pl": "dziecko",
    "level": "A1",
    "rank": 217,
-   "nr": 18
+   "nr": 16
   },
   {
-   "id": "przedmioty_19",
+   "id": "przedmioty_17",
    "en": "friend",
    "pl": "przyjaciel / kolega",
    "level": "A1",
    "rank": 218,
-   "nr": 19
+   "nr": 17,
+   "example": "He is my best friend."
   },
   {
-   "id": "przedmioty_20",
+   "id": "przedmioty_18",
    "en": "family",
    "pl": "rodzina",
    "level": "A1",
    "rank": 219,
-   "nr": 20
+   "nr": 18
   },
   {
-   "id": "przedmioty_21",
+   "id": "przedmioty_19",
    "en": "name",
    "pl": "imię / nazwa",
    "level": "A1",
    "rank": 220,
-   "nr": 21
+   "nr": 19
   },
   {
-   "id": "przedmioty_22",
+   "id": "przedmioty_20",
    "en": "water",
    "pl": "woda",
    "level": "A1",
    "rank": 221,
-   "nr": 22
+   "nr": 20
   },
   {
-   "id": "przedmioty_23",
+   "id": "przedmioty_21",
    "en": "food",
    "pl": "jedzenie",
    "level": "A1",
    "rank": 222,
-   "nr": 23
+   "nr": 21
   },
   {
-   "id": "przedmioty_24",
+   "id": "przedmioty_22",
    "en": "bread",
    "pl": "chleb",
    "level": "A1",
    "rank": 223,
-   "nr": 24
+   "nr": 22
   },
   {
-   "id": "przedmioty_25",
+   "id": "przedmioty_23",
    "en": "coffee",
    "pl": "kawa",
    "level": "A1",
    "rank": 224,
-   "nr": 25
+   "nr": 23
   },
   {
-   "id": "przedmioty_26",
+   "id": "przedmioty_24",
    "en": "tea",
    "pl": "herbata",
    "level": "A1",
    "rank": 225,
-   "nr": 26
+   "nr": 24
   },
   {
-   "id": "przedmioty_27",
+   "id": "przedmioty_25",
    "en": "milk",
    "pl": "mleko",
    "level": "A1",
    "rank": 226,
-   "nr": 27
+   "nr": 25
   },
   {
-   "id": "przedmioty_28",
+   "id": "przedmioty_26",
    "en": "car",
    "pl": "samochód",
    "level": "A1",
    "rank": 227,
-   "nr": 28
+   "nr": 26
   },
   {
-   "id": "przedmioty_29",
+   "id": "przedmioty_27",
    "en": "bike",
    "pl": "rower",
    "level": "A1",
    "rank": 228,
-   "nr": 29
+   "nr": 27
   },
   {
-   "id": "przedmioty_30",
+   "id": "przedmioty_28",
    "en": "bus",
    "pl": "autobus",
    "level": "A1",
    "rank": 229,
-   "nr": 30
+   "nr": 28
   },
   {
-   "id": "przedmioty_31",
+   "id": "przedmioty_29",
    "en": "train",
    "pl": "pociąg",
    "level": "A1",
    "rank": 230,
-   "nr": 31
+   "nr": 29
   },
   {
-   "id": "przedmioty_32",
+   "id": "przedmioty_30",
    "en": "street",
    "pl": "ulica",
    "level": "A1",
    "rank": 231,
-   "nr": 32
+   "nr": 30
   },
   {
-   "id": "przedmioty_33",
+   "id": "przedmioty_31",
    "en": "city",
    "pl": "miasto",
    "level": "A1",
    "rank": 232,
-   "nr": 33
+   "nr": 31
   },
   {
-   "id": "przedmioty_34",
+   "id": "przedmioty_32",
    "en": "country",
    "pl": "kraj / wieś",
    "level": "A1",
    "rank": 233,
-   "nr": 34
+   "nr": 32
   },
   {
-   "id": "przedmioty_35",
+   "id": "przedmioty_33",
    "en": "shop",
    "pl": "sklep",
    "level": "A1",
    "rank": 234,
-   "nr": 35
+   "nr": 33
   },
   {
-   "id": "przedmioty_36",
+   "id": "przedmioty_34",
    "en": "door",
    "pl": "drzwi",
    "level": "A1",
    "rank": 235,
-   "nr": 36
+   "nr": 34
   },
   {
-   "id": "przedmioty_37",
+   "id": "przedmioty_35",
    "en": "window",
    "pl": "okno",
    "level": "A1",
    "rank": 236,
-   "nr": 37
+   "nr": 35
   },
   {
-   "id": "przedmioty_38",
+   "id": "przedmioty_36",
    "en": "table",
    "pl": "stół",
    "level": "A1",
    "rank": 237,
-   "nr": 38
+   "nr": 36
   },
   {
-   "id": "przedmioty_39",
+   "id": "przedmioty_37",
    "en": "chair",
    "pl": "krzesło",
    "level": "A1",
    "rank": 238,
-   "nr": 39
+   "nr": 37
   },
   {
-   "id": "przedmioty_40",
+   "id": "przedmioty_38",
    "en": "bed",
    "pl": "łóżko",
    "level": "A1",
    "rank": 239,
-   "nr": 40
+   "nr": 38
   },
   {
-   "id": "przedmioty_41",
+   "id": "przedmioty_39",
    "en": "room",
    "pl": "pokój",
    "level": "A1",
    "rank": 240,
-   "nr": 41
+   "nr": 39
   },
   {
-   "id": "przedmioty_42",
+   "id": "przedmioty_40",
    "en": "kitchen",
    "pl": "kuchnia",
    "level": "A1",
    "rank": 241,
-   "nr": 42
+   "nr": 40
   },
   {
-   "id": "przedmioty_43",
+   "id": "przedmioty_41",
    "en": "phone",
    "pl": "telefon",
    "level": "A1",
    "rank": 242,
-   "nr": 43
+   "nr": 41
   },
   {
-   "id": "przedmioty_44",
-   "en": "computer",
-   "pl": "komputer",
-   "level": "A1",
-   "rank": 243,
-   "nr": 44
-  },
-  {
-   "id": "przedmioty_45",
+   "id": "przedmioty_42",
    "en": "key",
    "pl": "klucz",
    "level": "A1",
    "rank": 244,
-   "nr": 45
+   "nr": 42
   },
   {
-   "id": "przedmioty_46",
+   "id": "przedmioty_43",
    "en": "bag",
    "pl": "torba",
    "level": "A1",
    "rank": 245,
-   "nr": 46
+   "nr": 43
   },
   {
-   "id": "przedmioty_47",
+   "id": "przedmioty_44",
    "en": "clothes",
    "pl": "ubrania",
    "level": "A1",
    "rank": 246,
-   "nr": 47
+   "nr": 44
   },
   {
-   "id": "przedmioty_48",
+   "id": "przedmioty_45",
    "en": "shoe",
    "pl": "but",
    "level": "A1",
    "rank": 247,
-   "nr": 48
+   "nr": 45
   },
   {
-   "id": "przedmioty_49",
+   "id": "przedmioty_46",
    "en": "hand",
    "pl": "ręka / dłoń",
    "level": "A1",
    "rank": 248,
-   "nr": 49
+   "nr": 46
   },
   {
-   "id": "przedmioty_50",
+   "id": "przedmioty_47",
    "en": "head",
    "pl": "głowa",
    "level": "A1",
    "rank": 249,
-   "nr": 50
+   "nr": 47
   },
   {
-   "id": "przedmioty_51",
+   "id": "przedmioty_48",
    "en": "eye",
    "pl": "oko",
    "level": "A1",
    "rank": 250,
-   "nr": 51
+   "nr": 48
   },
   {
-   "id": "przedmioty_52",
+   "id": "przedmioty_49",
    "en": "foot",
    "pl": "stopa",
    "level": "A1",
    "rank": 251,
-   "nr": 52
+   "nr": 49
   },
   {
-   "id": "przedmioty_53",
+   "id": "przedmioty_50",
    "en": "weather",
    "pl": "pogoda",
    "level": "A1",
    "rank": 252,
-   "nr": 53
+   "nr": 50
   },
   {
-   "id": "przedmioty_54",
+   "id": "przedmioty_51",
    "en": "rain",
    "pl": "deszcz",
    "level": "A1",
    "rank": 253,
-   "nr": 54
+   "nr": 51
   },
   {
-   "id": "przedmioty_55",
+   "id": "przedmioty_52",
    "en": "sun",
    "pl": "słońce",
    "level": "A1",
    "rank": 254,
-   "nr": 55
+   "nr": 52
   },
   {
-   "id": "przedmioty_56",
+   "id": "przedmioty_53",
    "en": "holiday",
    "pl": "urlop / święto",
    "level": "A1",
    "rank": 255,
-   "nr": 56
+   "nr": 53
   },
   {
-   "id": "przedmioty_57",
+   "id": "przedmioty_54",
    "en": "question",
    "pl": "pytanie",
    "level": "A1",
    "rank": 256,
-   "nr": 57
+   "nr": 54
   },
   {
-   "id": "przedmioty_58",
+   "id": "przedmioty_55",
    "en": "answer",
    "pl": "odpowiedź",
    "level": "A1",
    "rank": 257,
-   "nr": 58
+   "nr": 55,
+   "hint": "rzeczownik: sama odpowiedź"
   },
   {
-   "id": "przedmioty_59",
+   "id": "przedmioty_56",
    "en": "word",
    "pl": "słowo",
    "level": "A1",
    "rank": 258,
-   "nr": 59
+   "nr": 56
   },
   {
-   "id": "przedmioty_60",
+   "id": "przedmioty_57",
    "en": "language",
    "pl": "język (mowa)",
    "level": "A1",
    "rank": 259,
-   "nr": 60
+   "nr": 57
   },
   {
-   "id": "przedmioty_61",
+   "id": "przedmioty_58",
    "en": "number",
    "pl": "liczba / numer",
    "level": "A1",
    "rank": 260,
-   "nr": 61
+   "nr": 58
   },
   {
-   "id": "przedmioty_62",
+   "id": "przedmioty_59",
    "en": "price",
    "pl": "cena",
    "level": "A1",
    "rank": 261,
-   "nr": 62
+   "nr": 59
   },
   {
-   "id": "przedmioty_63",
+   "id": "przedmioty_60",
    "en": "floor",
    "pl": "podłoga / piętro",
    "level": "A1",
    "rank": 262,
-   "nr": 63
+   "nr": 60
   },
   {
-   "id": "przedmioty_64",
+   "id": "przedmioty_61",
    "en": "wall",
    "pl": "ściana",
    "level": "A1",
    "rank": 263,
-   "nr": 64
+   "nr": 61
   },
   {
-   "nr": 65,
-   "id": "przedmioty_65",
+   "nr": 62,
+   "id": "przedmioty_62",
    "en": "paper",
    "pl": "papier",
    "level": "A1",
    "rank": 365
   },
   {
-   "nr": 66,
-   "id": "przedmioty_66",
+   "nr": 63,
+   "id": "przedmioty_63",
    "en": "pen",
    "pl": "długopis",
    "level": "A1",
    "rank": 366
   },
   {
-   "nr": 67,
-   "id": "przedmioty_67",
+   "nr": 64,
+   "id": "przedmioty_64",
    "en": "pencil",
    "pl": "ołówek",
    "level": "A1",
    "rank": 367
   },
   {
-   "nr": 68,
-   "id": "przedmioty_68",
+   "nr": 65,
+   "id": "przedmioty_65",
    "en": "book",
    "pl": "książka",
    "level": "A1",
    "rank": 368
   },
   {
-   "nr": 69,
-   "id": "przedmioty_69",
+   "nr": 66,
+   "id": "przedmioty_66",
    "en": "notebook",
    "pl": "zeszyt",
    "level": "A1",
    "rank": 369
   },
   {
-   "nr": 70,
-   "id": "przedmioty_70",
+   "nr": 67,
+   "id": "przedmioty_67",
    "en": "bottle",
    "pl": "butelka",
    "level": "A1",
    "rank": 370
   },
   {
-   "nr": 71,
-   "id": "przedmioty_71",
+   "nr": 68,
+   "id": "przedmioty_68",
    "en": "box (container)",
    "pl": "pudełko",
    "level": "A1",
    "rank": 371
   },
   {
-   "nr": 72,
-   "id": "przedmioty_72",
+   "nr": 69,
+   "id": "przedmioty_69",
    "en": "bag (plastic)",
    "pl": "reklamówka",
    "level": "A1",
    "rank": 372
   },
   {
-   "nr": 73,
-   "id": "przedmioty_73",
+   "nr": 70,
+   "id": "przedmioty_70",
    "en": "basket (container)",
    "pl": "kosz",
    "level": "A1",
    "rank": 373
   },
   {
-   "nr": 74,
-   "id": "przedmioty_74",
+   "nr": 71,
+   "id": "przedmioty_71",
    "en": "tool",
    "pl": "narzędzie",
    "level": "A1",
    "rank": 374
   },
   {
-   "nr": 75,
-   "id": "przedmioty_75",
+   "nr": 72,
+   "id": "przedmioty_72",
    "en": "hammer",
    "pl": "młotek",
    "level": "A1",
    "rank": 375
   },
   {
-   "nr": 76,
-   "id": "przedmioty_76",
+   "nr": 73,
+   "id": "przedmioty_73",
    "en": "screwdriver",
    "pl": "śrubokręt",
    "level": "A1",
    "rank": 376
   },
   {
-   "nr": 77,
-   "id": "przedmioty_77",
+   "nr": 74,
+   "id": "przedmioty_74",
    "en": "nail (tool)",
    "pl": "gwóźdź",
    "level": "A1",
    "rank": 377
   },
   {
-   "nr": 78,
-   "id": "przedmioty_78",
+   "nr": 75,
+   "id": "przedmioty_75",
    "en": "screw",
    "pl": "śruba",
    "level": "A1",
    "rank": 378
   },
   {
-   "nr": 79,
-   "id": "przedmioty_79",
+   "nr": 76,
+   "id": "przedmioty_76",
    "en": "tape",
    "pl": "taśma",
    "level": "A1",
    "rank": 379
   },
   {
-   "nr": 80,
-   "id": "przedmioty_80",
+   "nr": 77,
+   "id": "przedmioty_77",
    "en": "rope",
    "pl": "lina",
    "level": "A1",
    "rank": 380
   },
   {
-   "nr": 81,
-   "id": "przedmioty_81",
+   "nr": 78,
+   "id": "przedmioty_78",
    "en": "ladder",
    "pl": "drabina",
    "level": "A1",
    "rank": 381
   },
   {
-   "nr": 82,
-   "id": "przedmioty_82",
+   "nr": 79,
+   "id": "przedmioty_79",
    "en": "bucket",
    "pl": "wiadro",
    "level": "A1",
    "rank": 382
   },
   {
-   "nr": 83,
-   "id": "przedmioty_83",
+   "nr": 80,
+   "id": "przedmioty_80",
    "en": "brush",
    "pl": "szczotka",
    "level": "A1",
    "rank": 383
   },
   {
-   "nr": 84,
-   "id": "przedmioty_84",
+   "nr": 81,
+   "id": "przedmioty_81",
    "en": "cloth",
    "pl": "ściereczka",
    "level": "A1",
    "rank": 384
   },
   {
-   "nr": 85,
-   "id": "przedmioty_85",
+   "nr": 82,
+   "id": "przedmioty_82",
    "en": "glue",
    "pl": "klej",
    "level": "A1",
    "rank": 385
   },
   {
-   "nr": 86,
-   "id": "przedmioty_86",
+   "nr": 83,
+   "id": "przedmioty_83",
    "en": "scissors",
    "pl": "nożyczki",
    "level": "A1",
    "rank": 386
   },
   {
-   "nr": 87,
-   "id": "przedmioty_87",
+   "nr": 84,
+   "id": "przedmioty_84",
    "en": "knife (tool)",
    "pl": "nóż",
    "level": "A1",
    "rank": 387
   },
   {
-   "nr": 88,
-   "id": "przedmioty_88",
+   "nr": 85,
+   "id": "przedmioty_85",
    "en": "machine (device)",
    "pl": "maszyna",
    "level": "A1",
    "rank": 388
   },
   {
-   "nr": 89,
-   "id": "przedmioty_89",
+   "nr": 86,
+   "id": "przedmioty_86",
    "en": "engine (machine)",
    "pl": "silnik",
    "level": "A1",
    "rank": 389
   },
   {
-   "nr": 90,
-   "id": "przedmioty_90",
+   "nr": 87,
+   "id": "przedmioty_87",
    "en": "button (device)",
    "pl": "przycisk",
    "level": "A1",
    "rank": 390
   },
   {
-   "nr": 91,
-   "id": "przedmioty_91",
+   "nr": 88,
+   "id": "przedmioty_88",
    "en": "screen",
    "pl": "ekran",
    "level": "A1",
    "rank": 391
   },
   {
-   "nr": 92,
-   "id": "przedmioty_92",
+   "nr": 89,
+   "id": "przedmioty_89",
    "en": "keyboard",
    "pl": "klawiatura",
    "level": "A1",
    "rank": 392
   },
   {
-   "nr": 93,
-   "id": "przedmioty_93",
+   "nr": 90,
+   "id": "przedmioty_90",
    "en": "mouse (device)",
    "pl": "myszka",
    "level": "A1",
    "rank": 393
   },
   {
-   "nr": 94,
-   "id": "przedmioty_94",
+   "nr": 91,
+   "id": "przedmioty_91",
    "en": "charger",
    "pl": "ładowarka",
    "level": "A1",
    "rank": 394
   },
   {
-   "nr": 95,
-   "id": "przedmioty_95",
+   "nr": 92,
+   "id": "przedmioty_92",
    "en": "cable",
    "pl": "kabel",
    "level": "A1",
    "rank": 395
   },
   {
-   "nr": 96,
-   "id": "przedmioty_96",
+   "nr": 93,
+   "id": "przedmioty_93",
    "en": "headphones",
    "pl": "słuchawki",
    "level": "A1",
    "rank": 396
   },
   {
-   "nr": 97,
-   "id": "przedmioty_97",
+   "nr": 94,
+   "id": "przedmioty_94",
    "en": "camera",
    "pl": "aparat",
    "level": "A1",
    "rank": 397
   },
   {
-   "nr": 98,
-   "id": "przedmioty_98",
+   "nr": 95,
+   "id": "przedmioty_95",
    "en": "printer",
    "pl": "drukarka",
    "level": "A1",
    "rank": 398
   },
   {
-   "nr": 99,
-   "id": "przedmioty_99",
+   "nr": 96,
+   "id": "przedmioty_96",
    "en": "scanner (device)",
    "pl": "skaner",
    "level": "A1",
    "rank": 399
   },
   {
-   "nr": 100,
-   "id": "przedmioty_100",
+   "nr": 97,
+   "id": "przedmioty_97",
    "en": "badge",
    "pl": "identyfikator",
    "level": "A1",
    "rank": 400
   },
   {
-   "nr": 101,
-   "id": "przedmioty_101",
+   "nr": 98,
+   "id": "przedmioty_98",
    "en": "card (id)",
    "pl": "karta",
    "level": "A1",
    "rank": 401
   },
   {
-   "nr": 102,
-   "id": "przedmioty_102",
+   "nr": 99,
+   "id": "przedmioty_99",
    "en": "key (object)",
    "pl": "klucz",
    "level": "A1",

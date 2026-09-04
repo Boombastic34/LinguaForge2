@@ -115,7 +115,8 @@
    "en": "park",
    "pl": "park",
    "level": "A1",
-   "rank": 543
+   "rank": 543,
+   "hint": "rzeczownik: park miejski"
   },
   {
    "nr": 15,
@@ -144,350 +145,334 @@
   {
    "nr": 18,
    "id": "miasto_18",
-   "en": "customer",
-   "pl": "klient",
-   "level": "A1",
-   "rank": 547
-  },
-  {
-   "nr": 19,
-   "id": "miasto_19",
    "en": "cash",
    "pl": "gotówka",
    "level": "A1",
    "rank": 548
   },
   {
-   "nr": 20,
-   "id": "miasto_20",
+   "nr": 19,
+   "id": "miasto_19",
    "en": "card",
    "pl": "karta (płatnicza)",
    "level": "A1",
    "rank": 549
   },
   {
-   "nr": 21,
-   "id": "miasto_21",
-   "en": "receipt",
-   "pl": "paragon",
-   "level": "A1",
-   "rank": 550
-  },
-  {
-   "nr": 22,
-   "id": "miasto_22",
+   "nr": 20,
+   "id": "miasto_20",
    "en": "discount",
    "pl": "zniżka",
    "level": "A1",
    "rank": 551
   },
   {
-   "nr": 23,
-   "id": "miasto_23",
+   "nr": 21,
+   "id": "miasto_21",
    "en": "sale",
    "pl": "wyprzedaż",
    "level": "A1",
    "rank": 552
   },
   {
-   "nr": 24,
-   "id": "miasto_24",
+   "nr": 22,
+   "id": "miasto_22",
    "en": "basket",
    "pl": "koszyk",
    "level": "A1",
    "rank": 553
   },
   {
-   "nr": 25,
-   "id": "miasto_25",
+   "nr": 23,
+   "id": "miasto_23",
    "en": "trolley",
    "pl": "wózek (sklepowy)",
    "level": "A1",
    "rank": 554
   },
   {
-   "nr": 26,
-   "id": "miasto_26",
+   "nr": 24,
+   "id": "miasto_24",
    "en": "change (money)",
    "pl": "reszta (pieniądze)",
    "level": "A1",
    "rank": 555
   },
   {
-   "nr": 27,
-   "id": "miasto_27",
+   "nr": 25,
+   "id": "miasto_25",
    "en": "town hall",
    "pl": "ratusz",
    "level": "A1",
    "rank": 327
   },
   {
-   "nr": 28,
-   "id": "miasto_28",
+   "nr": 26,
+   "id": "miasto_26",
    "en": "library",
    "pl": "biblioteka",
    "level": "A1",
    "rank": 328
   },
   {
-   "nr": 29,
-   "id": "miasto_29",
+   "nr": 27,
+   "id": "miasto_27",
    "en": "museum",
    "pl": "muzeum",
    "level": "A1",
    "rank": 329
   },
   {
-   "nr": 30,
-   "id": "miasto_30",
+   "nr": 28,
+   "id": "miasto_28",
    "en": "theatre",
    "pl": "teatr",
    "level": "A1",
    "rank": 330
   },
   {
-   "nr": 31,
-   "id": "miasto_31",
+   "nr": 29,
+   "id": "miasto_29",
    "en": "stadium",
    "pl": "stadion",
    "level": "A1",
    "rank": 331
   },
   {
-   "nr": 32,
-   "id": "miasto_32",
+   "nr": 30,
+   "id": "miasto_30",
    "en": "gym",
    "pl": "siłownia",
    "level": "A1",
    "rank": 332
   },
   {
-   "nr": 33,
-   "id": "miasto_33",
+   "nr": 31,
+   "id": "miasto_31",
    "en": "swimming pool",
    "pl": "basen",
    "level": "A1",
    "rank": 333
   },
   {
-   "nr": 34,
-   "id": "miasto_34",
+   "nr": 32,
+   "id": "miasto_32",
    "en": "playground",
    "pl": "plac zabaw",
    "level": "A1",
    "rank": 334
   },
   {
-   "nr": 35,
-   "id": "miasto_35",
+   "nr": 33,
+   "id": "miasto_33",
    "en": "bus stop",
    "pl": "przystanek",
    "level": "A1",
    "rank": 335
   },
   {
-   "nr": 36,
-   "id": "miasto_36",
+   "nr": 34,
+   "id": "miasto_34",
    "en": "crossroads",
    "pl": "skrzyżowanie",
    "level": "A1",
    "rank": 336
   },
   {
-   "nr": 37,
-   "id": "miasto_37",
+   "nr": 35,
+   "id": "miasto_35",
    "en": "pavement",
    "pl": "chodnik",
    "level": "A1",
    "rank": 337
   },
   {
-   "nr": 38,
-   "id": "miasto_38",
+   "nr": 36,
+   "id": "miasto_36",
    "en": "street light",
    "pl": "latarnia",
    "level": "A1",
    "rank": 338
   },
   {
-   "nr": 39,
-   "id": "miasto_39",
+   "nr": 37,
+   "id": "miasto_37",
    "en": "bench",
    "pl": "ławka",
    "level": "A1",
    "rank": 339
   },
   {
-   "nr": 40,
-   "id": "miasto_40",
+   "nr": 38,
+   "id": "miasto_38",
    "en": "fountain",
    "pl": "fontanna",
    "level": "A1",
    "rank": 340
   },
   {
-   "nr": 41,
-   "id": "miasto_41",
+   "nr": 39,
+   "id": "miasto_39",
    "en": "bin (street)",
    "pl": "kosz na śmieci",
    "level": "A1",
    "rank": 341
   },
   {
-   "nr": 42,
-   "id": "miasto_42",
+   "nr": 40,
+   "id": "miasto_40",
    "en": "shopping centre",
    "pl": "centrum handlowe",
    "level": "A1",
    "rank": 342
   },
   {
-   "nr": 43,
-   "id": "miasto_43",
+   "nr": 41,
+   "id": "miasto_41",
    "en": "butcher",
    "pl": "sklep mięsny / rzeźnik",
    "level": "A1",
    "rank": 343
   },
   {
-   "nr": 44,
-   "id": "miasto_44",
+   "nr": 42,
+   "id": "miasto_42",
    "en": "greengrocer",
    "pl": "warzywniak",
    "level": "A1",
    "rank": 344
   },
   {
-   "nr": 45,
-   "id": "miasto_45",
+   "nr": 43,
+   "id": "miasto_43",
    "en": "hairdresser",
    "pl": "fryzjer",
    "level": "A1",
    "rank": 345
   },
   {
-   "nr": 46,
-   "id": "miasto_46",
+   "nr": 44,
+   "id": "miasto_44",
    "en": "dry cleaner",
    "pl": "pralnia chemiczna",
    "level": "A1",
    "rank": 346
   },
   {
-   "nr": 47,
-   "id": "miasto_47",
+   "nr": 45,
+   "id": "miasto_45",
    "en": "petrol station (city)",
    "pl": "stacja paliw",
    "level": "A1",
    "rank": 347
   },
   {
-   "nr": 48,
-   "id": "miasto_48",
+   "nr": 46,
+   "id": "miasto_46",
    "en": "police station",
    "pl": "komisariat",
    "level": "A1",
    "rank": 348
   },
   {
-   "nr": 49,
-   "id": "miasto_49",
+   "nr": 47,
+   "id": "miasto_47",
    "en": "fire station",
    "pl": "remiza",
    "level": "A1",
    "rank": 349
   },
   {
-   "nr": 50,
-   "id": "miasto_50",
+   "nr": 48,
+   "id": "miasto_48",
    "en": "town centre",
    "pl": "centrum miasta",
    "level": "A1",
    "rank": 350
   },
   {
-   "nr": 51,
-   "id": "miasto_51",
+   "nr": 49,
+   "id": "miasto_49",
    "en": "suburb",
    "pl": "przedmieście",
    "level": "A1",
    "rank": 351
   },
   {
-   "nr": 52,
-   "id": "miasto_52",
+   "nr": 50,
+   "id": "miasto_50",
    "en": "price tag",
    "pl": "metka z ceną",
    "level": "A1",
    "rank": 352
   },
   {
-   "nr": 53,
-   "id": "miasto_53",
+   "nr": 51,
+   "id": "miasto_51",
    "en": "bargain",
    "pl": "okazja cenowa",
    "level": "A1",
    "rank": 353
   },
   {
-   "nr": 54,
-   "id": "miasto_54",
+   "nr": 52,
+   "id": "miasto_52",
    "en": "refund",
    "pl": "zwrot pieniędzy",
    "level": "A1",
    "rank": 354
   },
   {
-   "nr": 55,
-   "id": "miasto_55",
+   "nr": 53,
+   "id": "miasto_53",
    "en": "exchange",
    "pl": "wymiana",
    "level": "A1",
    "rank": 355
   },
   {
-   "nr": 56,
-   "id": "miasto_56",
+   "nr": 54,
+   "id": "miasto_54",
    "en": "warranty",
    "pl": "gwarancja",
    "level": "A1",
    "rank": 356
   },
   {
-   "nr": 57,
-   "id": "miasto_57",
+   "nr": 55,
+   "id": "miasto_55",
    "en": "cashier",
    "pl": "kasjer",
    "level": "A1",
    "rank": 357
   },
   {
-   "nr": 58,
-   "id": "miasto_58",
+   "nr": 56,
+   "id": "miasto_56",
    "en": "shopping list",
    "pl": "lista zakupów",
    "level": "A1",
    "rank": 358
   },
   {
-   "nr": 59,
-   "id": "miasto_59",
+   "nr": 57,
+   "id": "miasto_57",
    "en": "delivery man",
    "pl": "kurier",
    "level": "A1",
    "rank": 359
   },
   {
-   "nr": 60,
-   "id": "miasto_60",
+   "nr": 58,
+   "id": "miasto_58",
    "en": "self-checkout",
    "pl": "kasa samoobsługowa",
    "level": "A1",
    "rank": 360
   },
   {
-   "nr": 61,
-   "id": "miasto_61",
+   "nr": 59,
+   "id": "miasto_59",
    "en": "shelf (shop)",
    "pl": "półka sklepowa",
    "level": "A1",

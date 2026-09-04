@@ -192,6 +192,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
   let blockBuf = [];          // zwroty poznane w bieżącym bloku
   let inReview = false;       // czy trwa runda utrwalenia
   let wrongAll = [];          // wszystkie pomyłki sesji — do poprawki na koniec
+  let repairDone = false;     // czy runda naprawcza już się odbyła W TEJ sesji
 
   const bar = el("div", { class: "fc-bar" },
     el("div", { class: "fc-progress" }, el("div", { class: "fc-progress-fill", id: "fprog" })),
@@ -589,11 +590,10 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     const uniqWrong = [];
     const seenW = new Set();
     wrongAll.forEach(c => { if (!seenW.has(c.id)) { seenW.add(c.id); uniqWrong.push(c); } });
-    if (uniqWrong.length && !window._fcRepairDone) {
-      window._fcRepairDone = true;
+    if (uniqWrong.length && !repairDone) {
+      repairDone = true;                    // zmienna sesji, nie globalna
       return runRepairRound(uniqWrong, finish);
     }
-    window._fcRepairDone = false;
     exitFocus();
     confetti();
     stage.innerHTML = "";

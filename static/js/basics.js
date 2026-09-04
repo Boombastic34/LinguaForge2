@@ -3,9 +3,34 @@
 async function viewBasics() {
   clearMain();
   const main = document.querySelector("main");
-  const { topics } = await API.get("/api/basics");
-  main.append(hero("🎒", "Podstawy", "Fundamenty, na których stoi cała reszta", "indigo",
-    `${topics.length} tematów`));
+  main.append(hero("🎒", "Podstawy", "Fundamenty, na których stoi cała reszta", "indigo"));
+
+  let data;
+  try {
+    data = await API.get("/api/basics");
+  } catch (e) {
+    main.append(el("div", { class: "card" },
+      el("h3", {}, "Nie udało się wczytać Podstaw"),
+      el("p", { class: "muted" }, String(e.message || e)),
+      el("p", { class: "muted small" },
+        "Najczęstsza przyczyna: serwer ma starszą wersję pliku main.py. " +
+        "Wgraj main.py z najnowszej paczki i odczekaj, aż aplikacja się przebuduje."),
+      el("button", { class: "btn primary", onclick: () => location.reload() }, "🔄 Odśwież")));
+    return;
+  }
+  const topics = data.topics || [];
+  if (!topics.length) {
+    main.append(el("div", { class: "card" },
+      el("h3", {}, "Brak treści do wyświetlenia"),
+      el("p", { class: "muted" },
+        "Serwer nie znalazł pliku z materiałem. Sprawdź, czy w repozytorium jest " +
+        "plik data/podstawy/kursy.json."),
+      el("div", { class: "tts-line" }, "katalog treści: " + (data.data_dir || "?")),
+      el("div", { class: "tts-line" }, "znalezione pliki: " +
+        ((data.files || []).join(", ") || "brak")),
+      el("button", { class: "btn primary", onclick: () => location.reload() }, "🔄 Odśwież")));
+    return;
+  }
 
   const card = el("div", { class: "card" });
   card.append(el("p", { class: "muted" },
@@ -18,6 +43,7 @@ async function viewBasics() {
     if (t.practice_pct != null) done.push(`✍️ ${t.practice_pct}%`);
     if (t.test_pct != null) done.push(`🎓 ${t.test_pct}%`);
     list.append(el("div", { class: "basics-card", onclick: () => viewBasicsTopic(t.id) },
+      el("div", { class: "bc-step" }, String(t.order || "•")),
       el("div", { class: "bc-emoji" }, t.emoji),
       el("div", { class: "bc-body" },
         el("b", {}, t.name),

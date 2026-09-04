@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.6.1"
+APP_VERSION = "2.8.1"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -2187,19 +2187,6 @@ async def game_stats(request: Request):
     return {"games": out}
 
 
-@app.post("/api/game/result")
-async def game_result(request: Request):
-    who = current_user(request)
-    body = await request.json()
-    prof = storage.load_profile(who["username"])
-    xp = int(body.get("xp", 5))
-    sk.register_activity(prof, True, xp)
-    storage.save_profile(who["username"], prof)
-    storage.log_event(who["username"], {"type": "game", "game": body.get("game"),
-                                        "ms": body.get("ms"), "xp": xp})
-    return {"ok": True}
-
-
 # ---------------------------------------------------------------- programy
 @app.get("/api/programs")
 async def my_programs(request: Request):
@@ -2914,12 +2901,13 @@ def _basics():
 
 @app.get("/api/basics")
 async def basics_list(request: Request):
-    who = guard_module(request, "basics")
+    who = current_user(request)
     st = storage.user_file(who["username"], "basics.json", {})
     items = []
     for t in _basics():
         p = st.get(t["id"], {})
         items.append({"id": t["id"], "name": t["name"], "emoji": t["emoji"],
+                      "order": t.get("order", 99),
                       "level": t["level"], "short": t.get("short", ""),
                       "pages": len(t.get("pages", [])),
                       "practice": len(t.get("practice", [])),
@@ -2927,12 +2915,14 @@ async def basics_list(request: Request):
                       "read": p.get("read", False),
                       "practice_pct": p.get("practice_pct"),
                       "test_pct": p.get("test_pct")})
-    return {"topics": items}
+    items.sort(key=lambda x: x["order"])
+    return {"topics": items, "data_dir": storage.DATA_DIR,
+            "files": storage.list_data_files("podstawy/")}
 
 
 @app.get("/api/basics/{tid}")
 async def basics_topic(tid: str, request: Request):
-    guard_module(request, "basics")
+    current_user(request)
     t = next((x for x in _basics() if x["id"] == tid), None)
     if not t:
         raise HTTPException(404, "Brak tematu.")
@@ -2974,6 +2964,39 @@ async def basics_progress(request: Request):
 TTS_CACHE_DIR = os.path.join(
     os.environ.get("LF_HOME", "").strip() or ROOT, "tts_cache")
 TTS_ENGINE_USED = None          # który silnik ostatnio zadziałał
+
+
+TTS_CACHE_MAX_MB = 120          # górny limit pamięci podręcznej nagrań
+
+
+def _tts_cache_prune():
+    """Kasuje najstarsze nagrania, gdy cache przekroczy limit.
+
+    Bez tego katalog rósłby w nieskończoność i po miesiącach mógłby zapełnić dysk.
+    """
+    try:
+        files = []
+        total = 0
+        for f in os.listdir(TTS_CACHE_DIR):
+            p = os.path.join(TTS_CACHE_DIR, f)
+            if os.path.isfile(p):
+                st = os.stat(p)
+                files.append((st.st_mtime, st.st_size, p))
+                total += st.st_size
+        limit = TTS_CACHE_MAX_MB * 1024 * 1024
+        if total <= limit:
+            return
+        files.sort()                          # od najstarszych
+        for _mtime, size, p in files:
+            if total <= limit * 0.8:          # schodzimy do 80% limitu
+                break
+            try:
+                os.remove(p)
+                total -= size
+            except OSError:
+                pass
+    except OSError:
+        pass
 
 
 def _tts_cache_path(text, lang, rate):
@@ -3088,6 +3111,7 @@ async def tts_audio(request: Request, text: str, lang: str = "en",
         os.makedirs(TTS_CACHE_DIR, exist_ok=True)
         with open(path, "wb") as fh:
             fh.write(data)
+        _tts_cache_prune()
     except OSError:
         pass
     mime = "audio/wav" if engine == "espeak" else "audio/mpeg"

@@ -22,9 +22,19 @@ def _load_tokens():
         TOKENS = {}
 
 
+def _prune_tokens():
+    """Usuwa wygasłe sesje. Bez tego plik rósłby z każdym logowaniem."""
+    now = time.time()
+    dead = [k for k, v in TOKENS.items()
+            if now - v.get("created", 0) >= 60 * 60 * 24 * 90]
+    for k in dead:
+        TOKENS.pop(k, None)
+
+
 def _save_tokens():
     try:
         import json
+        _prune_tokens()
         os.makedirs(os.path.dirname(_TOKENS_FILE), exist_ok=True)
         with open(_TOKENS_FILE, "w", encoding="utf-8") as f:
             json.dump(TOKENS, f)
