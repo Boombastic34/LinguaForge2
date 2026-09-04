@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.9.0"
+APP_VERSION = "3.0.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -1065,30 +1065,27 @@ async def api_gaps(request: Request):
 
 @app.get("/api/continue")
 async def api_continue(request: Request):
-    """Jeden przycisk: co teraz? powtórki -> łatanie luk -> następne ogniwo ścieżki."""
+    """Jeden przycisk „Kontynuuj": ZAWSZE następne ogniwo Ścieżki (główna droga).
+    Powtórki fiszek/czasowników wracają osobno w polu `second` — pulpit pokazuje je
+    jako mniejszy, drugi kafelek, a nie zamiast Ścieżki."""
     who = current_user(request)
-    prof = storage.load_profile(who["username"])
     cards = load_cards(who["username"])
     vcards = storage.user_file(who["username"], "verb_cards.json", {})
     now = time.time()
     due = sum(1 for c in cards.values() if c["fsrs"]["due"] <= now)
     vdue = sum(1 for c in vcards.values() if c["fsrs"]["due"] <= now)
+    second = None
     if due >= 5:
-        return {"action": "reviews", "label": f"Powtórz {due} fiszek", "hash": "#flashcards"}
-    if vdue >= 5:
-        return {"action": "verbs", "label": f"Powtórz {vdue} czasowników", "hash": "#verbs"}
-    tm = prof["skills"].get("themes", {})
-    weak = sorted([(v, k) for k, v in tm.items() if v < 50 and k != "rozmowy"])
-    if weak:
-        t = weak[0][1]
-        return {"action": "theme", "theme": t,
-                "label": f"Załataj lukę: {THEME_NAMES.get(t, t)} ({weak[0][0]:.0f}%)",
-                "hash": "#flashcards", "param": t}
+        second = {"action": "reviews", "label": f"Powtórz {due} fiszek", "hash": "#flashcards"}
+    elif vdue >= 5:
+        second = {"action": "verbs", "label": f"Powtórz {vdue} czasowników", "hash": "#verbs"}
     nxt = _next_path_link(who["username"])
     if nxt:
-        return {"action": "path", "link": nxt["id"],
-                "label": f"Ścieżka: {nxt['name']}", "hash": "#path"}
-    return {"action": "free", "label": "Wszystko na bieżąco — wybierz tryb wolny", "hash": "#dashboard"}
+        return {"action": "path", "link": nxt["id"], "link_data": nxt,
+                "label": nxt["name"], "sub": f"poziom {nxt['level']} · {nxt.get('section', '')}",
+                "hash": "#path", "second": second}
+    return {"action": "free", "label": "Ścieżka ukończona — wybierz, co chcesz powtórzyć",
+            "hash": "#dashboard", "second": second}
 
 
 # ---------------------------------------------------------------- ścieżka nauki
@@ -1158,7 +1155,8 @@ def _mark_path_link(username, key, value, score):
     hit = None
     for lvl in _path_data()["levels"]:
         for ln in lvl["links"]:
-            if ln.get(key) == value and ln["id"] not in pst["done"]:
+            if ln.get(key) == value and ln["id"] not in pst["done"] \
+                    and (key != "topic" or ln["type"] == "podstawy"):
                 pst["done"][ln["id"]] = {"score": score,
                                          "date": datetime.date.today().isoformat()}
                 hit = ln["name"]
@@ -1248,6 +1246,8 @@ async def path_session(lid: str, request: Request, n: str = ""):
         extra["theory_html"] = t["theory"]
         for e in ex:
             tasks.append(_grammar_task(e, t))
+    elif ln["type"] == "podstawy":
+        extra["redirect_basics"] = ln["topic"]
     elif ln["type"] == "lekcja":
         extra["redirect"] = {"unit": ln["unit"], "chapter": ln["chapter"]}
     elif ln["type"] == "rozmowa":
@@ -2965,7 +2965,13 @@ async def basics_topic(tid: str, request: Request):
     t = next((x for x in _basics() if x["id"] == tid), None)
     if not t:
         raise HTTPException(404, "Brak tematu.")
-    return t
+    who = auth.who(request.headers.get("x-token", ""))
+    prof = storage.load_profile(who["username"])
+    out = dict(t)
+    out["domain"] = "warehouse" if "warehouse" in prof.get("domains", []) else "general"
+    out["path_link"] = next((l["id"] for lvl in _path_data()["levels"] for l in lvl["links"]
+                             if l["type"] == "podstawy" and l.get("topic") == tid), None)
+    return out
 
 
 @app.post("/api/basics/progress")
@@ -2983,6 +2989,10 @@ async def basics_progress(request: Request):
             p[key] = max(p.get(key) or 0, int(body[key]))
     p["last"] = datetime.datetime.now().isoformat(timespec="seconds")
     storage.save_user_file(who["username"], "basics.json", st)
+    # zdany test tematu = zaliczone ogniwo Ścieżki typu "podstawy" (jeśli takie jest)
+    path_hit = None
+    if body.get("test_pct") is not None and int(body["test_pct"]) >= 70:
+        path_hit = _mark_path_link(who["username"], "topic", tid, round(int(body["test_pct"]) / 100, 2))
 
     prof = storage.load_profile(who["username"])
     xp = int(body.get("xp", 0))
@@ -2992,7 +3002,7 @@ async def basics_progress(request: Request):
     storage.log_event(who["username"], {"type": "basics_progress", "topic": tid,
                                         "kind": body.get("kind"),
                                         "pct": body.get("practice_pct") or body.get("test_pct")})
-    return {"ok": True, "xp": min(40, xp)}
+    return {"ok": True, "xp": min(40, xp), "path_link_done": path_hit}
 
 
 # ---------------------------------------------------------------- LEKTOR NA SERWERZE
@@ -3266,9 +3276,6 @@ MODULES = [
     {"id": "listening", "name": "Słuchanie",         "emoji": "🎧"},
     {"id": "translate", "name": "Tłumaczenia",       "emoji": "🌐"},
     {"id": "grammar",   "name": "Gramatyka",         "emoji": "📐"},
-    {"id": "knowledge", "name": "Baza wiedzy",       "emoji": "📚"},
-    {"id": "lessons",   "name": "Lekcje",            "emoji": "🎓"},
-    {"id": "training",  "name": "Mój trening",       "emoji": "🛠"},
     {"id": "games",     "name": "Gry",               "emoji": "🎮"},
     {"id": "programs",  "name": "Programy",          "emoji": "📋"},
     {"id": "custom",    "name": "Własne fiszki",     "emoji": "➕"},

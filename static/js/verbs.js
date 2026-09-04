@@ -205,7 +205,7 @@ async function viewVerbs(count) {
     const next = el("button", { class: "btn primary big", onclick: go }, "Dalej →");
     box.append(el("div", { class: "fb-btns" }, next));
     next.focus();
-    document.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } };
+    setTimeout(() => { document.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } }; }, 0);
     function go() { document.onkeydown = null; i++; show(); }
   }
 

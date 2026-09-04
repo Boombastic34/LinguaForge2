@@ -1,7 +1,7 @@
 const UNKNOWN = "\u0000NIE_WIEM";
 // Ścieżka nauki — łańcuch ogniw, odblokowywanych po kolei
 const LINK_TYPE_PL = {
-  slowka: "słówka", wiedza: "teoria", gramatyka: "ćwiczenia", lekcja: "lekcja",
+  slowka: "słówka", wiedza: "teoria", podstawy: "teoria + ćwiczenia + test", gramatyka: "ćwiczenia", lekcja: "lekcja",
   sluchanie: "słuchanie", tlumaczenia: "tłumaczenia", powtorka: "powtórka skumulowana",
   sprawdzian: "sprawdzian", egzamin: "egzamin poziomu", repair: "naprawa błędów",
   rozmowa: "rozmowa", czytanie: "czytanie ze zrozumieniem", pisanie: "praca pisemna",
@@ -83,7 +83,8 @@ async function viewPath() {
 }
 
 function openLink(ln) {
-  if (ln.type === "lekcja") return viewChapter(ln.unit, ln.chapter);
+  if (ln.type === "podstawy") return viewBasicsTopic(ln.topic, ln.id);
+  if (ln.type === "lekcja" && typeof viewChapter === "function") return viewChapter(ln.unit, ln.chapter);
   if (ln.type === "rozmowa") return runDialog(ln.dialog);
   if (ln.type === "czytanie") return runReading(ln.text);
   if (ln.type === "pisanie") return runWriting(ln.task);
@@ -106,7 +107,8 @@ async function runPathSession(lid, n) {
   }
 
   // przekierowania do modułów (lekcja, rozmowa, czytanie, pisanie)
-  if (data.redirect) return viewChapter(data.redirect.unit, data.redirect.chapter);
+  if (data.redirect_basics) return viewBasicsTopic(data.redirect_basics, lid);
+  if (data.redirect && typeof viewChapter === "function") return viewChapter(data.redirect.unit, data.redirect.chapter);
   if (data.redirect_dialog) return runDialog(data.redirect_dialog);
   if (data.redirect_reading) return runReading(data.redirect_reading);
   if (data.redirect_writing) return runWriting(data.redirect_writing);

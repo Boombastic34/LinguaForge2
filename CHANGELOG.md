@@ -1,5 +1,55 @@
 # LinguaForge — CHANGELOG
 
+## v3.0.0 (2026-09-04) — Ścieżka jako główna droga, Podstawy: TO BE od nowa, porządki
+
+## Błędy naprawione
+- **Ogniwo „Teoria: zaimki" — błąd serwera.** Ogniwo typu `wiedza` ciągnęło artykuł z Bazy
+  wiedzy przepisany na inny format quizu (`fields` zamiast `model`) → `KeyError`. Ogniwa typu
+  `wiedza` i `lekcja` zniknęły ze Ścieżki; teorię dają teraz ogniwa typu **`podstawy`**
+  (temat z Podstaw: teoria + ćwiczenia + test). Zdany test tematu (≥ 70 %) zalicza ogniwo.
+- **Enter zjadał wynik zadania** (Podstawy: słuchanie, luka; runda utrwalenia w fiszkach;
+  czasowniki). Handler pola wywoływał ocenę, ocena zakładała nowy handler „Enter = Dalej",
+  a to samo naciśnięcie bąbelkowało do dokumentu i klikało „Dalej". Wynik znikał po ułamku
+  sekundy. Handler zakładany jest teraz w następnej klatce (`setTimeout(…, 0)`).
+- **Skróty `'m` / `'s` / `'re` / `isn't`** uznawane w lukach na równi z pełną formą
+  (`BT_CONTRACT` + pole `accept` w zadaniu) — teoria je poleca, więc nie mogły być błędem.
+- **Podpowiedzi**: w teście nie ma ich wcale (ani ściągi); w ćwiczeniach podpowiedź mówi
+  o regule („my brother = on → która forma?"), nie wymienia form do wyboru.
+- „Kontynuuj" na pulpicie prowadzi ZAWSZE do następnego ogniwa Ścieżki; powtórki fiszek
+  są drugim, mniejszym kafelkiem (`/api/continue` → `second`).
+- `window.matchMedia` zabezpieczone (starsze przeglądarki).
+
+## Podstawy — TO BE napisane od nowa (wzorzec dla pozostałych tematów)
+- Polskie znaki w całej treści; 6 stron zamiast 2: czym jest TO BE i dlaczego nie wolno go
+  pominąć → trzy formy (z tabelą) → skróty → przeczenie i pytanie **+ osobna sekcja „A co z
+  DO i DOES — dlaczego tu ich NIE ma"** → was/were → pułapki (wiek, głód, zimno, racja).
+- **Ściąga**: cała odmiana (am/is/are, skróty, przeczenia, pytania, was/were) w jednej tabeli
+  na ekranie tematu oraz pod przyciskiem **📋 Ściąga** w pasku każdego zadania (boczny
+  panel — nie trzeba się cofać). W teście ściąga wyłączona.
+- **„Dlaczego nie inaczej"**: każde zadanie ma `why_not` — po błędzie wyjaśnia wybraną
+  złą opcję, po „🤷 Nie wiem" — wszystkie pozostałe. Przycisk „Nie wiem" jest też w teście.
+- 17 ćwiczeń, 8 pytań testu, zadania ze słuchu i dopasowania.
+- Przykłady w dwóch wariantach: ogólne i „praca w magazynie" (`examples_work`) — wybierane
+  wg celu ucznia („Uczę się do:" na pulpicie). Gramatyka jest jedna, różnią się przykłady.
+- **Dwie kolumny** w teorii (reguła + tabela | przykłady z lektorem), przełącznik
+  ▤/▥ w pasku narzędzi, zapamiętywany; na telefonie automatycznie jedna kolumna.
+- Nowy wygląd ekranu tematu (kafle Teoria / Ćwiczenia / Test, tabela, mniej emoji).
+- Pozostałe 11 tematów działa w starym formacie (bez polskich znaków) — do przepisania
+  wg tego wzorca po Twojej akceptacji.
+
+## Usunięte / ukryte
+- Moduły **Baza wiedzy, Mój trening, Lekcje** usunięte z nawigacji, pulpitu, listy modułów
+  admina i `index.html` (pliki JS zostają w repo, nieładowane; można skasować:
+  `static/js/knowledge.js`, `lessons.js`, `training.js`).
+- Pulpit ucznia: bez pola hasła administratora, kopii postępów, eksportu CSV/JSON, prognozy
+  i „dostępu z telefonu". Logowanie admina: adres `#admin`. Ustawienia ucznia to tylko
+  „Uczę się do:" (cel) i tempo lektora; pełne ustawienia widzi admin/nauczyciel.
+
+## Pliki
+main.py · data/sciezka.json · data/podstawy/kursy.json · tools/to_be_topic.py ·
+static/index.html · static/css/style.css · static/js/app.js · ui.js · basics.js · path.js ·
+dashboard.js · flashcards.js · verbs.js
+
 ## v2.9.0 (2026-09-04) — Podstawy, szybki lektor, poprawianie błędów na Ścieżce
 
 ## Błędy naprawione

@@ -32,22 +32,24 @@ async function viewDashboard() {
     `Poziom ${p.level || "?"}${p.target_level ? " → cel " + p.target_level : ""} · ${p.streak} dni serii · ${p.xp} XP`,
     "ember"));
 
-  // ---- KONTYNUUJ NAUKĘ: aplikacja sama wie, co dalej
+  // ---- KONTYNUUJ: zawsze następne ogniwo Ścieżki (główna droga); powtórki jako drugi kafelek
   try {
     const c = await API.get("/api/continue");
-    main.append(el("div", { class: "continue-box" },
-      el("div", { class: "tile-emoji", style: "font-size:38px" }, "🧭"),
+    const goPath = () => (c.action === "path" && c.link_data) ? openLink(c.link_data) : (location.hash = c.hash);
+    main.append(el("div", { class: "continue-box", onclick: goPath },
+      el("div", { class: "tile-emoji", style: "font-size:38px" }, (c.link_data && c.link_data.emoji) || "🧭"),
       el("div", { class: "continue-txt" },
-        el("b", {}, "Kontynuuj naukę"),
-        el("div", {}, c.label)),
-      el("button", {
-        class: "btn", style: "margin-left:auto",
-        onclick: () => {
-          if (c.action === "theme") return viewFlashcards("all", c.param);
-          if (c.action === "path") return viewPath();
-          location.hash = c.hash;
-        },
-      }, "▶ Start")));
+        el("div", { class: "muted small" }, c.action === "path" ? "Kontynuuj Ścieżkę" : "Co dalej?"),
+        el("b", {}, c.label),
+        c.sub ? el("div", { class: "muted small" }, c.sub) : null),
+      el("button", { class: "btn", style: "margin-left:auto", onclick: e => { e.stopPropagation(); goPath(); } }, "▶ Start")));
+    if (c.second) {
+      main.append(el("div", { class: "continue-box continue-second", onclick: () => { location.hash = c.second.hash; } },
+        el("div", { class: "tile-emoji", style: "font-size:26px" }, "🔁"),
+        el("div", { class: "continue-txt" }, el("b", {}, c.second.label),
+          el("div", { class: "muted small" }, "powtórki utrwalają to, czego już się nauczyłeś")),
+        el("button", { class: "btn ghost", style: "margin-left:auto" }, "Powtórz")));
+    }
   } catch (e) { /* brak danych — pomijamy */ }
 
   // ---- mapa luk (heatmapa kategorii)
@@ -86,11 +88,11 @@ async function viewDashboard() {
     el("h3", {}, "Dzisiaj"),
     ring(d.daily.xp, goal, `/ ${goal} XP`),
     el("div", { class: "muted" }, `${d.daily.answers} odpowiedzi · ${d.daily.correct} dobrych`)));
-  const est = el("div", { class: "card" }, el("h3", {}, "Prognoza"));
-  if (d.estimate && d.estimate.weeks != null)
-    est.append(el("div", { class: "big" }, d.estimate.weeks + " tyg."),
-      el("div", { class: "muted" }, `do poziomu ${p.target_level} przy obecnym tempie (${d.estimate.pace_per_week} pkt/tydz.)`));
-  else est.append(el("p", { class: "muted" }, d.estimate ? d.estimate.msg : "Ustaw poziom docelowy w ustawieniach niżej."));
+  const est = el("div", { class: "card" }, el("h3", {}, "Seria"));
+  est.append(el("div", { class: "big" }, "🔥 " + (p.streak || 0) + (p.streak === 1 ? " dzień" : " dni")),
+    el("div", { class: "muted" }, d.estimate && d.estimate.weeks != null
+      ? `${d.estimate.weeks} tyg. do poziomu ${p.target_level} przy obecnym tempie`
+      : "Ucz się codziennie choć 10 minut — seria rośnie."));
   row1.append(est);
   const sk = el("div", { class: "card" }, el("h3", {}, "Umiejętności"));
   const names = { vocab: "Słownictwo", grammar: "Gramatyka", reading: "Czytanie", listening: "Słuchanie", writing: "Pisanie" };
@@ -99,34 +101,16 @@ async function viewDashboard() {
   row1.append(sk);
   main.append(row1);
 
-  // ---- rząd 2: etapy nauki per dziedzina
-  const stg = el("div", { class: "card" }, el("h3", {}, "🪜 Etapy nauki"));
-  const DOMN = { general: "Ogólny angielski", warehouse: "Magazyn / logistyka" };
-  for (const [dom, s] of Object.entries(d.stages || {})) {
-    stg.append(el("div", { class: "stage-row" },
-      el("div", { class: "stage-dom" }, DOMN[dom] || dom),
-      el("div", { class: "stage-steps" },
-        ...[1, 2, 3, 4, 5].map(n => el("span", { class: "stage-dot" + (n <= s.stage ? " on" : "") }, n))),
-      el("div", { class: "stage-name" }, `Etap ${s.stage}/5: ${s.name}`),
-      el("div", { class: "muted small" },
-        `poznane ${s.known}/${s.total} słówek · utrwalone ${s.mature}` +
-        (s.translate_unlocked ? " · tłumaczenia 🔓" : " · tłumaczenia 🔒 (poznaj 25% słówek)"))));
-  }
-  main.append(stg);
-
   // ---- rząd 3: moduły z licznikami
   const stats = await API.get("/api/content/stats");
-  const lessonsDone = d.lesson_progress ? `${d.lesson_progress.chapters_done}/${d.lesson_progress.chapters_total} rozdz.` : "nowość!";
   const tiles = el("div", { class: "tile-grid stagger" });
   const tileData = [
     ["#path", "🧭", "Ścieżka nauki", "prowadzi krok po kroku", "słówka → teoria → ćwiczenia → sprawdzian", "ember"],
+    ["#basics", "🎒", "Podstawy", "teoria + ćwiczenia + test", "12 tematów gramatyki A1–A2", "indigo"],
     ["#dialogs", "💬", "Rozmowy", "symulacje z życia", "praca, urlop, lekarz, kantyna", "teal"],
     ["#repair", "🩹", "Napraw błędy", "sesja z Twoich potknięć", "pijawki + najczęstsze błędy", "gold"],
-    ["#training", "🛠", "Mój trening", "sam wybierasz kategorie", "słownictwo, gramatyka, słuchanie…", "indigo"],
     ["#flashcards", "🃏", "Fiszki", d.due ? `${d.due} do powtórki` : "wszystko powtórzone", `${stats.vocab_total} słówek w bazie`, "ember"],
     ["#verbs", "⚙️", "Czasowniki z czasami", d.verb_due ? `${d.verb_due} do powtórki` : "trenuj odmianę", `${stats.verbs} czasowników × 3 czasy × 2 kierunki`, "teal"],
-    ["#knowledge", "📖", "Baza wiedzy", "teoria + sprawdzian opisowy", "czasy, zaimki, przedimki", "indigo"],
-    ["#lessons", "📚", "Lekcje", lessonsDone, `${stats.lessons[0] ? stats.lessons[0].chapters.length : 0} rozdziały + sprawdzian`, "violet"],
     ["#grammar", "📐", "Gramatyka", "tematy + mieszane", `${stats.grammar.topics} tematów · ${stats.grammar.exercises} ćwiczeń`, "indigo"],
     ["#translate", "🌐", "Tłumaczenia", "PL → EN z oceną czasu", `${stats.translations} zdań`, "teal"],
     ["#listening", "🎧", "Słuchanie", "EN i PL→EN", `${stats.listening + stats.placement.listening + stats.placement.listening_pl} nagrań`, "violet"],
@@ -140,7 +124,7 @@ async function viewDashboard() {
       el("div", { class: "small" }, sub),
       cnt ? el("div", { class: "tile-count" }, cnt) : null));
   });
-  main.append(el("div", { class: "card" }, el("h3", {}, "🚀 Moduły"), tiles));
+  main.append(el("div", { class: "card" }, el("h3", {}, "🧰 Narzędzia — ucz się po swojemu"), tiles));
 
   // ---- rząd 4: wykres + słowo dnia + leeches
   const row4 = el("div", { class: "grid2" });
@@ -181,39 +165,20 @@ async function viewDashboard() {
   row4.append(right);
   main.append(row4);
 
-  // ---- dostęp z telefonu
-  try {
-    const net = await API.get("/api/network");
-    const phone = el("div", { class: "card" },
+  // ---- instalacja jako aplikacja (tylko gdy przeglądarka, nie zainstalowana PWA)
+  if (!(window.matchMedia && window.matchMedia("(display-mode: standalone)").matches)) {
+    main.append(el("div", { class: "card" },
       el("h3", {}, "📱 Ucz się na telefonie"),
-      el("button", { class: "btn ok", id: "installbtn", onclick: installApp },
-        "⬇ Zainstaluj jako aplikację"),
-      net.lan
-        ? el("div", {},
-            el("p", { class: "muted small" },
-              "Aplikacja jest udostępniona w Twojej sieci Wi-Fi. Wpisz ten adres w przeglądarce telefonu:"),
-            el("div", { class: "phone-url" }, net.url),
-            el("p", { class: "muted small" },
-              "Telefon musi być w tej samej sieci Wi-Fi co komputer. Po otwarciu wybierz w menu przeglądarki " +
-              "„Dodaj do ekranu głównego” — aplikacja będzie działać jak zwykła apka."))
-        : el("div", {},
-            el("p", { class: "muted small" },
-              "Dwie możliwości: (1) uruchom na komputerze plik start_telefon.bat — telefon połączy się " +
-              "przez Wi-Fi; (2) zainstaluj aplikację bezpośrednio na telefonie, wtedy komputer nie jest " +
-              "potrzebny — instrukcja w folderze telefon/CZYTAJ_TO_NAJPIERW.md."),
-            el("div", { class: "phone-url muted" }, "obecnie: tylko ten komputer")));
-    main.append(phone);
-  } catch (e) { /* pomijamy */ }
+      el("p", { class: "muted small" }, "Zainstaluj LinguaForge jako aplikację — bez paska adresu, z ikoną na ekranie."),
+      el("button", { class: "btn ok", id: "installbtn", onclick: installApp }, "⬇ Zainstaluj jako aplikację")));
+  }
 
-  // ---- panel administratora
-  const adminCard = el("div", { class: "card admin-card" });
+  // ---- panel administratora — widoczny tylko w trybie admina (logowanie: adres #admin)
   if (p.admin) {
-    adminCard.append(
+    main.append(el("div", { class: "card admin-card" },
       el("div", { class: "pl-top" },
         el("h3", {}, "🛡 Tryb administratora aktywny"),
         el("span", { class: "badge" }, "zalogowano")),
-      el("p", { class: "muted small" },
-        "Masz dostęp do dodawania treści, edycji plików materiału oraz eksportu i importu paczek."),
       el("div", { class: "fb-btns" },
         el("button", { class: "btn primary", onclick: () => { location.hash = "#admin"; } },
           "🛡 Otwórz panel administratora"),
@@ -222,45 +187,28 @@ async function viewDashboard() {
           window.IS_ADMIN = false;
           toast("Wylogowano z trybu administratora");
           location.reload();
-        } }, "Wyloguj z trybu admina")));
-  } else {
-    const pass = el("input", { class: "input short", type: "password", placeholder: "hasło" });
-    const go = async () => {
-      try {
-        await API.post("/api/admin/unlock", { password: pass.value });
-        window.IS_ADMIN = true;
-        toast("Zalogowano jako administrator");
-        location.hash = "#admin";
-        location.reload();
-      } catch (e) { toast("Błędne hasło administratora", true); pass.value = ""; }
-    };
-    pass.onkeydown = e => { if (e.key === "Enter") go(); };
-    adminCard.append(
-      el("h3", {}, "🛡 Administrator"),
-      el("p", { class: "muted small" },
-        "Hasło administratora: pełne uprawnienia — role kont, widoczność działów, materiały (fiszki, gramatykę, rozmowy, teksty), " +
-        "edytować pliki treści oraz eksportować i importować paczki materiałów."),
-      el("div", { class: "set-row" }, pass, el("button", { class: "btn ok", onclick: go }, "Zaloguj")));
+        } }, "Wyloguj z trybu admina"))));
   }
-  main.append(adminCard);
+  const isStaff = !!(p.admin || p.role === "admin" || p.role === "teacher");
 
   // ---- ustawienia + eksport + reset
-  const set = el("div", { class: "card" }, el("h3", {}, "⚙️ Ustawienia"));
+  const set = el("div", { class: "card" }, el("h3", {}, isStaff ? "⚙️ Ustawienia" : "🔊 Lektor i cel nauki"));
   const tgt = levelSelect(p.target_level);
   const lvlNote = el("p", { class: "muted small" },
     "Poziom badany jest automatycznie (test poziomujący + egzaminy na Ścieżce). Cel poniżej to tylko prognoza tempa.");
   const goalInp = el("input", { class: "input short", type: "number", value: goal, min: 10, max: 500 });
   const domWrap = el("div", {});
   const domains = new Set(p.domains || ["general"]);
-  [["general", "Ogólny"], ["warehouse", "Magazyn"]].forEach(([id, label]) => {
+  [["general", "🌍 Ogólny angielski"], ["warehouse", "🏭 Praca w magazynie"]].forEach(([id, label]) => {
     domWrap.append(el("label", { class: "chip chip-check" },
       el("input", { type: "checkbox", ...(domains.has(id) ? { checked: "" } : {}),
         onchange: e => e.target.checked ? domains.add(id) : domains.delete(id) }), " " + label));
   });
-  set.append(lvlNote,
-    el("div", { class: "set-row" }, "Poziom docelowy: ", tgt),
+  set.append(
+    isStaff ? lvlNote : null,
+    isStaff ? el("div", { class: "set-row" }, "Poziom docelowy: ", tgt) : null,
     el("div", { class: "set-row" }, "Cel dzienny XP: ", goalInp),
-    el("div", { class: "set-row" }, "Dziedziny: ", domWrap),
+    el("div", { class: "set-row" }, "Uczę się do: ", domWrap),
     el("div", { class: "set-row" },
       el("label", { class: "chip chip-check" },
         el("input", { type: "checkbox", ...(LFSET.get("tts_auto", true) ? { checked: "" } : {}),
@@ -277,6 +225,7 @@ async function viewDashboard() {
       await API.post("/api/settings", { target_level: tgt.value || null, daily_goal_xp: +goalInp.value, domains: [...domains] });
       toast("Zapisano ✔"); viewDashboard();
     } }, "Zapisz"),
+    ...(isStaff ? [
     el("hr", {}),
     el("div", { class: "set-row" },
       el("button", { class: "btn ghost", onclick: () => API.download("/api/export?fmt=csv") }, "⬇ Eksport CSV"),
@@ -321,10 +270,31 @@ async function viewDashboard() {
           location.hash = "#dashboard"; viewDashboard();
         } }, "Resetuj wszystko");
         return el("div", { class: "set-row" }, conf, btn);
-      })()));
+      })()),
+    ] : []));
   main.append(set);
 }
 
+
+// ---------- logowanie administratora (adres #admin) — uczeń nie widzi tego na pulpicie ----------
+function viewAdminLogin() {
+  clearMain();
+  const main = document.querySelector("main");
+  main.append(hero("🛡", "Administrator", "Wpisz hasło administratora, aby odblokować panel", "gold"));
+  const pass = el("input", { class: "input short", type: "password", placeholder: "hasło" });
+  const go = async () => {
+    try {
+      await API.post("/api/admin/unlock", { password: pass.value });
+      window.IS_ADMIN = true;
+      toast("Zalogowano jako administrator");
+      location.reload();
+    } catch (e) { toast("Błędne hasło administratora", true); pass.value = ""; }
+  };
+  pass.onkeydown = e => { if (e.key === "Enter") go(); };
+  main.append(el("div", { class: "card" },
+    el("div", { class: "set-row" }, pass, el("button", { class: "btn ok", onclick: go }, "Zaloguj")),
+    el("button", { class: "btn ghost", onclick: () => { location.hash = "#dashboard"; } }, "← Pulpit")));
+}
 
 // ---------- diagnostyka lektora ----------
 function ttsDiagnose() {

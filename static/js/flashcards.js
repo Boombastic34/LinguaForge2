@@ -389,7 +389,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
         const nx = el("button", { class: "btn primary big", onclick: () => { j++; step(); } }, "Dalej →");
         stage.append(el("div", { class: "fb-btns fc-btns" }, nx));
         nx.focus();
-        document.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); j++; step(); } };
+        setTimeout(() => { document.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); j++; step(); } }; }, 0);
       }
     }
 
@@ -505,7 +505,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
       const next = el("button", { class: "btn primary big", onclick: go }, "Dalej →");
       stage.append(el("div", { class: "fb-btns fc-btns" }, next));
       next.focus();
-      document.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } };
+      setTimeout(() => { document.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } }; }, 0);
     }
 
     function showRetypeStep(c) {

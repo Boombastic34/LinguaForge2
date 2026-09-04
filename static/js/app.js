@@ -8,13 +8,10 @@ const ROUTES_STUDENT = [
   ["#flashcards", "🃏 Fiszki", viewFlashcards],
   ["#dialogs", "💬 Rozmowy", viewDialogs],
   ["#reading", "📖 Czytanie", viewReading],
-  ["#training", "🛠 Mój trening", viewTraining],
   ["#admin", "🛡 Administrator", viewAdmin, "admin"],
   ["#review", "🔍 Przegląd treści", viewReview, "admin"],
   ["#notes", "📋 Notatki admina", viewReviewNotes, "admin"],
   ["#verbs", "⚙️ Czasowniki z czasami", viewVerbs],
-  ["#knowledge", "📖 Baza wiedzy", viewKnowledge],
-  ["#lessons", "📚 Lekcje", viewLessons],
   ["#grammar", "📐 Gramatyka", viewGrammar],
   ["#translate", "🌐 Tłumaczenia", viewTranslate],
   ["#listening", "🎧 Słuchanie", viewListening],
@@ -28,8 +25,7 @@ const ROUTES_TEACHER = [["#teacher", "🧑‍🏫 Uczniowie", viewTeacher]];
 const ROUTE_MODULE = {
   "#basics": "basics", "#path": "path", "#flashcards": "flashcards", "#verbs": "verbs", "#dialogs": "dialogs",
   "#reading": "reading", "#listening": "listening", "#translate": "translate",
-  "#grammar": "grammar", "#knowledge": "knowledge", "#lessons": "lessons",
-  "#training": "training", "#games": "games", "#programs": "programs",
+  "#grammar": "grammar", "#games": "games", "#programs": "programs",
   "#custom": "custom", "#placement": "placement",
 };
 // lista dozwolonych modułów — uzupełniana z /api/dashboard
@@ -55,7 +51,7 @@ function boot() {
   const nav = el("nav", {});
   const aside = el("aside", {},
     el("div", { class: "brand" }, "Lingua", el("span", {}, "Forge")),
-    el("div", { class: "brand-sub", id: "verbox" }, "v2.9.0 · kuźnia języka"),
+    el("div", { class: "brand-sub", id: "verbox" }, "v3.0.0 · kuźnia języka"),
     nav,
     el("div", { class: "spacer" }),
     el("div", { class: "userbox" },
@@ -80,7 +76,7 @@ function boot() {
     const box = document.getElementById("verbox");
     if (!box) return;
     box.textContent = "v" + v.version + " · kuźnia języka";
-    if (v.version !== "2.9.0") {
+    if (v.version !== "3.0.0") {
       box.textContent = "v" + v.version + " · odśwież (Ctrl+F5)";
       box.style.color = "#ffd43b";
     }
@@ -145,6 +141,7 @@ function boot() {
     CURRENT = h;
     if (h.startsWith("#flashcards:")) return viewFlashcards(h.split(":")[1] === "theme" ? "all" : "all", h.split(":")[2]);
     if (h === "#repair") return viewRepair();
+    if (h === "#admin" && !window.IS_ADMIN) return viewAdminLogin();
     const r = routes.find(x => x[0] === h);
     if (!moduleAllowed(h)) {
       clearMain();

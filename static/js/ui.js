@@ -518,6 +518,7 @@ function enterFocus(opts = {}) {
       el("div", { class: "focus-title" }, opts.title || ""),
       el("div", { class: "focus-sub", id: "focussub" }, opts.subtitle || "")),
     el("div", { class: "focus-tts" },
+      opts.cheatsheet ? cheatButton(opts.cheatsheet) : null,
       speedCycleButton(),
       (!opts.listening && typeof muteButton === "function") ? muteButton() : null),
     el("div", { class: "focus-count", id: "focuscount" }, ""));
@@ -527,8 +528,46 @@ function enterFocus(opts = {}) {
   return bar;
 }
 
+// ---------- ŚCIĄGA: boczny panel z tabelą bieżącego tematu (nie trzeba się cofać) ----------
+// build: funkcja zwracająca węzeł DOM z treścią ściągi
+function cheatButton(build) {
+  const b = el("button", { class: "cheat-btn", title: "Ściąga — tabela tematu" }, "📋",
+    el("span", { class: "sc-lbl" }, " Ściąga"));
+  b.onclick = e => { e.stopPropagation(); toggleCheatDrawer(build); };
+  return b;
+}
+function toggleCheatDrawer(build) {
+  const old = document.getElementById("cheatdrawer");
+  if (old) { old.classList.remove("open"); setTimeout(() => old.remove(), 200); return; }
+  const dr = el("div", { class: "cheat-drawer", id: "cheatdrawer" },
+    el("div", { class: "cheat-head" }, el("b", {}, "📋 Ściąga"),
+      el("button", { class: "btn ghost mini", onclick: () => toggleCheatDrawer() }, "✕ Zamknij")),
+    el("div", { class: "cheat-body" }, build ? build() : ""));
+  document.body.append(dr);
+  requestAnimationFrame(() => dr.classList.add("open"));
+}
+function cheatTable(cs) {
+  if (!cs) return el("div", { class: "muted" }, "Brak ściągi dla tego tematu.");
+  const wrap = el("div", { class: "cheat-tbl-wrap" });
+  if (cs.title) wrap.append(el("h4", {}, cs.title));
+  wrap.append(dataTable(cs));
+  if (cs.note) wrap.append(el("div", { class: "kb-tip" }, "💡 " + cs.note));
+  return wrap;
+}
+// tabela z {head:[...], rows:[[...]]}
+function dataTable(t) {
+  const tbl = el("table", { class: "data-tbl" });
+  if (t.head) tbl.append(el("thead", {}, el("tr", {}, ...t.head.map(h => el("th", {}, h)))));
+  const tb = el("tbody", {});
+  (t.rows || []).forEach(r => tb.append(el("tr", {}, ...r.map((c, i) =>
+    el("td", { class: i === 0 ? "tbl-first" : "" }, c)))));
+  tbl.append(tb);
+  return el("div", { class: "tbl-scroll" }, tbl);
+}
+
 function exitFocus() {
   document.onkeydown = null;          // skróty klawiszowe zadania nie mogą przeżyć widoku
+  const dr = document.getElementById("cheatdrawer"); if (dr) dr.remove();
   document.body.classList.remove("focus");
   const b = document.getElementById("focusbar");
   if (b) b.remove();

@@ -1,21 +1,18 @@
-LinguaForge v2.9.0 - PODSTAWY, SZYBKI LEKTOR, POPRAWIANIE BLEDOW NA SCIEZCE
+LinguaForge v3.0.0 - SCIEZKA GLOWNA DROGA, TO BE OD NOWA, PORZADKI
 
-PLIKI (zastap w repozytorium):
-  main.py                    -> korzen
-  CHANGELOG.md               -> korzen
-  static/css/style.css       -> static/css
-  static/js/app.js           -> static/js
-  static/js/ui.js            -> static/js
-  static/js/path.js          -> static/js
-  static/js/flashcards.js    -> static/js
-  static/js/basics.js        -> static/js
-  static/js/knowledge.js     -> static/js
-  static/js/listening.js     -> static/js
-  static/js/placement.js     -> static/js
-  static/js/programs.js      -> static/js
-  static/js/dialogs.js       -> static/js
-  static/js/reading.js       -> static/js
-  static/js/dashboard.js     -> static/js
+PLIKI (zastap w repozytorium; paczka zawiera tez wszystkie zmiany z v2.9.0):
+  main.py                     -> korzen
+  CHANGELOG.md                -> korzen
+  data/sciezka.json           -> data           (ZASTAP)
+  data/podstawy/kursy.json    -> data/podstawy  (ZASTAP)
+  tools/to_be_topic.py        -> tools          (nowy: generator tematu TO BE)
+  static/index.html           -> static
+  static/css/style.css        -> static/css
+  static/js/*.js              -> static/js      (14 plikow)
 
-Po wdrozeniu na Railway: odswiez aplikacje (Ctrl+F5 / na telefonie zamknij i otworz).
-Wersja w lewym gornym rogu powinna pokazac v2.9.0.
+MOZNA SKASOWAC (nieuzywane): static/js/knowledge.js, lessons.js, training.js
+
+UWAGA: uczniowie, ktorzy zaliczyli juz stare ogniwa "wiedza"/"lekcja", nie traca postepu -
+te wpisy w path.json sa ignorowane. Nowe ogniwo "Podstawy: TO BE" zalicza sie testem tematu.
+
+Po wdrozeniu: odswiez (Ctrl+F5 / zamknij i otworz apke). W rogu ma byc v3.0.0.

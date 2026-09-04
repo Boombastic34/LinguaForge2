@@ -16,12 +16,11 @@
      "section": "Rozdział 1 · Kim jestem"
     },
     {
-     "id": "a1_02",
-     "name": "Teoria: zaimki (I / me / my / mine)",
-     "type": "wiedza",
-     "article": "kb_pronouns",
-     "n": 2,
-     "emoji": "📖",
+     "id": "a1_01b",
+     "type": "podstawy",
+     "topic": "to_be",
+     "name": "Podstawy: TO BE (am / is / are)",
+     "emoji": "🔤",
      "section": "Rozdział 1 · Kim jestem"
     },
     {
@@ -31,15 +30,6 @@
      "topic": "pronouns",
      "n": 6,
      "emoji": "📐",
-     "section": "Rozdział 1 · Kim jestem"
-    },
-    {
-     "id": "a1_04",
-     "name": "Lekcja 1: „to be” i zaimki",
-     "type": "lekcja",
-     "unit": "u1",
-     "chapter": "c1",
-     "emoji": "📚",
      "section": "Rozdział 1 · Kim jestem"
     },
     {
@@ -104,11 +94,10 @@
     },
     {
      "id": "a1_10",
-     "name": "Teoria: Present Simple",
-     "type": "wiedza",
-     "article": "kb_present_simple",
-     "n": 3,
-     "emoji": "📖",
+     "type": "podstawy",
+     "topic": "do_does",
+     "name": "Podstawy: DO i DOES (Present Simple)",
+     "emoji": "🔄",
      "section": "Rozdział 3 · Mój dzień"
     },
     {
@@ -118,15 +107,6 @@
      "topic": "present_simple",
      "n": 8,
      "emoji": "📐",
-     "section": "Rozdział 3 · Mój dzień"
-    },
-    {
-     "id": "a1_12",
-     "name": "Lekcja 2: mój dzień",
-     "type": "lekcja",
-     "unit": "u1",
-     "chapter": "c2",
-     "emoji": "📚",
      "section": "Rozdział 3 · Mój dzień"
     },
     {
@@ -173,11 +153,10 @@
     },
     {
      "id": "a1_16",
-     "name": "Teoria: przedimki a / an / the",
-     "type": "wiedza",
-     "article": "kb_articles",
-     "n": 2,
-     "emoji": "📖",
+     "type": "podstawy",
+     "topic": "a_an",
+     "name": "Podstawy: A Czy An",
+     "emoji": "🅰️",
      "section": "Rozdział 4 · Precyzja"
     },
     {
@@ -187,15 +166,6 @@
      "topic": "articles",
      "n": 6,
      "emoji": "📐",
-     "section": "Rozdział 4 · Precyzja"
-    },
-    {
-     "id": "a1_18",
-     "name": "Lekcja 3: a / an / the",
-     "type": "lekcja",
-     "unit": "u1",
-     "chapter": "c3",
-     "emoji": "📚",
      "section": "Rozdział 4 · Precyzja"
     },
     {
@@ -223,15 +193,6 @@
      "n": 14,
      "emoji": "🏆",
      "section": "Rozdział 4 · Precyzja"
-    },
-    {
-     "id": "a1_22",
-     "name": "Lekcja 4: pytania i przeczenia",
-     "type": "lekcja",
-     "unit": "u1",
-     "chapter": "c4",
-     "emoji": "📚",
-     "section": "Rozdział 5 · Pytam i przeczę"
     },
     {
      "id": "a1_23",
@@ -294,11 +255,10 @@
     },
     {
      "id": "a2_02",
-     "name": "Teoria: Past Simple",
-     "type": "wiedza",
-     "article": "kb_past_simple",
-     "n": 3,
-     "emoji": "📖",
+     "type": "podstawy",
+     "topic": "past_simple",
+     "name": "Podstawy: Past Simple",
+     "emoji": "⏪",
      "section": "Rozdział 6 · Opowiadam o przeszłości"
     },
     {
@@ -337,11 +297,10 @@
     },
     {
      "id": "a2_06",
-     "name": "Teoria: Present Continuous",
-     "type": "wiedza",
-     "article": "kb_present_continuous",
-     "n": 3,
-     "emoji": "📖",
+     "type": "podstawy",
+     "topic": "present_simple_cont",
+     "name": "Podstawy: Present Simple Czy Continuous",
+     "emoji": "🔄",
      "section": "Rozdział 7 · Tu i teraz"
     },
     {
@@ -381,15 +340,6 @@
      "emoji": "🔗"
     },
     {
-     "id": "a2_08c",
-     "section": "Rozdział 7 · Tu i teraz",
-     "name": "Teoria: phrasal verbs",
-     "type": "wiedza",
-     "article": "kb_phrasal",
-     "n": 2,
-     "emoji": "📖"
-    },
-    {
      "id": "a2_09",
      "name": "🏆 Sprawdzian etapu 3",
      "type": "sprawdzian",
@@ -399,11 +349,10 @@
     },
     {
      "id": "a2_09b",
-     "name": "Teoria: policzalne i niepoliczalne",
-     "type": "wiedza",
-     "article": "kb_countable",
-     "n": 3,
-     "emoji": "📖",
+     "type": "podstawy",
+     "topic": "count_uncount",
+     "name": "Podstawy: Policzalne I Niepoliczalne",
+     "emoji": "🔢",
      "section": "Rozdział 7 · Tu i teraz"
     },
     {
@@ -414,15 +363,6 @@
      "n": 8,
      "emoji": "📐",
      "section": "Rozdział 7 · Tu i teraz"
-    },
-    {
-     "id": "a2_10",
-     "name": "Teoria: przyszłość (will / going to)",
-     "type": "wiedza",
-     "article": "kb_future",
-     "n": 2,
-     "emoji": "📖",
-     "section": "Rozdział 8 · Plany i porównania"
     },
     {
      "id": "a2_11",
@@ -570,12 +510,11 @@
    "links": [
     {
      "id": "b1_01",
-     "section": "Rozdział 10 · Doświadczenia",
-     "name": "Teoria: Present Perfect",
-     "type": "wiedza",
-     "article": "kb_present_perfect",
-     "n": 3,
-     "emoji": "📖"
+     "type": "podstawy",
+     "topic": "for_since",
+     "name": "Podstawy: For Czy Since",
+     "emoji": "⏳",
+     "section": "Rozdział 10 · Doświadczenia"
     },
     {
      "id": "b1_02",
@@ -621,15 +560,6 @@
      "emoji": "🔁"
     },
     {
-     "id": "b1_06",
-     "section": "Rozdział 11 · Tło zdarzeń",
-     "name": "Teoria: Past Continuous",
-     "type": "wiedza",
-     "article": "kb_past_continuous",
-     "n": 2,
-     "emoji": "📖"
-    },
-    {
      "id": "b1_07",
      "section": "Rozdział 11 · Tło zdarzeń",
      "name": "Ćwiczenia: Past Continuous",
@@ -657,15 +587,6 @@
      "emoji": "🪤"
     },
     {
-     "id": "b1_08c",
-     "section": "Rozdział 11 · Tło zdarzeń",
-     "name": "Teoria: fałszywi przyjaciele",
-     "type": "wiedza",
-     "article": "kb_false_friends",
-     "n": 2,
-     "emoji": "📖"
-    },
-    {
      "id": "b1_09",
      "section": "Rozdział 11 · Tło zdarzeń",
      "name": "Słuchanie: dłuższe wypowiedzi",
@@ -688,15 +609,6 @@
      "type": "sprawdzian",
      "n": 16,
      "emoji": "🏆"
-    },
-    {
-     "id": "b1_11",
-     "section": "Rozdział 12 · Precyzja wypowiedzi",
-     "name": "Teoria: policzalne i niepoliczalne",
-     "type": "wiedza",
-     "article": "kb_countable",
-     "n": 4,
-     "emoji": "📖"
     },
     {
      "id": "b1_12",
