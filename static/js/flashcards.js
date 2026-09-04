@@ -104,9 +104,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
 
   if (!count) {
     const info = await API.get("/api/cards/session?cat=" + cat + (theme ? "&theme=" + theme : "") + "&n=1");
-    const retypeCheck = el("input", { type: "checkbox",
-      ...(LFSET.get("fc_retype", false) ? { checked: "" } : {}),
-      onchange: e => LFSET.set("fc_retype", e.target.checked) });
+    const retypeWrap = retypeToggle("fc_retype", false, "✍️ Po błędzie przepisz słówko poprawnie");
+    const retypeCheck = retypeWrap.querySelector("input");
     // tryb ćwiczenia: pisanie z tekstu albo ze słuchu
     let chosenAudio = LFSET_str("fc_audio", "off");   // off | en | pl
     const audioRow = el("div", { class: "opt-row-btns" });
@@ -155,8 +154,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
         learnCheck, " 📖 Tryb nauki (najpierw pokaż znaczenie)"),
       el("p", { class: "muted small", style: "margin-top:4px" },
         "Każde słówko zobaczysz najpierw z tłumaczeniem i przykładem, dopiero potem je wpiszesz."),
-      el("label", { class: "chip chip-check fc-retype-toggle", style: "margin-top:8px" },
-        retypeCheck, " ✍️ Przepisz błąd na czysto"),
+      retypeWrap,
 
       el("button", { class: "btn ghost", style: "margin-top:8px", onclick: () => viewFlashcards() }, "← Zmień kategorię"));
     m.append(sizePicker({
@@ -173,6 +171,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
   const audio = audioMode || LFSET_str("fc_audio", "off");   // off | en | pl
   const data = await API.get("/api/cards/session?cat=" + cat + (theme ? "&theme=" + theme : "") + "&n=" + count);
   enterFocus({ title: "🃏 Fiszki", subtitle: theme && theme !== "all" ? theme : "sesja nauki",
+    listening: audio !== "off",            // fiszki ze słuchu: tylko tempo, bez wyciszania
     onExit: () => viewFlashcards() });
   const dm = dirMode || LFSET_str("fc_dir", "mix");
   let queue = data.cards.map(c => ({ ...c,
@@ -224,9 +223,21 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     s.textContent = streak >= 2 ? `🔥 ${streak}` : "";
   }
 
+  // nagrania kolejnych kart pobieramy z wyprzedzeniem — lektor odzywa się od razu
+  function prefetchAhead() {
+    const en = [], pl = [];
+    for (let k = idx; k < Math.min(queue.length, idx + 3); k++) {
+      en.push(queue[k].en);
+      if (audio === "pl") pl.push(plVariants(queue[k].pl)[0]);
+    }
+    prefetchTts(en, "en");
+    if (pl.length) prefetchTts(pl, "pl");
+  }
+
   function render() {
     if (idx >= queue.length) return finish();
     const c = queue[idx];
+    prefetchAhead();
     // NOWE słówko pokazujemy najpierw do przeczytania — dopiero potem odpytujemy.
     // Bez tego nieznane phrasal verbs sprowadzały się do klikania „Nie wiem".
     // karta wprowadzająca wyłącznie w trybie nauki — poza nim od razu pytamy
@@ -405,8 +416,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     updateBar();
     const lang = audio;                       // "en" albo "pl"
     const target = lang === "en" ? c.en : plVariants(c.pl)[0];
-    let rate = ttsRate();
-    const say = (q) => speak(target, rate, lang, q);
+    // zadanie ze słuchu: lektor gra ZAWSZE, w aktualnym tempie z ustawień
+    const say = (q) => speak(target, undefined, lang, q);
 
     const card = el("div", { class: "fc-card fc-audio" },
       el("div", { class: "fc-face" },
@@ -417,7 +428,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
         el("div", { class: "fb-btns" },
           el("button", { class: "btn primary big-play", onclick: () => say(false) }, "▶ Odtwórz"),
           el("button", { class: "btn ghost", onclick: () => say(false) }, "🔁 Powtórz")),
-        speedPicker(rate, v => { rate = v; say(false); }),
+        speedPicker(ttsRate(), () => say(false)),
         el("div", { class: "muted small" }, "Zapisz dokładnie to, co słyszysz.")));
     stage.append(card);
 
@@ -429,7 +440,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); judge(inp.value); } };
     stage.append(inp, el("div", { class: "fb-btns fc-btns" }, send, dunno));
     inp.focus();
-    setTimeout(() => say(true), 400);   // automat cichy
+    say(true);                          // od razu, bez opóźnienia (nagranie jest już pobrane)
 
     function judge(val) {
       if (!val.trim()) return;
@@ -461,7 +472,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
             el("button", { class: "fc-speak", onclick: () => speak(c.en) }, "🔊"),
             el("button", { class: "fc-repeat", title: "Powtórz",
               onclick: () => speak(c.en) }, "🔁 Powtórz"),
-            muteButton()),
+            audio === "off" ? muteButton() : null),
           el("div", { class: "fc-pl" }, c.pl)),
         !ok && val ? el("div", { class: "fc-your" }, "Twoja odpowiedź: " + val) : null,
         c.example ? el("div", { class: "fc-example", onclick: () => speak(c.example) }, "„" + c.example + "”",

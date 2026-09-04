@@ -39,14 +39,17 @@ async function viewPrograms() {
       return;
     }
     if (t.type === "dictation") {
-      const say = () => speak(t.en, 0.9);
+      const say = () => speak(t.en);
       box.append(el("div", { class: "qtext" }, "🎧 Dyktando — posłuchaj i zapisz zdanie."),
-        el("button", { class: "btn primary big-play", onclick: say }, "▶ Odtwórz"));
+        el("div", { class: "fb-btns" },
+          el("button", { class: "btn primary big-play", onclick: say }, "▶ Odtwórz"),
+          el("button", { class: "btn ghost", onclick: say }, "🔁 Powtórz")),
+        speedPicker(ttsRate(), say));
       const inp = el("input", { class: "input", placeholder: "Wpisz po angielsku…", autocomplete: "off" });
       const send = el("button", { class: "btn ok", onclick: () => submit(inp.value.trim()) }, "Sprawdź");
       inp.onkeydown = e => { if (e.key === "Enter") send.click(); };
       box.append(inp, send);
-      setTimeout(say, 300);
+      say();
       return;
     }
     box.append(el("div", { class: "qtext" }, t.text || (t.pl ? "Przetłumacz: „" + t.pl + "”" : "")));

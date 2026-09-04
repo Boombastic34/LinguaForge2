@@ -50,7 +50,7 @@ async function runDialog(did) {
     if (!node || node === "END") return finish();
     focusProgress(total, dlg.nodes.length, `naturalnych: ${good}`);
     bubble("🧑 Rozmówca", node.npc_en, node.npc_pl, "b-npc");
-    speak(node.npc_en, 0.92);
+    speakAuto(node.npc_en);      // można wyciszyć w pasku (🔊/🔇), przycisk 🔊 przy kwestii gra zawsze
     box.innerHTML = "";
     box.append(el("div", { class: "muted" }, "💡 " + (node.hint || "Twoja kolej — odpowiedz.")));
     if (node.mode === "choice") {

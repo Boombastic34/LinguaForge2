@@ -1,6 +1,9 @@
 // Router + nawigacja
 const ROUTES_STUDENT = [
   ["#dashboard", "🏠 Pulpit", viewDashboard],
+  // BŁĄD (v2.8.1): zakładka „Podstawy" była w dolnym pasku, ale NIE było jej w tabeli tras,
+  // więc router nie znajdował widoku i przekierowywał z powrotem na pulpit — pusta strona.
+  ["#basics", "🎒 Podstawy", viewBasics],
   ["#path", "🧭 Ścieżka", viewPath],
   ["#flashcards", "🃏 Fiszki", viewFlashcards],
   ["#dialogs", "💬 Rozmowy", viewDialogs],
@@ -52,7 +55,7 @@ function boot() {
   const nav = el("nav", {});
   const aside = el("aside", {},
     el("div", { class: "brand" }, "Lingua", el("span", {}, "Forge")),
-    el("div", { class: "brand-sub", id: "verbox" }, "v2.8.1 · kuźnia języka"),
+    el("div", { class: "brand-sub", id: "verbox" }, "v2.9.0 · kuźnia języka"),
     nav,
     el("div", { class: "spacer" }),
     el("div", { class: "userbox" },
@@ -77,7 +80,7 @@ function boot() {
     const box = document.getElementById("verbox");
     if (!box) return;
     box.textContent = "v" + v.version + " · kuźnia języka";
-    if (v.version !== "2.8.1") {
+    if (v.version !== "2.9.0") {
       box.textContent = "v" + v.version + " · odśwież (Ctrl+F5)";
       box.style.color = "#ffd43b";
     }
@@ -354,10 +357,24 @@ function haptic(kind = "tap") {
   navigator.vibrate({ tap: 8, good: [12, 40, 18], bad: [30, 40, 30] }[kind] || 8);
 }
 
-// automatyczne czytanie odpowiedzi (można wyciszyć)
+// automatyczne czytanie odpowiedzi (można wyciszyć przyciskiem 🔊/🔇 w pasku zadania).
+// Zadania ze słuchu NIE korzystają z tej funkcji — tam lektor gra zawsze (speak()).
 function speakAuto(text, lang = "en") {
   if (!text || !LFSET.get("tts_auto", true)) return;
   speak(text, undefined, lang, true);   // automat: bez ostrzeżeń, gdy telefon zignoruje
+}
+
+// Przełącznik „poprawiaj błędy od razu" — wspólny dla Ścieżki i Fiszek.
+// key: nazwa ustawienia (path_retype / fc_retype), def: wartość domyślna.
+function retypeToggle(key, def, label) {
+  const chk = el("input", { type: "checkbox", ...(LFSET.get(key, def) ? { checked: "" } : {}),
+    onchange: e => LFSET.set(key, e.target.checked) });
+  const wrap = el("label", { class: "chip chip-check retype-toggle" }, chk,
+    " " + (label || "✍️ Po błędzie przepisz poprawną odpowiedź"),
+    el("div", { class: "muted small", style: "margin:4px 0 0 22px;font-weight:400" },
+      "Poprawka nie liczy się do wyniku, ale utrwala słówko."));
+  wrap.checked = () => chk.checked;
+  return wrap;
 }
 
 // przełącznik głośnika — wstawiany w paskach zadań

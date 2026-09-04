@@ -117,14 +117,22 @@ async function runPathSession(lid, n) {
     LINK_TYPE_PL[link.type] || "", lid === "repair" ? "gold" : "ember",
     data.tasks ? `${data.tasks.length} zadań` : (data.pool ? `pula: ${data.pool}` : "")));
 
-  // ekran wyboru długości sesji
+  // ekran wyboru długości sesji + czy poprawiać błędy od razu
   if (data.choose) {
+    const isListen = link.type === "sluchanie";
+    const extra = el("div", {},
+      retypeToggle("path_retype", true,
+        isListen ? "✍️ Po błędzie przepisz zdanie poprawnie" : "✍️ Po błędzie przepisz słówko poprawnie"),
+      el("p", { class: "muted small", style: "margin:8px 0 0" },
+        isListen ? "W zadaniach ze słuchu lektor gra zawsze — tempo zmienisz w pasku u góry."
+                 : "Lektora możesz wyciszyć (🔊/🔇) i zmienić jego tempo w pasku u góry."),
+      el("button", { class: "btn ghost", style: "margin-top:8px", onclick: viewPath }, "← Ścieżka"));
     main.append(sizePicker({
       pool: data.pool, suggested: data.suggested,
       subtitle: `Ten materiał ma łącznie ${data.pool} przygotowanych zadań. ` +
         "Możesz zrobić fragment albo przejść całą serię — wynik liczy się od tego, co wybierzesz.",
       onStart: v => runPathSession(lid, v),
-      extra: el("button", { class: "btn ghost", style: "margin-top:8px", onclick: viewPath }, "← Ścieżka"),
+      extra,
     }));
     return;
   }
@@ -136,10 +144,11 @@ async function runPathSession(lid, n) {
       el("button", { class: "btn primary", onclick: () => location.hash = "#dashboard" }, "← Pulpit"));
     return;
   }
+  const opts = { retype: LFSET.get("path_retype", true), listening: link.type === "sluchanie" };
   if (data.theory || data.theory_html) {
-    showTheory(box, data, () => runTaskList(box, data.tasks, lid, viewPath, name));
+    showTheory(box, data, () => runTaskList(box, data.tasks, lid, viewPath, name, opts));
   } else {
-    runTaskList(box, data.tasks, lid, viewPath, name);
+    runTaskList(box, data.tasks, lid, viewPath, name, opts);
   }
 }
 
@@ -167,10 +176,26 @@ function showTheory(box, data, done) {
 }
 
 // tasks: lista z serwera; lid: identyfikator sesji; onBack: powrót
-function runTaskList(box, tasks, lid, onBack, focusTitle) {
+// opts.retype    — po błędzie (albo „nie wiem") uczeń przepisuje poprawną odpowiedź
+// opts.listening — sesja ze słuchu: w pasku tylko tempo lektora, bez wyciszania
+function runTaskList(box, tasks, lid, onBack, focusTitle, opts) {
+  opts = opts || {};
+  const retypeOn = opts.retype !== undefined ? !!opts.retype : LFSET.get("path_retype", true);
   let i = 0, t0 = 0, good = 0;
   enterFocus({ title: focusTitle || "🧭 Ćwiczenie", subtitle: `${tasks.length} zadań`,
+    listening: !!opts.listening,
     onExit: () => { exitFocus(); onBack(); } });
+  // nagrania na kolejne zadania pobieramy z wyprzedzeniem
+  function prefetchAhead(from) {
+    const texts = [];
+    for (let k = from; k < Math.min(tasks.length, from + 3); k++) {
+      const t = tasks[k];
+      if (t.tts_pl) prefetchTts(t.tts_pl, "pl");
+      else if (t.tts) texts.push(t.tts);
+    }
+    if (texts.length) prefetchTts(texts, "en");
+  }
+  prefetchAhead(0);
 
   function dunnoBtn() {
     return el("button", { class: "btn ghost", onclick: () => submit(UNKNOWN) }, "🤷 Nie wiem");
@@ -187,12 +212,17 @@ function runTaskList(box, tasks, lid, onBack, focusTitle) {
       t.nr ? el("span", { class: "badge nr-badge" }, "[" + t.nr + "]") : null,
       el("div", { class: "progress" },
         el("div", { class: "progress-fill", style: `width:${Math.round(100 * i / tasks.length)}%` }))));
+    prefetchAhead(i + 1);
     if (t.kind === "dictation" || t.tts_pl) {
+      // zadanie ze słuchu: lektor gra ZAWSZE (nie podlega wyciszeniu), tempo z ustawień
       const isPl = !!t.tts_pl;
-      const say = () => isPl ? speak(t.tts_pl, 0.95, "pl") : speak(t.tts, 0.9);
+      const say = () => isPl ? speak(t.tts_pl, undefined, "pl") : speak(t.tts, undefined, "en");
       box.append(el("div", { class: "qtext" }, t.text),
-        el("button", { class: "btn primary big-play", onclick: say }, "▶ Odtwórz"));
-      setTimeout(say, 300);
+        el("div", { class: "fb-btns" },
+          el("button", { class: "btn primary big-play", onclick: say }, "▶ Odtwórz"),
+          el("button", { class: "btn ghost", onclick: say }, "🔁 Powtórz")),
+        speedPicker(ttsRate(), say));
+      say();                                   // od razu, bez sztucznego opóźnienia
     } else {
       box.append(el("div", { class: "qtext" }, t.text));
     }
@@ -229,10 +259,13 @@ function runTaskList(box, tasks, lid, onBack, focusTitle) {
     speakAuto(r.en || r.tts || r.answer);
 
     const wrongAnswer = !r.correct;
-    const retypeOn = LFSET.get("fc_retype", false);
-    // przy błędzie przepisujemy poprawną odpowiedź (jeśli jest sensownym tekstem do wpisania)
-    const target = String(r.answer || "").trim();
-    const canRetype = wrongAnswer && retypeOn && target && target.length <= 60;
+    // przy błędzie / „nie wiem" przepisujemy poprawną odpowiedź — po angielsku, jeśli jest
+    // (w zadaniu „co znaczy X" odpowiedzią jest polskie znaczenie, ale utrwalać chcemy X)
+    const t = tasks[i];
+    let target = String(r.answer || "").trim();
+    if (t.kind === "choice" && r.en) target = String(r.en).trim();
+    if (t.kind === "openpl") target = "";                 // pytanie opisowe — nie ma czego przepisywać
+    const canRetype = wrongAnswer && retypeOn && target && target.length <= 90;
 
     box.append(feedbackPanel({
       correct: r.correct, state: unknown ? "bad" : r.state, score: r.score,
@@ -247,12 +280,14 @@ function runTaskList(box, tasks, lid, onBack, focusTitle) {
     }));
   }
 
-  // krok przepisywania poprawnej odpowiedzi (ta sama zasada co w fiszkach)
+  // krok przepisywania poprawnej odpowiedzi (ta sama zasada co w fiszkach).
+  // Nie wpływa na wynik sesji — serwer zapisał już pierwszą odpowiedź.
   function showRetype(target) {
     box.innerHTML = "";
     const wrap = el("div", { class: "fc-retype-box" },
-      el("div", { class: "fc-retype-label" }, "✍️ Przepisz poprawnie, zanim pójdziesz dalej:"),
-      el("div", { class: "fc-retype-target" }, target));
+      el("div", { class: "fc-retype-label" }, "✍️ Przepisz poprawnie, żeby utrwalić (nie liczy się do wyniku):"),
+      el("div", { class: "fc-retype-target" }, target, " ",
+        el("button", { class: "mini-tts", onclick: () => speak(target) }, "🔊")));
     const rInp = el("input", { class: "input", autocomplete: "off", autocapitalize: "off",
       spellcheck: "false", placeholder: "przepisz dokładnie…" });
     const rBtn = el("button", { class: "btn ok", onclick: tryRetype }, "Sprawdź ⏎");
@@ -263,8 +298,9 @@ function runTaskList(box, tasks, lid, onBack, focusTitle) {
     rInp.focus();
     function tryRetype() {
       if (!rInp.value.trim()) return;
-      if (answersMatch(rInp.value, target)) {
+      if (answersMatch(rInp.value, target, { lang: "en", strict: true })) {
         if (typeof haptic === "function") haptic("good");
+        toast("✔ Zapisane poprawnie");
         i++; render();
       } else {
         if (typeof haptic === "function") haptic("bad");

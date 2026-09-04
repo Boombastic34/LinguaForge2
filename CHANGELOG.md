@@ -1,5 +1,60 @@
 # LinguaForge — CHANGELOG
 
+## v2.9.0 (2026-09-04) — Podstawy, szybki lektor, poprawianie błędów na Ścieżce
+
+## Błędy naprawione
+- **Zakładka „Podstawy" pokazywała pustą stronę / wracała na pulpit.** Trasa `#basics` była
+  w dolnym pasku, ale brakowało jej w tabeli tras `ROUTES_STUDENT` (app.js) — router nie
+  znajdował widoku i przekierowywał na pulpit. Dodana jedna linia.
+- **Lektor opóźniał się o kilka sekund.** Dwie przyczyny:
+  - serwer: `/api/tts` był `async def` i wywoływał blokujące edge-tts — synteza blokowała
+    całą pętlę zdarzeń, więc KAŻDE inne żądanie czekało. Teraz generowanie idzie do wątku
+    roboczego (`run_in_threadpool`);
+  - przeglądarka: nagranie było pobierane dopiero przy `speak()`, plus sztuczne
+    `setTimeout(300–400 ms)`. Funkcja `prefetchTts` istniała, ale nie była nigdzie używana.
+- **Zadania „Napisz po angielsku" wymagały przepisania dopisków w nawiasach** — 65 słówek
+  ma formę `orange (colour)`, `shelf / rack`, `to run`; serwer porównywał dosłownie.
+  Nowa funkcja `_en_variants()` uznaje `orange`, `shelf`, `rack`, `run`.
+- Baza wiedzy: przycisk „← Teoria" w ćwiczeniach wywoływał nieistniejącą funkcję
+  `viewArticle` (błąd „viewArticle is not defined"). Poprawione na `viewKbArticle`.
+- `document.onkeydown` z zadania nie było czyszczone przy wyjściu z trybu skupienia —
+  Enter mógł „kliknąć Dalej" w innym widoku. `exitFocus()` zawsze je zeruje.
+- „Odsłuchaj stronę/lekcję/tekst" wysyłało cały tekst, a serwer ucina do 400 znaków —
+  słychać było tylko początek. Długi tekst jest dzielony na zdania (~300 znaków)
+  i czytany po kolei; dodany przycisk ⏹ Stop.
+- Zdublowana linia w `ttsInfo()`; hardkodowane tempa (0.88/0.9/0.92/0.95) w 7 modułach
+  zastąpione wspólnym ustawieniem.
+
+## Lektor
+- **Tempo w każdym zadaniu**: pasek trybu skupienia ma przycisk tempa (🐢 wolno · ▶ normalnie ·
+  🐇 szybko · ⚡ bardzo szybko = 0.7 / 1.0 / 1.2 / 1.4) i przełącznik 🔊/🔇. Jedno ustawienie
+  dla całej aplikacji, zapisywane w przeglądarce i w profilu; dostępne też na pulpicie.
+- **Zadania ze słuchu** (dyktanda, fiszki ze słuchu, ogniwo „słuchanie", test poziomujący,
+  programy) pokazują tylko tempo — bez wyciszania (bez dźwięku nie da się ich rozwiązać).
+  Wszędzie dodany przycisk 🔁 Powtórz i rząd tempa pod odtwarzaczem.
+- Domyślne tempo podniesione z 0.92 do 1.0 (naturalna mowa).
+- Zmiana tempa działa przez `playbackRate` przeglądarki: jedno nagranie służy wszystkim
+  prędkościom, zmiana jest natychmiastowa (także w trakcie odtwarzania) i cache trafia
+  niemal zawsze. Serwer generuje zawsze w tempie 1.0 (parametr `rate` zostaje dla zgodności).
+- **Nagrania z wyprzedzeniem**: przy starcie sesji fiszek / ogniwa Ścieżki serwer w tle
+  przygotowuje nagrania wszystkich odpowiedzi (`_tts_prewarm`, osobny wątek), a przeglądarka
+  pobiera 3 kolejne karty/zadania (`prefetchTts`). Automatyczne odtworzenie startuje od razu.
+- Nowy endpoint `POST /api/tts/prewarm` (lista tekstów do przygotowania).
+- Rozmowy: kwestia rozmówcy czytana przez `speakAuto` (można wyciszyć); 🔊 przy kwestii gra zawsze.
+
+## Ścieżka
+- **Na ekranie startowym ogniwa wybierasz, czy po błędzie / „nie wiem" przepisać poprawne
+  słówko** (ustawienie `path_retype`, domyślnie włączone). Poprawka nie liczy się do wyniku
+  (serwer zapisuje tylko pierwszą odpowiedź), ale utrwala słówko. W zadaniu „co znaczy X"
+  przepisujesz X po angielsku, nie polskie znaczenie. Przycisk 🔊 przy słowie do przepisania.
+- Ten sam przełącznik (`retypeToggle`) w Fiszkach, z opisem.
+- Dyktanda na Ścieżce: 🔁 Powtórz + tempo, natychmiastowy start.
+
+## Pliki
+main.py · static/js/app.js · ui.js · path.js · flashcards.js · basics.js · knowledge.js ·
+listening.js · placement.js · programs.js · dialogs.js · reading.js · dashboard.js ·
+static/css/style.css
+
 ## v1.0.3 (2026-08-07) — pełna instrukcja od zera, punkt po punkcie
 
 ## Dodane

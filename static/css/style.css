@@ -1324,3 +1324,18 @@ body.dark .fc-repeat { background:#1a212a; border-color:#2b3542; color:#c3ccd8; 
   background:#eef1ff; color:#4c5fd5; border-radius:9px; font-weight:800; font-size:13px;
   font-family:"IBM Plex Mono",monospace; }
 body.dark .bc-step { background:#1c2333; }
+
+
+/* ===== v2.9: tempo lektora w pasku skupienia ===== */
+.focus-tts { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+@media (max-width: 560px) { .speed-cycle .sc-lbl { display: none; } .speed-cycle { padding: 4px 9px; font-size: 14px; } }
+.speed-cycle {
+  border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.12); color: inherit;
+  border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 12px; font-weight: 600;
+  cursor: pointer; white-space: nowrap; line-height: 1.2;
+}
+.speed-cycle:active { transform: scale(.96); }
+.focus-bar .mute-btn { margin-left: 0; }
+.speed-row { flex-wrap: wrap; }
+.speed-btn[data-rate] { min-width: 0; }
+.retype-toggle { display: block; margin-top: 10px; }

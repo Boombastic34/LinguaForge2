@@ -271,6 +271,8 @@ async function viewDashboard() {
           onchange: e => LFSET.set("haptics", e.target.checked) }),
         " 📳 Wibracje przy odpowiedzi"),
       el("button", { class: "btn ok", onclick: ttsDiagnose }, "🔊 Sprawdź lektora")),
+    el("div", { class: "set-row" }, "Tempo lektora: ",
+      speedPicker(ttsRate(), () => speak("Hello! This is my speaking speed.", undefined, "en", true))),
     el("button", { class: "btn ok", onclick: async () => {
       await API.post("/api/settings", { target_level: tgt.value || null, daily_goal_xp: +goalInp.value, domains: [...domains] });
       toast("Zapisano ✔"); viewDashboard();

@@ -1,16 +1,21 @@
-LinguaForge v2.8.1 - POPRAWKI SLOWNICTWA I CSS
+LinguaForge v2.9.0 - PODSTAWY, SZYBKI LEKTOR, POPRAWIANIE BLEDOW NA SCIEZCE
 
-PLIKI:
+PLIKI (zastap w repozytorium):
   main.py                    -> korzen
-  .gitignore                 -> korzen
-  core/auth.py               -> core
-  static/index.html          -> static
-  static/js/app.js           -> static/js
-  static/js/basics.js        -> static/js
-  static/js/flashcards.js    -> static/js
+  CHANGELOG.md               -> korzen
   static/css/style.css       -> static/css
-  data/podstawy/kursy.json   -> data/podstawy   (ZASTAP)
-  data/slownictwo/*.json     -> data/slownictwo (ZASTAP WSZYSTKIE - 23 pliki)
+  static/js/app.js           -> static/js
+  static/js/ui.js            -> static/js
+  static/js/path.js          -> static/js
+  static/js/flashcards.js    -> static/js
+  static/js/basics.js        -> static/js
+  static/js/knowledge.js     -> static/js
+  static/js/listening.js     -> static/js
+  static/js/placement.js     -> static/js
+  static/js/programs.js      -> static/js
+  static/js/dialogs.js       -> static/js
+  static/js/reading.js       -> static/js
+  static/js/dashboard.js     -> static/js
 
-W repozytorium usun recznie:
-  folder accounts/          plik data/_dostep.json
+Po wdrozeniu na Railway: odswiez aplikacje (Ctrl+F5 / na telefonie zamknij i otworz).
+Wersja w lewym gornym rogu powinna pokazac v2.9.0.

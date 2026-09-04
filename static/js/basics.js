@@ -95,10 +95,13 @@ function basicsTheory(t, pageIdx) {
   // pasek: odsłuchaj stronę
   const pageText = [page.title].concat(page.sections.map(s =>
     s.title + ". " + (s.text || "").replace(/\n/g, ". ") + (s.tip ? " Wskazówka: " + s.tip : ""))).join(". ");
+  // długi tekst jest dzielony na zdania i czytany po kolei (speak() robi to samo)
   box.append(el("div", { class: "kb-toolbar" },
-    el("button", { class: "btn primary", onclick: () => speak(pageText, ttsRate(), "pl") },
+    el("button", { class: "btn primary", onclick: () => speak(pageText, undefined, "pl") },
       "🔊 Odsłuchaj stronę"),
-    speedPicker(ttsRate(), v => speak(pageText, v, "pl"))));
+    el("button", { class: "btn ghost", onclick: stopSpeaking }, "⏹ Stop"),
+    speedPicker(ttsRate(), null)));
+  prefetchTts(pageText, "pl");
 
   box.append(el("h3", { class: "bt-page-title" }, `${pageIdx + 1}. ${page.title}`));
 
@@ -152,6 +155,7 @@ function basicsRun(t, kind) {
   function show() {
     if (i >= items.length) return finish();
     const q = items[i];
+    prefetchTts(items.slice(i, i + 3).map(x => x.en || (x.options ? x.options[x.answer] : x.answer)), "en");
     box.innerHTML = "";
     focusProgress(i, items.length, `poprawnych: ${good}`);
     box.append(el("div", { class: "pl-top" },
@@ -197,12 +201,14 @@ function basicsRun(t, kind) {
   }
 
   function renderListen(q) {
-    let rate = ttsRate();
-    const say = quiet => speak(q.en, rate, "en", quiet);
+    // zadanie ze słuchu: lektor gra zawsze, w aktualnym tempie
+    const say = quiet => speak(q.en, undefined, "en", quiet);
     box.append(
       el("div", { class: "qtext" }, "Posłuchaj i zapisz po angielsku:"),
-      el("button", { class: "btn primary big-play", onclick: () => say(false) }, "▶ Odtwórz"),
-      speedPicker(rate, v => { rate = v; say(false); }));
+      el("div", { class: "fb-btns" },
+        el("button", { class: "btn primary big-play", onclick: () => say(false) }, "▶ Odtwórz"),
+        el("button", { class: "btn ghost", onclick: () => say(false) }, "🔁 Powtórz")),
+      speedPicker(ttsRate(), () => say(false)));
     const inp = el("input", { class: "input", placeholder: "wpisz po angielsku…",
       autocomplete: "off", autocapitalize: "off", spellcheck: "false" });
     const send = el("button", { class: "btn ok", onclick: () => {
@@ -211,7 +217,7 @@ function basicsRun(t, kind) {
     } }, "Sprawdź ⏎");
     inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); send.click(); } };
     box.append(inp, el("div", { class: "fb-btns" }, send));
-    setTimeout(() => say(true), 400);
+    say(true);
     inp.focus();
   }
 

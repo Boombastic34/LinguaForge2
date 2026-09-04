@@ -35,9 +35,10 @@ async function viewKbArticle(aid) {
   // ---------- pasek: odsłuchaj całą lekcję ----------
   const lessonText = buildLessonAudio(a);
   box.append(el("div", { class: "kb-toolbar" },
-    el("button", { class: "btn primary", onclick: () => speak(lessonText, ttsRate(), "pl") },
+    el("button", { class: "btn primary", onclick: () => speak(lessonText, undefined, "pl") },
       "🔊 Odsłuchaj lekcję"),
-    speedPicker(ttsRate(), v => speak(lessonText, v, "pl")),
+    el("button", { class: "btn ghost", onclick: stopSpeaking }, "⏹ Stop"),
+    speedPicker(ttsRate(), null),
     a.practice && a.practice.length
       ? el("button", { class: "btn ok", onclick: () => runKbPractice(a) },
           `✍️ Ćwiczenia (${a.practice.length})`) : null));
@@ -147,7 +148,7 @@ function runKbPractice(a) {
   clearMain();
   const main = document.querySelector("main");
   enterFocus({ title: "✍️ " + a.name, subtitle: "ćwiczenia", theme: "teal",
-    onExit: () => viewArticle(a.id) });
+    onExit: () => viewKbArticle(a.id) });
   const box = el("div", { class: "card" });
   main.append(box);
   let i = 0, good = 0;
@@ -203,7 +204,7 @@ function runKbPractice(a) {
         a.quiz && a.quiz.length
           ? el("button", { class: "btn primary", onclick: () => runKbQuiz(a) }, "📝 Teraz sprawdzian") : null,
         el("button", { class: "btn ghost", onclick: () => runKbPractice(a) }, "🔁 Jeszcze raz"),
-        el("button", { class: "btn ghost", onclick: () => viewArticle(a.id) }, "← Teoria")));
+        el("button", { class: "btn ghost", onclick: () => viewKbArticle(a.id) }, "← Teoria")));
   }
 }
 

@@ -58,17 +58,20 @@ async function viewPlacement() {
     }
     if (q.type === "dictation" || q.type === "dictation_pl") {
       const isPl = q.type === "dictation_pl";
-      const say = () => speak(isPl ? q.tts_pl : q.tts, isPl ? 0.95 : 0.9, isPl ? "pl" : "en");
+      const say = () => speak(isPl ? q.tts_pl : q.tts, undefined, isPl ? "pl" : "en");
       box.append(
         el("div", { class: "qtext" }, q.text),
-        el("button", { class: "btn primary big-play", onclick: say }, "▶ Odtwórz" ),
+        el("div", { class: "fb-btns" },
+          el("button", { class: "btn primary big-play", onclick: say }, "▶ Odtwórz"),
+          el("button", { class: "btn ghost", onclick: say }, "🔁 Powtórz")),
+        speedPicker(ttsRate(), say),
         el("div", { class: "muted", style: "margin:4px 0 8px" }, "Możesz słuchać wiele razy."));
       const inp = el("input", { class: "input", placeholder: "Wpisz zdanie po angielsku…", autocomplete: "off" });
       const send = el("button", { class: "btn ok" }, "Sprawdź");
       send.onclick = () => submit(q.id, inp.value.trim());
       inp.onkeydown = e => { if (e.key === "Enter") send.click(); };
       box.append(inp, send);
-      setTimeout(say, 350);
+      say();
       inp.focus();
       return;
     }

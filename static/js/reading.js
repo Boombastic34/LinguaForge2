@@ -31,7 +31,9 @@ async function runReading(tid) {
   let saved = 0;
   const savedBadge = el("span", { class: "badge" }, "0 słówek zapisanych");
   const toolbar = el("div", { class: "read-toolbar" },
-    el("button", { class: "btn mini", onclick: () => speak(t.text.replace(/\n+/g, ". "), 0.88) }, "🔊 Przeczytaj tekst"),
+    el("button", { class: "btn mini", onclick: () => speak(t.text.replace(/\n+/g, ". ")) }, "🔊 Przeczytaj tekst"),
+    el("button", { class: "btn mini", onclick: stopSpeaking }, "⏹ Stop"),
+    speedPicker(ttsRate(), null),
     el("button", { class: "btn mini", onclick: togglePl }, "🇵🇱 Tłumaczenie tekstu"),
     savedBadge);
 

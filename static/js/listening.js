@@ -15,27 +15,27 @@ async function viewListening() {
     const it = await API.get("/api/listen/next");
     t0 = Date.now();
     const isPl = it.mode === "pl";
-    // prędkość lektora — osobna dla tego zadania, zapamiętywana w profilu
-    let rate = ttsRate();
-    const say = (q) => isPl ? speak(it.tts_pl, rate, "pl", q) : speak(it.tts, rate, "en", q);
-
-    const speedRow = speedPicker(rate, v => { rate = v; say(false); });
+    // zadanie ze słuchu: lektor gra zawsze, tempo wspólne dla całej aplikacji
+    const say = (q) => isPl ? speak(it.tts_pl, undefined, "pl", q) : speak(it.tts, undefined, "en", q);
+    const speedRow = speedPicker(ttsRate(), () => say(false));
 
     box.append(
       el("span", { class: "badge " + (isPl ? "tfut" : "") }, isPl ? "🔁 PL → EN" : "🎧 Dyktando EN"),
       el("div", { class: "qtext" }, isPl
         ? "Usłyszysz zdanie po polsku. Zapisz je PO ANGIELSKU."
         : "Posłuchaj i zapisz dokładnie, co słyszysz (po angielsku)."),
-      el("button", { class: "btn primary big-play", onclick: () => say(false) }, "▶ Odtwórz"),
+      el("div", { class: "fb-btns" },
+        el("button", { class: "btn primary big-play", onclick: () => say(false) }, "▶ Odtwórz"),
+        el("button", { class: "btn ghost", onclick: () => say(false) }, "🔁 Powtórz")),
       speedRow,
       el("div", { class: "muted", style: "margin-bottom:8px" }, `poziom ${it.level} · możesz słuchać wiele razy`));
     const inp = el("input", { class: "input", placeholder: "Wpisz po angielsku…", autocomplete: "off",
       autocapitalize: "off", spellcheck: "false" });
     const send = el("button", { class: "btn ok" }, "Sprawdź");
-    send.onclick = () => check(it, inp.value.trim(), rate);
+    send.onclick = () => check(it, inp.value.trim(), ttsRate());
     inp.onkeydown = e => { if (e.key === "Enter") send.click(); };
     box.append(inp, el("div", { class: "fb-btns" }, send));
-    setTimeout(() => say(true), 350);   // automat cichy
+    say(true);                           // od razu
     inp.focus();
   }
 

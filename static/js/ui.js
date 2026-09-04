@@ -144,38 +144,75 @@ function unlockTts() {
 document.addEventListener("pointerdown", unlockTts);
 document.addEventListener("keydown", unlockTts);
 
+// ---------- TEMPO LEKTORA ----------
+// Jedno ustawienie dla całej aplikacji (zapisywane w przeglądarce i w profilu).
+// Domyślnie 1.0 = naturalne tempo mowy. Lektor z serwera zawsze przychodzi w tempie 1.0,
+// a prędkość zmieniamy przy odtwarzaniu (playbackRate) — zmiana jest natychmiastowa
+// i nie wymaga pobierania nowego nagrania.
+const TTS_DEFAULT_RATE = 1.0;
 function ttsRate() {
   try {
     const v = parseFloat(localStorage.getItem("lf_tts_rate"));
-    return (v >= 0.5 && v <= 1.5) ? v : 0.92;
-  } catch (e) { return 0.92; }
+    return (v >= 0.5 && v <= 1.6) ? v : TTS_DEFAULT_RATE;
+  } catch (e) { return TTS_DEFAULT_RATE; }
 }
 function setTtsRate(v) {
+  v = Math.max(0.5, Math.min(1.6, +v || TTS_DEFAULT_RATE));
   try { localStorage.setItem("lf_tts_rate", String(v)); } catch (e) {}
   API.post("/api/settings", { tts_rate: v }).catch(() => {});
+  // jeśli coś właśnie gra — zmieniamy tempo w locie
+  if (AUDIO_EL) { try { AUDIO_EL.playbackRate = v; } catch (e) {} }
+  document.querySelectorAll(".speed-row").forEach(row =>
+    row.querySelectorAll(".speed-btn").forEach(bt =>
+      bt.classList.toggle("active", Math.abs(parseFloat(bt.dataset.rate) - v) < 0.03)));
+  document.querySelectorAll(".speed-cycle").forEach(paintSpeedCycle);
 }
 
-const TTS_SPEEDS = [[0.6, "🐢", "wolno"], [0.85, "▶", "normalnie"], [1.05, "🐇", "szybko"]];
+const TTS_SPEEDS = [[0.7, "🐢", "wolno"], [1.0, "▶", "normalnie"], [1.2, "🐇", "szybko"], [1.4, "⚡", "bardzo szybko"]];
+function speedLabel(v) {
+  const hit = TTS_SPEEDS.find(([r]) => Math.abs(r - v) < 0.03);
+  return hit ? hit[1] + " " + hit[2] : "▶ " + v.toFixed(1) + "×";
+}
+// Pełny wybór tempa (rząd przycisków) — do ekranów słuchania i teorii.
+// onChange(v) wywoływany po zmianie — zwykle powtarza nagranie w nowym tempie.
 function speedPicker(current, onChange) {
+  current = current || ttsRate();
   const row = el("div", { class: "speed-row" }, el("span", { class: "muted small" }, "tempo:"));
   TTS_SPEEDS.forEach(([v, icon, label]) => {
     const b = el("button", {
-      class: "speed-btn" + (Math.abs(v - current) < 0.06 ? " active" : ""),
-      onclick: () => {
-        row.querySelectorAll(".speed-btn").forEach(x => x.classList.remove("active"));
-        b.classList.add("active");
-        setTtsRate(v);
-        onChange(v);
-      },
+      class: "speed-btn" + (Math.abs(v - current) < 0.03 ? " active" : ""),
+      "data-rate": String(v),
+      onclick: () => { setTtsRate(v); if (onChange) onChange(v); },
     }, icon + " " + label);
     row.append(b);
   });
   return row;
 }
+// Zwarty przełącznik tempa (jeden przycisk, kolejne dotknięcia = kolejne tempo) —
+// wstawiany w pasek trybu skupienia, więc jest dostępny w KAŻDYM zadaniu.
+function paintSpeedCycle(b) {
+  const v = ttsRate();
+  const hit = TTS_SPEEDS.find(([r]) => Math.abs(r - v) < 0.03) || [v, "▶", v.toFixed(1) + "×"];
+  b.innerHTML = "";
+  b.append(hit[1], el("span", { class: "sc-lbl" }, " " + hit[2]));
+}
+function speedCycleButton() {
+  const b = el("button", { class: "speed-cycle", title: "Tempo lektora" }, "");
+  paintSpeedCycle(b);
+  b.onclick = e => {
+    e.stopPropagation();
+    const cur = ttsRate();
+    let i = TTS_SPEEDS.findIndex(([r]) => Math.abs(r - cur) < 0.03);
+    i = (i + 1) % TTS_SPEEDS.length;
+    setTtsRate(TTS_SPEEDS[i][0]);
+    if (typeof haptic === "function") haptic();
+    toast("Tempo lektora: " + TTS_SPEEDS[i][2]);
+  };
+  return b;
+}
 
 let TTS_WARNED = false;
 let TTS_LAST_ERR = "";
-let TTS_MODE = "auto";          // auto | server | browser
 const TTS_KEEP = [];            // referencje wypowiedzi (ochrona przed usunięciem z pamięci)
 
 // ---------- LEKTOR Z SERWERA ----------
@@ -184,78 +221,131 @@ const TTS_KEEP = [];            // referencje wypowiedzi (ochrona przed usunięc
 // ale synteza kończy się błędem synthesis-failed).
 let AUDIO_EL = null;
 let SERVER_TTS_OK = null;       // null = jeszcze nie wiadomo
+let SPEAK_SEQ = 0;              // numer bieżącej wypowiedzi — starsze są porzucane
 
 function ttsAudioEl() {
   if (!AUDIO_EL) {
     AUDIO_EL = new Audio();
     AUDIO_EL.preload = "auto";
+    try { AUDIO_EL.preservesPitch = true; AUDIO_EL.mozPreservesPitch = true; } catch (e) {}
   }
   return AUDIO_EL;
 }
 
-const TTS_BLOBS = {};           // pamięć podręczna nagrań w przeglądarce
+// pamięć podręczna nagrań w przeglądarce: klucz -> {url, done, waiters}
+const TTS_BLOBS = {};
+const TTS_BLOB_ORDER = [];
+const TTS_BLOB_LIMIT = 80;
 
-// Pobiera nagranie z wyprzedzeniem, zanim będzie potrzebne — dzięki temu
-// odtworzenie jest natychmiastowe, bez oczekiwania na serwer.
-function prefetchTts(text, rate, lang) {
-  if (!text || HAS_NATIVE_TTS) return;
-  const r = rate || ttsRate();
-  const key = (lang || "en") + "|" + r + "|" + text;
-  if (TTS_BLOBS[key]) return;
-  const url = "/api/tts?lang=" + encodeURIComponent(lang || "en")
-            + "&rate=" + encodeURIComponent(r) + "&text=" + encodeURIComponent(text);
-  fetch(url, { headers: { "x-token": API.token || "" } })
-    .then(res => res.ok ? res.blob() : null)
-    .then(blob => { if (blob && blob.size > 500) TTS_BLOBS[key] = URL.createObjectURL(blob); })
-    .catch(() => {});
+function ttsUrl(text, lang) {
+  return "/api/tts?lang=" + encodeURIComponent(lang || "en") + "&rate=1&text=" + encodeURIComponent(text);
+}
+
+// Pobiera nagranie (raz) i zwraca Promise z adresem blob. Wielokrotne wywołania
+// dla tego samego tekstu dzielą jedno żądanie.
+function fetchTts(text, lang) {
+  lang = lang === "pl" ? "pl" : "en";
+  const key = lang + "|" + text;
+  if (TTS_BLOBS[key]) return TTS_BLOBS[key];
+  const p = fetch(ttsUrl(text, lang), { headers: { "x-token": API.token || "" } })
+    .then(r => { if (!r.ok) throw new Error("serwer odpowiedział " + r.status); return r.blob(); })
+    .then(blob => {
+      if (!blob || blob.size < 500) throw new Error("puste nagranie");
+      const url = URL.createObjectURL(blob);
+      TTS_BLOB_ORDER.push(key);
+      while (TTS_BLOB_ORDER.length > TTS_BLOB_LIMIT) {
+        const k = TTS_BLOB_ORDER.shift();
+        const old = TTS_BLOBS[k];
+        delete TTS_BLOBS[k];
+        if (old) old.then(u => URL.revokeObjectURL(u)).catch(() => {});
+      }
+      return url;
+    })
+    .catch(err => { delete TTS_BLOBS[key]; throw err; });
+  TTS_BLOBS[key] = p;
+  return p;
+}
+
+// Pobiera nagrania z wyprzedzeniem (np. następna fiszka), zanim będą potrzebne —
+// dzięki temu odtworzenie jest natychmiastowe. Przyjmuje tekst albo listę tekstów.
+function prefetchTts(texts, lang) {
+  if (HAS_NATIVE_TTS) return;
+  const mode = typeof LFSET_str === "function" ? LFSET_str("tts_mode", "server") : "server";
+  if (mode === "browser") return;
+  (Array.isArray(texts) ? texts : [texts]).filter(Boolean).slice(0, 8).forEach(t => {
+    const chunks = splitForTts(String(t));
+    chunks.slice(0, 3).forEach(c => fetchTts(c, lang).catch(() => {}));
+  });
+}
+
+// Długie teksty (teoria) dzielimy na zdania po ~300 znaków i czytamy po kolei.
+function splitForTts(text) {
+  text = String(text || "").replace(/\s+/g, " ").trim();
+  const MAX = 300;
+  if (text.length <= MAX) return text ? [text] : [];
+  // zdania: tniemy po ". ", "! ", "? " (bez lookbehind — starsze Safari go nie zna)
+  const sents = text.match(/[^.!?…]+[.!?…]*\s*/g) || [text];
+  const out = [];
+  let cur = "";
+  const push = piece => {
+    piece = piece.trim();
+    if (!piece) return;
+    while (piece.length > MAX) {           // bardzo długi fragment bez kropek — po słowach
+      let cut = piece.lastIndexOf(" ", MAX);
+      if (cut < MAX / 2) cut = MAX;
+      out.push(piece.slice(0, cut).trim());
+      piece = piece.slice(cut).trim();
+    }
+    if ((cur + " " + piece).trim().length > MAX) { if (cur) out.push(cur); cur = piece; }
+    else cur = (cur + " " + piece).trim();
+  };
+  sents.forEach(push);
+  if (cur) out.push(cur);
+  return out;
 }
 
 function speakServer(text, rate, lang, onFail) {
-  const key = lang + "|" + rate + "|" + text;
   const a = ttsAudioEl();
+  const seq = ++SPEAK_SEQ;
+  const chunks = splitForTts(text);
+  if (!chunks.length) return;
+  try { a.pause(); } catch (e) {}
+  // zaczynamy pobierać wszystkie kawałki od razu (równolegle)
+  const parts = chunks.map(c => fetchTts(c, lang));
 
-  const play = src => {
-    try { a.pause(); } catch (e) {}
-    a.src = src;
-    const p = a.play();
-    if (p && p.catch) {
-      p.then(() => { SERVER_TTS_OK = true; TTS_LAST_ERR = ""; })
-       .catch(err => {
-         TTS_LAST_ERR = "odtwarzanie: " + ((err && err.name) || err);
-         if (onFail) onFail();
-       });
-    } else {
-      SERVER_TTS_OK = true;
-    }
-  };
-
-  if (TTS_BLOBS[key]) return play(TTS_BLOBS[key]);
-
-  // WAŻNE: pobieramy nagranie zwykłym zapytaniem, żeby dołączyć token logowania.
-  // Sam <audio src="..."> nie wysyła nagłówków, więc serwer odmawiał dostępu,
-  // a przeglądarka zgłaszała NotSupportedError.
-  const url = "/api/tts?lang=" + encodeURIComponent(lang)
-            + "&rate=" + encodeURIComponent(rate)
-            + "&text=" + encodeURIComponent(text);
-  fetch(url, { headers: { "x-token": API.token || "" } })
-    .then(r => {
-      if (!r.ok) throw new Error("serwer odpowiedział " + r.status);
-      return r.blob();
-    })
-    .then(blob => {
-      if (!blob || blob.size < 500) throw new Error("puste nagranie");
-      const src = URL.createObjectURL(blob);
-      TTS_BLOBS[key] = src;
-      const keys = Object.keys(TTS_BLOBS);
-      if (keys.length > 40) { URL.revokeObjectURL(TTS_BLOBS[keys[0]]); delete TTS_BLOBS[keys[0]]; }
-      SERVER_TTS_OK = true;
-      play(src);
-    })
-    .catch(err => {
+  const playAt = k => {
+    if (seq !== SPEAK_SEQ) return;              // ktoś zaczął mówić coś nowego
+    if (k >= parts.length) return;
+    parts[k].then(src => {
+      if (seq !== SPEAK_SEQ) return;
+      a.onended = () => playAt(k + 1);
+      a.src = src;
+      a.playbackRate = ttsRate();
+      const p = a.play();
+      if (p && p.catch) {
+        p.then(() => { SERVER_TTS_OK = true; TTS_LAST_ERR = ""; })
+         .catch(err => {
+           if (err && err.name === "AbortError") return;   // przerwane nowym speak()
+           TTS_LAST_ERR = "odtwarzanie: " + ((err && err.name) || err);
+           if (onFail) onFail();
+         });
+      } else { SERVER_TTS_OK = true; }
+    }).catch(err => {
+      if (seq !== SPEAK_SEQ) return;
       SERVER_TTS_OK = false;
       TTS_LAST_ERR = "pobieranie: " + (err && err.message || err);
       if (onFail) onFail();
     });
+  };
+  playAt(0);
+}
+
+// zatrzymuje lektora (serwerowego i przeglądarkowego)
+function stopSpeaking() {
+  SPEAK_SEQ++;
+  if (AUDIO_EL) { try { AUDIO_EL.onended = null; AUDIO_EL.pause(); } catch (e) {} }
+  if (HAS_WEB_TTS) { try { speechSynthesis.cancel(); } catch (e) {} }
+  if (HAS_NATIVE_TTS && window.NativeTTS.stop) { try { window.NativeTTS.stop(); } catch (e) {} }
 }
 
 // ---------- LEKTOR W PRZEGLĄDARCE (zapasowy) ----------
@@ -315,6 +405,9 @@ function speakBrowser(text, rate, lang, quiet) {
 }
 
 // ---------- GŁÓWNA FUNKCJA ----------
+// speak(text, rate, lang, quiet) — rate pomijamy (undefined) = aktualne tempo z ustawień.
+// Ta funkcja ZAWSZE mówi (przyciski 🔊, zadania ze słuchu). Automatyczne czytanie,
+// które użytkownik może wyciszyć, przechodzi przez speakAuto() w app.js.
 function speak(text, rate, lang = "en", quiet = false) {
   if (rate === undefined || rate === null) rate = ttsRate();
   if (!text) return;
@@ -326,7 +419,7 @@ function speak(text, rate, lang = "en", quiet = false) {
     return;
   }
 
-  const mode = LFSET_str ? LFSET_str("tts_mode", "server") : "server";
+  const mode = typeof LFSET_str === "function" ? LFSET_str("tts_mode", "server") : "server";
   if (mode === "browser") return speakBrowser(text, rate, lang, quiet);
   if (mode === "server" || SERVER_TTS_OK !== false) {
     // domyślnie serwer — jest niezawodny; przy niepowodzeniu wracamy do przeglądarki
@@ -348,7 +441,6 @@ function ttsInfo() {
   const srv = SERVER_TTS_OK === true ? "działa" : (SERVER_TTS_OK === false ? "NIE działa" : "nietestowany");
   const pre = `tryb: ${mode} · lektor serwerowy: ${srv} · `;
   if (!HAS_WEB_TTS) return pre + "przeglądarka: brak wsparcia";
-  if (!HAS_WEB_TTS) return "brak wsparcia w tej przeglądarce";
   loadVoices();
   const en = VOICES.filter(v => (v.lang || "").toLowerCase().startsWith("en")).length;
   const pl = VOICES.filter(v => (v.lang || "").toLowerCase().startsWith("pl")).length;
@@ -406,9 +498,13 @@ function clearMain() {
 
 // ================= TRYB SKUPIENIA =================
 // Podczas zadania znika menu i wszystko poza samym ćwiczeniem.
-// opts: {title, subtitle, onExit, theme}
+// opts: {title, subtitle, onExit, theme, listening}
+//   listening: true  -> zadanie polega na słuchaniu: pokazujemy TYLKO tempo lektora
+//                       (wyciszenie nie ma sensu, bo bez dźwięku nie da się rozwiązać)
+//   domyślnie        -> tempo + przełącznik 🔊/🔇 (uczeń decyduje, czy lektor czyta odpowiedzi)
 function enterFocus(opts = {}) {
   exitFocus();
+  stopSpeaking();
   document.body.classList.add("focus");
   const bar = el("div", { class: "focus-bar focus-" + (opts.theme || "ember"), id: "focusbar" },
     el("button", {
@@ -421,7 +517,9 @@ function enterFocus(opts = {}) {
     el("div", { class: "focus-txt" },
       el("div", { class: "focus-title" }, opts.title || ""),
       el("div", { class: "focus-sub", id: "focussub" }, opts.subtitle || "")),
-    typeof muteButton === "function" ? muteButton() : null,
+    el("div", { class: "focus-tts" },
+      speedCycleButton(),
+      (!opts.listening && typeof muteButton === "function") ? muteButton() : null),
     el("div", { class: "focus-count", id: "focuscount" }, ""));
   const line = el("div", { class: "focus-line" }, el("div", { class: "focus-line-fill", id: "focusfill" }));
   bar.append(line);
@@ -430,6 +528,7 @@ function enterFocus(opts = {}) {
 }
 
 function exitFocus() {
+  document.onkeydown = null;          // skróty klawiszowe zadania nie mogą przeżyć widoku
   document.body.classList.remove("focus");
   const b = document.getElementById("focusbar");
   if (b) b.remove();
@@ -500,7 +599,7 @@ function feedbackPanel(opts) {
     grid.append(el("div", { class: "fb-label" }, "Po polsku:"),
                 el("div", { class: "fb-pl" },
                   String(opts.pl), " ",
-                  el("button", { class: "mini-tts", onclick: () => speak(opts.pl, 0.95, "pl") }, "🔊 PL")));
+                  el("button", { class: "mini-tts", onclick: () => speak(opts.pl, undefined, "pl") }, "🔊 PL")));
   box.append(grid);
   if (opts.options && opts.options.length) {
     const ol = el("div", { class: "fb-options" },

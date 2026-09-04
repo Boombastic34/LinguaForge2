@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "2.8.1"
+APP_VERSION = "2.9.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -157,6 +157,40 @@ def vocab_pool(profile):
     return pool
 
 
+def _norm_en(text):
+    """Łagodna normalizacja odpowiedzi angielskiej: małe litery, bez interpunkcji,
+    pojedyncze spacje. Używana przy porównywaniu wpisanych słówek."""
+    t = str(text or "").lower().strip()
+    t = re.sub(r"[.,!?;:\"„”'’()]+", " ", t)
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def _en_variants(en):
+    """'orange (colour)' -> ['orange']; 'shelf / rack' -> ['shelf', 'rack'];
+    'to run' -> ['to run', 'run']. Dzięki temu uczeń nie musi przepisywać
+    dopisków w nawiasach, żeby odpowiedź została uznana."""
+    base = re.sub(r"\([^)]*\)", " ", str(en or ""))
+    out = []
+    for part in re.split(r"\s*(?:/|;|,)\s*", base):
+        v = _norm_en(part)
+        if not v:
+            continue
+        out.append(v)
+        if v.startswith("to ") and len(v) > 3:
+            out.append(v[3:])
+    full = _norm_en(en)
+    if full and full not in out:
+        out.append(full)
+    return out
+
+
+def _tts_text(en):
+    """Tekst dla lektora: bez dopisków w nawiasach; warianty czytane po przecinku."""
+    base = re.sub(r"\([^)]*\)", " ", str(en or ""))
+    parts = [p.strip() for p in re.split(r"\s*/\s*", base) if p.strip()]
+    return ", ".join(parts) or str(en or "")
+
+
 def fill_blanks(text, good):
     """Wstawia poprawną odpowiedź w luki ___. Przy wielu lukach rozdziela tokeny."""
     if not text or "___" not in text:
@@ -243,7 +277,7 @@ async def api_settings(request: Request):
     for k in ("target_level", "domains"):
         if k in body:
             prof[k] = body[k]
-    for flag in ("dark", "tts_auto", "haptics", "fc_retype", "fc_learn"):
+    for flag in ("dark", "tts_auto", "haptics", "fc_retype", "fc_learn", "path_retype"):
         if flag in body:
             prof["settings"][flag] = bool(body[flag])
     if "tts_rate" in body:
@@ -464,6 +498,7 @@ async def cards_session(request: Request, cat: str = "all", n: str = "15"):
             batch.append(_card_payload(it, c, prof, is_new=True))
         save_cards(who["username"], cards)
     random.shuffle(batch)   # losowa kolejność w sesji
+    _tts_prewarm([c["en"] for c in batch], "en")
     return {"cards": batch, "pool": len(pool), "due": len(due),
             "due_left": max(0, len(due) - limit)}
 
@@ -1155,8 +1190,8 @@ def _mk_vocab_tasks(items, n, produce_ratio=0.5):
         if random.random() < produce_ratio:
             tasks.append({"kind": "produce", "nr": it.get("nr"),
                           "text": f"Napisz po angielsku: „{it['pl']}”",
-                          "accept": [it["en"].lower()], "answer": it["en"], "pl": it["pl"],
-                          "item": it})
+                          "accept": _en_variants(it["en"]), "answer": it["en"], "pl": it["pl"],
+                          "tts": _tts_text(it["en"]), "item": it})
         else:
             wrong = random.sample([x["pl"] for x in items if x["id"] != it["id"]],
                                   min(3, max(1, len(items) - 1)))
@@ -1165,7 +1200,7 @@ def _mk_vocab_tasks(items, n, produce_ratio=0.5):
             tasks.append({"kind": "choice", "nr": it.get("nr"),
                           "text": f"Co znaczy „{it['en']}”?", "options": opts,
                           "answer_idx": opts.index(it["pl"]), "answer": it["pl"],
-                          "pl": it["pl"], "en": it["en"], "tts": it["en"], "item": it})
+                          "pl": it["pl"], "en": it["en"], "tts": _tts_text(it["en"]), "item": it})
     return tasks
 
 
@@ -1268,9 +1303,13 @@ async def path_session(lid: str, request: Request, n: str = ""):
     for i, t in enumerate(tasks):
         pt = {"idx": i, "kind": t["kind"], "text": t["text"], "nr": t.get("nr")}
         for k in ("options", "tts", "hint", "words"):
-            if k in t:
+            if k in t and not (k == "tts" and t["kind"] == "produce"):
                 pt[k] = t[k]
         pub.append(pt)
+    # lektor: nagrania dla tej sesji przygotowujemy w tle już teraz,
+    # żeby po odpowiedzi odtwarzały się natychmiast
+    _tts_prewarm([t.get("tts") or t.get("en") or (t.get("answer") if t["kind"] in ("produce", "dictation") else None)
+                  for t in tasks], "en")
     return {"link": {k: ln.get(k) for k in ("id", "name", "type")} if ln else {"id": lid},
             "tasks": pub, "pool": pool_size, **extra}
 
@@ -1320,8 +1359,8 @@ async def path_answer(request: Request):
         if t["kind"] == "choice":
             en = t.get("en")
     elif t["kind"] in ("produce", "ggap"):
-        v = str(val).strip().lower()
-        correct = v in t.get("accept", [])
+        v = _norm_en(val)
+        correct = bool(v) and v in [_norm_en(a) for a in t.get("accept", [])]
         score = 1.0 if correct else 0.0
         if t["kind"] == "produce":
             en = t["answer"]
@@ -3021,15 +3060,16 @@ def _tts_edge(text, lang, rate):
                 buf += chunk["data"]
         return buf
 
+    # Funkcja jest wywoływana z wątku roboczego (bez własnej pętli zdarzeń),
+    # więc asyncio.run() jest tu bezpieczne. Gdyby jednak ktoś wywołał ją
+    # z wnętrza pętli, uruchamiamy osobny wątek.
     try:
-        loop = asyncio.get_running_loop()
+        asyncio.get_running_loop()
     except RuntimeError:
-        loop = None
-    if loop and loop.is_running():
-        import concurrent.futures
-        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as ex:
-            return ex.submit(lambda: asyncio.run(run())).result(timeout=25)
-    return asyncio.run(run())
+        return asyncio.run(run())
+    import concurrent.futures
+    with concurrent.futures.ThreadPoolExecutor(max_workers=1) as ex:
+        return ex.submit(lambda: asyncio.run(run())).result(timeout=25)
 
 
 def _tts_gtts(text, lang, rate):
@@ -3075,38 +3115,28 @@ def _tts_generate(text, lang, rate):
     return None, None, errors
 
 
-@app.get("/api/tts")
-async def tts_audio(request: Request, text: str, lang: str = "en",
-                    rate: float = 0.95, token: str = ""):
-    """Zwraca gotowe nagranie dla podanego tekstu.
+def _tts_cached_bytes(path):
+    """Zwraca (bajty, mime) z pamięci podręcznej albo (None, None)."""
+    try:
+        if os.path.isfile(path) and os.path.getsize(path) > 500:
+            with open(path, "rb") as fh:
+                data = fh.read()
+            return data, ("audio/wav" if data[:4] == b"RIFF" else "audio/mpeg")
+    except OSError:
+        pass
+    return None, None
 
-    Token można podać nagłówkiem (zwykła droga) albo w adresie — to drugie
-    przydaje się, gdy odtwarzacz audio nie potrafi wysłać nagłówków.
-    """
-    if token and not request.headers.get("x-token"):
-        who = auth.who(token)
-        if not who:
-            raise HTTPException(401, "Sesja wygasła.")
-    else:
-        current_user(request)
-    text = (text or "").strip()[:400]
-    if not text:
-        raise HTTPException(400, "Brak tekstu.")
-    lang = "pl" if lang == "pl" else "en"
-    rate = max(0.5, min(1.5, float(rate)))
 
+def _tts_make(text, lang, rate):
+    """Generuje nagranie (lub bierze z cache) — wolna, blokująca funkcja.
+    Wywołujemy ją WYŁĄCZNIE w wątku roboczym, nigdy w pętli zdarzeń."""
     path = _tts_cache_path(text, lang, round(rate, 2))
-    if os.path.isfile(path) and os.path.getsize(path) > 500:
-        with open(path, "rb") as fh:
-            head = fh.read(4)
-            fh.seek(0)
-            mime = "audio/wav" if head == b"RIFF" else "audio/mpeg"
-            return Response(fh.read(), media_type=mime,
-                            headers={"Cache-Control": "public, max-age=604800"})
-
+    data, mime = _tts_cached_bytes(path)
+    if data:
+        return data, mime, "cache"
     data, engine, errors = _tts_generate(text, lang, rate)
     if not data:
-        raise HTTPException(503, "Lektor serwerowy niedostępny: " + " | ".join(errors))
+        return None, None, " | ".join(errors)
     try:
         os.makedirs(TTS_CACHE_DIR, exist_ok=True)
         with open(path, "wb") as fh:
@@ -3114,17 +3144,107 @@ async def tts_audio(request: Request, text: str, lang: str = "en",
         _tts_cache_prune()
     except OSError:
         pass
-    mime = "audio/wav" if engine == "espeak" else "audio/mpeg"
+    return data, ("audio/wav" if engine == "espeak" else "audio/mpeg"), engine
+
+
+TTS_PREWARM_LOCK = threading.Lock()
+TTS_PREWARM_QUEUE = []          # teksty czekające na wygenerowanie w tle
+TTS_PREWARM_BUSY = False
+
+
+def _tts_prewarm(texts, lang="en", rate=1.0):
+    """Przygotowuje nagrania w tle (osobny wątek), zanim uczeń ich potrzebuje.
+
+    Dzięki temu lektor po odpowiedzi odzywa się natychmiast, bo plik już leży
+    w pamięci podręcznej. Nic nie blokuje — jeśli generowanie się nie uda,
+    zwykłe żądanie /api/tts spróbuje ponownie.
+    """
+    global TTS_PREWARM_BUSY
+    todo = []
+    seen = set()
+    for t in texts or []:
+        t = (t or "").strip()[:600]
+        if not t or t in seen:
+            continue
+        seen.add(t)
+        if not os.path.isfile(_tts_cache_path(t, lang, round(rate, 2))):
+            todo.append((t, lang, rate))
+    if not todo:
+        return
+    with TTS_PREWARM_LOCK:
+        TTS_PREWARM_QUEUE[:] = todo[:60] + TTS_PREWARM_QUEUE[:120]   # nowa sesja ma pierwszeństwo
+        if TTS_PREWARM_BUSY:
+            return
+        TTS_PREWARM_BUSY = True
+
+    def worker():
+        global TTS_PREWARM_BUSY
+        while True:
+            with TTS_PREWARM_LOCK:
+                if not TTS_PREWARM_QUEUE:
+                    TTS_PREWARM_BUSY = False
+                    return
+                text, lg, rt = TTS_PREWARM_QUEUE.pop(0)
+            try:
+                _tts_make(text, lg, rt)
+            except Exception:
+                pass
+
+    threading.Thread(target=worker, daemon=True, name="tts-prewarm").start()
+
+
+@app.get("/api/tts")
+async def tts_audio(request: Request, text: str, lang: str = "en",
+                    rate: float = 1.0, token: str = ""):
+    """Zwraca gotowe nagranie dla podanego tekstu.
+
+    Nagranie generowane jest w wątku roboczym (run_in_threadpool) — wcześniej
+    synteza blokowała całą pętlę zdarzeń serwera i KAŻDE inne żądanie czekało,
+    aż lektor skończy. To była główna przyczyna opóźnień.
+
+    Tempo: domyślnie 1.0, a przeglądarka zmienia prędkość odtwarzania sama
+    (playbackRate) — jedno nagranie służy wszystkim prędkościom i cache
+    trafia niemal zawsze. Parametr rate zostaje dla zgodności.
+    """
+    if token and not request.headers.get("x-token"):
+        who = auth.who(token)
+        if not who:
+            raise HTTPException(401, "Sesja wygasła.")
+    else:
+        current_user(request)
+    text = (text or "").strip()[:600]
+    if not text:
+        raise HTTPException(400, "Brak tekstu.")
+    lang = "pl" if lang == "pl" else "en"
+    rate = max(0.5, min(1.5, float(rate)))
+
+    from starlette.concurrency import run_in_threadpool
+    data, mime, engine = await run_in_threadpool(_tts_make, text, lang, rate)
+    if not data:
+        raise HTTPException(503, "Lektor serwerowy niedostępny: " + str(engine))
     return Response(data, media_type=mime,
-                    headers={"Cache-Control": "public, max-age=604800",
+                    headers={"Cache-Control": "public, max-age=2592000",
                              "X-TTS-Engine": engine})
+
+
+@app.post("/api/tts/prewarm")
+async def tts_prewarm_api(request: Request):
+    """Przeglądarka zgłasza teksty, które zaraz będą czytane (np. następne fiszki)."""
+    current_user(request)
+    body = await request.json()
+    texts = body.get("texts") or []
+    if not isinstance(texts, list):
+        texts = []
+    _tts_prewarm([str(t) for t in texts[:60]], "pl" if body.get("lang") == "pl" else "en")
+    return {"ok": True}
 
 
 @app.get("/api/tts/status")
 async def tts_status(request: Request):
     """Sprawdza, czy lektor serwerowy działa i który silnik odpowiada."""
     current_user(request)
-    data, engine, errors = _tts_generate("test", "en", 0.95)
+    from starlette.concurrency import run_in_threadpool
+    data, engine, errors = await run_in_threadpool(_tts_generate, "test", "en", 1.0)
     return {"ok": bool(data), "engine": engine, "errors": errors,
             "cache_dir": TTS_CACHE_DIR,
             "cached": len(os.listdir(TTS_CACHE_DIR)) if os.path.isdir(TTS_CACHE_DIR) else 0}
