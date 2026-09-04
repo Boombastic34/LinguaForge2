@@ -1,9 +1,0 @@
-{
- "name": "Fiszki dodane ręcznie",
- "opis": "Własne słówka. Pole theme = kategoria (używana przez mapę luk).",
- "domain": "general",
- "cat": "mixed",
- "theme": "inne",
- "level": "A1",
- "items": []
-}
