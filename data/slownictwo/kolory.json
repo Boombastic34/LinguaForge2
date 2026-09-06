@@ -11,7 +11,9 @@
    "en": "red",
    "pl": "czerwony",
    "level": "A1",
-   "rank": 700
+   "rank": 700,
+   "example": "The bus is red.",
+   "example_pl": "Autobus jest czerwony."
   },
   {
    "nr": 2,
@@ -19,7 +21,9 @@
    "en": "blue",
    "pl": "niebieski",
    "level": "A1",
-   "rank": 701
+   "rank": 701,
+   "example": "My car is blue.",
+   "example_pl": "Mój samochód jest niebieski."
   },
   {
    "nr": 3,
@@ -27,7 +31,9 @@
    "en": "green",
    "pl": "zielony",
    "level": "A1",
-   "rank": 702
+   "rank": 702,
+   "example": "The grass is green.",
+   "example_pl": "Trawa jest zielona."
   },
   {
    "nr": 4,
@@ -35,7 +41,9 @@
    "en": "yellow",
    "pl": "żółty",
    "level": "A1",
-   "rank": 703
+   "rank": 703,
+   "example": "Bananas are yellow.",
+   "example_pl": "Banany są żółte."
   },
   {
    "nr": 5,
@@ -43,7 +51,9 @@
    "en": "black",
    "pl": "czarny",
    "level": "A1",
-   "rank": 704
+   "rank": 704,
+   "example": "I have a black jacket.",
+   "example_pl": "Mam czarną kurtkę."
   },
   {
    "nr": 6,
@@ -51,7 +61,9 @@
    "en": "white",
    "pl": "biały",
    "level": "A1",
-   "rank": 705
+   "rank": 705,
+   "example": "The walls are white.",
+   "example_pl": "Ściany są białe."
   },
   {
    "nr": 7,
@@ -59,7 +71,9 @@
    "en": "grey",
    "pl": "szary",
    "level": "A1",
-   "rank": 706
+   "rank": 706,
+   "example": "The sky is grey today.",
+   "example_pl": "Niebo jest dziś szare."
   },
   {
    "nr": 8,
@@ -67,7 +81,9 @@
    "en": "brown",
    "pl": "brązowy",
    "level": "A1",
-   "rank": 707
+   "rank": 707,
+   "example": "Her eyes are brown.",
+   "example_pl": "Jej oczy są brązowe."
   },
   {
    "nr": 9,
@@ -75,7 +91,9 @@
    "en": "pink",
    "pl": "różowy",
    "level": "A1",
-   "rank": 708
+   "rank": 708,
+   "example": "The baby's room is pink.",
+   "example_pl": "Pokój dziecka jest różowy."
   },
   {
    "nr": 10,
@@ -83,7 +101,9 @@
    "en": "purple",
    "pl": "fioletowy",
    "level": "A1",
-   "rank": 709
+   "rank": 709,
+   "example": "She likes purple flowers.",
+   "example_pl": "Ona lubi fioletowe kwiaty."
   },
   {
    "nr": 11,
@@ -91,7 +111,9 @@
    "en": "orange (colour)",
    "pl": "pomarańczowy",
    "level": "A1",
-   "rank": 710
+   "rank": 710,
+   "example": "The safety vest is orange.",
+   "example_pl": "Kamizelka odblaskowa jest pomarańczowa."
   },
   {
    "nr": 12,
@@ -99,7 +121,9 @@
    "en": "gold",
    "pl": "złoty",
    "level": "A1",
-   "rank": 711
+   "rank": 711,
+   "example": "Her ring is gold.",
+   "example_pl": "Jej pierścionek jest złoty."
   },
   {
    "nr": 13,
@@ -107,7 +131,9 @@
    "en": "silver",
    "pl": "srebrny",
    "level": "A1",
-   "rank": 712
+   "rank": 712,
+   "example": "The car is silver.",
+   "example_pl": "Samochód jest srebrny."
   },
   {
    "nr": 14,
@@ -115,7 +141,9 @@
    "en": "dark",
    "pl": "ciemny",
    "level": "A1",
-   "rank": 713
+   "rank": 713,
+   "example": "It is dark outside.",
+   "example_pl": "Na zewnątrz jest ciemno."
   },
   {
    "nr": 15,
@@ -123,7 +151,9 @@
    "en": "light (colour)",
    "pl": "jasny",
    "level": "A1",
-   "rank": 714
+   "rank": 714,
+   "example": "I want a light blue shirt.",
+   "example_pl": "Chcę jasnoniebieską koszulę."
   },
   {
    "nr": 16,
@@ -131,7 +161,9 @@
    "en": "navy blue",
    "pl": "granatowy",
    "level": "A1",
-   "rank": 316
+   "rank": 316,
+   "example": "The uniform is navy blue.",
+   "example_pl": "Mundur jest granatowy."
   },
   {
    "nr": 17,
@@ -139,7 +171,9 @@
    "en": "sky blue",
    "pl": "błękitny",
    "level": "A1",
-   "rank": 317
+   "rank": 317,
+   "example": "The room is sky blue.",
+   "example_pl": "Pokój jest błękitny."
   },
   {
    "nr": 18,
@@ -147,7 +181,9 @@
    "en": "turquoise",
    "pl": "turkusowy",
    "level": "A1",
-   "rank": 318
+   "rank": 318,
+   "example": "The sea is turquoise here.",
+   "example_pl": "Morze jest tu turkusowe."
   },
   {
    "nr": 19,
@@ -155,7 +191,9 @@
    "en": "beige",
    "pl": "beżowy",
    "level": "A1",
-   "rank": 319
+   "rank": 319,
+   "example": "The sofa is beige.",
+   "example_pl": "Kanapa jest beżowa."
   },
   {
    "nr": 20,
@@ -163,7 +201,9 @@
    "en": "cream (colour)",
    "pl": "kremowy",
    "level": "A1",
-   "rank": 320
+   "rank": 320,
+   "example": "The kitchen is cream.",
+   "example_pl": "Kuchnia jest kremowa."
   },
   {
    "nr": 21,
@@ -171,7 +211,9 @@
    "en": "violet",
    "pl": "fioletowy (jasny)",
    "level": "A1",
-   "rank": 321
+   "rank": 321,
+   "example": "Violet is my favourite colour.",
+   "example_pl": "Fioletowy to mój ulubiony kolor."
   },
   {
    "nr": 22,
@@ -179,7 +221,9 @@
    "en": "lime",
    "pl": "limonkowy",
    "level": "A1",
-   "rank": 322
+   "rank": 322,
+   "example": "The T-shirt is lime.",
+   "example_pl": "Koszulka jest limonkowa."
   },
   {
    "nr": 23,
@@ -187,7 +231,9 @@
    "en": "olive",
    "pl": "oliwkowy",
    "level": "A1",
-   "rank": 323
+   "rank": 323,
+   "example": "He has an olive jacket.",
+   "example_pl": "On ma oliwkową kurtkę."
   },
   {
    "nr": 24,
@@ -195,7 +241,9 @@
    "en": "bright",
    "pl": "jasny / jaskrawy",
    "level": "A1",
-   "rank": 324
+   "rank": 324,
+   "example": "The light is very bright.",
+   "example_pl": "Światło jest bardzo jasne."
   },
   {
    "nr": 25,
@@ -203,7 +251,9 @@
    "en": "pale",
    "pl": "blady",
    "level": "A1",
-   "rank": 325
+   "rank": 325,
+   "example": "You look pale. Are you ill?",
+   "example_pl": "Wyglądasz blado. Jesteś chory?"
   },
   {
    "nr": 26,
@@ -211,7 +261,9 @@
    "en": "colourful",
    "pl": "kolorowy",
    "level": "A1",
-   "rank": 326
+   "rank": 326,
+   "example": "The market is colourful.",
+   "example_pl": "Targ jest kolorowy."
   },
   {
    "nr": 27,
@@ -219,7 +271,9 @@
    "en": "plain",
    "pl": "jednolity / zwykły",
    "level": "A1",
-   "rank": 327
+   "rank": 327,
+   "example": "I want a plain white T-shirt.",
+   "example_pl": "Chcę zwykłą białą koszulkę."
   },
   {
    "nr": 28,
@@ -227,7 +281,9 @@
    "en": "striped",
    "pl": "w paski",
    "level": "A1",
-   "rank": 328
+   "rank": 328,
+   "example": "He wears a striped shirt.",
+   "example_pl": "On nosi koszulę w paski."
   },
   {
    "nr": 29,
@@ -235,7 +291,9 @@
    "en": "spotted",
    "pl": "w kropki",
    "level": "A1",
-   "rank": 329
+   "rank": 329,
+   "example": "Her dress is spotted.",
+   "example_pl": "Jej sukienka jest w kropki."
   },
   {
    "nr": 30,
@@ -243,7 +301,9 @@
    "en": "checked",
    "pl": "w kratę",
    "level": "A1",
-   "rank": 330
+   "rank": 330,
+   "example": "I like checked shirts.",
+   "example_pl": "Lubię koszule w kratę."
   },
   {
    "nr": 31,
@@ -251,7 +311,9 @@
    "en": "shiny",
    "pl": "błyszczący",
    "level": "A1",
-   "rank": 331
+   "rank": 331,
+   "example": "The floor is shiny.",
+   "example_pl": "Podłoga jest błyszcząca."
   },
   {
    "nr": 32,
@@ -259,7 +321,9 @@
    "en": "matt",
    "pl": "matowy",
    "level": "A1",
-   "rank": 332
+   "rank": 332,
+   "example": "The paint is matt.",
+   "example_pl": "Farba jest matowa."
   }
  ]
 }

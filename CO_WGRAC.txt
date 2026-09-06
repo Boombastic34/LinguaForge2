@@ -1,18 +1,12 @@
-LinguaForge v3.0.0 - SCIEZKA GLOWNA DROGA, TO BE OD NOWA, PORZADKI
+LinguaForge v3.2.0 - POJEDYNCZE SLOWKA DO UTRWALENIA, ETAPY RAZEM, DO/DOES i A/AN
 
-PLIKI (zastap w repozytorium; paczka zawiera tez wszystkie zmiany z v2.9.0):
-  main.py                     -> korzen
-  CHANGELOG.md                -> korzen
-  data/sciezka.json           -> data           (ZASTAP)
-  data/podstawy/kursy.json    -> data/podstawy  (ZASTAP)
-  tools/to_be_topic.py        -> tools          (nowy: generator tematu TO BE)
-  static/index.html           -> static
-  static/css/style.css        -> static/css
-  static/js/*.js              -> static/js      (14 plikow)
+Paczka zawiera wszystkie zmiany od v2.9.0 - zastap pliki w repozytorium:
+  main.py, CHANGELOG.md, CO_WGRAC.txt                 -> korzen
+  data/sciezka.json, data/podstawy/kursy.json         -> data/...
+  data/slownictwo/rodzina_ludzie.json, kolory.json    -> data/slownictwo  (dopisane zdania przykladowe)
+  tools/*.py                                          -> tools (generatory tresci)
+  static/index.html, static/css/style.css
+  static/js/*.js (15 plikow)
 
-MOZNA SKASOWAC (nieuzywane): static/js/knowledge.js, lessons.js, training.js
-
-UWAGA: uczniowie, ktorzy zaliczyli juz stare ogniwa "wiedza"/"lekcja", nie traca postepu -
-te wpisy w path.json sa ignorowane. Nowe ogniwo "Podstawy: TO BE" zalicza sie testem tematu.
-
-Po wdrozeniu: odswiez (Ctrl+F5 / zamknij i otworz apke). W rogu ma byc v3.0.0.
+MOZNA SKASOWAC: static/js/knowledge.js, lessons.js, training.js
+Po wdrozeniu: Ctrl+F5. W rogu ma byc v3.2.0.

@@ -11,7 +11,9 @@
    "en": "mother",
    "pl": "matka / mama",
    "level": "A1",
-   "rank": 470
+   "rank": 470,
+   "example": "My mother is a nurse.",
+   "example_pl": "Moja mama jest pielęgniarką."
   },
   {
    "nr": 2,
@@ -19,7 +21,9 @@
    "en": "father",
    "pl": "ojciec / tata",
    "level": "A1",
-   "rank": 471
+   "rank": 471,
+   "example": "My father works in a warehouse.",
+   "example_pl": "Mój tata pracuje w magazynie."
   },
   {
    "nr": 3,
@@ -27,7 +31,9 @@
    "en": "parents",
    "pl": "rodzice",
    "level": "A1",
-   "rank": 472
+   "rank": 472,
+   "example": "My parents are at home.",
+   "example_pl": "Moi rodzice są w domu."
   },
   {
    "nr": 4,
@@ -35,7 +41,9 @@
    "en": "son",
    "pl": "syn",
    "level": "A1",
-   "rank": 473
+   "rank": 473,
+   "example": "Their son is ten years old.",
+   "example_pl": "Ich syn ma dziesięć lat."
   },
   {
    "nr": 5,
@@ -43,7 +51,9 @@
    "en": "daughter",
    "pl": "córka",
    "level": "A1",
-   "rank": 474
+   "rank": 474,
+   "example": "Our daughter likes music.",
+   "example_pl": "Nasza córka lubi muzykę."
   },
   {
    "nr": 6,
@@ -51,7 +61,9 @@
    "en": "brother",
    "pl": "brat",
    "level": "A1",
-   "rank": 475
+   "rank": 475,
+   "example": "My brother is a driver.",
+   "example_pl": "Mój brat jest kierowcą."
   },
   {
    "nr": 7,
@@ -59,7 +71,9 @@
    "en": "sister",
    "pl": "siostra",
    "level": "A1",
-   "rank": 476
+   "rank": 476,
+   "example": "Her sister lives in London.",
+   "example_pl": "Jej siostra mieszka w Londynie."
   },
   {
    "nr": 8,
@@ -67,7 +81,9 @@
    "en": "grandmother",
    "pl": "babcia",
    "level": "A1",
-   "rank": 477
+   "rank": 477,
+   "example": "My grandmother is 80.",
+   "example_pl": "Moja babcia ma 80 lat."
   },
   {
    "nr": 9,
@@ -75,7 +91,9 @@
    "en": "grandfather",
    "pl": "dziadek",
    "level": "A1",
-   "rank": 478
+   "rank": 478,
+   "example": "My grandfather has a big garden.",
+   "example_pl": "Mój dziadek ma duży ogród."
   },
   {
    "nr": 10,
@@ -83,7 +101,9 @@
    "en": "uncle",
    "pl": "wujek",
    "level": "A1",
-   "rank": 479
+   "rank": 479,
+   "example": "My uncle is a teacher.",
+   "example_pl": "Mój wujek jest nauczycielem."
   },
   {
    "nr": 11,
@@ -91,7 +111,9 @@
    "en": "aunt",
    "pl": "ciocia",
    "level": "A1",
-   "rank": 480
+   "rank": 480,
+   "example": "My aunt lives near us.",
+   "example_pl": "Moja ciocia mieszka blisko nas."
   },
   {
    "nr": 12,
@@ -99,7 +121,9 @@
    "en": "cousin",
    "pl": "kuzyn / kuzynka",
    "level": "A1",
-   "rank": 481
+   "rank": 481,
+   "example": "My cousin is my best friend.",
+   "example_pl": "Mój kuzyn jest moim najlepszym przyjacielem."
   },
   {
    "nr": 13,
@@ -107,7 +131,9 @@
    "en": "husband",
    "pl": "mąż",
    "level": "A1",
-   "rank": 482
+   "rank": 482,
+   "example": "Her husband is a good cook.",
+   "example_pl": "Jej mąż dobrze gotuje."
   },
   {
    "nr": 14,
@@ -115,7 +141,9 @@
    "en": "wife",
    "pl": "żona",
    "level": "A1",
-   "rank": 483
+   "rank": 483,
+   "example": "My wife works at night.",
+   "example_pl": "Moja żona pracuje w nocy."
   },
   {
    "nr": 15,
@@ -123,7 +151,9 @@
    "en": "baby",
    "pl": "niemowlę",
    "level": "A1",
-   "rank": 484
+   "rank": 484,
+   "example": "The baby is asleep.",
+   "example_pl": "Niemowlę śpi."
   },
   {
    "nr": 16,
@@ -131,7 +161,9 @@
    "en": "boy",
    "pl": "chłopiec",
    "level": "A1",
-   "rank": 485
+   "rank": 485,
+   "example": "The boy is my nephew.",
+   "example_pl": "Ten chłopiec to mój bratanek."
   },
   {
    "nr": 17,
@@ -139,7 +171,9 @@
    "en": "girl",
    "pl": "dziewczynka",
    "level": "A1",
-   "rank": 486
+   "rank": 486,
+   "example": "The girl has a red bike.",
+   "example_pl": "Dziewczynka ma czerwony rower."
   },
   {
    "nr": 18,
@@ -147,7 +181,9 @@
    "en": "neighbour",
    "pl": "sąsiad",
    "level": "A1",
-   "rank": 487
+   "rank": 487,
+   "example": "Our neighbour is very friendly.",
+   "example_pl": "Nasz sąsiad jest bardzo miły."
   },
   {
    "nr": 19,
@@ -155,7 +191,9 @@
    "en": "guest",
    "pl": "gość",
    "level": "A1",
-   "rank": 488
+   "rank": 488,
+   "example": "We have a guest tonight.",
+   "example_pl": "Mamy dziś wieczorem gościa."
   },
   {
    "nr": 20,
@@ -163,7 +201,9 @@
    "en": "stranger",
    "pl": "obcy / nieznajomy",
    "level": "A1",
-   "rank": 489
+   "rank": 489,
+   "example": "Don't talk to strangers.",
+   "example_pl": "Nie rozmawiaj z nieznajomymi."
   },
   {
    "nr": 21,
@@ -171,7 +211,9 @@
    "en": "adult",
    "pl": "dorosły",
    "level": "A1",
-   "rank": 490
+   "rank": 490,
+   "example": "Tickets for adults cost ten pounds.",
+   "example_pl": "Bilety dla dorosłych kosztują dziesięć funtów."
   },
   {
    "nr": 22,
@@ -179,7 +221,9 @@
    "en": "teenager",
    "pl": "nastolatek",
    "level": "A1",
-   "rank": 491
+   "rank": 491,
+   "example": "My son is a teenager now.",
+   "example_pl": "Mój syn jest już nastolatkiem."
   },
   {
    "nr": 23,
@@ -187,7 +231,9 @@
    "en": "people",
    "pl": "ludzie",
    "level": "A1",
-   "rank": 492
+   "rank": 492,
+   "example": "There are many people here.",
+   "example_pl": "Jest tu dużo ludzi."
   },
   {
    "nr": 24,
@@ -195,7 +241,9 @@
    "en": "person",
    "pl": "osoba",
    "level": "A1",
-   "rank": 493
+   "rank": 493,
+   "example": "She is a kind person.",
+   "example_pl": "Ona jest miłą osobą."
   },
   {
    "nr": 25,
@@ -203,7 +251,9 @@
    "en": "nephew",
    "pl": "siostrzeniec / bratanek",
    "level": "A1",
-   "rank": 325
+   "rank": 325,
+   "example": "My nephew is five.",
+   "example_pl": "Mój bratanek ma pięć lat."
   },
   {
    "nr": 26,
@@ -211,7 +261,9 @@
    "en": "niece",
    "pl": "siostrzenica / bratanica",
    "level": "A1",
-   "rank": 326
+   "rank": 326,
+   "example": "My niece loves animals.",
+   "example_pl": "Moja siostrzenica kocha zwierzęta."
   },
   {
    "nr": 27,
@@ -219,7 +271,9 @@
    "en": "grandson",
    "pl": "wnuk",
    "level": "A1",
-   "rank": 327
+   "rank": 327,
+   "example": "Her grandson is a student.",
+   "example_pl": "Jej wnuk jest studentem."
   },
   {
    "nr": 28,
@@ -227,7 +281,9 @@
    "en": "granddaughter",
    "pl": "wnuczka",
    "level": "A1",
-   "rank": 328
+   "rank": 328,
+   "example": "Their granddaughter is two.",
+   "example_pl": "Ich wnuczka ma dwa lata."
   },
   {
    "nr": 29,
@@ -235,7 +291,9 @@
    "en": "mother-in-law",
    "pl": "teściowa",
    "level": "A1",
-   "rank": 329
+   "rank": 329,
+   "example": "My mother-in-law is visiting us.",
+   "example_pl": "Moja teściowa nas odwiedza."
   },
   {
    "nr": 30,
@@ -243,7 +301,9 @@
    "en": "father-in-law",
    "pl": "teść",
    "level": "A1",
-   "rank": 330
+   "rank": 330,
+   "example": "My father-in-law is a farmer.",
+   "example_pl": "Mój teść jest rolnikiem."
   },
   {
    "nr": 31,
@@ -251,7 +311,9 @@
    "en": "partner",
    "pl": "partner / partnerka",
    "level": "A1",
-   "rank": 331
+   "rank": 331,
+   "example": "This is my partner, Anna.",
+   "example_pl": "To moja partnerka, Anna."
   },
   {
    "nr": 32,
@@ -259,7 +321,9 @@
    "en": "girlfriend",
    "pl": "dziewczyna (sympatia)",
    "level": "A1",
-   "rank": 332
+   "rank": 332,
+   "example": "His girlfriend is from Spain.",
+   "example_pl": "Jego dziewczyna jest z Hiszpanii."
   },
   {
    "nr": 33,
@@ -267,7 +331,9 @@
    "en": "boyfriend",
    "pl": "chłopak (sympatia)",
    "level": "A1",
-   "rank": 333
+   "rank": 333,
+   "example": "Her boyfriend plays football.",
+   "example_pl": "Jej chłopak gra w piłkę nożną."
   },
   {
    "nr": 34,
@@ -275,7 +341,9 @@
    "en": "relative",
    "pl": "krewny",
    "level": "A1",
-   "rank": 334
+   "rank": 334,
+   "example": "We have relatives in Germany.",
+   "example_pl": "Mamy krewnych w Niemczech."
   },
   {
    "nr": 35,
@@ -283,7 +351,9 @@
    "en": "twins",
    "pl": "bliźnięta",
    "level": "A1",
-   "rank": 335
+   "rank": 335,
+   "example": "They are twins.",
+   "example_pl": "Oni są bliźniakami."
   },
   {
    "nr": 36,
@@ -291,7 +361,9 @@
    "en": "only child",
    "pl": "jedynak",
    "level": "A1",
-   "rank": 336
+   "rank": 336,
+   "example": "I am an only child.",
+   "example_pl": "Jestem jedynakiem."
   },
   {
    "nr": 37,
@@ -299,7 +371,9 @@
    "en": "widow",
    "pl": "wdowa",
    "level": "A1",
-   "rank": 337
+   "rank": 337,
+   "example": "She is a widow.",
+   "example_pl": "Ona jest wdową."
   },
   {
    "nr": 38,
@@ -307,7 +381,9 @@
    "en": "engaged",
    "pl": "zaręczony",
    "level": "A1",
-   "rank": 338
+   "rank": 338,
+   "example": "We are engaged!",
+   "example_pl": "Jesteśmy zaręczeni!"
   },
   {
    "nr": 39,
@@ -315,7 +391,9 @@
    "en": "married",
    "pl": "żonaty / zamężna",
    "level": "A1",
-   "rank": 339
+   "rank": 339,
+   "example": "Are you married?",
+   "example_pl": "Jesteś żonaty / zamężna?"
   },
   {
    "nr": 40,
@@ -323,7 +401,9 @@
    "en": "divorced",
    "pl": "rozwiedziony",
    "level": "A1",
-   "rank": 340
+   "rank": 340,
+   "example": "My parents are divorced.",
+   "example_pl": "Moi rodzice są rozwiedzeni."
   },
   {
    "nr": 41,
@@ -331,7 +411,9 @@
    "en": "single",
    "pl": "stanu wolnego",
    "level": "A1",
-   "rank": 341
+   "rank": 341,
+   "example": "He is single.",
+   "example_pl": "On jest kawalerem."
   },
   {
    "nr": 42,
@@ -339,7 +421,9 @@
    "en": "birthday",
    "pl": "urodziny",
    "level": "A1",
-   "rank": 342
+   "rank": 342,
+   "example": "My birthday is in May.",
+   "example_pl": "Moje urodziny są w maju."
   },
   {
    "nr": 43,
@@ -347,7 +431,9 @@
    "en": "wedding",
    "pl": "ślub",
    "level": "A1",
-   "rank": 343
+   "rank": 343,
+   "example": "The wedding is on Saturday.",
+   "example_pl": "Ślub jest w sobotę."
   },
   {
    "nr": 44,
@@ -355,7 +441,9 @@
    "en": "funeral",
    "pl": "pogrzeb",
    "level": "A1",
-   "rank": 344
+   "rank": 344,
+   "example": "The funeral is tomorrow.",
+   "example_pl": "Pogrzeb jest jutro."
   },
   {
    "nr": 45,
@@ -363,7 +451,9 @@
    "en": "childhood",
    "pl": "dzieciństwo",
    "level": "A1",
-   "rank": 345
+   "rank": 345,
+   "example": "I had a happy childhood.",
+   "example_pl": "Miałem szczęśliwe dzieciństwo."
   },
   {
    "nr": 46,
@@ -371,7 +461,9 @@
    "en": "generation",
    "pl": "pokolenie",
    "level": "A1",
-   "rank": 346
+   "rank": 346,
+   "example": "My generation likes phones.",
+   "example_pl": "Moje pokolenie lubi telefony."
   },
   {
    "nr": 47,
@@ -379,7 +471,9 @@
    "en": "elderly",
    "pl": "starszy (o osobie)",
    "level": "A1",
-   "rank": 347
+   "rank": 347,
+   "example": "Elderly people need help.",
+   "example_pl": "Osoby starsze potrzebują pomocy."
   },
   {
    "nr": 48,
@@ -387,7 +481,9 @@
    "en": "landlady",
    "pl": "właścicielka mieszkania",
    "level": "A1",
-   "rank": 348
+   "rank": 348,
+   "example": "My landlady lives downstairs.",
+   "example_pl": "Właścicielka mieszkania mieszka na dole."
   },
   {
    "nr": 49,
@@ -395,7 +491,9 @@
    "en": "classmate",
    "pl": "kolega z klasy",
    "level": "A1",
-   "rank": 349
+   "rank": 349,
+   "example": "Tom is my classmate.",
+   "example_pl": "Tom jest moim kolegą z klasy."
   },
   {
    "nr": 50,
@@ -403,7 +501,9 @@
    "en": "teammate",
    "pl": "kolega z zespołu",
    "level": "A1",
-   "rank": 350
+   "rank": 350,
+   "example": "My teammates are great.",
+   "example_pl": "Moi koledzy z zespołu są świetni."
   },
   {
    "nr": 51,
@@ -411,7 +511,9 @@
    "en": "crowd",
    "pl": "tłum",
    "level": "A1",
-   "rank": 351
+   "rank": 351,
+   "example": "There is a big crowd outside.",
+   "example_pl": "Na zewnątrz jest wielki tłum."
   },
   {
    "nr": 52,
@@ -419,7 +521,9 @@
    "en": "group",
    "pl": "grupa",
    "level": "A1",
-   "rank": 352
+   "rank": 352,
+   "example": "We work in a group of five.",
+   "example_pl": "Pracujemy w pięcioosobowej grupie."
   }
  ]
 }

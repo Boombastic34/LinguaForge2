@@ -1,5 +1,102 @@
 # LinguaForge — CHANGELOG
 
+## v3.2.0 (2026-09-06) — pojedyncze słówka do utrwalenia, etapy razem, DO/DOES i A/AN od nowa
+
+## Do utrwalenia — poprawki
+- **Pytanie o SAMO słowo, nie o całe zdanie.** Fiszka z kategorii 🔥 pokazuje zdanie z luką
+  („Our _____ is very friendly.” + polskie zdanie) i prosi o brakujące słowo. Uznawana jest
+  forma z fiszki i forma ze zdania (stranger / strangers).
+- **Dodaje się automatycznie** przy każdej błędnej odpowiedzi i przy „Nie wiem": w fiszkach
+  (od razu, nie po 2 potknięciach), na Ścieżce (słówka do napisania i „co znaczy X"), w Podstawach
+  (słowa treści ze zdania, którego nie znałeś). Toast informuje, co trafiło do kategorii.
+- **Znaczenie przez dotknięcie**: gdy słowa nie ma w bazie, po odpowiedzi polskie zdanie jest
+  klikalne — wskazujesz słowo, które jest tłumaczeniem, i fiszka je zapamiętuje.
+- Zaimki, przedimki, formy „być", skróty (I'm, don't…), liczebniki do 10 — nigdy nie trafiają
+  do kategorii.
+
+## Ścieżka — etapy razem
+- **„📖 Najpierw poznaj słówka"** na ekranie startowym ogniwa słówek: lista z lektorem, zdaniem
+  przykładowym i tłumaczeniem (można ukryć), „Przeczytaj wszystkie", potem „Teraz ćwicz".
+  Nagrania przygotowywane w tle.
+- **Sesja słówek miesza etapy**: do zadań słówkowych dochodzą **zdania z tymi słówkami** —
+  🎧 dyktando (słuchanie + pisanie) i ✍️ „Napisz po angielsku" całe zdanie (czytanie + pisanie).
+  Przy każdym wyniku 🎤 „Powiedz to zdanie" (wymowa, opcjonalnie) i klikalne słowa.
+- **84 zdania przykładowe** (rodzina i ludzie, kolory) z tłumaczeniami — `tools/przyklady_a1.py`.
+  Kolejne tematy (przymiotniki, liczebniki, kalendarz, jedzenie…) dopisujemy tym samym narzędziem.
+- Nowy endpoint `GET /api/path/words/{lid}`.
+
+## Podstawy — dwa kolejne rozdziały w stylu TO BE
+- **DO i DOES** (5 stron, 20 ćwiczeń, 10 pytań testu): po co jest DO, DO/DOES, zasada jednego -s,
+  don't/doesn't, krótkie odpowiedzi, dlaczego TO BE i can nie potrzebują DO, pytania z where/what.
+- **A czy AN** (4 strony, 19 ćwiczeń, 9 pytań): jeden z wielu, dźwięk a litera (an hour /
+  a university / an SMS), liczba mnoga i niepoliczalne, A/AN vs THE, zawody, twice a week.
+- Oba z tabelami-ściągami, przykładami ogólnymi i z pracy, „dlaczego nie inaczej", nowymi typami
+  zadań (ze słuchu ABCD, klocki, znajdź błąd, uzupełnij tekst). Generatory: `tools/do_does_topic.py`,
+  `tools/a_an_topic.py`.
+- Odpowiedź „—" (brak przedimka) poprawnie wstawiana w pełnym zdaniu i czytana przez lektora.
+
+## Pliki
+main.py · data/podstawy/kursy.json · data/slownictwo/rodzina_ludzie.json · data/slownictwo/kolory.json ·
+tools/*.py · static/css/style.css · static/js/app.js · basics.js · path.js · flashcards.js
+
+## v3.1.0 (2026-09-06) — Do utrwalenia, nowe typy zadań, mówienie, pomijanie ogniw
+
+## Błędy naprawione (Podstawy / TO BE)
+- **Tabele były ucinane** — komórki miały `white-space:nowrap`. Teraz zawijają się,
+  mają mniejszą czcionkę w wąskiej kolumnie, a sekcja z tabelą w układzie dwukolumnowym
+  rozciąga się na całą szerokość. Na telefonie tabela ma dodatkowy margines.
+- **„Połącz w pary" odrzucało poprawne pary** (she–is z „drugim" is). Sprawdzana jest
+  treść pary, nie numer.
+- **Luka „She ___ not here"**: wynik pokazuje pełne zdanie i skrót: „Poprawnie: is
+  (= She isn't here today.)". Przy każdej luce wyświetla się całe zdanie z odpowiedzią.
+- **Lektor czyta całe zdanie**, nie samą lukę/zaimek.
+- „Praca w magazynie" — teraz widać, co to zmienia: na ekranie tematu jest przełącznik
+  **🌍 przykłady ogólne / 🏭 przykłady z pracy**, a nagłówek przykładów w teorii mówi,
+  który wariant oglądasz. „Picker" zastąpione przez „warehouse worker".
+
+## Nowe typy zadań (w TO BE: 24 ćwiczenia, 11 pytań testu)
+- 🎧 **Wybór ze słuchu** — lektor czyta zdanie, wybierasz znaczenie albo usłyszane zdanie.
+- 🧩 **Ułóż zdanie z klocków** — kolejność słów.
+- 🔍 **Znajdź błąd** — kliknij niepoprawne słowo w zdaniu.
+- 📝 **Uzupełnij tekst** — dłuższy tekst z lukami: część wybierasz z listy, część wpisujesz;
+  po sprawdzeniu każda luka podświetla się na zielono/czerwono.
+  Format w JSON: `[[is|am|are]]` (pierwsza opcja poprawna) i `[[=am]]` (wpisz).
+
+## Pisanie zdań: słowo po słowie
+- Przy każdym zdaniu do zapisania (słuchanie w Podstawach, dyktanda i tłumaczenia na
+  Ścieżce, moduł Słuchanie, przepisywanie po błędzie) wynik pokazuje **na czerwono słowa
+  zbędne/błędne, na zielono brakujące** (`wordDiff`, dopasowanie LCS).
+
+## 🔥 „Do utrwalenia" — nowa kategoria fiszek
+- Trafiają tu: (1) słowa treści, które błędnie zapisałeś w zdaniu (poprawna forma, nie
+  literówka), (2) fiszki mylone kolejny raz (2+ potknięcia), (3) słowa, które sam
+  oznaczysz — **w każdym wyniku zadania zdanie jest klikalne: dotknij słowa, którego nie
+  znasz**. Zaimki, przedimki, formy „być" itp. są pomijane (to gramatyka, nie słówka).
+- Słowo wypada z kategorii po **3 poprawnych zapisach netto** (błędne odejmują) — licznik
+  widać w podpowiedzi fiszki. Znaczenie brane z bazy słówek; gdy słowa nie ma w bazie,
+  fiszka pokazuje polskie zdanie, z którego pochodzi.
+- API: `GET /api/hardwords`, `POST /api/hardwords/add|remove|report`.
+- Fiszki: **„☑ Wybierz kilka kategorii"** — łączenie dowolnych tematów w jednej sesji.
+
+## Ścieżka
+- **⏭ Pomiń** przy każdym ogniwie (poza egzaminem poziomu) i **„Umiem to — pomiń"** na
+  ekranie tematu Podstaw: ogniwo liczy się bez wyniku, odblokowuje następne, można cofnąć (↩).
+  `POST /api/path/skip` obsługuje też `{type, level}` — pominięcie wszystkich ogniw danego typu.
+- **Powtórka skumulowana** jest teraz solidna: do słówek i gramatyki dochodzą pytania
+  z zaliczonych tematów Podstaw oraz dyktanda; sugerowana długość min. 24 zadania
+  (pula np. 84 po pierwszym poziomie). W egzaminie — wszystkie tematy Podstaw.
+
+## Krok naprzód: 🎤 mówienie
+- W każdym wyniku ze zdaniem jest przycisk **„🎤 Powiedz to zdanie"** — przeglądarka
+  rozpoznaje mowę (Web Speech API: Chrome, Edge, Android), a aplikacja porównuje słowo po
+  słowie i mówi, co poszło nie tak. To pierwszy element filaru „mówienie". Nie ocenia
+  akcentu — ocenia, czy wypowiedziałeś właściwe zdanie. W Safari/Firefox przycisk się nie
+  pokazuje.
+
+## Pliki
+main.py · data/podstawy/kursy.json · tools/to_be_topic.py · static/css/style.css ·
+static/js/app.js · ui.js · basics.js · path.js · flashcards.js · listening.js
+
 ## v3.0.0 (2026-09-04) — Ścieżka jako główna droga, Podstawy: TO BE od nowa, porządki
 
 ## Błędy naprawione

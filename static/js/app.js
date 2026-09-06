@@ -51,7 +51,7 @@ function boot() {
   const nav = el("nav", {});
   const aside = el("aside", {},
     el("div", { class: "brand" }, "Lingua", el("span", {}, "Forge")),
-    el("div", { class: "brand-sub", id: "verbox" }, "v3.1.0 · kuźnia języka"),
+    el("div", { class: "brand-sub", id: "verbox" }, "v3.2.0 · kuźnia języka"),
     nav,
     el("div", { class: "spacer" }),
     el("div", { class: "userbox" },
@@ -76,7 +76,7 @@ function boot() {
     const box = document.getElementById("verbox");
     if (!box) return;
     box.textContent = "v" + v.version + " · kuźnia języka";
-    if (v.version !== "3.1.0") {
+    if (v.version !== "3.2.0") {
       box.textContent = "v" + v.version + " · odśwież (Ctrl+F5)";
       box.style.color = "#ffd43b";
     }

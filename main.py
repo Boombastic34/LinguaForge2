@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "3.1.0"
+APP_VERSION = "3.2.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -148,7 +148,10 @@ this that these those there here am is are was were be been being do does did no
 should shall may might must to of in on at for from with by about as into like through after over between out against
 during without before under around among and or but so if then than too very just also only own same such of off up down
 what which who whom whose when where why how all any both each few more most other some no nor own s t m re ve ll d isn aren
-wasn weren don doesn didn won can't cannot let's o'clock ok okay hi hello please thanks yes""".split())
+wasn weren don doesn didn won can't cannot let's o'clock ok okay hi hello please thanks yes
+i'm you're he's she's it's we're they're isn't aren't wasn't weren't don't doesn't didn't won't i'll you'll he'll she'll
+we'll they'll i've you've we've they've i'd you'd he'd she'd we'd they'd there's that's what's who's where's
+one two three four five six seven eight nine ten""".split())
 
 
 def _hw_key(w):
@@ -211,7 +214,12 @@ def _hw_items(username):
     out = []
     for k, w in _hw_load(username).items():
         pl = w.get("pl") or (("(ze zdania) " + w["ctx_pl"]) if w.get("ctx_pl") else "?")
-        out.append({"id": "hw_" + k, "en": w["en"], "pl": pl, "example": w.get("ctx_en", ""),
+        ctx = w.get("ctx_en", "")
+        # luka także dla formy odmienionej (stranger → strangers, work → works / worked / working)
+        m = re.search(r"\b(" + re.escape(w["en"]) + r"(?:s|es|ed|d|ing)?)\b", ctx, flags=re.I) if ctx else None
+        cloze = (ctx[:m.start()] + "_____" + ctx[m.end():]) if m else ""
+        out.append({"id": "hw_" + k, "en": w["en"], "pl": pl, "example": ctx, "example_pl": w.get("ctx_pl", ""),
+                    "cloze": cloze, "cloze_word": m.group(1) if m else w["en"], "has_pl": bool(w.get("pl")),
                     "theme": "trudne", "cat": "mixed", "level": "A1", "deck": "hard",
                     "hint": "słowo do utrwalenia (%d/%d)" % (max(0, w.get("net", 0)), HW_EXIT_NET)})
     return out
@@ -575,6 +583,20 @@ async def hardwords_add(request: Request):
     return {"ok": True, "word": w}
 
 
+@app.post("/api/hardwords/meaning")
+async def hardwords_meaning(request: Request):
+    """Uczeń wskazuje polskie znaczenie słowa (np. dotykając słowa w polskim zdaniu)."""
+    who = current_user(request)
+    body = await request.json()
+    hw = _hw_load(who["username"])
+    k = _hw_key(body.get("en", ""))
+    if k not in hw:
+        raise HTTPException(404, "Nie ma takiego słowa w utrwalaniu.")
+    hw[k]["pl"] = str(body.get("pl", "")).strip()[:60]
+    _hw_save(who["username"], hw)
+    return {"ok": True, "word": hw[k]}
+
+
 @app.post("/api/hardwords/remove")
 async def hardwords_remove(request: Request):
     who = current_user(request)
@@ -665,6 +687,7 @@ def _card_payload(it, c, prof, is_new=False):
             "nr": it.get("nr"), "theme": it.get("theme", "inne"),
             "example": it.get("example", ""), "example_pl": it.get("example_pl", ""),
             "img": it.get("img", ""), "hint": it.get("hint", ""),
+            "cloze": it.get("cloze", ""), "cloze_word": it.get("cloze_word", ""), "has_pl": it.get("has_pl", True),
             "deck": it.get("deck", "general"), "level": it.get("level", "A1"),
             "new": is_new, "typing": typing,
             "leech": fsrs.is_leech(c["fsrs"]), "reps": c["fsrs"]["reps"]}
@@ -697,9 +720,10 @@ async def cards_review(request: Request):
     if cid.startswith("hw_"):
         # karta z kategorii „Do utrwalenia": +1 / −1, przy 3 wypada z kategorii
         hw_note = _hw_bump(who["username"], cid[3:], correct)
-    elif rating == 1 and cards[cid]["fsrs"].get("lapses", 0) >= 2 and body.get("en"):
-        # zwykła fiszka mylona po raz kolejny → trafia do utrwalenia
-        if _hw_add(who["username"], body["en"], body.get("pl", ""), source="flashcards"):
+    elif rating == 1 and body.get("en") and _hw_key(body["en"]) not in HW_STOP:
+        # błędna odpowiedź albo „nie wiem" → słówko trafia do utrwalenia
+        existed = _hw_key(body["en"]) in _hw_load(who["username"])
+        if _hw_add(who["username"], body["en"], body.get("pl", ""), body.get("example", ""), body.get("example_pl", ""), source="flashcards") and not existed:
             hw_note = "added"
     storage.log_event(who["username"], {"type": "card_review", "card": cid,
                                         "question": body.get("pl", ""), "en": body.get("en"),
@@ -1394,6 +1418,22 @@ async def path_session(lid: str, request: Request, n: str = ""):
     if ln["type"] == "slowka":
         items = [it for it in pool if it.get("theme") == ln["theme"]]
         tasks = _mk_vocab_tasks(items, len(items))
+        # Etapy razem: do słówek dochodzą ZDANIA z tymi słówkami — dyktando (słuchanie +
+        # pisanie) i przekład zdania (czytanie + pisanie). Bierzemy je ze zdań przykładowych.
+        with_ex = [it for it in items if it.get("example")]
+        random.shuffle(with_ex)
+        for k, it in enumerate(with_ex[: max(4, len(items) // 3)]):
+            if k % 2 == 0:
+                tasks.append({"kind": "dictation", "text": "🎧 Posłuchaj i zapisz zdanie.",
+                              "tts": it["example"], "target": it["example"], "pl": it.get("example_pl", ""),
+                              "answer": it["example"], "item": it, "nr": it.get("nr")})
+            else:
+                tasks.append({"kind": "translate", "text": f"✍️ Napisz po angielsku: „{it.get('example_pl') or it['pl']}”",
+                              "item_data": {"pl": it.get("example_pl", ""), "en_ref": it["example"],
+                                            "level": it.get("level", "A1"),
+                                            "keywords": _content_words(it["example"]) or [it["en"].split(" (")[0]]},
+                              "answer": it["example"], "pl": it.get("example_pl", ""), "item": it, "nr": it.get("nr")})
+        random.shuffle(tasks)
     elif ln["type"] == "wiedza":
         a = next(x for x in storage.load_data("wiedza/baza.json", {})["articles"]
                  if x["id"] == ln["article"])
@@ -1592,6 +1632,15 @@ async def path_answer(request: Request):
         th = it.get("theme", "inne")
         tm[th] = round(min(100, max(0, tm.get(th, 55) + (3 if correct else -5))), 1)
     storage.save_profile(who["username"], prof)
+    hard_added = None
+    if not correct and t["kind"] in ("choice", "produce") and t.get("item"):
+        itw = t["item"]
+        if _hw_key(itw["en"]) not in HW_STOP:
+            if _hw_key(itw["en"]) in _hw_load(who["username"]):
+                _hw_bump(who["username"], itw["en"], False)
+            elif _hw_add(who["username"], itw["en"], itw.get("pl", ""), itw.get("example", ""),
+                         itw.get("example_pl", ""), source="path"):
+                hard_added = itw["en"]
     if not correct:
         if t["kind"] in ("gchoice", "ggap"):
             add_error(who["username"], "grammar_" + t.get("topic", "mix"),
@@ -1613,7 +1662,24 @@ async def path_answer(request: Request):
             "score": round(score, 2), "answer": good, "your": your,
             "pl": pl, "en": en, "tts": t.get("tts") or en, "explain": explain, "xp": xp,
             "rule": t.get("rule", ""), "topic_name": t.get("topic_name", ""),
+            "hard_added": hard_added,
             "model": t.get("answer") if t["kind"] == "openpl" else None}
+
+
+@app.get("/api/path/words/{lid}")
+async def path_words(lid: str, request: Request):
+    """Lista słówek ogniwa do przejrzenia PRZED ćwiczeniem („Najpierw poznaj słówka")."""
+    who = current_user(request)
+    ln = next((l for lvl in _path_data()["levels"] for l in lvl["links"] if l["id"] == lid), None)
+    if not ln or ln["type"] != "slowka":
+        raise HTTPException(404, "To ogniwo nie ma listy słówek.")
+    prof = storage.load_profile(who["username"])
+    items = [it for it in vocab_pool(prof) if it.get("theme") == ln["theme"]]
+    items.sort(key=lambda it: it.get("nr") or 999)
+    _tts_prewarm([it["en"] for it in items] + [it["example"] for it in items if it.get("example")], "en")
+    return {"link": ln["id"], "name": ln["name"],
+            "items": [{"en": it["en"], "pl": it["pl"], "example": it.get("example", ""),
+                       "example_pl": it.get("example_pl", ""), "nr": it.get("nr")} for it in items]}
 
 
 @app.post("/api/path/skip")

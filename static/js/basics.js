@@ -396,7 +396,7 @@ function basicsRun(t, kind) {
     if (q.type === "order" || q.type === "listen" || q.type === "listen_choice") return q.en || "";
     if (q.type === "cloze") return "";
     const txt = q.text || "";
-    if (/_{2,}/.test(txt) && correct) return txt.replace(/_{2,}/, String(correct));
+    if (/_{2,}/.test(txt) && correct) return txt.replace(/_{2,}/, String(correct) === "—" ? "" : String(correct)).replace(/\s{2,}/g, " ");
     if (q.type === "choice" && correct && /\s/.test(String(correct)) && !/[?:]$/.test(txt)) return "";
     return "";
   }
@@ -422,6 +422,9 @@ function basicsRun(t, kind) {
     // zdania pisane (słuchanie): porównanie słowo po słowie + zgłoszenie błędnych słów
     let diff = null;
     if (q.type === "listen" && given && !unknown) { diff = wordDiff(given, q.en); reportHardWords(diff, q.en, q.pl); }
+    // „nie wiem" przy zdaniu ze słuchu: słowa treści z tego zdania do utrwalenia (serwer odsiewa gramatyczne)
+    if ((q.type === "listen" || q.type === "listen_choice") && unknown && q.en)
+      reportHardWords({ wrong: [], missing: q.en.split(/\s+/).map(_wdNorm), right: [] }, q.en, q.pl);
     if (q.type === "order" && given && !unknown) diff = wordDiff(given, q.en);
     box.innerHTML = "";
     const fb = el("div", { class: "feedback " + (ok ? "fb-good" : "fb-bad") },

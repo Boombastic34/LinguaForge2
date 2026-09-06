@@ -275,6 +275,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     // Bez tego nieznane phrasal verbs sprowadzały się do klikania „Nie wiem".
     // karta wprowadzająca wyłącznie w trybie nauki — poza nim od razu pytamy
     if (learn && !c._seen) { c._seen = true; return renderIntro(c); }
+    if (c.deck === "hard" && c.cloze) return renderHardGap(c);   // słowo do utrwalenia: samo słowo w luce
     if (audio !== "off") return renderAudio(c);
     t0 = Date.now();
     stage.innerHTML = "";
@@ -306,6 +307,50 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     stage.append(el("div", { class: "fc-answer-row" }, inp), el("div", { class: "fb-btns fc-btns" }, send, dunno),
       el("div", { class: "muted small fc-keys" }, "⏎ sprawdź · Esc — nie wiem"));
     inp.focus();
+  }
+
+  // 🔥 Do utrwalenia: pytamy o SAMO słowo — w zdaniu, z którego pochodzi (luka), nie o całe zdanie
+  function renderHardGap(c) {
+    t0 = Date.now();
+    stage.innerHTML = "";
+    updateBar();
+    const card = el("div", { class: "fc-card" },
+      el("div", { class: "fc-face fc-front" },
+        el("div", { class: "fc-tags" },
+          el("span", { class: "fc-tag tag-leech" }, "🔥 DO UTRWALENIA"),
+          c.hint ? el("span", { class: "fc-tag" }, c.hint) : null),
+        el("div", { class: "fc-cloze" }, c.cloze, " ",
+          el("button", { class: "fc-speak", title: "posłuchaj zdania", onclick: e => { e.stopPropagation(); speak(c.example); } }, "🔊")),
+        c.example_pl ? el("div", { class: "muted", style: "margin-top:6px" }, c.example_pl) : null,
+        c.has_pl ? el("div", { class: "fc-hint" }, "💡 " + c.pl) : null,
+        el("div", { class: "fc-side" }, "wpisz brakujące słowo")));
+    stage.append(card);
+    const inp = el("input", { class: "input fc-input", autocomplete: "off", autocapitalize: "off", spellcheck: "false", placeholder: "brakujące słowo…" });
+    const send = el("button", { class: "btn ok", onclick: () => { if (inp.value.trim()) grade(c, answersMatch(inp.value, c.en, { lang: "en", strict: true }) || (c.cloze_word && answersMatch(inp.value, c.cloze_word, { lang: "en", strict: true })), inp.value, false); } }, "Sprawdź ⏎");
+    const dunno = el("button", { class: "btn ghost", onclick: () => grade(c, false, "", true) }, "🤷 Nie wiem");
+    inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); send.click(); } if (e.key === "Escape") dunno.click(); };
+    stage.append(el("div", { class: "fc-answer-row" }, inp), el("div", { class: "fb-btns fc-btns" }, send, dunno));
+    inp.focus();
+  }
+
+  // polskie zdanie jako klikalne słowa — uczeń wskazuje znaczenie trudnego słowa
+  function meaningPicker(c) {
+    if (c.has_pl || !c.example_pl) return null;
+    const wrap = el("div", { class: "fc-meaning" },
+      el("div", { class: "muted small" }, "Nie mam tłumaczenia „" + c.en + "” — dotknij polskiego słowa, które je oznacza:"));
+    const row = el("div", { class: "wchips" });
+    c.example_pl.split(/\s+/).forEach(w => {
+      const clean = w.replace(/^[^\wąćęłńóśźż]+|[^\wąćęłńóśźż]+$/gi, "");
+      if (!clean) return;
+      row.append(el("button", { class: "wchip", onclick: async e => {
+        e.stopPropagation();
+        await API.post("/api/hardwords/meaning", { en: c.en, pl: clean });
+        c.pl = clean; c.has_pl = true;
+        wrap.innerHTML = ""; wrap.append(el("div", { class: "muted small" }, "✔ Zapisano: " + c.en + " = " + clean));
+      } }, w), " ");
+    });
+    wrap.append(row);
+    return wrap;
   }
 
   function renderIntro(c) {
@@ -492,10 +537,11 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     streak = ok ? streak + 1 : 0;
     best = Math.max(best, streak);
     const r = await API.post("/api/cards/review",
-      { id: c.id, rating, rt, level: c.level, en: c.en, pl: c.pl, theme: c.theme });
+      { id: c.id, rating, rt, level: c.level, en: c.en, pl: c.has_pl === false ? "" : c.pl, theme: c.theme,
+        example: c.example || "", example_pl: c.example_pl || "" });
     done++;
     if (ok) { sessionXp += r.xp; xpPop(r.xp); }
-    if (r.hard === "added") toast("🔥 „" + c.en + "” trafia do utrwalenia — mylisz je kolejny raz");
+    if (r.hard === "added") toast("🔥 „" + c.en + "” trafia do utrwalenia");
     else if (r.hard === "released") toast("✨ „" + c.en + "” opanowane — wypada z utrwalania");
     stage.innerHTML = "";
     speakAuto(c.en);                     // lektor czyta angielskie słowo po odpowiedzi
@@ -512,6 +558,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
         !ok && val ? el("div", { class: "fc-your" }, "Twoja odpowiedź: " + val) : null,
         c.example ? el("div", { class: "fc-example", onclick: () => speak(c.example) }, "„" + c.example + "”",
           c.example_pl ? el("div", { class: "muted small" }, c.example_pl) : null) : null,
+        meaningPicker(c),
         el("div", { class: "fc-meta" }, `następna powtórka: ${r.next_in}` +
           (r.mature ? " · OPANOWANE ✔" : "") + (r.leech ? " · pijawka 🩸" : ""))));
     stage.append(flip);

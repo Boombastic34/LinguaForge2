@@ -1049,82 +1049,259 @@
   },
   {
    "id": "a_an",
-   "name": "A czy AN - samogloski i spolgloski",
+   "name": "A czy AN — przedimek nieokreślony",
    "emoji": "🅰️",
    "level": "A1",
-   "short": "Kiedy „a”, a kiedy „an” przed rzeczownikiem",
-   "intro": "Po polsku nie mamy przedimkow, wiec trzeba wyrobic sobie odruch. Dobra wiadomosc: regula jest jedna i nie ma od niej wyjatkow - liczy sie DZWIEK, nie litera.",
+   "order": 2,
+   "short": "Małe słówko przed rzeczownikiem, którego po polsku nie ma: a car, an apple.",
+   "intro": "Po polsku mówimy „Mam samochód”. Po angielsku samo „I have car” brzmi niepełnie — przed rzeczownikiem w liczbie pojedynczej MUSI stać przedimek: I have A car. A i AN znaczą to samo („jakiś, jeden z wielu”); różnica jest tylko w brzmieniu następnego słowa. Ten rozdział wyjaśnia, skąd bierze się przedimek, kiedy A, kiedy AN, kiedy nic — i gdzie Polacy najczęściej go gubią (zawody!).",
+   "cheatsheet": {
+    "title": "A / AN / nic — w skrócie",
+    "head": [
+     "Sytuacja",
+     "Przedimek",
+     "Przykład"
+    ],
+    "rows": [
+     [
+      "następne słowo zaczyna się od DŹWIĘKU spółgłoski",
+      "a",
+      "a car, a big apple, a university (ju-)"
+     ],
+     [
+      "następne słowo zaczyna się od DŹWIĘKU samogłoski",
+      "an",
+      "an apple, an old car, an hour (nieme h)"
+     ],
+     [
+      "liczba mnoga",
+      "— (nic)",
+      "cars, apples"
+     ],
+     [
+      "rzecz niepoliczalna (woda, mleko, czas)",
+      "— (nic)",
+      "water, milk, time"
+     ],
+     [
+      "zawód, kim ktoś jest",
+      "a / an",
+      "She is a nurse. He is an engineer."
+     ],
+     [
+      "coś konkretnego, znanego obu stronom",
+      "the",
+      "the car (ten konkretny) — osobny rozdział"
+     ]
+    ],
+    "note": "Liczy się DŹWIĘK, nie litera: an hour (h nieme), a university (czytane „ju”), an MP (czytane „em”)."
+   },
    "pages": [
     {
-     "title": "Regula podstawowa",
+     "title": "Skąd się bierze A i AN",
      "sections": [
       {
-       "title": "Skad sie bierze A i AN",
-       "emoji": "🔤",
+       "title": "Jeden z wielu",
+       "emoji": "💡",
        "color": "indigo",
-       "text": "A i AN znacza to samo: „jakis, jeden z wielu”. Wybor zalezy wylacznie od tego, jak zaczyna sie NASTEPNE slowo.\n- zaczyna sie od DZWIEKU spolgloski -> A\n- zaczyna sie od DZWIEKU samogloski -> AN",
+       "text": "A / AN pochodzi od słowa „one” (jeden). Znaczy: „jakiś, jeden z wielu, dowolny”. Kiedy mówisz „I need a pen”, nie chodzi o konkretny długopis — o jakikolwiek.\nPo polsku tego słowa nie ma, więc mózg Polaka je pomija. Po angielsku rzeczownik w liczbie pojedynczej bez przedimka brzmi jak niedokończone zdanie.",
        "examples": [
         [
-         "a box",
-         "pudlo"
+         "I have a dog.",
+         "Mam psa. (jakiegoś, jednego)"
         ],
         [
-         "an apple",
-         "jablko"
+         "She wants an apple.",
+         "Ona chce jabłko."
         ],
         [
-         "a worker",
-         "pracownik"
-        ],
-        [
-         "an hour",
-         "godzina"
+         "Is there a shop near here?",
+         "Czy jest tu gdzieś sklep?"
         ]
        ],
-       "tip": "Samogloski to a, e, i, o, u. Ale decyduje wymowa, nie pisownia."
+       "examples_work": [
+        [
+         "I need a pallet.",
+         "Potrzebuję palety."
+        ],
+        [
+         "There is an empty box here.",
+         "Jest tu puste pudło."
+        ],
+        [
+         "Do you have a scanner?",
+         "Masz skaner?"
+        ]
+       ]
       },
       {
-       "title": "Dlaczego an hour, a nie a hour",
+       "title": "A czy AN: decyduje DŹWIĘK następnego słowa",
        "emoji": "👂",
-       "color": "ember",
-       "text": "Bo w slowie hour litera H jest NIEMA - slyszymy aur, czyli dzwiek samogloski.\nOdwrotnie dziala a university - piszemy U, ale slyszymy ju, czyli dzwiek spolgloski.",
+       "color": "teal",
+       "text": "A — gdy następne słowo zaczyna się od dźwięku spółgłoski: a car, a table, a big dog.\nAN — gdy następne słowo zaczyna się od dźwięku samogłoski (a, e, i, o, u): an apple, an egg, an idea, an old man.\nUwaga: patrz na słowo BEZPOŚREDNIO po przedimku. „an apple”, ale „a red apple” — bo po przedimku stoi „red”.",
+       "table": {
+        "head": [
+         "A + spółgłoska",
+         "AN + samogłoska"
+        ],
+        "rows": [
+         [
+          "a book",
+          "an egg"
+         ],
+         [
+          "a house",
+          "an idea"
+         ],
+         [
+          "a red apple",
+          "an apple"
+         ],
+         [
+          "a big elephant",
+          "an elephant"
+         ]
+        ]
+       },
        "examples": [
         [
-         "an hour",
-         "godzina (h nieme)"
+         "an orange, a big orange",
+         "pomarańcza, duża pomarańcza"
         ],
         [
-         "an honest man",
-         "uczciwy czlowiek (h nieme)"
+         "an umbrella, a black umbrella",
+         "parasol, czarny parasol"
         ],
         [
-         "a university",
-         "uniwersytet (slyszymy juniwersyti)"
-        ],
-        [
-         "a European country",
-         "kraj europejski (slyszymy jropijen)"
+         "a friend, an old friend",
+         "przyjaciel, stary przyjaciel"
         ]
        ],
-       "tip": "Test: powiedz slowo na glos. Jesli zaczyna sie od dzwieku samogloski - AN."
-      },
+       "examples_work": [
+        [
+         "an order, a big order",
+         "zamówienie, duże zamówienie"
+        ],
+        [
+         "an aisle, a long aisle",
+         "alejka, długa alejka"
+        ],
+        [
+         "a forklift, an electric forklift",
+         "wózek widłowy, elektryczny wózek"
+        ]
+       ],
+       "tip": "Powiedz na głos. Jeśli „a” zlewa się z następnym słowem (a-apple), to potrzebne jest AN."
+      }
+     ]
+    },
+    {
+     "title": "Pułapki: nieme H i „ju”",
+     "sections": [
       {
-       "title": "Litery czytane pojedynczo",
-       "emoji": "🔠",
-       "color": "violet",
-       "text": "Przy skrotach liczy sie nazwa litery, a nie sama litera.",
+       "title": "an hour, ale a university",
+       "emoji": "⚠️",
+       "color": "gold",
+       "text": "Litera to nie dźwięk. W „hour” H jest nieme — słyszysz „aur”, samogłoskę → AN hour.\nW „university” U czyta się „ju” — to dźwięk spółgłoski → A university.\nPodobnie: an honest man (nieme h), a European country (czytane „ju”), a one-way street (czytane „łan”).",
+       "table": {
+        "head": [
+         "Pisownia",
+         "Brzmienie",
+         "Przedimek"
+        ],
+        "rows": [
+         [
+          "hour",
+          "aur",
+          "an hour"
+         ],
+         [
+          "honest",
+          "onest",
+          "an honest man"
+         ],
+         [
+          "university",
+          "ju-ni-",
+          "a university"
+         ],
+         [
+          "European",
+          "ju-ro-",
+          "a European"
+         ],
+         [
+          "uniform",
+          "ju-ni-",
+          "a uniform"
+         ],
+         [
+          "one",
+          "łan",
+          "a one-way street"
+         ]
+        ]
+       },
        "examples": [
         [
-         "an MP3 file",
-         "plik MP3 (M czytamy em)"
+         "I'll be back in an hour.",
+         "Wrócę za godzinę."
         ],
         [
-         "an SMS",
-         "SMS (S czytamy es)"
+         "She studies at a university.",
+         "Ona studiuje na uniwersytecie."
         ],
         [
-         "a UK company",
-         "firma z Wielkiej Brytanii (U czytamy ju)"
+         "He is an honest person.",
+         "On jest uczciwą osobą."
+        ]
+       ],
+       "examples_work": [
+        [
+         "The break is an hour long.",
+         "Przerwa trwa godzinę."
+        ],
+        [
+         "You need a uniform.",
+         "Potrzebujesz munduru."
+        ],
+        [
+         "It's a one-way road.",
+         "To droga jednokierunkowa."
+        ]
+       ]
+      },
+      {
+       "title": "Skróty: liczy się NAZWA litery",
+       "emoji": "🔡",
+       "color": "indigo",
+       "text": "Przy skrótach czytanych literami liczy się to, jak brzmi nazwa pierwszej litery:\nan MP („em”), an SMS („es”), an FBI agent („ef”) — ale a USB cable („ju”), a BMW („bi”).",
+       "examples": [
+        [
+         "Send me an SMS.",
+         "Wyślij mi SMS-a."
+        ],
+        [
+         "I need a USB cable.",
+         "Potrzebuję kabla USB."
+        ],
+        [
+         "She is an HR manager.",
+         "Ona jest menedżerką HR."
+        ]
+       ],
+       "examples_work": [
+        [
+         "We need an ID badge.",
+         "Potrzebujemy identyfikatora."
+        ],
+        [
+         "Take a PPE kit.",
+         "Weź zestaw ochronny."
+        ],
+        [
+         "He is an HGV driver.",
+         "On jest kierowcą ciężarówki."
         ]
        ]
       }
@@ -1134,46 +1311,170 @@
      "title": "Kiedy przedimka NIE ma",
      "sections": [
       {
-       "title": "Liczba mnoga i rzeczowniki niepoliczalne",
-       "emoji": "🚫",
-       "color": "teal",
-       "text": "A/AN znaczy jeden, wiec nie da sie go uzyc przy liczbie mnogiej ani przy czyms, czego nie liczymy.",
+       "title": "Liczba mnoga i rzeczy niepoliczalne",
+       "emoji": "⛔",
+       "color": "rose",
+       "text": "A / AN znaczy „jeden”, więc nie łączy się z liczbą mnogą: „a cars” nie istnieje — mówimy „cars” albo „some cars”.\nNie łączy się też z rzeczami, których nie liczymy na sztuki: water, milk, money, time, information, advice. Nie mówimy „a water” — mówimy „water” albo „a glass of water”.",
+       "table": {
+        "head": [
+         "Z A/AN (jeden, policzalny)",
+         "Bez (mnoga / niepoliczalny)"
+        ],
+        "rows": [
+         [
+          "a car",
+          "cars"
+         ],
+         [
+          "an apple",
+          "apples"
+         ],
+         [
+          "a bottle of water",
+          "water"
+         ],
+         [
+          "a piece of advice",
+          "advice"
+         ]
+        ]
+       },
        "examples": [
         [
-         "I need a box.",
-         "Potrzebuje pudla. (jedno)"
+         "I like apples. (nie: a apples)",
+         "Lubię jabłka."
         ],
         [
-         "I need boxes.",
-         "Potrzebuje pudel. (bez przedimka)"
+         "Can I have some water?",
+         "Mogę prosić o wodę?"
         ],
         [
-         "I need water.",
-         "Potrzebuje wody. (nie liczymy)"
+         "We need information.",
+         "Potrzebujemy informacji."
         ]
        ],
-       "tip": "Zapamietaj: a boxes, a water to zawsze blad."
+       "examples_work": [
+        [
+         "We need boxes. (nie: a boxes)",
+         "Potrzebujemy pudeł."
+        ],
+        [
+         "There is water on the floor.",
+         "Na podłodze jest woda."
+        ],
+        [
+         "I need some tape.",
+         "Potrzebuję taśmy."
+        ]
+       ]
       },
       {
-       "title": "Zawody - tu Polacy najczesciej gubia przedimek",
-       "emoji": "💼",
-       "color": "gold",
-       "text": "Po angielsku przy zawodzie MUSI byc przedimek. Po polsku nie ma, wiec latwo zapomniec.",
+       "title": "A/AN a THE — na razie tylko rozróżnij",
+       "emoji": "🔎",
+       "color": "teal",
+       "text": "A / AN = jakiś, jeden z wielu. THE = ten konkretny, o którym oboje wiemy.\n„I bought a phone. The phone is black.” — pierwszy raz: jakiś telefon (a); drugi raz: ten telefon, o którym mówię (the). Przedimek THE ma osobny rozdział; tu wystarczy, że widzisz różnicę.",
        "examples": [
         [
-         "I am a picker.",
-         "Jestem kompletatorem."
+         "I have a cat. The cat is old.",
+         "Mam kota. Ten kot jest stary."
+        ],
+        [
+         "There's a man at the door.",
+         "Jakiś mężczyzna jest przy drzwiach."
+        ],
+        [
+         "Open the window, please.",
+         "Otwórz okno (to konkretne)."
+        ]
+       ],
+       "examples_work": [
+        [
+         "There's a truck at the gate. The truck is late.",
+         "Przy bramie jest ciężarówka. Ta ciężarówka się spóźnia."
+        ],
+        [
+         "Take a pallet. Put the pallet here.",
+         "Weź paletę. Postaw tę paletę tutaj."
+        ],
+        [
+         "Close the door.",
+         "Zamknij drzwi (te konkretne)."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Zawody i „kim jesteś”",
+     "sections": [
+      {
+       "title": "She is A nurse — tu Polacy gubią przedimek najczęściej",
+       "emoji": "👩‍⚕️",
+       "color": "gold",
+       "text": "Po polsku: „Jestem kierowcą”. Po angielsku ZAWSZE z przedimkiem: „I am A driver”. Bez przedimka („I am driver”) zdanie jest błędne i brzmi obco.\nDotyczy to każdego zawodu i roli: a student, a teacher, an engineer, a mother, a fan.",
+       "examples": [
+        [
+         "I am a student.",
+         "Jestem studentem."
         ],
         [
          "She is an engineer.",
-         "Ona jest inzynierem."
+         "Ona jest inżynierem."
         ],
         [
-         "He is a driver.",
-         "On jest kierowca."
+         "My father is a teacher.",
+         "Mój tata jest nauczycielem."
         ]
        ],
-       "tip": "I am picker -> I am A picker. Zawsze."
+       "examples_work": [
+        [
+         "I am a forklift driver.",
+         "Jestem operatorem wózka."
+        ],
+        [
+         "He is an operator.",
+         "On jest operatorem."
+        ],
+        [
+         "She is a team leader.",
+         "Ona jest liderką zespołu."
+        ]
+       ],
+       "tip": "Test: jeśli możesz zapytać „Kim jesteś? — X”, to przed X musi być a / an."
+      },
+      {
+       "title": "A w wyrażeniach z liczbą i częstością",
+       "emoji": "🔢",
+       "color": "indigo",
+       "text": "A / AN pojawia się też tam, gdzie po polsku mówimy „raz”, „na”, „za”:\ntwice a week (dwa razy w tygodniu), £10 an hour (10 funtów za godzinę), a hundred (sto), a lot of (dużo), a few (kilka), half an hour (pół godziny).",
+       "examples": [
+        [
+         "I go to the gym twice a week.",
+         "Chodzę na siłownię dwa razy w tygodniu."
+        ],
+        [
+         "It costs a hundred pounds.",
+         "To kosztuje sto funtów."
+        ],
+        [
+         "Wait half an hour.",
+         "Poczekaj pół godziny."
+        ]
+       ],
+       "examples_work": [
+        [
+         "We get £12 an hour.",
+         "Dostajemy 12 funtów za godzinę."
+        ],
+        [
+         "The truck comes once a day.",
+         "Ciężarówka przyjeżdża raz dziennie."
+        ],
+        [
+         "There are a lot of orders today.",
+         "Dziś jest dużo zamówień."
+        ]
+       ]
       }
      ]
     }
@@ -1181,170 +1482,372 @@
    "practice": [
     {
      "type": "choice",
-     "text": "___ apple a day keeps the doctor away.",
-     "options": [
-      "A",
-      "An"
-     ],
-     "answer": 1,
-     "why": "Apple zaczyna sie od dzwieku samogloski, wiec AN.",
-     "pl": "Jablko dziennie trzyma lekarza z daleka."
-    },
-    {
-     "type": "choice",
-     "text": "I work as ___ picker in a warehouse.",
+     "text": "I have ___ dog.",
      "options": [
       "a",
-      "an"
+      "an",
+      "—"
      ],
      "answer": 0,
-     "why": "Picker zaczyna sie od dzwieku p - spolgloska, wiec A. Przy zawodzie przedimek obowiazkowy.",
-     "pl": "Pracuje jako kompletator w magazynie."
+     "pl": "Mam psa.",
+     "why": "„Dog” zaczyna się od dźwięku spółgłoski → a.",
+     "why_not": {
+      "an": "AN tylko przed dźwiękiem samogłoski (an apple).",
+      "—": "Rzeczownik pojedynczy, policzalny → przedimek jest konieczny."
+     }
     },
     {
      "type": "choice",
-     "text": "The break is ___ hour long.",
+     "text": "She wants ___ apple.",
      "options": [
       "a",
-      "an"
+      "an",
+      "—"
      ],
      "answer": 1,
-     "why": "W hour H jest nieme - slyszymy dzwiek samogloski, wiec AN.",
-     "pl": "Przerwa trwa godzine."
+     "pl": "Ona chce jabłko.",
+     "why": "„Apple” zaczyna się od samogłoski → an.",
+     "why_not": {
+      "a": "„A apple” zlewa się w wymowie — dlatego jest AN.",
+      "—": "Jedno jabłko → przedimek konieczny."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "It's ___ red apple.",
+     "options": [
+      "a",
+      "an",
+      "the"
+     ],
+     "answer": 0,
+     "pl": "To czerwone jabłko.",
+     "why": "Po przedimku stoi „red” (spółgłoska) → a. Patrzymy na NASTĘPNE słowo, nie na rzeczownik.",
+     "why_not": {
+      "an": "AN byłoby przed „apple”, ale tu po przedimku jest „red”.",
+      "the": "THE = to konkretne jabłko; tu mówimy „jakieś, jedno”."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "I'll be back in ___ hour.",
+     "options": [
+      "a",
+      "an",
+      "—"
+     ],
+     "answer": 1,
+     "pl": "Wrócę za godzinę.",
+     "why": "H w „hour” jest nieme — słyszysz samogłoskę → an.",
+     "why_not": {
+      "a": "Liczy się dźwięk, nie litera: „hour” brzmi „aur”.",
+      "—": "Jedna godzina → przedimek konieczny."
+     }
     },
     {
      "type": "choice",
      "text": "He studies at ___ university.",
      "options": [
       "a",
+      "an",
+      "—"
+     ],
+     "answer": 0,
+     "pl": "On studiuje na uniwersytecie.",
+     "why": "„University” czyta się „ju-” — dźwięk spółgłoski → a.",
+     "why_not": {
+      "an": "Litera U, ale dźwięk „ju” — spółgłoska.",
+      "—": "Jeden uniwersytet → przedimek konieczny."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "My sister is ___ nurse.",
+     "options": [
+      "a",
+      "—",
+      "the"
+     ],
+     "answer": 0,
+     "pl": "Moja siostra jest pielęgniarką.",
+     "why": "Zawód zawsze z przedimkiem: a nurse.",
+     "why_not": {
+      "—": "Po polsku bez, po angielsku ZAWSZE „is a nurse”.",
+      "the": "THE wskazywałoby konkretną pielęgniarkę (tę jedyną)."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "I like ___ apples.",
+     "options": [
+      "—",
+      "a",
       "an"
      ],
      "answer": 0,
-     "why": "Piszemy U, ale slyszymy ju - to dzwiek spolgloski, wiec A.",
-     "pl": "On studiuje na uniwersytecie."
+     "pl": "Lubię jabłka.",
+     "why": "Liczba mnoga — bez a / an.",
+     "why_not": {
+      "a": "A znaczy „jeden” — nie łączy się z liczbą mnogą.",
+      "an": "To samo: AN to „jeden”."
+     }
     },
     {
-     "type": "gap",
-     "text": "Can you send me ___ SMS?",
-     "answer": "an",
-     "why": "S czytamy es - dzwiek samogloski, wiec AN.",
-     "pl": "Mozesz wyslac mi SMS-a?",
-     "hint": "a / an"
+     "type": "choice",
+     "text": "Can I have ___ water?",
+     "options": [
+      "some",
+      "a",
+      "an"
+     ],
+     "answer": 0,
+     "pl": "Mogę prosić o wodę?",
+     "why": "Woda jest niepoliczalna — bez a / an. „Some water” albo „a glass of water”.",
+     "why_not": {
+      "a": "„A water” — wody nie liczymy na sztuki.",
+      "an": "Jak wyżej; poza tym „water” zaczyna się spółgłoską."
+     }
     },
     {
      "type": "gap",
      "text": "She is ___ engineer.",
      "answer": "an",
-     "why": "Engineer zaczyna sie od e - samogloska, wiec AN.",
-     "pl": "Ona jest inzynierem.",
-     "hint": "a / an"
+     "pl": "Ona jest inżynierem.",
+     "hint": "zawód + jak brzmi pierwsze słowo?",
+     "why_not": {
+      "a": "„Engineer” zaczyna się od samogłoski → an.",
+      "the": "Zawód, jeden z wielu → a / an."
+     }
     },
     {
      "type": "gap",
-     "text": "I need ___ new helmet.",
+     "text": "This is ___ big house.",
      "answer": "a",
-     "why": "New zaczyna sie od n - spolgloska, wiec A.",
-     "pl": "Potrzebuje nowego kasku.",
-     "hint": "a / an"
+     "pl": "To duży dom.",
+     "hint": "patrz na słowo tuż po przedimku",
+     "why_not": {
+      "an": "Po przedimku stoi „big” — spółgłoska.",
+      "the": "„Jakiś duży dom”, nie konkretny."
+     }
+    },
+    {
+     "type": "gap",
+     "text": "Send me ___ SMS.",
+     "answer": "an",
+     "pl": "Wyślij mi SMS-a.",
+     "hint": "jak brzmi nazwa litery S?",
+     "why_not": {
+      "a": "Litera S brzmi „es” — samogłoska na początku → an."
+     }
+    },
+    {
+     "type": "fix",
+     "wrong": "I am driver in a warehouse.",
+     "bad": 2,
+     "right": "a driver",
+     "fixed": "I am a driver in a warehouse.",
+     "pl": "Jestem kierowcą w magazynie.",
+     "why": "Zawód wymaga przedimka: a driver."
+    },
+    {
+     "type": "fix",
+     "wrong": "We have a old car.",
+     "bad": 2,
+     "right": "an",
+     "fixed": "We have an old car.",
+     "pl": "Mamy stary samochód.",
+     "why": "„Old” zaczyna się od samogłoski → an old car."
+    },
+    {
+     "type": "order",
+     "en": "There is an orange on the table.",
+     "pl": "Na stole jest pomarańcza.",
+     "why": "There is + an orange (samogłoska) + miejsce."
+    },
+    {
+     "type": "listen_choice",
+     "en": "He is an honest man.",
+     "text": "Posłuchaj. Który przedimek słyszysz i dlaczego?",
+     "options": [
+      "an — bo H w „honest” jest nieme",
+      "a — bo „honest” zaczyna się od spółgłoski",
+      "the — bo to konkretny człowiek"
+     ],
+     "answer": 0,
+     "why": "„Honest” brzmi „onest” — samogłoska → an.",
+     "why_not": {
+      "a — bo „honest” zaczyna się od spółgłoski": "Litera H tak, ale dźwięku H nie ma.",
+      "the — bo to konkretny człowiek": "Słychać wyraźnie „an”."
+     }
+    },
+    {
+     "type": "listen_choice",
+     "en": "I need a uniform and an ID badge.",
+     "text": "Posłuchaj. Co znaczy to zdanie?",
+     "options": [
+      "Potrzebuję munduru i identyfikatora.",
+      "Potrzebuję mundurów i identyfikatorów.",
+      "Mam mundur i identyfikator."
+     ],
+     "answer": 0,
+     "why": "a uniform (ju-), an ID (aj-) — liczba pojedyncza; „need” = potrzebować.",
+     "why_not": {
+      "Potrzebuję mundurów i identyfikatorów.": "Słychać a / an — liczba pojedyncza.",
+      "Mam mundur i identyfikator.": "Słychać „need”, nie „have”."
+     }
     },
     {
      "type": "listen",
-     "en": "I am a warehouse worker.",
-     "pl": "Jestem pracownikiem magazynu.",
-     "why": "Zwroc uwage: a worker - zawod zawsze z przedimkiem."
+     "en": "My brother is a teacher.",
+     "pl": "Mój brat jest nauczycielem.",
+     "why": "Zawód → a teacher."
     },
     {
-     "type": "listen",
-     "en": "It takes an hour and a half.",
-     "pl": "To zajmuje poltorej godziny.",
-     "why": "an hour (h nieme) ale a half (h wymawiane) - obie formy w jednym zdaniu."
+     "type": "cloze",
+     "text": "Uzupełnij tekst — wybierz a / an / nic (—):",
+     "body": "I am [[a|an|—]] driver. I have [[an|a|—]] old van. Every day I drive for [[an|a|—]] hour to work. My wife is [[a|an|—]] nurse and my son is [[a|an|—]] student at [[a|an|—]] university. We like [[—|a|an]] dogs — we have two.",
+     "pl": "Jestem kierowcą. Mam starą furgonetkę. Codziennie jadę godzinę do pracy. Moja żona jest pielęgniarką, a syn studentem na uniwersytecie. Lubimy psy — mamy dwa.",
+     "why": "zawody → a/an · old (samogłoska) → an · hour (nieme h) → an · university (ju) → a · dogs (mnoga) → nic."
     },
     {
      "type": "match",
      "pairs": [
       [
-       "an apple",
-       "jablko"
+       "hour",
+       "an"
       ],
       [
-       "a box",
-       "pudlo"
+       "university",
+       "a"
       ],
       [
-       "an hour",
-       "godzina"
+       "egg",
+       "an"
       ],
       [
-       "a university",
-       "uniwersytet"
+       "house",
+       "a"
+      ],
+      [
+       "idea",
+       "an"
       ]
-     ],
-     "why": "Powtorz na glos kazda pare - odruch buduje sie przez sluchanie."
+     ]
     }
    ],
    "test": [
     {
      "type": "choice",
-     "text": "___ old man was waiting at the gate.",
+     "text": "She has ___ umbrella.",
      "options": [
-      "A",
-      "An"
+      "a",
+      "an",
+      "—"
      ],
      "answer": 1,
-     "why": "Old = dzwiek samogloski -> AN.",
-     "pl": ""
+     "pl": "Ona ma parasol.",
+     "why": "„Umbrella” brzmi „am-” — samogłoska → an.",
+     "why_not": {
+      "a": "Tu U brzmi jak samogłoska (inaczej niż w „university”).",
+      "—": "Jeden parasol → przedimek konieczny."
+     }
     },
     {
      "type": "choice",
-     "text": "Do you have ___ pen?",
+     "text": "He is ___ doctor.",
      "options": [
+      "—",
+      "a",
+      "an"
+     ],
+     "answer": 1,
+     "pl": "On jest lekarzem.",
+     "why": "Zawód → a doctor.",
+     "why_not": {
+      "—": "Zawód zawsze z przedimkiem.",
+      "an": "„Doctor” zaczyna się spółgłoską."
+     }
+    },
+    {
+     "type": "gap",
+     "text": "It takes ___ hour.",
+     "answer": "an",
+     "pl": "To zajmuje godzinę.",
+     "why_not": {
+      "a": "Nieme H → an hour."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "We need ___ information.",
+     "options": [
+      "—",
       "a",
       "an"
      ],
      "answer": 0,
-     "why": "Pen = dzwiek spolgloski -> A.",
-     "pl": ""
+     "pl": "Potrzebujemy informacji.",
+     "why": "„Information” jest niepoliczalne — bez a / an.",
+     "why_not": {
+      "a": "Informacji nie liczymy na sztuki.",
+      "an": "Jak wyżej — niepoliczalne."
+     }
     },
     {
      "type": "choice",
-     "text": "My brother is ___ honest person.",
+     "text": "This is ___ European company.",
      "options": [
       "a",
-      "an"
+      "an",
+      "—"
      ],
-     "answer": 1,
-     "why": "W honest H jest nieme -> AN.",
-     "pl": ""
+     "answer": 0,
+     "pl": "To europejska firma.",
+     "why": "„European” czyta się „ju-” → a.",
+     "why_not": {
+      "an": "Litera E, ale dźwięk „ju”.",
+      "—": "Jedna firma → przedimek konieczny."
+     }
     },
     {
-     "type": "gap",
-     "text": "I bought ___ umbrella yesterday.",
-     "answer": "an",
-     "why": "Umbrella zaczyna sie od a -> AN.",
-     "pl": "",
-     "hint": "a / an"
+     "type": "fix",
+     "wrong": "My mother is teacher.",
+     "bad": 3,
+     "right": "a teacher",
+     "fixed": "My mother is a teacher.",
+     "pl": "Moja mama jest nauczycielką.",
+     "why": "Zawód → a teacher."
     },
     {
-     "type": "gap",
-     "text": "She works as ___ nurse.",
-     "answer": "a",
-     "why": "Nurse = spolgloska n -> A. Zawod zawsze z przedimkiem.",
-     "pl": "",
-     "hint": "a / an"
-    },
-    {
-     "type": "choice",
-     "text": "We waited ___ hour for the truck.",
+     "type": "listen_choice",
+     "en": "I have a cat and an old dog.",
+     "text": "Posłuchaj. Co znaczy to zdanie?",
      "options": [
-      "a",
-      "an"
+      "Mam kota i starego psa.",
+      "Mam koty i stare psy.",
+      "Mam kota i psa."
      ],
-     "answer": 1,
-     "why": "hour -> h nieme -> AN.",
-     "pl": ""
+     "answer": 0,
+     "why": "a cat, an old dog — liczba pojedyncza, „old” = stary.",
+     "why_not": {
+      "Mam koty i stare psy.": "Słychać a / an → pojedyncza.",
+      "Mam kota i psa.": "Zabrakło „old”."
+     }
+    },
+    {
+     "type": "listen",
+     "en": "There is an egg in the fridge.",
+     "pl": "W lodówce jest jajko.",
+     "why": "an egg (samogłoska), the fridge (ta konkretna lodówka)."
+    },
+    {
+     "type": "cloze",
+     "text": "Uzupełnij:",
+     "body": "Anna is [[an|a|—]] engineer. She works in [[a|an|—]] big factory. She drinks [[—|a|an]] coffee every morning and eats [[an|a|—]] apple for lunch. She goes to the gym twice [[a|an|—]] week.",
+     "pl": "Anna jest inżynierem. Pracuje w dużej fabryce. Codziennie rano pije kawę i je jabłko na lunch. Chodzi na siłownię dwa razy w tygodniu.",
+     "why": "engineer → an · big → a · coffee (niepoliczalne) → nic · apple → an · twice a week."
     }
-   ],
-   "order": 2
+   ]
   },
   {
    "id": "plural",
@@ -1701,125 +2204,487 @@
   },
   {
    "id": "do_does",
-   "name": "DO i DOES - pytania i przeczenia",
+   "name": "DO i DOES — pytania i przeczenia (Present Simple)",
    "emoji": "❓",
    "level": "A1",
-   "short": "Jak zbudowac pytanie i przeczenie w Present Simple",
-   "intro": "Po polsku pytanie tworzymy sama intonacja: pracujesz tu? Angielski wymaga slowka pomocniczego DO albo DOES. Bez niego zdanie brzmi obco.",
+   "order": 4,
+   "short": "Pomocnik do pytań i przeczeń ze zwykłymi czasownikami: work, like, go…",
+   "intro": "Po polsku, żeby zapytać, wystarczy zmienić intonację: „Pracujesz tu?”. Po angielsku zwykły czasownik (work, like, go, have) NIE potrafi sam zrobić pytania ani przeczenia. Potrzebuje pomocnika — i tym pomocnikiem jest DO (a przy he / she / it: DOES). W zdaniu twierdzącym pomocnika nie ma. Ten rozdział pokazuje, kiedy DO, kiedy DOES, co się dzieje z końcówką -s i dlaczego przy TO BE pomocnik nie jest potrzebny.",
+   "cheatsheet": {
+    "title": "DO / DOES — pytanie, przeczenie, krótka odpowiedź",
+    "head": [
+     "Osoba",
+     "Twierdzenie (+)",
+     "Pytanie (?)",
+     "Przeczenie (−)",
+     "Krótka odpowiedź"
+    ],
+    "rows": [
+     [
+      "I / you / we / they",
+      "I work",
+      "Do I work?",
+      "I don't work",
+      "Yes, I do. / No, I don't."
+     ],
+     [
+      "he / she / it",
+      "he works",
+      "Does he work?",
+      "he doesn't work",
+      "Yes, he does. / No, he doesn't."
+     ],
+     [
+      "TO BE (am/is/are)",
+      "she is here",
+      "Is she here?",
+      "she isn't here",
+      "Yes, she is. / No, she isn't."
+     ],
+     [
+      "can / must",
+      "he can swim",
+      "Can he swim?",
+      "he can't swim",
+      "Yes, he can. / No, he can't."
+     ]
+    ],
+    "note": "Po DO / DOES / DON'T / DOESN'T czasownik zawsze w formie podstawowej: Does he WORK? (nie: works). Końcówka -s zostaje tylko w zdaniu twierdzącym: he works."
+   },
    "pages": [
     {
-     "title": "Kiedy DO, a kiedy DOES",
+     "title": "Po co w ogóle jest DO",
      "sections": [
       {
-       "title": "Zasada trzeciej osoby",
-       "emoji": "3️⃣",
+       "title": "Zwykły czasownik nie umie zapytać",
+       "emoji": "💡",
        "color": "indigo",
-       "text": "DOES tylko przy he / she / it. Przy pozostalych - DO.",
+       "text": "Zdanie „You work here.” jest twierdzeniem. Żeby z niego zrobić pytanie, po polsku zmieniasz tylko ton głosu. Po angielsku „You work here?” brzmi jak zdziwienie, a nie pytanie. Prawdziwe pytanie potrzebuje słowa-pomocnika na początku: „DO you work here?”.\nTo samo z przeczeniem: nie ma „I work not”. Jest „I DO NOT work” (I don't work).\nDO nic nie znaczy — nie tłumaczy się go na polski. To tylko sygnał: „uwaga, pytanie” albo „uwaga, przeczenie”.",
        "examples": [
         [
-         "Do I...? Do you...? Do we...? Do they...?",
-         "ja, ty, my, oni"
+         "Do you like coffee?",
+         "Lubisz kawę?"
         ],
         [
-         "Does he...? Does she...? Does it...?",
-         "on, ona, ono"
+         "I don't like tea.",
+         "Nie lubię herbaty."
+        ],
+        [
+         "Do they live here?",
+         "Czy oni tu mieszkają?"
         ]
        ],
-       "tip": "Podpowiedz: -s z koncowki czasownika przeskakuje na DOES."
+       "examples_work": [
+        [
+         "Do you work on Saturdays?",
+         "Pracujesz w soboty?"
+        ],
+        [
+         "I don't have a scanner.",
+         "Nie mam skanera."
+        ],
+        [
+         "Do they start at six?",
+         "Czy oni zaczynają o szóstej?"
+        ]
+       ]
       },
       {
-       "title": "Uwaga: czasownik traci -s",
-       "emoji": "⚡",
-       "color": "ember",
-       "text": "Najczestszy blad. Po DOES czasownik wraca do formy podstawowej.",
+       "title": "W zdaniu twierdzącym DO nie ma",
+       "emoji": "⛔",
+       "color": "rose",
+       "text": "Pomocnik pojawia się TYLKO w pytaniu i przeczeniu. W zwykłym zdaniu go nie ma: „I work here.”, a nie „I do work here.” (to znaczy „naprawdę tu pracuję” — mocne podkreślenie, rzadko potrzebne).\nZapamiętaj trójkę: twierdzenie BEZ do · pytanie Z do · przeczenie Z don't.",
        "examples": [
         [
-         "She works here.",
-         "Ona tu pracuje. (twierdzenie: works)"
+         "We live in Kraków.",
+         "Mieszkamy w Krakowie. (bez do)"
         ],
         [
-         "Does she work here?",
-         "Czy ona tu pracuje? (pytanie: work, bez -s!)"
+         "Do we live in Kraków?",
+         "Czy mieszkamy w Krakowie? (z do)"
         ],
         [
-         "She does not work here.",
-         "Ona tu nie pracuje. (bez -s!)"
+         "We don't live in Kraków.",
+         "Nie mieszkamy w Krakowie. (z don't)"
         ]
        ],
-       "tip": "Does she works i She does not works to bledy. Jedno -s na zdanie."
-      },
-      {
-       "title": "Przeczenie",
-       "emoji": "🚫",
-       "color": "teal",
-       "text": "do not / does not",
-       "examples": [
+       "examples_work": [
         [
-         "I do not work on Sundays.",
-         "Nie pracuje w niedziele."
+         "I drive a forklift.",
+         "Jeżdżę wózkiem widłowym. (bez do)"
         ],
         [
-         "He does not like night shifts.",
-         "On nie lubi nocnych zmian."
+         "Do you drive a forklift?",
+         "Jeździsz wózkiem widłowym? (z do)"
+        ],
+        [
+         "I don't drive a forklift.",
+         "Nie jeżdżę wózkiem widłowym. (z don't)"
         ]
        ]
       }
      ]
     },
     {
-     "title": "Krotkie odpowiedzi i wyjatki",
+     "title": "DO czy DOES — kto dostaje które",
      "sections": [
       {
-       "title": "Krotkie odpowiedzi",
-       "emoji": "💬",
-       "color": "violet",
-       "text": "Anglicy rzadko odpowiadaja samym yes - dodaja do/does.",
+       "title": "DOES tylko dla he / she / it",
+       "emoji": "👤",
+       "color": "teal",
+       "text": "Ta sama zasada co przy „is”: trzecia osoba liczby pojedynczej (on, ona, ono — a także „mój brat”, „ta firma”, „ten telefon”) dostaje osobną formę. Wszyscy pozostali: DO.\nDO — I, you, we, they (i każda liczba mnoga: my parents, the boxes)\nDOES — he, she, it (i każda pojedyncza osoba lub rzecz: my boss, the machine)",
+       "table": {
+        "head": [
+         "Podmiot",
+         "Pomocnik",
+         "Przykład"
+        ],
+        "rows": [
+         [
+          "I / you / we / they",
+          "DO",
+          "Do you know him?"
+         ],
+         [
+          "my parents, the boxes (mnoga)",
+          "DO",
+          "Do the boxes fit?"
+         ],
+         [
+          "he / she / it",
+          "DOES",
+          "Does she know him?"
+         ],
+         [
+          "my boss, the machine (pojedyncza)",
+          "DOES",
+          "Does the machine work?"
+         ]
+        ]
+       },
        "examples": [
         [
-         "Do you work here? - Yes, I do.",
-         "Czy tu pracujesz? - Tak."
+         "Does your sister live here?",
+         "Czy twoja siostra tu mieszka?"
         ],
         [
-         "Does she speak English? - Yes, she does.",
-         "Czy ona mowi po angielsku? - Tak."
+         "Do your parents live here?",
+         "Czy twoi rodzice tu mieszkają?"
+        ],
+        [
+         "Does it work?",
+         "Czy to działa?"
         ]
        ],
-       "tip": "Samo yes brzmi opryskliwie. Dodaj I do."
+       "examples_work": [
+        [
+         "Does the manager speak Polish?",
+         "Czy kierownik mówi po polsku?"
+        ],
+        [
+         "Do the drivers wear vests?",
+         "Czy kierowcy noszą kamizelki?"
+        ],
+        [
+         "Does the scanner work?",
+         "Czy skaner działa?"
+        ]
+       ]
       },
       {
-       "title": "Wyjatek: czasownik TO BE",
-       "emoji": "🅱️",
+       "title": "Końcówka -s przenosi się na DOES",
+       "emoji": "⚠️",
        "color": "gold",
-       "text": "Przy am/is/are NIE uzywamy do/does.",
+       "text": "Najczęstszy błąd Polaków. W twierdzeniu mówimy „She workS”. W pytaniu i przeczeniu to -s przechodzi na pomocnika (doeS), a czasownik wraca do formy podstawowej:\nShe works. → Does she work? → She doesn't work.\nDwa razy -s (Does she works?) to błąd — końcówka jest tylko RAZ, zawsze na pomocniku.",
        "examples": [
         [
-         "Are you tired?",
-         "Jestes zmeczony?"
+         "He likes football. → Does he like football?",
+         "On lubi piłkę. → Czy on lubi piłkę?"
         ],
         [
-         "She is not ready.",
-         "Ona nie jest gotowa."
+         "She has a car. → She doesn't have a car.",
+         "Ona ma samochód. → Ona nie ma samochodu."
         ],
         [
-         "Is he a driver?",
-         "Czy on jest kierowca?"
+         "It costs a lot. → Does it cost a lot?",
+         "To dużo kosztuje. → Czy to dużo kosztuje?"
         ]
        ],
-       "tip": "Zapamietaj: mam to be - nie ruszam do/does."
-      },
-      {
-       "title": "Wyjatek: can, could, must",
-       "emoji": "🔑",
-       "color": "indigo",
-       "text": "Te slowa tez radza sobie same.",
-       "examples": [
+       "examples_work": [
         [
-         "Can you help?",
-         "Mozesz pomoc?"
+         "He starts at six. → Does he start at six?",
+         "On zaczyna o szóstej. → Czy on zaczyna o szóstej?"
         ],
         [
-         "He cannot come.",
-         "On nie moze przyjsc."
+         "She checks the labels. → She doesn't check the labels.",
+         "Ona sprawdza etykiety. → Ona nie sprawdza etykiet."
+        ],
+        [
+         "The truck leaves at noon. → Does the truck leave at noon?",
+         "Ciężarówka odjeżdża w południe. → Czy…?"
+        ]
+       ],
+       "tip": "Zasada jednego -s: albo na czasowniku (works), albo na pomocniku (does) — nigdy na obu."
+      }
+     ]
+    },
+    {
+     "title": "Przeczenie i krótkie odpowiedzi",
+     "sections": [
+      {
+       "title": "don't / doesn't",
+       "emoji": "🚫",
+       "color": "rose",
+       "text": "Przeczenie = pomocnik + not: do not → don't, does not → doesn't. Skrót jest normalny w mowie i w wiadomościach; pełna forma brzmi oficjalnie albo stanowczo.\nPrzeczenie stoi PRZED czasownikiem: I don't KNOW. She doesn't LIKE it.",
+       "table": {
+        "head": [
+         "Osoba",
+         "Pełna forma",
+         "Skrót"
+        ],
+        "rows": [
+         [
+          "I / you / we / they",
+          "do not work",
+          "don't work"
+         ],
+         [
+          "he / she / it",
+          "does not work",
+          "doesn't work"
+         ]
+        ]
+       },
+       "examples": [
+        [
+         "I don't understand.",
+         "Nie rozumiem."
+        ],
+        [
+         "He doesn't smoke.",
+         "On nie pali."
+        ],
+        [
+         "We don't have time.",
+         "Nie mamy czasu."
+        ]
+       ],
+       "examples_work": [
+        [
+         "I don't have a badge.",
+         "Nie mam identyfikatora."
+        ],
+        [
+         "She doesn't work nights.",
+         "Ona nie pracuje na nocki."
+        ],
+        [
+         "They don't use this door.",
+         "Oni nie używają tych drzwi."
+        ]
+       ]
+      },
+      {
+       "title": "Krótka odpowiedź powtarza pomocnika",
+       "emoji": "💬",
+       "color": "indigo",
+       "text": "Anglicy rzadko odpowiadają samym „Yes” — brzmi to sucho. Dodają pomocnika z pytania:\nDo you like it? — Yes, I do. / No, I don't.\nDoes she work here? — Yes, she does. / No, she doesn't.\nNie powtarza się całego czasownika: nie „Yes, I like”, tylko „Yes, I do”.",
+       "examples": [
+        [
+         "Do you speak English? — Yes, I do.",
+         "Mówisz po angielsku? — Tak."
+        ],
+        [
+         "Does he live here? — No, he doesn't.",
+         "Czy on tu mieszka? — Nie."
+        ],
+        [
+         "Do they know? — Yes, they do.",
+         "Czy oni wiedzą? — Tak."
+        ]
+       ],
+       "examples_work": [
+        [
+         "Do you have a licence? — Yes, I do.",
+         "Masz uprawnienia? — Tak."
+        ],
+        [
+         "Does the line stop at 12? — No, it doesn't.",
+         "Czy linia staje o 12? — Nie."
+        ],
+        [
+         "Do we need gloves? — Yes, you do.",
+         "Potrzebujemy rękawic? — Tak."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Kiedy DO NIE jest potrzebne",
+     "sections": [
+      {
+       "title": "TO BE radzi sobie samo",
+       "emoji": "🔤",
+       "color": "teal",
+       "text": "Pamiętasz z rozdziału o TO BE: am / is / are robią pytanie przez przestawienie (Are you…?) i przeczenie samym NOT (I'm not). Nie potrzebują pomocnika.\nBłąd: „Do you are tired?” — dwa czasowniki naraz. Poprawnie: „Are you tired?”.\nJak rozpoznać? Jeśli w zdaniu jest am / is / are — DO nie ma wstępu. Jeśli jest inny czasownik (work, like, have…) — DO jest konieczne.",
+       "table": {
+        "head": [
+         "W zdaniu jest…",
+         "Pytanie",
+         "Przeczenie"
+        ],
+        "rows": [
+         [
+          "am / is / are",
+          "Are you tired?",
+          "I'm not tired."
+         ],
+         [
+          "inny czasownik (work, like…)",
+          "Do you work?",
+          "I don't work."
+         ]
+        ]
+       },
+       "examples": [
+        [
+         "Are you hungry? (nie: Do you are hungry?)",
+         "Jesteś głodny?"
+        ],
+        [
+         "Do you want lunch? (nie: Are you want lunch?)",
+         "Chcesz obiad?"
+        ],
+        [
+         "Is he a driver? / Does he drive?",
+         "Czy on jest kierowcą? / Czy on jeździ?"
+        ]
+       ],
+       "examples_work": [
+        [
+         "Are you on the morning shift?",
+         "Jesteś na porannej zmianie?"
+        ],
+        [
+         "Do you work the morning shift?",
+         "Pracujesz na porannej zmianie?"
+        ],
+        [
+         "Is the gate open? / Does the gate open at 6?",
+         "Czy brama jest otwarta? / Czy brama otwiera się o 6?"
+        ]
+       ]
+      },
+      {
+       "title": "can, must, will — też same",
+       "emoji": "🔑",
+       "color": "gold",
+       "text": "Czasowniki modalne (can, could, must, will, should) działają jak TO BE: same robią pytanie przez przestawienie i przeczenie przez NOT. „Do you can swim?” to błąd — poprawnie „Can you swim?”.",
+       "examples": [
+        [
+         "Can you help me?",
+         "Możesz mi pomóc?"
+        ],
+        [
+         "I can't hear you.",
+         "Nie słyszę cię."
+        ],
+        [
+         "Must we go?",
+         "Musimy iść?"
+        ]
+       ],
+       "examples_work": [
+        [
+         "Can you lift 20 kilos?",
+         "Możesz podnieść 20 kilo?"
+        ],
+        [
+         "I can't find the pallet.",
+         "Nie mogę znaleźć palety."
+        ],
+        [
+         "Will the truck come today?",
+         "Czy ciężarówka przyjedzie dziś?"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Pytania ze słówkiem pytającym",
+     "sections": [
+      {
+       "title": "Where do you…? What does she…?",
+       "emoji": "🧭",
+       "color": "indigo",
+       "text": "Słówko pytające (what, where, when, why, how, who) idzie na sam początek, a potem wszystko jak zwykle: pomocnik + osoba + czasownik.\nWhere DO you live? · What DOES she do? · When DO they start?\nCiekawostka: „What do you do?” znaczy „Czym się zajmujesz?” — pierwsze do to pomocnik, drugie do to zwykły czasownik „robić”.",
+       "table": {
+        "head": [
+         "Słówko",
+         "Pomocnik",
+         "Osoba",
+         "Czasownik",
+         "Znaczenie"
+        ],
+        "rows": [
+         [
+          "Where",
+          "do",
+          "you",
+          "live?",
+          "Gdzie mieszkasz?"
+         ],
+         [
+          "What",
+          "does",
+          "she",
+          "do?",
+          "Czym ona się zajmuje?"
+         ],
+         [
+          "When",
+          "do",
+          "they",
+          "start?",
+          "Kiedy oni zaczynają?"
+         ],
+         [
+          "Why",
+          "doesn't",
+          "he",
+          "come?",
+          "Czemu on nie przychodzi?"
+         ]
+        ]
+       },
+       "examples": [
+        [
+         "Where do you work?",
+         "Gdzie pracujesz?"
+        ],
+        [
+         "What time does the shop open?",
+         "O której otwiera się sklep?"
+        ],
+        [
+         "How do you spell it?",
+         "Jak to się pisze?"
+        ]
+       ],
+       "examples_work": [
+        [
+         "Where do you put the empty pallets?",
+         "Gdzie kładziecie puste palety?"
+        ],
+        [
+         "What time does the shift end?",
+         "O której kończy się zmiana?"
+        ],
+        [
+         "How does this scanner work?",
+         "Jak działa ten skaner?"
         ]
        ]
       }
@@ -1829,162 +2694,387 @@
    "practice": [
     {
      "type": "choice",
-     "text": "___ she work in the warehouse?",
+     "text": "___ you like coffee?",
      "options": [
       "Do",
-      "Does"
-     ],
-     "answer": 1,
-     "why": "She = trzecia osoba -> DOES.",
-     "pl": "Czy ona pracuje w magazynie?"
-    },
-    {
-     "type": "choice",
-     "text": "___ you speak Polish?",
-     "options": [
-      "Do",
-      "Does"
-     ],
-     "answer": 0,
-     "why": "You -> DO.",
-     "pl": "Czy mowisz po polsku?"
-    },
-    {
-     "type": "choice",
-     "text": "He ___ like working nights.",
-     "options": [
-      "does not",
-      "do not"
-     ],
-     "answer": 0,
-     "why": "He -> DOES NOT.",
-     "pl": "On nie lubi pracowac w nocy."
-    },
-    {
-     "type": "gap",
-     "text": "Does he ___ here?",
-     "answer": "work",
-     "why": "Po DOES czasownik bez -s.",
-     "pl": "Czy on tu pracuje?",
-     "hint": "work / works"
-    },
-    {
-     "type": "gap",
-     "text": "___ they start at six?",
-     "answer": "Do",
-     "why": "They -> DO.",
-     "pl": "Czy oni zaczynaja o szostej?",
-     "hint": "Do / Does"
-    },
-    {
-     "type": "choice",
-     "text": "___ you tired?",
-     "options": [
-      "Do",
+      "Does",
       "Are"
      ],
-     "answer": 1,
-     "why": "Tired idzie z TO BE - nie uzywamy DO.",
-     "pl": "Jestes zmeczony?"
+     "answer": 0,
+     "pl": "Lubisz kawę?",
+     "why": "„Like” to zwykły czasownik → potrzebny pomocnik. You → DO.",
+     "why_not": {
+      "Does": "DOES jest dla he / she / it, nie dla you.",
+      "Are": "ARE to TO BE — tu jest inny czasownik (like), więc pomocnikiem jest DO."
+     }
     },
-    {
-     "type": "listen",
-     "en": "Does your shift start at six?",
-     "pl": "Czy twoja zmiana zaczyna sie o szostej?",
-     "why": "does ... start, bez -s."
-    },
-    {
-     "type": "listen",
-     "en": "I do not work on Sundays, but she does.",
-     "pl": "Nie pracuje w niedziele, ale ona tak.",
-     "why": "she does to krotka odpowiedz."
-    },
-    {
-     "type": "match",
-     "pairs": [
-      [
-       "Do you...?",
-       "Czy ty...?"
-      ],
-      [
-       "Does he...?",
-       "Czy on...?"
-      ],
-      [
-       "I do not",
-       "ja nie"
-      ],
-      [
-       "She does not",
-       "ona nie"
-      ]
-     ],
-     "why": "DOES tylko przy on/ona/ono."
-    }
-   ],
-   "test": [
     {
      "type": "choice",
      "text": "___ your brother work here?",
      "options": [
       "Do",
-      "Does"
-     ],
-     "answer": 1,
-     "why": "Brother = he -> DOES.",
-     "pl": ""
-    },
-    {
-     "type": "choice",
-     "text": "Ktore jest poprawne?",
-     "options": [
-      "Does she works here?",
-      "Does she work here?"
-     ],
-     "answer": 1,
-     "why": "Po DOES czasownik bez -s.",
-     "pl": ""
-    },
-    {
-     "type": "gap",
-     "text": "They ___ have any questions.",
-     "answer": "do not",
-     "why": "They -> DO NOT.",
-     "pl": "",
-     "hint": "do not / does not"
-    },
-    {
-     "type": "choice",
-     "text": "___ he a picker?",
-     "options": [
       "Does",
       "Is"
      ],
      "answer": 1,
-     "why": "a picker to rzeczownik -> TO BE -> IS.",
-     "pl": ""
-    },
-    {
-     "type": "gap",
-     "text": "___ you need help?",
-     "answer": "Do",
-     "why": "You -> DO.",
-     "pl": "",
-     "hint": "Do / Does"
+     "pl": "Czy twój brat tu pracuje?",
+     "why": "Your brother = he → DOES. Czasownik „work” w formie podstawowej.",
+     "why_not": {
+      "Do": "DO jest dla I / you / we / they. Brat to jedna osoba (he).",
+      "Is": "IS to TO BE — ale w zdaniu jest czasownik „work”, więc trzeba DOES."
+     }
     },
     {
      "type": "choice",
-     "text": "Do you work here? Krotka odpowiedz:",
+     "text": "She ___ like fish.",
      "options": [
-      "Yes, I work.",
-      "Yes, I do."
+      "don't",
+      "doesn't",
+      "isn't"
      ],
      "answer": 1,
-     "why": "Krotka odpowiedz powtarza slowo pomocnicze.",
-     "pl": ""
+     "pl": "Ona nie lubi ryb.",
+     "why": "She → DOESN'T + czasownik podstawowy (like).",
+     "why_not": {
+      "don't": "DON'T jest dla I / you / we / they.",
+      "isn't": "ISN'T to TO BE — tu jest czasownik „like”."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "Does he ___ English?",
+     "options": [
+      "speak",
+      "speaks",
+      "speaking"
+     ],
+     "answer": 0,
+     "pl": "Czy on mówi po angielsku?",
+     "why": "Po DOES czasownik wraca do formy podstawowej — końcówka -s jest już na DOES.",
+     "why_not": {
+      "speaks": "Podwójne -s (does + speaks) to błąd. -s tylko RAZ.",
+      "speaking": "Forma -ing jest dla Present Continuous (is speaking), nie po does."
+     }
+    },
+    {
+     "type": "gap",
+     "text": "___ they live in Warsaw?",
+     "answer": "Do",
+     "pl": "Czy oni mieszkają w Warszawie?",
+     "hint": "they → który pomocnik?",
+     "why_not": {
+      "does": "DOES tylko dla he / she / it — they to liczba mnoga.",
+      "are": "ARE to TO BE; w zdaniu jest czasownik „live”."
+     }
+    },
+    {
+     "type": "gap",
+     "text": "My mother ___ not drive.",
+     "answer": "does",
+     "accept": [
+      "doesn't"
+     ],
+     "pl": "Moja mama nie prowadzi auta.",
+     "hint": "my mother = ona → pomocnik w przeczeniu",
+     "why": "My mother = she → does not / doesn't.",
+     "why_not": {
+      "do": "DO jest dla I / you / we / they.",
+      "is": "IS to TO BE — tu jest czasownik „drive”."
+     }
+    },
+    {
+     "type": "gap",
+     "text": "I ___ understand this word.",
+     "answer": "don't",
+     "accept": [
+      "do not"
+     ],
+     "pl": "Nie rozumiem tego słowa.",
+     "hint": "przeczenie przy I",
+     "why_not": {
+      "doesn't": "DOESN'T jest dla he / she / it.",
+      "am not": "AM NOT to TO BE; tu jest czasownik „understand”."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "Które zdanie jest poprawne?",
+     "options": [
+      "Do you are tired?",
+      "Are you tired?",
+      "Does you tired?"
+     ],
+     "answer": 1,
+     "pl": "Jesteś zmęczony?",
+     "why": "W zdaniu jest TO BE (are) → pytanie przez przestawienie, bez pomocnika.",
+     "why_not": {
+      "Do you are tired?": "Dwa czasowniki naraz (do + are). TO BE nie potrzebuje DO.",
+      "Does you tired?": "Brak czasownika i zły pomocnik dla you."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "Do you speak Polish? — Yes, I ___.",
+     "options": [
+      "speak",
+      "do",
+      "am"
+     ],
+     "answer": 1,
+     "pl": "Mówisz po polsku? — Tak.",
+     "why": "Krótka odpowiedź powtarza pomocnika z pytania: Yes, I do.",
+     "why_not": {
+      "speak": "Nie powtarza się czasownika — tylko pomocnika.",
+      "am": "AM to TO BE; w pytaniu był pomocnik DO."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "Where ___ she work?",
+     "options": [
+      "do",
+      "does",
+      "is"
+     ],
+     "answer": 1,
+     "pl": "Gdzie ona pracuje?",
+     "why": "Słówko pytające + DOES (she) + work.",
+     "why_not": {
+      "do": "She → DOES.",
+      "is": "IS to TO BE; w zdaniu jest „work”."
+     }
+    },
+    {
+     "type": "fix",
+     "wrong": "Does she works in a bank?",
+     "bad": 2,
+     "right": "work",
+     "fixed": "Does she work in a bank?",
+     "pl": "Czy ona pracuje w banku?",
+     "why": "Po DOES czasownik bez -s. Końcówka jest już na pomocniku."
+    },
+    {
+     "type": "fix",
+     "wrong": "I not like this film.",
+     "bad": 1,
+     "right": "don't",
+     "fixed": "I don't like this film.",
+     "pl": "Nie lubię tego filmu.",
+     "why": "Przeczenie zwykłego czasownika wymaga pomocnika: don't + like."
+    },
+    {
+     "type": "order",
+     "en": "Does your sister live here?",
+     "pl": "Czy twoja siostra tu mieszka?",
+     "why": "Pomocnik (does) → osoba (your sister) → czasownik (live) → reszta."
+    },
+    {
+     "type": "order",
+     "en": "We don't work on Sundays.",
+     "pl": "Nie pracujemy w niedziele.",
+     "why": "Osoba → don't → czasownik → reszta."
+    },
+    {
+     "type": "listen_choice",
+     "en": "Does he have a car?",
+     "text": "Posłuchaj. Co znaczy to zdanie?",
+     "options": [
+      "Czy on ma samochód?",
+      "On ma samochód.",
+      "Czy oni mają samochód?"
+     ],
+     "answer": 0,
+     "why": "DOES na początku = pytanie; he = on; have a car = mieć samochód.",
+     "why_not": {
+      "On ma samochód.": "Zdanie zaczyna się od DOES — to pytanie.",
+      "Czy oni mają samochód?": "Słychać DOES HE — on, nie oni (they → do)."
+     }
+    },
+    {
+     "type": "listen_choice",
+     "en": "I don't know her name.",
+     "text": "Posłuchaj. Które zdanie usłyszałeś?",
+     "options": [
+      "I don't know her name.",
+      "I know her name.",
+      "Do you know her name?"
+     ],
+     "answer": 0,
+     "why": "Słychać DON'T — przeczenie.",
+     "why_not": {
+      "I know her name.": "Zabrakło DON'T, które wyraźnie słychać.",
+      "Do you know her name?": "To pytanie zaczynałoby się od DO YOU."
+     }
+    },
+    {
+     "type": "listen",
+     "en": "Do you work here?",
+     "pl": "Pracujesz tutaj?",
+     "why": "Pomocnik DO + you + work."
+    },
+    {
+     "type": "listen",
+     "en": "She doesn't like coffee.",
+     "pl": "Ona nie lubi kawy.",
+     "why": "She → doesn't + like (bez -s)."
+    },
+    {
+     "type": "cloze",
+     "text": "Uzupełnij rozmowę:",
+     "body": "A: [[Do|Does|Are]] you work in the city? B: No, I [[=don't]]. I work in a village. A: [[Does|Do|Is]] your wife work? B: Yes, she [[=does]]. She [[=doesn't]] like it, but the money is good. A: [[Are|Do|Does]] you happy there? B: Yes, we [[are|do|does]].",
+     "pl": "A: Pracujesz w mieście? B: Nie. Pracuję na wsi. A: Czy twoja żona pracuje? B: Tak. Nie lubi tego, ale pieniądze są dobre. A: Jesteście tam szczęśliwi? B: Tak.",
+     "why": "you → do/don't · your wife (she) → does/doesn't · „happy” to cecha → TO BE (are)."
+    },
+    {
+     "type": "match",
+     "pairs": [
+      [
+       "I",
+       "don't"
+      ],
+      [
+       "she",
+       "doesn't"
+      ],
+      [
+       "they",
+       "don't"
+      ],
+      [
+       "it",
+       "doesn't"
+      ],
+      [
+       "we",
+       "don't"
+      ]
+     ]
     }
    ],
-   "order": 4
+   "test": [
+    {
+     "type": "choice",
+     "text": "___ your parents speak English?",
+     "options": [
+      "Does",
+      "Do",
+      "Are"
+     ],
+     "answer": 1,
+     "pl": "Czy twoi rodzice mówią po angielsku?",
+     "why": "Parents = they → DO.",
+     "why_not": {
+      "Does": "DOES tylko dla jednej osoby (he / she / it).",
+      "Are": "W zdaniu jest czasownik „speak” → pomocnik DO, nie TO BE."
+     }
+    },
+    {
+     "type": "gap",
+     "text": "___ she like her job?",
+     "answer": "Does",
+     "pl": "Czy ona lubi swoją pracę?",
+     "why_not": {
+      "do": "She → DOES.",
+      "is": "IS to TO BE; tu jest czasownik „like”."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "He ___ have a car.",
+     "options": [
+      "don't",
+      "doesn't",
+      "hasn't"
+     ],
+     "answer": 1,
+     "pl": "On nie ma samochodu.",
+     "why": "He → doesn't + have.",
+     "why_not": {
+      "don't": "DON'T jest dla I / you / we / they.",
+      "hasn't": "„Hasn't” działa tylko w have got / czasach perfect — w Present Simple mówimy doesn't have."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "Które zdanie jest poprawne?",
+     "options": [
+      "Do you can swim?",
+      "Can you swim?",
+      "Does you swim can?"
+     ],
+     "answer": 1,
+     "pl": "Umiesz pływać?",
+     "why": "CAN robi pytanie samo — bez DO.",
+     "why_not": {
+      "Do you can swim?": "Dwa pomocniki naraz (do + can) — błąd.",
+      "Does you swim can?": "Zły szyk i zły pomocnik."
+     }
+    },
+    {
+     "type": "gap",
+     "text": "Where ___ they live?",
+     "answer": "do",
+     "pl": "Gdzie oni mieszkają?",
+     "why_not": {
+      "does": "They → DO.",
+      "are": "W zdaniu jest czasownik „live”."
+     }
+    },
+    {
+     "type": "fix",
+     "wrong": "My brother don't eat meat.",
+     "bad": 2,
+     "right": "doesn't",
+     "fixed": "My brother doesn't eat meat.",
+     "pl": "Mój brat nie je mięsa.",
+     "why": "My brother = he → doesn't."
+    },
+    {
+     "type": "listen_choice",
+     "en": "Do they start at seven?",
+     "text": "Posłuchaj. Co znaczy to zdanie?",
+     "options": [
+      "Czy oni zaczynają o siódmej?",
+      "Oni zaczynają o siódmej.",
+      "Czy on zaczyna o siódmej?"
+     ],
+     "answer": 0,
+     "why": "DO THEY = pytanie o „oni”.",
+     "why_not": {
+      "Oni zaczynają o siódmej.": "Zdanie zaczyna się od DO — to pytanie.",
+      "Czy on zaczyna o siódmej?": "Słychać THEY, nie HE."
+     }
+    },
+    {
+     "type": "choice",
+     "text": "Does she work here? — No, she ___.",
+     "options": [
+      "doesn't",
+      "isn't",
+      "not"
+     ],
+     "answer": 0,
+     "pl": "Czy ona tu pracuje? — Nie.",
+     "why": "Krótka odpowiedź powtarza pomocnika: No, she doesn't.",
+     "why_not": {
+      "isn't": "W pytaniu był DOES, nie IS.",
+      "not": "Samo „not” nie tworzy odpowiedzi."
+     }
+    },
+    {
+     "type": "listen",
+     "en": "What time does the shop open?",
+     "pl": "O której otwiera się sklep?",
+     "why": "Słówko pytające + does (the shop = it) + open."
+    },
+    {
+     "type": "cloze",
+     "text": "Uzupełnij:",
+     "body": "My friend Tom [[=doesn't]] live in Poland. He [[lives|live|does live]] in Ireland. [[Does|Do|Is]] he like it? Yes, he [[=does]]. His parents [[don't|doesn't|aren't]] visit him often, because the tickets [[are|do|does]] expensive.",
+     "pl": "Mój kolega Tom nie mieszka w Polsce. Mieszka w Irlandii. Czy mu się tam podoba? Tak. Jego rodzice nie odwiedzają go często, bo bilety są drogie.",
+     "why": "he → doesn't / does · twierdzenie: lives (z -s, bez do) · parents → don't · „expensive” to cecha → are."
+    }
+   ]
   },
   {
    "id": "there_is",

@@ -103,6 +103,35 @@ function openLink(ln) {
   runPathSession(ln.id);
 }
 
+// ---------- podgląd słówek ogniwa („Najpierw poznaj słówka") ----------
+async function previewWords(lid, data) {
+  const w = await API.get("/api/path/words/" + lid);
+  clearMain();
+  const box = document.querySelector("main");
+  enterFocus({ title: "📖 " + w.name, subtitle: `${w.items.length} słówek`, theme: "teal",
+    onExit: () => runPathSession(lid) });
+  let hide = false;
+  const list = el("div", { class: "pv-list" });
+  const paint = () => {
+    list.innerHTML = "";
+    w.items.forEach(it => list.append(el("div", { class: "pv-row" + (hide ? " pv-hide" : "") },
+      el("button", { class: "fc-speak", onclick: () => speak(it.en) }, "🔊"),
+      el("div", { style: "flex:1" },
+        el("div", { class: "pv-en" }, it.en),
+        it.example ? el("div", { class: "muted small", onclick: () => speak(it.example) }, "„" + it.example + "”") : null),
+      el("div", { class: "pv-pl" }, it.pl, it.example_pl ? el("div", { class: "small" }, it.example_pl) : null))));
+  };
+  paint();
+  box.append(el("div", { class: "card" },
+    el("div", { class: "fb-btns", style: "margin-bottom:10px" },
+      el("button", { class: "btn ghost", onclick: () => { hide = !hide; paint(); } }, "👁 Ukryj / pokaż tłumaczenia"),
+      el("button", { class: "btn ghost", onclick: () => speak(w.items.map(i => i.en).join(". ")) }, "🔊 Przeczytaj wszystkie"),
+      el("button", { class: "btn ghost", onclick: stopSpeaking }, "⏹ Stop")),
+    list,
+    el("div", { class: "fb-btns", style: "margin-top:14px" },
+      el("button", { class: "btn primary big", onclick: () => runPathSession(lid) }, "▶ Teraz ćwicz"))));
+}
+
 // ---------- uniwersalny odtwarzacz sesji ----------
 async function runPathSession(lid, n) {
   clearMain();
@@ -135,6 +164,12 @@ async function runPathSession(lid, n) {
   if (data.choose) {
     const isListen = link.type === "sluchanie";
     const extra = el("div", {},
+      link.type === "slowka" ? el("div", { class: "card", style: "margin:0 0 10px;padding:12px 14px" },
+        el("b", {}, "📖 Nie znasz jeszcze tych słówek?"),
+        el("p", { class: "muted small", style: "margin:4px 0 8px" },
+          "Najpierw je przejrzyj — z lektorem i zdaniem przykładowym — a potem przećwicz. " +
+          "W sesji będą też zdania z tymi słówkami: ze słuchu i do napisania po angielsku."),
+        el("button", { class: "btn ok", onclick: () => previewWords(lid, data) }, "📖 Najpierw poznaj słówka")) : null,
       retypeToggle("path_retype", true,
         isListen ? "✍️ Po błędzie przepisz zdanie poprawnie" : "✍️ Po błędzie przepisz słówko poprawnie"),
       el("p", { class: "muted small", style: "margin:8px 0 0" },
@@ -273,6 +308,7 @@ function runTaskList(box, tasks, lid, onBack, focusTitle, opts) {
     speakAuto(r.en || r.tts || r.answer);
 
     const wrongAnswer = !r.correct;
+    if (r.hard_added) toast("🔥 „" + r.hard_added + "” trafia do utrwalenia");
     // przy błędzie / „nie wiem" przepisujemy poprawną odpowiedź — po angielsku, jeśli jest
     // (w zadaniu „co znaczy X" odpowiedzią jest polskie znaczenie, ale utrwalać chcemy X)
     const t = tasks[i];

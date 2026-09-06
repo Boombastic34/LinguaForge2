@@ -1479,3 +1479,11 @@ body.dark .cat-btn.cat-checked { background: #3a3010; }
 .multi-bar { position: sticky; bottom: 8px; display: flex; gap: 8px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; margin-top: 10px; box-shadow: 0 4px 16px rgba(0,0,0,.08); }
 .chain-skip { margin-left: auto; font-size: 12px; opacity: .7; }
 .link-skipped .link-dot { background: #cbd3dc; }
+
+.fc-cloze { font-size: 22px; font-weight: 700; line-height: 1.5; margin-top: 6px; }
+.fc-meaning { margin-top: 10px; padding: 8px 10px; border-radius: 10px; background: var(--steel); }
+.pv-list { display: grid; gap: 8px; }
+.pv-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); }
+.pv-en { font-weight: 700; font-size: 17px; flex: 1; }
+.pv-pl { color: var(--ink-soft); flex: 1; }
+.pv-row.pv-hide .pv-pl { visibility: hidden; }
