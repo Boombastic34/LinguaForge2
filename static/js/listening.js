@@ -66,6 +66,7 @@ async function viewListening() {
       score: typeof d.score === "number" ? d.score : undefined,
       your: val, answer: r.target, pl: r.pl,
       tts: r.target,
+      diffTarget: r.target,          // słowo po słowie + błędne słowa do utrwalenia
       explain: r.kind === "translate" && d.errors && d.errors.length
         ? d.errors.map(e => e.msg).join(" · ")
         : (r.correct ? "" : "Czerwone słowa napisałeś inaczej niż lektor."),

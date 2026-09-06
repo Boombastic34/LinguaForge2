@@ -61,7 +61,7 @@ async function viewPath() {
       sec.links.forEach((ln, i) => {
         const score = d.scores[ln.id];
         const isCur = current && ln.id === current.id;
-        const cls = ln.done ? "link-done" : (ln.unlocked ? "link-open" : "link-locked");
+        const cls = (ln.done ? "link-done" : (ln.unlocked ? "link-open" : "link-locked")) + (score && score.skipped ? " link-skipped" : "");
         const big = (ln.type === "egzamin" || ln.type === "sprawdzian") ? " link-big" : "";
         chain.append(el("div", {
           class: "chain-link " + cls + big + (isCur ? " link-current" : ""),
@@ -72,8 +72,20 @@ async function viewPath() {
             el("b", {}, ln.name),
             el("div", { class: "muted small" },
               LINK_TYPE_PL[ln.type] + (ln.n ? ` · ${ln.n} zadań` : "") +
-              (score ? ` · wynik ${Math.round(score.score * 100)}%` : ""))),
-          isCur ? el("span", { class: "badge cur-badge" }, "TU JESTEŚ") : null));
+              (score && score.skipped ? " · ⏭ pominięte" :
+                (score && typeof score.score === "number" ? ` · wynik ${Math.round(score.score * 100)}%` : "")))),
+          isCur ? el("span", { class: "badge cur-badge" }, "TU JESTEŚ") : null,
+          // pomijanie: umiesz to albo nie potrzebujesz — ogniwo liczy się bez wyniku
+          (!ln.done && ln.type !== "egzamin") ? el("button", { class: "btn ghost mini chain-skip", title: "Pomiń to ogniwo",
+            onclick: async e => {
+              e.stopPropagation();
+              if (!confirm(`Pominąć „${ln.name}”? Ogniwo zostanie oznaczone jako pominięte (bez wyniku) i odblokuje następne. Zawsze możesz do niego wrócić.`)) return;
+              await API.post("/api/path/skip", { link: ln.id });
+              toast("⏭ Pominięto: " + ln.name);
+              viewPath();
+            } }, "⏭") : null,
+          (score && score.skipped) ? el("button", { class: "btn ghost mini chain-skip", title: "Cofnij pominięcie",
+            onclick: async e => { e.stopPropagation(); await API.post("/api/path/unskip", { link: ln.id }); viewPath(); } }, "↩") : null));
       });
       secBox.append(chain);
       card.append(secBox);
@@ -274,6 +286,8 @@ function runTaskList(box, tasks, lid, onBack, focusTitle, opts) {
       your: unknown ? "(nie wiem)" : r.your, answer: r.answer,
       pl: r.pl, en: r.en, tts: r.tts, explain: r.explain,
       rule: r.rule, ruleTitle: r.topic_name,
+      // zdania: porównanie słowo po słowie + zgłoszenie błędnych słów do utrwalenia
+      diffTarget: (t.kind === "dictation" || t.kind === "translate") ? String(r.answer || r.en || "") : null,
       extraHtml: r.model ? `<div class="fb-explain">📘 Wzorcowa odpowiedź: <b>${r.model}</b></div>` : "",
       onNext: () => {
         if (canRetype) showRetype(target);
@@ -303,6 +317,7 @@ function runTaskList(box, tasks, lid, onBack, focusTitle, opts) {
       if (answersMatch(rInp.value, target, { lang: "en", strict: true })) {
         if (typeof haptic === "function") haptic("good");
         toast("✔ Zapisane poprawnie");
+        if (/\s/.test(target)) reportHardWords(wordDiff(rInp.value, target), target, "");
         i++; render();
       } else {
         if (typeof haptic === "function") haptic("bad");

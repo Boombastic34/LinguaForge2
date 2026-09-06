@@ -1428,3 +1428,54 @@ body.dark .cheat-drawer { background:#141a22; }
 .continue-second { background:var(--panel); color:var(--ink); border:1.5px solid var(--line); margin-top:-6px; }
 .continue-second .btn { background:var(--steel); color:var(--ink); font-size:14px; padding:9px 16px; }
 body.dark .continue-second { background:#1a212a; color:#e6ebf1; border-color:#2b3542; }
+
+
+/* ===== v3.1: porównanie słowo po słowie, do utrwalenia, mówienie ===== */
+.wd-line { line-height: 1.9; }
+.wd-w { padding: 1px 4px; border-radius: 6px; }
+.wd-ok { color: inherit; }
+.wd-bad { background: #ffe3e3; color: #b42323; text-decoration: line-through; font-weight: 600; }
+.wd-miss { background: #dff5e3; color: #1c7c3a; font-weight: 600; }
+.wd-miss-label { color: var(--ink-soft); font-size: 12px; }
+body.dark .wd-bad { background: #4a2020; color: #ff9b9b; }
+body.dark .wd-miss { background: #1f4a2a; color: #9be7a8; }
+.wchips { margin: 8px 0 2px; line-height: 2.1; }
+.wchip { border: 1px dashed var(--line); background: transparent; color: inherit; border-radius: 8px;
+  padding: 1px 6px; font: inherit; cursor: pointer; }
+.wchip:hover { border-style: solid; border-color: var(--gold); }
+.wchip-on { background: #ffe9c2; border-color: #e0a100; border-style: solid; }
+body.dark .wchip-on { background: #4a3a10; }
+.wchips-hint { margin-left: 6px; }
+.say-box { margin-top: 8px; }
+.say-out { margin-top: 6px; }
+.say-good { color: #1c7c3a; font-weight: 700; margin-top: 4px; }
+.say-bad { color: #b42323; font-weight: 700; margin-top: 4px; }
+/* tabele: bez ucinania — zawijamy, mniejsza czcionka w wąskiej kolumnie */
+.data-tbl td.tbl-first { white-space: normal; }
+.data-tbl td, .data-tbl th { padding: 7px 9px; font-size: 13px; word-break: normal; }
+.kb-left .data-tbl td, .kb-left .data-tbl th { font-size: 12.5px; padding: 6px 7px; }
+.bt-theory.bt-twocol .kb-block:has(.kb-left table) { grid-template-columns: 1fr; }
+.bt-theory.bt-twocol .kb-block:has(.kb-left table) .kb-right { border-left: none; padding-left: 0; border-top: 1px dashed var(--line); padding-top: 10px; }
+@media (max-width: 560px) { .data-tbl td, .data-tbl th { font-size: 12px; padding: 6px 6px; } .tbl-scroll { margin: 8px -6px; } }
+/* nowe typy zadań */
+.order-pool, .order-line { display: flex; flex-wrap: wrap; gap: 8px; min-height: 44px; padding: 8px; border-radius: 12px; }
+.order-line { border: 2px dashed var(--line); margin-bottom: 10px; }
+.order-pool { background: var(--steel); }
+.order-w { border: 1.5px solid var(--line); background: var(--panel); border-radius: 10px; padding: 8px 12px; font: inherit; font-size: 16px; cursor: pointer; }
+.order-w:active { transform: scale(.96); }
+.fix-w { border: none; background: transparent; font: inherit; font-size: 18px; padding: 4px 6px; border-radius: 8px; cursor: pointer; }
+.fix-w:hover { background: var(--steel); }
+.cloze-text { font-size: 17px; line-height: 2.2; }
+.cloze-sel { font: inherit; font-size: 16px; padding: 4px 8px; border-radius: 8px; border: 1.5px solid var(--indigo); background: var(--panel); color: inherit; margin: 0 3px; }
+.cloze-inp { font: inherit; font-size: 16px; padding: 4px 8px; border-radius: 8px; border: 1.5px solid var(--indigo); background: var(--panel); color: inherit; width: 110px; margin: 0 3px; }
+.cloze-ok { border-color: #1c7c3a; background: #dff5e3; }
+.cloze-bad { border-color: #b42323; background: #ffe3e3; }
+.lc-opts .option { text-align: left; }
+.dom-toggle { display: inline-flex; gap: 4px; margin: 6px 0 10px; }
+.dom-toggle button { border: 1.5px solid var(--line); background: var(--panel); color: inherit; border-radius: 999px; padding: 4px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+.dom-toggle button.active { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+.cat-btn.cat-checked { outline: 2px solid var(--gold); background: #fff7e0; }
+body.dark .cat-btn.cat-checked { background: #3a3010; }
+.multi-bar { position: sticky; bottom: 8px; display: flex; gap: 8px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; margin-top: 10px; box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+.chain-skip { margin-left: auto; font-size: 12px; opacity: .7; }
+.link-skipped .link-dot { background: #cbd3dc; }

@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "3.0.0"
+APP_VERSION = "3.1.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -136,6 +136,97 @@ def merged_items(prefix):
     return items
 
 
+# ---------------------------------------------------------------- „Do utrwalenia" (trudne słowa)
+# Słowa, które uczeń błędnie zapisał w zdaniach (dyktando, przepisywanie, tłumaczenie),
+# które wielokrotnie mylił w fiszkach albo sam oznaczył jako nieznane. Trafiają do
+# osobnej kategorii fiszek „🔥 Do utrwalenia" i wypadają z niej po 3 poprawnych
+# zapisach netto (błędne odejmują).
+HW_EXIT_NET = 3
+# słowa funkcyjne — nie utrwalamy ich jako „słówek" (zaimki, przedimki, przyimki, formy to be…)
+HW_STOP = set("""a an the i you he she it we they me him her us them my your his its our their mine yours hers ours theirs
+this that these those there here am is are was were be been being do does did not no yes have has had will would can could
+should shall may might must to of in on at for from with by about as into like through after over between out against
+during without before under around among and or but so if then than too very just also only own same such of off up down
+what which who whom whose when where why how all any both each few more most other some no nor own s t m re ve ll d isn aren
+wasn weren don doesn didn won can't cannot let's o'clock ok okay hi hello please thanks yes""".split())
+
+
+def _hw_key(w):
+    return re.sub(r"[^a-z']", "", str(w or "").lower().strip())
+
+
+def _hw_load(username):
+    return storage.user_file(username, "hard_words.json", {})
+
+
+def _hw_save(username, hw):
+    storage.save_user_file(username, "hard_words.json", hw)
+
+
+def _pl_lookup(en):
+    """Znaczenie słowa z bazy słownictwa (wszystkie pliki, bez filtra dziedziny)."""
+    k = _hw_key(en)
+    for f in storage.list_data_files("slownictwo/"):
+        for it in storage.load_data(f, {}).get("items", []):
+            if "pl" in it and _hw_key(it.get("en")) == k:
+                return it["pl"], it.get("example", "")
+    return "", ""
+
+
+def _hw_add(username, en, pl="", ctx_en="", ctx_pl="", source="manual"):
+    k = _hw_key(en)
+    if not k or len(k) < 2:
+        return None
+    hw = _hw_load(username)
+    if k in hw:
+        hw[k]["net"] = min(hw[k].get("net", 0), 0)     # ponownie problem → licznik od zera
+        _hw_save(username, hw)
+        return hw[k]
+    if not pl:
+        pl, ex = _pl_lookup(en)
+        ctx_en = ctx_en or ex
+    hw[k] = {"en": k, "pl": pl, "ctx_en": ctx_en or "", "ctx_pl": ctx_pl or "",
+             "net": 0, "added": time.time(), "source": source}
+    _hw_save(username, hw)
+    return hw[k]
+
+
+def _hw_bump(username, en, ok):
+    """+1 za poprawny zapis, −1 za błędny; przy ≥3 słowo wypada z kategorii."""
+    k = _hw_key(en)
+    hw = _hw_load(username)
+    if k not in hw:
+        return None
+    hw[k]["net"] = hw[k].get("net", 0) + (1 if ok else -1)
+    if hw[k]["net"] >= HW_EXIT_NET:
+        del hw[k]
+        _hw_save(username, hw)
+        return "released"
+    _hw_save(username, hw)
+    return hw[k]["net"]
+
+
+def _hw_items(username):
+    """Trudne słowa jako pozycje słownictwa (kategoria fiszek „trudne")."""
+    out = []
+    for k, w in _hw_load(username).items():
+        pl = w.get("pl") or (("(ze zdania) " + w["ctx_pl"]) if w.get("ctx_pl") else "?")
+        out.append({"id": "hw_" + k, "en": w["en"], "pl": pl, "example": w.get("ctx_en", ""),
+                    "theme": "trudne", "cat": "mixed", "level": "A1", "deck": "hard",
+                    "hint": "słowo do utrwalenia (%d/%d)" % (max(0, w.get("net", 0)), HW_EXIT_NET)})
+    return out
+
+
+def _content_words(text):
+    """Słowa treści (rzeczowniki, czasowniki…) z tekstu — bez słów funkcyjnych."""
+    out = []
+    for w in re.findall(r"[A-Za-z']+", str(text or "")):
+        k = _hw_key(w)
+        if len(k) >= 3 and k not in HW_STOP and k not in out:
+            out.append(k)
+    return out
+
+
 def vocab_pool(profile):
     pool = []
     for f in storage.list_data_files("slownictwo/"):
@@ -154,6 +245,7 @@ def vocab_pool(profile):
         it2 = dict(it)
         it2["deck"] = "custom"
         pool.append(it2)
+    pool.extend(_hw_items(profile["username"]))
     return pool
 
 
@@ -460,6 +552,67 @@ async def placement_confirm(request: Request):
     return {"next": nxt}
 
 
+# ---------------------------------------------------------------- do utrwalenia (API)
+@app.get("/api/hardwords")
+async def hardwords_list(request: Request):
+    who = current_user(request)
+    hw = _hw_load(who["username"])
+    items = sorted(hw.values(), key=lambda w: -w.get("added", 0))
+    return {"words": items, "exit_net": HW_EXIT_NET}
+
+
+@app.post("/api/hardwords/add")
+async def hardwords_add(request: Request):
+    """Uczeń sam oznacza słowo, którego nie zna (np. klikając je w zdaniu)."""
+    who = current_user(request)
+    body = await request.json()
+    if _hw_key(body.get("en", "")) in HW_STOP:
+        raise HTTPException(400, "To słowo gramatyczne (zaimek, przedimek, forma „być”) — uczysz się go w Podstawach, nie w fiszkach.")
+    w = _hw_add(who["username"], body.get("en", ""), body.get("pl", ""),
+                body.get("ctx_en", ""), body.get("ctx_pl", ""), source="manual")
+    if not w:
+        raise HTTPException(400, "To nie wygląda na słowo.")
+    return {"ok": True, "word": w}
+
+
+@app.post("/api/hardwords/remove")
+async def hardwords_remove(request: Request):
+    who = current_user(request)
+    body = await request.json()
+    hw = _hw_load(who["username"])
+    hw.pop(_hw_key(body.get("en", "")), None)
+    _hw_save(who["username"], hw)
+    return {"ok": True}
+
+
+@app.post("/api/hardwords/report")
+async def hardwords_report(request: Request):
+    """Wynik zapisu zdania: błędne słowa treści trafiają do utrwalenia,
+    poprawnie zapisane słowa z kategorii dostają +1.
+    body: {wrong:[...], right:[...], ctx_en, ctx_pl}"""
+    who = current_user(request)
+    body = await request.json()
+    ctx_en, ctx_pl = body.get("ctx_en", ""), body.get("ctx_pl", "")
+    added, bumped = [], []
+    hw = _hw_load(who["username"])
+    for w in body.get("wrong", [])[:10]:
+        k = _hw_key(w)
+        if len(k) < 3 or k in HW_STOP:
+            continue
+        if k in hw:
+            _hw_bump(who["username"], k, False); bumped.append(k)
+        elif _hw_add(who["username"], k, "", ctx_en, ctx_pl, source="sentence"):
+            added.append(k)
+    hw = _hw_load(who["username"])
+    released = []
+    for w in body.get("right", [])[:40]:
+        k = _hw_key(w)
+        if k in hw:
+            r = _hw_bump(who["username"], k, True)
+            (released if r == "released" else bumped).append(k)
+    return {"ok": True, "added": added, "released": released, "count": len(_hw_load(who["username"]))}
+
+
 # ---------------------------------------------------------------- fiszki
 @app.get("/api/cards/session")
 async def cards_session(request: Request, cat: str = "all", n: str = "15"):
@@ -472,7 +625,8 @@ async def cards_session(request: Request, cat: str = "all", n: str = "15"):
         pool = [it for it in pool if it.get("cat", "mixed") == cat] or pool
     theme = request.query_params.get("theme")
     if theme and theme != "all":
-        pool = [it for it in pool if it.get("theme") == theme] or pool
+        wanted = set(t for t in theme.split(",") if t)          # kilka tematów naraz
+        pool = [it for it in pool if it.get("theme") in wanted] or pool
     if theme == "all" or cat == "all":
         random.shuffle(pool)          # cała baza — losowa kolejność
     by_id = {it["id"]: it for it in pool}
@@ -488,8 +642,8 @@ async def cards_session(request: Request, cat: str = "all", n: str = "15"):
         fresh = [it for it in pool if it["id"] not in known
                  and LEVEL_ORDER.get(it.get("level", "A1"), 0) <= user_lvl + 1]
         tsc = prof["skills"].get("themes", {})
-        if theme == "all":
-            random.shuffle(fresh)     # losowo z całej bazy
+        if theme == "all" or (theme and "," in theme):
+            random.shuffle(fresh)     # losowo z całej bazy / z kilku tematów
         else:
             fresh.sort(key=lambda it: (tsc.get(it.get("theme", "inne"), 55), it.get("rank", 9999)))
         for it in fresh[: limit - len(batch)]:
@@ -539,6 +693,14 @@ async def cards_review(request: Request):
     storage.save_profile(who["username"], prof)
     if rating == 1:
         add_error(who["username"], "vocab_lapse", body.get("en", cid))
+    hw_note = None
+    if cid.startswith("hw_"):
+        # karta z kategorii „Do utrwalenia": +1 / −1, przy 3 wypada z kategorii
+        hw_note = _hw_bump(who["username"], cid[3:], correct)
+    elif rating == 1 and cards[cid]["fsrs"].get("lapses", 0) >= 2 and body.get("en"):
+        # zwykła fiszka mylona po raz kolejny → trafia do utrwalenia
+        if _hw_add(who["username"], body["en"], body.get("pl", ""), source="flashcards"):
+            hw_note = "added"
     storage.log_event(who["username"], {"type": "card_review", "card": cid,
                                         "question": body.get("pl", ""), "en": body.get("en"),
                                         "rating": rating, "rt": body.get("rt"), "xp": xp})
@@ -546,7 +708,7 @@ async def cards_review(request: Request):
     days = max(0.007, (c["due"] - time.time()) / 86400)
     nxt = f"{round(days*24*60)} min" if days < 0.6 else (f"{round(days)} dni" if days >= 1.5 else "1 dzień")
     return {"ok": True, "next_in": nxt, "xp": xp,
-            "mature": fsrs.is_mature(c), "leech": fsrs.is_leech(c)}
+            "mature": fsrs.is_mature(c), "leech": fsrs.is_leech(c), "hard": hw_note}
 
 
 @app.post("/api/cards/custom")
@@ -1021,7 +1183,7 @@ async def lesson_exam(request: Request):
 
 
 # ---------------------------------------------------------------- silnik luk
-THEME_NAMES = {"zwierzeta":"Zwierzęta","jedzenie":"Jedzenie","dom":"Dom","transport":"Transport",
+THEME_NAMES = {"trudne":"🔥 Do utrwalenia","zwierzeta":"Zwierzęta","jedzenie":"Jedzenie","dom":"Dom","transport":"Transport",
  "cialo":"Ciało i zdrowie","rodzina":"Rodzina i ludzie","ubrania":"Ubrania","miasto":"Miasto i zakupy",
  "natura":"Natura i pogoda","uczucia":"Uczucia i cechy","liczebniki":"Liczebniki","kalendarz":"Kalendarz",
  "kolory":"Kolory","czasowniki":"Czasowniki","praca":"Praca / magazyn","przedmioty":"Przedmioty codzienne",
@@ -1286,9 +1448,29 @@ async def path_session(lid: str, request: Request, n: str = ""):
         random.shuffle(gex)
         for e, t in gex:
             tasks.append(_grammar_task(e, t))
+        # + pytania testowe z zaliczonych tematów Podstaw (gramatyka w praktyce)
+        done_topics = [l["topic"] for l in _path_links(who["username"])
+                       if l["type"] == "podstawy" and l["done"]]
+        if ln["type"] == "egzamin":
+            done_topics = [t["id"] for t in _basics()]
+        for bt in _basics():
+            if bt["id"] in done_topics:
+                for q in bt.get("test", []) + bt.get("practice", []):
+                    bq = _basics_task(q, bt)
+                    if bq:
+                        tasks.append(bq)
+        # + kilka dyktand (słuchanie) z poziomu ogniwa
+        lvl_now = next((lvl["level"] for lvl in _path_data()["levels"] if any(l["id"] == lid for l in lvl["links"])), "A1")
+        dict_items = [i for i in merged_items("sluchanie/") if i.get("level") == lvl_now]
+        random.shuffle(dict_items)
+        for it in dict_items[:6]:
+            tasks.append({"kind": "dictation", "text": "Posłuchaj i zapisz zdanie.",
+                          "tts": it["en"], "target": it["en"], "pl": it.get("pl", ""), "answer": it["en"]})
         random.shuffle(tasks)
     pool_size = len(tasks)
     suggested = ln.get("n") or min(10, pool_size)
+    if ln["type"] == "powtorka":
+        suggested = max(suggested, 24)          # powtórka skumulowana ma być solidna
     if not n:                       # brak wyboru -> ekran doboru liczby zadań
         return {"link": {k: ln.get(k) for k in ("id", "name", "type")},
                 "pool": pool_size, "suggested": min(suggested, pool_size),
@@ -1312,6 +1494,24 @@ async def path_session(lid: str, request: Request, n: str = ""):
                   for t in tasks], "en")
     return {"link": {k: ln.get(k) for k in ("id", "name", "type")} if ln else {"id": lid},
             "tasks": pub, "pool": pool_size, **extra}
+
+
+
+def _basics_task(q, topic):
+    """Pytanie z Podstaw (choice/gap) jako zadanie Ścieżki (gchoice/ggap)."""
+    if q.get("type") == "choice" and q.get("options"):
+        return {"kind": "gchoice", "text": q["text"], "options": list(q["options"]),
+                "answer_idx": int(q["answer"]), "answer": q["options"][int(q["answer"])],
+                "pl": q.get("pl", ""), "explain": q.get("why", ""), "topic": "basics_" + topic["id"],
+                "topic_name": topic["name"], "rule": q.get("why", ""),
+                "en": q["text"].replace("___", q["options"][int(q["answer"])]) if "___" in q["text"] else ""}
+    if q.get("type") == "gap" and q.get("answer"):
+        acc = [q["answer"]] + list(q.get("accept", []))
+        return {"kind": "ggap", "text": q["text"], "accept": acc, "answer": q["answer"],
+                "pl": q.get("pl", ""), "explain": q.get("why", ""), "topic": "basics_" + topic["id"],
+                "topic_name": topic["name"], "rule": q.get("why", ""),
+                "tts": q["text"].replace("___", q["answer"])}
+    return None
 
 
 def _grammar_task(e, t):
@@ -1414,6 +1614,47 @@ async def path_answer(request: Request):
             "pl": pl, "en": en, "tts": t.get("tts") or en, "explain": explain, "xp": xp,
             "rule": t.get("rule", ""), "topic_name": t.get("topic_name", ""),
             "model": t.get("answer") if t["kind"] == "openpl" else None}
+
+
+@app.post("/api/path/skip")
+async def path_skip(request: Request):
+    """Uczeń pomija ogniwo (umie to / nie interesuje go) — ogniwo liczy się jako
+    zaliczone bez wyniku i odblokowuje następne. Można też pominąć wszystkie ogniwa
+    danego typu na poziomie (body.type + body.level)."""
+    who = current_user(request)
+    body = await request.json()
+    pst = _path_state(who["username"])
+    today = datetime.date.today().isoformat()
+    skipped = []
+    if body.get("link"):
+        ids = [body["link"]]
+    elif body.get("type") and body.get("level"):
+        ids = [l["id"] for lvl in _path_data()["levels"] if lvl["level"] == body["level"]
+               for l in lvl["links"] if l["type"] == body["type"]]
+    else:
+        raise HTTPException(400, "Podaj ogniwo albo typ + poziom.")
+    types = {l["id"]: l["type"] for lvl in _path_data()["levels"] for l in lvl["links"]}
+    for lid in ids:
+        if types.get(lid) == "egzamin":
+            continue                                # egzaminu poziomu nie da się pominąć
+        if lid not in pst["done"]:
+            pst["done"][lid] = {"score": None, "skipped": True, "date": today}
+            skipped.append(lid)
+    storage.save_user_file(who["username"], "path.json", pst)
+    storage.log_event(who["username"], {"type": "path_skip", "links": skipped})
+    return {"ok": True, "skipped": skipped}
+
+
+@app.post("/api/path/unskip")
+async def path_unskip(request: Request):
+    who = current_user(request)
+    body = await request.json()
+    pst = _path_state(who["username"])
+    d = pst["done"].get(body.get("link"))
+    if d and d.get("skipped"):
+        del pst["done"][body["link"]]
+        storage.save_user_file(who["username"], "path.json", pst)
+    return {"ok": True}
 
 
 @app.post("/api/path/complete")

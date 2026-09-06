@@ -605,6 +605,113 @@ function comboHit(ok) {
 
 // ---------- v0.2: panel feedbacku czekający na „Dalej” ----------
 // opts: {correct, your, answer, pl, explain, tts, ttsPl, askKnown, onNext(guessed), extraHtml}
+// ---------- PORÓWNANIE ZDAŃ SŁOWO PO SŁOWIE ----------
+// wordDiff(given, expected) -> { your: <div>, missing: [...], wrong: [...], right: [...], ok }
+// Uczeń widzi na czerwono słowa, których w poprawnym zdaniu nie ma (albo są źle
+// zapisane), a na zielono słowa, których zabrakło. Porównanie po normalizacji
+// (małe litery, bez interpunkcji), dopasowanie najdłuższym wspólnym ciągiem (LCS).
+function _wdTok(t) {
+  return String(t || "").replace(/[’`´]/g, "'").split(/\s+/).filter(Boolean);
+}
+function _wdNorm(w) { return w.toLowerCase().replace(/^[^a-z0-9']+|[^a-z0-9']+$/g, ""); }
+function wordDiff(given, expected) {
+  const a = _wdTok(given), b = _wdTok(expected);
+  const an = a.map(_wdNorm), bn = b.map(_wdNorm);
+  // LCS
+  const n = a.length, m = b.length;
+  const L = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+    L[i][j] = an[i] === bn[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  const matchA = new Set(), matchB = new Set();
+  let i = 0, j = 0;
+  while (i < n && j < m) {
+    if (an[i] === bn[j]) { matchA.add(i); matchB.add(j); i++; j++; }
+    else if (L[i + 1][j] >= L[i][j + 1]) i++; else j++;
+  }
+  const your = el("div", { class: "wd-line" });
+  a.forEach((w, k) => your.append(el("span", { class: "wd-w " + (matchA.has(k) ? "wd-ok" : "wd-bad") }, w), " "));
+  const missing = b.filter((_, k) => !matchB.has(k));
+  if (missing.length) {
+    your.append(el("span", { class: "wd-miss-label" }, " brakuje: "));
+    missing.forEach(w => your.append(el("span", { class: "wd-w wd-miss" }, w), " "));
+  }
+  return { your, ok: matchA.size === n && matchB.size === m,
+           wrong: a.filter((_, k) => !matchA.has(k)).map(_wdNorm),
+           missing: missing.map(_wdNorm), right: b.filter((_, k) => matchB.has(k)).map(_wdNorm) };
+}
+
+// ---------- „DO UTRWALENIA": zgłaszanie i oznaczanie słów ----------
+// Po sprawdzeniu zdania: błędne/brakujące słowa treści trafiają do kategorii fiszek
+// „🔥 Do utrwalenia", poprawnie zapisane słowa z tej kategorii dostają +1.
+function reportHardWords(diff, ctxEn, ctxPl) {
+  if (!diff) return;
+  // do utrwalenia trafia POPRAWNA forma słowa, którego zabrakło / które zapisano źle
+  // (diff.missing), a nie literówka ucznia
+  const wrong = [...new Set(diff.missing)].filter(w => w.length >= 3);
+  API.post("/api/hardwords/report", { wrong, right: diff.right, ctx_en: ctxEn || "", ctx_pl: ctxPl || "" })
+    .then(r => {
+      if (r.added && r.added.length) toast("🔥 Do utrwalenia: " + r.added.join(", "));
+      if (r.released && r.released.length) toast("✨ Opanowane: " + r.released.join(", "));
+    }).catch(() => {});
+}
+// Zdanie jako klikalne słowa — dotknięcie słowa dodaje je do „Do utrwalenia".
+function wordChips(en, pl) {
+  const wrap = el("div", { class: "wchips" });
+  _wdTok(en).forEach(w => {
+    const clean = _wdNorm(w);
+    const b = el("button", { class: "wchip", title: "Nie znam — dodaj do utrwalenia" }, w);
+    b.onclick = e => {
+      e.stopPropagation();
+      if (clean.length < 2) return;
+      b.classList.add("wchip-on");
+      API.post("/api/hardwords/add", { en: clean, ctx_en: en, ctx_pl: pl || "" })
+        .then(r => toast("🔥 Dodano do utrwalenia: " + clean + (r.word && r.word.pl ? " = " + r.word.pl : "")))
+        .catch(err => { b.classList.remove("wchip-on"); toast(String(err.message || err), true); });
+    };
+    wrap.append(b, " ");
+  });
+  wrap.append(el("span", { class: "muted small wchips-hint" }, "← dotknij słowa, którego nie znasz"));
+  return wrap;
+}
+
+// ---------- MÓWIENIE: „🎤 Powiedz to zdanie" (Web Speech API, Chrome / Android) ----------
+// Uczeń wypowiada zdanie, przeglądarka je rozpoznaje, a my porównujemy słowo po słowie.
+// Nie ocenia akcentu — ocenia, czy powiedziałeś właściwe zdanie. Gdy przeglądarka
+// nie obsługuje rozpoznawania mowy, przycisk się nie pokazuje.
+function speechSupported() {
+  return !!(window.SpeechRecognition || window.webkitSpeechRecognition) && !HAS_NATIVE_TTS;
+}
+function speakCheckButton(target, lang) {
+  if (!speechSupported() || !target) return null;
+  const box = el("div", { class: "say-box" });
+  const b = el("button", { class: "btn ghost say-btn" }, "🎤 Powiedz to zdanie");
+  const out = el("div", { class: "say-out" });
+  box.append(b, out);
+  b.onclick = () => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let rec;
+    try { rec = new SR(); } catch (e) { out.textContent = "Rozpoznawanie mowy niedostępne."; return; }
+    stopSpeaking();
+    rec.lang = lang === "pl" ? "pl-PL" : "en-US";
+    rec.interimResults = false; rec.maxAlternatives = 3;
+    b.disabled = true; b.textContent = "🎙 Słucham…"; out.textContent = "";
+    rec.onresult = ev => {
+      const alts = [...ev.results[0]].map(r => r.transcript);
+      let best = null;
+      alts.forEach(t => { const d = wordDiff(t, target); if (!best || d.wrong.length + d.missing.length < best.d.wrong.length + best.d.missing.length) best = { t, d }; });
+      out.innerHTML = "";
+      out.append(el("div", { class: "muted small" }, "Usłyszałem:"), best.d.your,
+        el("div", { class: best.d.ok ? "say-good" : "say-bad" }, best.d.ok ? "✔ Świetnie — całe zdanie!" :
+          (best.d.wrong.length + best.d.missing.length <= 1 ? "◐ Prawie — jedno słowo do poprawy" : "✘ Spróbuj jeszcze raz — posłuchaj lektora")));
+      if (typeof haptic === "function") haptic(best.d.ok ? "good" : "bad");
+    };
+    rec.onerror = ev => { out.textContent = "Nie udało się: " + (ev.error === "not-allowed" ? "brak zgody na mikrofon" : ev.error); };
+    rec.onend = () => { b.disabled = false; b.textContent = "🎤 Powiedz jeszcze raz"; };
+    try { rec.start(); } catch (e) { out.textContent = "Nie udało się uruchomić mikrofonu."; b.disabled = false; }
+  };
+  return box;
+}
+
 function feedbackPanel(opts) {
   const state = opts.state || (opts.correct ? "good" : "bad");
   comboHit(state === "good");
@@ -618,9 +725,16 @@ function feedbackPanel(opts) {
     COMBO.n >= 2 ? el("span", { class: "fb-combo" }, ` 🔥x${COMBO.n}`) : null));
 
   const grid = el("div", { class: "fb-grid" });
+  // zdania (dyktando, tłumaczenie): pokazujemy słowo po słowie, co było źle
+  const sentenceTarget = opts.diffTarget || null;
+  let diff = null;
+  if (sentenceTarget && opts.your !== undefined && opts.your !== "" && String(opts.your) !== "(nie wiem)") {
+    diff = wordDiff(String(opts.your), sentenceTarget);
+    if (opts.reportHard !== false) reportHardWords(diff, sentenceTarget, opts.pl);
+  }
   if (opts.your !== undefined && opts.your !== "" && state !== "good")
     grid.append(el("div", { class: "fb-label" }, "Twoja odpowiedź:"),
-                el("div", { class: "fb-your" }, String(opts.your)));
+                el("div", { class: "fb-your" }, diff ? diff.your : String(opts.your)));
   if (opts.answer)
     grid.append(el("div", { class: "fb-label" }, "Poprawna odpowiedź:"),
                 el("div", { class: "fb-answer" },
@@ -649,6 +763,9 @@ function feedbackPanel(opts) {
         el("b", {}, o.en), o.pl ? " — " + o.pl : "")));
     box.append(ol);
   }
+  const chipSrc = opts.en || sentenceTarget || (opts.answer && /\s/.test(String(opts.answer)) ? String(opts.answer) : null);
+  if (chipSrc && opts.chips !== false) box.append(wordChips(chipSrc, opts.pl));
+  if (chipSrc && opts.say !== false) { const sb = speakCheckButton(chipSrc, "en"); if (sb) box.append(sb); }
   if (opts.explain) box.append(el("div", { class: "fb-explain" }, "💡 " + opts.explain));
   if (opts.rule) box.append(el("div", { class: "fb-rule" },
     el("b", {}, "📏 Reguła" + (opts.ruleTitle ? " — " + opts.ruleTitle : "") + ": "), opts.rule));

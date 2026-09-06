@@ -42,6 +42,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     const GROUPS = [
       { name: "Cała baza", emoji: "🎲", themes: [],
         extra: [["all", "Wszystko losowo", "cała baza wymieszana"]] },
+      { name: "Twoje słabe punkty", emoji: "🔥", themes: ["trudne"] },
       { name: "Części mowy", emoji: "🔤",
         themes: ["czasowniki", "przedmioty", "przymiotniki", "liczebniki"] },
       { name: "Wyrażenia i pułapki", emoji: "🔗",
@@ -57,7 +58,34 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     (gaps.themes || []).forEach(t => { byTheme[t.theme] = t; });
     const used = new Set();
 
-    const catBox = el("div", { class: "card" }, el("h3", {}, "📚 Wybierz, czego chcesz się uczyć"));
+    // Łączenie kilku kategorii: w trybie „wybierz kilka" kafelki działają jak przełączniki,
+    // a sesja bierze słówka ze wszystkich zaznaczonych (theme=a,b,c).
+    let multi = false;
+    const picked = new Set();
+    const multiBar = el("div", { class: "multi-bar", style: "display:none" });
+    const multiInfo = el("span", { class: "muted small" }, "");
+    const multiStart = el("button", { class: "btn primary", onclick: () => {
+      if (!picked.size) return toast("Zaznacz przynajmniej jedną kategorię", true);
+      viewFlashcards("all", [...picked].join(","));
+    } }, "▶ Start z zaznaczonych");
+    multiBar.append(multiInfo, multiStart,
+      el("button", { class: "btn ghost", onclick: () => { picked.clear(); paint(); } }, "wyczyść"));
+    const paint = () => {
+      multiInfo.textContent = picked.size ? `zaznaczone: ${picked.size} — ` + [...picked].map(t => (byTheme[t] || {}).name || t).join(", ") : "Dotknij kategorii, żeby je zaznaczyć.";
+      catBox.querySelectorAll(".cat-btn[data-theme]").forEach(b => b.classList.toggle("cat-checked", picked.has(b.dataset.theme)));
+    };
+    const multiToggle = el("button", { class: "btn ghost mini", onclick: () => {
+      multi = !multi; multiToggle.textContent = multi ? "✕ Zakończ wybieranie" : "☑ Wybierz kilka kategorii";
+      multiBar.style.display = multi ? "" : "none"; if (multi) paint();
+    } }, "☑ Wybierz kilka kategorii");
+    const pickTheme = th => {
+      if (!multi) return viewFlashcards("all", th);
+      if (picked.has(th)) picked.delete(th); else picked.add(th);
+      paint();
+    };
+
+    const catBox = el("div", { class: "card" }, el("h3", {}, "📚 Wybierz, czego chcesz się uczyć"),
+      el("div", { style: "margin:-4px 0 10px" }, multiToggle));
     GROUPS.forEach(g => {
       const row = el("div", { class: "cat-row" });
       (g.extra || []).forEach(([theme, label, sub]) => {
@@ -70,8 +98,9 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
         used.add(th);
         const pct = t.eff == null ? null : Math.round(t.eff);
         row.append(el("button", {
-          class: "cat-btn" + (pct != null && pct < 55 ? " cat-weak" : ""),
-          onclick: () => viewFlashcards("all", th),
+          class: "cat-btn" + (pct != null && pct < 55 ? " cat-weak" : "") + (th === "trudne" ? " cat-hard" : ""),
+          "data-theme": th,
+          onclick: () => pickTheme(th),
         },
           el("b", {}, t.name),
           el("div", { class: "cat-sub" },
@@ -88,14 +117,18 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     const rest = (gaps.themes || []).filter(t => !used.has(t.theme));
     if (rest.length) {
       const row = el("div", { class: "cat-row" });
-      rest.forEach(t => row.append(el("button", { class: "cat-btn",
-        onclick: () => viewFlashcards("all", t.theme) },
+      rest.forEach(t => row.append(el("button", { class: "cat-btn", "data-theme": t.theme,
+        onclick: () => pickTheme(t.theme) },
         el("b", {}, t.name), el("div", { class: "cat-sub" }, `${t.total} słówek`))));
       catBox.append(el("div", { class: "cat-group-title" }, "📦  Pozostałe"), row);
     }
 
-    catBox.append(el("p", { class: "muted small", style: "margin-top:12px" },
-      "Odmiana czasowników przez czasy jest w osobnej zakładce „⚙️ Czasowniki”."));
+    catBox.append(multiBar,
+      el("p", { class: "muted small", style: "margin-top:12px" },
+        "🔥 Do utrwalenia: słowa, które błędnie zapisałeś w zdaniach, myliłeś w fiszkach albo sam oznaczyłeś " +
+        "(dotykając słowa w zdaniu). Słowo wypada z tej kategorii po 3 poprawnych zapisach netto."),
+      el("p", { class: "muted small" },
+        "Odmiana czasowników przez czasy jest w osobnej zakładce „⚙️ Czasowniki”."));
     box.append(catBox);
 
     m.append(box);
@@ -462,6 +495,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
       { id: c.id, rating, rt, level: c.level, en: c.en, pl: c.pl, theme: c.theme });
     done++;
     if (ok) { sessionXp += r.xp; xpPop(r.xp); }
+    if (r.hard === "added") toast("🔥 „" + c.en + "” trafia do utrwalenia — mylisz je kolejny raz");
+    else if (r.hard === "released") toast("✨ „" + c.en + "” opanowane — wypada z utrwalania");
     stage.innerHTML = "";
     speakAuto(c.en);                     // lektor czyta angielskie słowo po odpowiedzi
     const flip = el("div", { class: "fc-card fc-flip " + (ok ? "fc-ok" : "fc-bad") },
