@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "3.10.0"
+APP_VERSION = "3.11.1"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -1664,6 +1664,8 @@ async def v2_onb_result(request: Request):
         level = "A2"
     prof["level"] = level
     prof["placement_done"] = True
+    # szacunek ze słownika wchodzi do profilu — na nim opiera się dobór tekstów do czytania
+    prof["skills"]["vocab_size_est"] = max(int(prof["skills"].get("vocab_size_est", 0) or 0), known_words)
     prof["skills"]["listening"] = sk.update_skill(prof["skills"]["listening"], level,
                                                   listen_ok >= max(1, listen_all - 1), 5000)
     storage.save_profile(who["username"], prof)
@@ -2072,6 +2074,160 @@ async def v2_fluency_save(request: Request):
             "best_prev": max([s["wpm"] for s in prev], default=0)}
 
 
+
+# ---------------------------------------------------------------- WERSJA 2: czytanie
+# Teksty NIE są dobierane do etykiety poziomu, tylko do słownika konkretnego ucznia.
+# Badania nad pokryciem leksykalnym (Hu i Nation): do swobodnego czytania bez słownika
+# potrzeba znajomości ok. 98 % słów; przy 95 % czytanie jest męczące, przy 90 % bez sensu.
+# System zna fiszki ucznia, więc potrafi policzyć pokrycie dla każdego tekstu osobno —
+# i to jest jedyna rzecz, w której aplikacja naprawdę bije papierowy podręcznik.
+READ_EASY = 0.98
+READ_OK = 0.95
+
+
+def _reading_data():
+    return storage.load_data("czytanie/teksty.json", {"texts": []})
+
+
+def _stem_forms(w):
+    """Proste warianty odmiany — „made" nie jest osobnym słowem od „make" dla ucznia,
+    a „boxes" od „box". Bez tego pokrycie zaniżałoby się o kilkanaście procent."""
+    out = {w}
+    for suf, repl in (("s", ""), ("es", ""), ("ies", "y"), ("ed", ""), ("ed", "e"),
+                      ("ied", "y"), ("ing", ""), ("ing", "e"), ("er", ""), ("est", "")):
+        if w.endswith(suf) and len(w) - len(suf) >= 2:
+            out.add(w[: -len(suf)] + repl)
+    if len(w) > 3 and w[-1] == w[-2]:            # stopping → stop
+        out.add(w[:-1])
+    return out
+
+
+IRREGULAR_KNOWN = {
+    "was": "be", "were": "be", "been": "be", "am": "be", "is": "be", "are": "be",
+    "made": "make", "went": "go", "gone": "go", "got": "get", "had": "have", "has": "have",
+    "said": "say", "saw": "see", "seen": "see", "took": "take", "taken": "take",
+    "came": "come", "gave": "give", "given": "give", "knew": "know", "known": "know",
+    "found": "find", "told": "tell", "left": "leave", "felt": "feel", "kept": "keep",
+    "put": "put", "ran": "run", "began": "begin", "bought": "buy", "brought": "bring",
+    "thought": "think", "wrote": "write", "spoke": "speak", "stood": "stand", "slept": "sleep",
+    "drank": "drink", "ate": "eat", "children": "child", "people": "person", "men": "man",
+    "women": "woman", "feet": "foot", "teeth": "tooth",
+}
+
+
+def _known_words(username, prof):
+    """Zbiór słów, które uczeń zna.
+
+    Trzy źródła: (1) słowa funkcyjne, (2) słownictwo do wysokości oszacowanego słownika
+    (jeśli uczeń zna ~800 słów, to zna najczęstsze 800, bo tak liczymy w teście wstępnym),
+    (3) fiszki i słowa faktycznie przerobione.
+    """
+    known = set(HW_STOP)
+    est = max(int(prof.get("skills", {}).get("vocab_size_est", 0) or 0),
+              _vocab_size(username, prof)[0])
+    for it in vocab_pool(prof):
+        if it.get("rank") and it["rank"] <= est:
+            known.update(_content_words(it["en"]))
+    cards = load_cards(username)
+    seen = _v2_seen(username)
+    pool = {it["id"]: it for it in vocab_pool(prof)}
+    for cid, c in cards.items():
+        it = pool.get(cid)
+        if it and c["fsrs"]["reps"] >= 1:
+            for w in _content_words(it["en"]):
+                known.add(w)
+    for iid, e in seen.items():
+        it = pool.get(iid)
+        if it and e.get("n", 0) >= 1:
+            for w in _content_words(it["en"]):
+                known.add(w)
+    # słowa z zaliczonych tematów Podstaw (uczeń je widział wielokrotnie w zdaniach)
+    for l in _path_links(username):
+        if l["type"] == "podstawy" and l["done"]:
+            t = next((x for x in _basics() if x["id"] == l.get("topic")), None)
+            for q in (t or {}).get("practice", []):
+                for w in _content_words(q.get("en") or q.get("text") or ""):
+                    known.add(w)
+    return known
+
+
+def _coverage(text_lines, known):
+    tokens = []
+    for line in text_lines:
+        tokens += [_hw_key(w) for w in re.findall(r"[A-Za-z']+", line)]
+    tokens = [t for t in tokens if t]
+
+    def is_known(t):
+        if t in known or IRREGULAR_KNOWN.get(t) in known:
+            return True
+        return bool(_stem_forms(t) & known)
+
+    unknown = [t for t in tokens if not is_known(t)]
+    cov = 1 - len(unknown) / max(1, len(tokens))
+    uniq = []
+    for u in unknown:
+        if u not in uniq:
+            uniq.append(u)
+    return round(cov, 4), uniq, len(tokens)
+
+
+@app.get("/api/v2/reading")
+async def v2_reading(request: Request):
+    who = current_user(request)
+    prof = storage.load_profile(who["username"])
+    known = _known_words(who["username"], prof)
+    done = storage.user_file(who["username"], "reading_done.json", {})
+    out = []
+    for t in _reading_data()["texts"]:
+        cov, unknown, total = _coverage(t["text"], known)
+        out.append({"id": t["id"], "title": t["title"], "emoji": t["emoji"],
+                    "level": t["level"], "minutes": t["minutes"], "words": t.get("words", total),
+                    "coverage": cov, "unknown": len(unknown), "unknown_sample": unknown[:6],
+                    "state": "easy" if cov >= READ_EASY else ("ok" if cov >= READ_OK else "hard"),
+                    "done": bool(done.get(t["id"]))})
+    out.sort(key=lambda x: (-x["coverage"], x["minutes"]))
+    ready = [t for t in out if t["state"] == "easy"]
+    return {"texts": out, "thresholds": {"easy": READ_EASY, "ok": READ_OK},
+            "ready": len(ready), "known_words": len(known)}
+
+
+@app.get("/api/v2/reading/{tid}")
+async def v2_reading_text(tid: str, request: Request):
+    who = current_user(request)
+    prof = storage.load_profile(who["username"])
+    t = next((x for x in _reading_data()["texts"] if x["id"] == tid), None)
+    if not t:
+        raise HTTPException(404, "Nie ma takiego tekstu.")
+    known = _known_words(who["username"], prof)
+    cov, unknown, total = _coverage(t["text"], known)
+    # tłumaczenia nieznanych słów, jeśli są w bazie — żeby uczeń nie musiał wychodzić do słownika
+    gloss = {}
+    for w in unknown:
+        pl, _ = _pl_lookup(w)
+        if pl:
+            gloss[w] = pl
+    _tts_prewarm(t["text"], "en")
+    return {"id": t["id"], "title": t["title"], "emoji": t["emoji"], "minutes": t["minutes"],
+            "lines": t["text"], "questions": t["questions"], "coverage": cov,
+            "unknown": unknown, "gloss": gloss, "words": total}
+
+
+@app.post("/api/v2/reading/{tid}")
+async def v2_reading_done(tid: str, request: Request):
+    who = current_user(request)
+    body = await request.json()
+    ok, total = int(body.get("correct", 0)), max(1, int(body.get("total", 1)))
+    d = storage.user_file(who["username"], "reading_done.json", {})
+    d[tid] = {"date": datetime.date.today().isoformat(), "score": round(ok / total, 2)}
+    storage.save_user_file(who["username"], "reading_done.json", d)
+    prof = storage.load_profile(who["username"])
+    sk.register_activity(prof, ok >= total - 1, 20)
+    prof["skills"]["reading"] = sk.update_skill(prof["skills"]["reading"], prof.get("level", "A1"),
+                                                ok >= total - 1, 8000)
+    storage.save_profile(who["username"], prof)
+    return {"ok": True, "score": round(ok / total, 2), "texts_done": len(d)}
+
+
 @app.get("/api/v2/today")
 async def v2_today(request: Request):
     """Ekran główny wersji 2: jedna karta „Dziś" + trzy małe kafelki."""
@@ -2133,7 +2289,7 @@ _V2_LIGHT = [
     {"id": "dialog", "emoji": "💬", "name": "Krótka rozmowa", "minutes": 4, "hash": "#dialogs"},
     {"id": "sentences", "emoji": "✍️", "name": "Trzy zdania", "minutes": 3, "hash": "#sentences"},
     {"id": "verbs", "emoji": "⚙️", "name": "Czasowniki na czas", "minutes": 3, "hash": "#verbs"},
-    {"id": "reading", "emoji": "📖", "name": "Krótki tekst", "minutes": 5, "hash": "#reading"},
+    {"id": "reading", "emoji": "📖", "name": "Krótki tekst", "minutes": 5, "hash": "#read2"},
 ]
 
 

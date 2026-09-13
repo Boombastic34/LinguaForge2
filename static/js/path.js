@@ -275,6 +275,30 @@ function runTaskList(box, tasks, lid, onBack, focusTitle, opts) {
     } else {
       box.append(el("div", { class: "qtext" }, t.text));
     }
+    // 🧩 tworzenie zdania z klocków — kliknięcie przenosi słowo do linii i z powrotem
+    if (t.kind === "order") {
+      if (t.pl) box.append(el("div", { class: "muted", style: "margin-bottom:8px" }, t.pl));
+      const line = el("div", { class: "order-line" }), pool = el("div", { class: "order-pool" });
+      const chosen = [];
+      const send = el("button", { class: "btn ok", onclick: () => submit(chosen.map(x => x.w).join(" ")) }, "Sprawdź");
+      t.words.forEach((w, k) => {
+        const it = { w, k };
+        const b = el("button", { class: "order-w" }, w);
+        b.onclick = () => {
+          if (b.parentNode === pool) { chosen.push(it); line.append(b); }
+          else { chosen.splice(chosen.indexOf(it), 1); pool.append(b); }
+          send.disabled = chosen.length !== t.words.length;
+        };
+        pool.append(b);
+      });
+      send.disabled = true;
+      box.append(line, pool, el("div", { class: "fb-btns" }, send,
+        el("button", { class: "btn ghost", onclick: () => {
+          [...line.querySelectorAll(".order-w")].forEach(b => pool.append(b));
+          chosen.length = 0; send.disabled = true;
+        } }, "↺ Od nowa"), dunnoBtn()));
+      return;
+    }
     if (t.words) box.append(el("div", { class: "wordbank" }, ...t.words.map(w => el("span", { class: "chip" }, w))));
 
     if (t.options) {
@@ -323,7 +347,7 @@ function runTaskList(box, tasks, lid, onBack, focusTitle, opts) {
       pl: r.pl, en: r.en, tts: r.tts, explain: r.explain,
       rule: r.rule, ruleTitle: r.topic_name,
       // zdania: porównanie słowo po słowie + zgłoszenie błędnych słów do utrwalenia
-      diffTarget: (t.kind === "dictation" || t.kind === "translate") ? String(r.answer || r.en || "") : null,
+      diffTarget: (t.kind === "dictation" || t.kind === "translate" || t.kind === "order") ? String(r.answer || r.en || "") : null,
       extraHtml: r.model ? `<div class="fb-explain">📘 Wzorcowa odpowiedź: <b>${r.model}</b></div>` : "",
       onNext: () => {
         if (canRetype) showRetype(target);

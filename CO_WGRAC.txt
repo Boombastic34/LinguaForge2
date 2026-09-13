@@ -1,8 +1,9 @@
-LinguaForge v3.10.0 - WERSJA 2: PLYNNOSC (4/3/2 + shadowing)
+LinguaForge v3.11.1 - CZYTANIE (98% pokrycia) + POPRAWKA "nullnull"
 
 Paczka zawiera wszystkie zmiany od v2.9.0 - zastap pliki w repozytorium:
   main.py, CHANGELOG.md, CO_WGRAC.txt                 -> korzen
-  data/plynnosc/plynnosc.json                         -> data/plynnosc  (NOWY KATALOG)
+  data/czytanie/teksty.json                           -> data/czytanie   (NOWY KATALOG)
+  data/plynnosc/plynnosc.json                         -> data/plynnosc
   data/wymowa/pary.json, data/zdania/zdania.json      -> data/...
   data/sciezka.json, data/podstawy/kursy.json         -> data/...
   data/slownictwo/*.json (10 plikow ze zdaniami)      -> data/slownictwo
@@ -10,9 +11,10 @@ Paczka zawiera wszystkie zmiany od v2.9.0 - zastap pliki w repozytorium:
   static/index.html, static/css/style.css
   static/js/*.js (17 plikow, w tym v2.js)
 
-WERSJA 1 (klasyczna) jest domyslna i NIC sie w niej nie zmienia.
-Wersja 2: Pulpit -> Ustawienia -> "Wypróbuj wersję 2".
-Plynnosc: ekran "Dzis" -> kafelek "Plynnosc 4/3/2" albo adres #fluency.
-Licznik slow dziala na Chrome/Edge/Android (mikrofon); gdzie indziej samoocena.
+WAZNE: jesli na pulpicie widzisz "nullnull" i NIE MA przycisku "Wypróbuj wersję 2",
+to znaczy, ze na Railway stoi stara wersja. Ta paczka to naprawia.
+Po wdrozeniu w lewym dolnym rogu ma byc: v3.11.1
 
-Po wdrozeniu: Ctrl+F5. W rogu ma byc v3.10.0.
+PRZELACZANIE WERSJI:
+  Start -> na dole sekcja "Lektor i cel nauki" -> "Wypróbuj wersję 2"
+  Powrot: ekran "Dzis" -> stopka -> "Wroc do wersji 1"

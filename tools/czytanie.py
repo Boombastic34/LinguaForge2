@@ -1,0 +1,227 @@
+# -*- coding: utf-8 -*-
+"""Teksty do czytania ekstensywnego (wersja 2).
+
+Zasada z badań nad pokryciem leksykalnym (Hu i Nation): do swobodnego czytania bez
+słownika potrzeba znajomości ok. 98 % słów w tekście. Przy 95 % czytanie jest już
+męczące i wolne, przy 90 % — bezużyteczne. Dlatego aplikacja nie dobiera tekstów do
+etykiety „poziom A2", tylko liczy pokrycie wobec słownika KONKRETNEGO ucznia.
+
+Teksty są krótkie (80–160 słów), zbudowane z częstego słownictwa i gramatyki z Podstaw.
+Uruchom: python tools/czytanie.py
+"""
+
+TEXTS = [
+    {"id": "r_first_day", "level": "A1", "domain": "work", "emoji": "🏭",
+     "title": "Pierwszy dzień w pracy", "minutes": 2,
+     "text": [
+        "My name is Marek and I am from Poland.",
+        "Last month I started a new job in a big warehouse near the city.",
+        "On my first day I was very nervous.",
+        "I did not know anybody and my English was not good.",
+        "A man called Tom showed me the building.",
+        "He was patient and he spoke slowly.",
+        "He gave me a scanner and a high-vis vest.",
+        "\"Don't worry,\" he said. \"Everybody is slow on the first day.\"",
+        "In the morning I made a lot of mistakes.",
+        "I put three boxes on the wrong pallet.",
+        "But after the break it was better.",
+        "Now I work here every day and I like my team.",
+        "Tom is still my friend and we often have lunch together.",
+     ],
+     "questions": [
+        {"q": "Gdzie pracuje Marek?", "options": ["W magazynie", "W sklepie", "W szkole"], "answer": 0},
+        {"q": "Jaki był Marek pierwszego dnia?", "options": ["Zdenerwowany", "Spóźniony", "Chory"], "answer": 0},
+        {"q": "Co powiedział Tom?", "options": ["Że każdy jest wolny pierwszego dnia",
+                                                "Że Marek musi pracować szybciej",
+                                                "Że praca jest łatwa"], "answer": 0},
+     ]},
+    {"id": "r_saturday", "level": "A1", "domain": "general", "emoji": "🛒",
+     "title": "Sobota w mieście", "minutes": 2,
+     "text": [
+        "On Saturday morning I go to the market with my wife.",
+        "We always buy bread, cheese, tomatoes and apples.",
+        "The market is not expensive and the food is fresh.",
+        "After the market we drink coffee in a small café near the church.",
+        "My wife likes cake, but I only want coffee.",
+        "Then we walk in the park for an hour.",
+        "In the afternoon we visit my parents.",
+        "My mother cooks soup and we talk about the week.",
+        "My father asks the same question every Saturday: \"How is your car?\"",
+        "In the evening we watch a film at home.",
+        "It is a simple day, but it is my favourite day of the week.",
+     ],
+     "questions": [
+        {"q": "Kiedy dzieje się ta historia?", "options": ["W sobotę", "W niedzielę", "W piątek"], "answer": 0},
+        {"q": "Co robią po targu?", "options": ["Piją kawę", "Jadą do pracy", "Idą do kina"], "answer": 0},
+        {"q": "O co zawsze pyta ojciec?", "options": ["O samochód", "O pracę", "O pogodę"], "answer": 0},
+     ]},
+    {"id": "r_late", "level": "A1", "domain": "general", "emoji": "🚌",
+     "title": "Spóźniony autobus", "minutes": 2,
+     "text": [
+        "This morning I was late for work.",
+        "My alarm did not ring because my phone was dead.",
+        "I got up at seven, but my shift starts at half past seven.",
+        "I ran to the bus stop without breakfast.",
+        "The bus was ten minutes late and it was full.",
+        "I stood next to the door and I looked at my watch every minute.",
+        "When I arrived, the manager was in the office.",
+        "\"You are twenty minutes late,\" he said.",
+        "I said sorry and I explained the problem with my phone.",
+        "He was not angry, but he asked me to buy a real alarm clock.",
+        "In the evening I bought one for five pounds.",
+     ],
+     "questions": [
+        {"q": "Dlaczego budzik nie zadzwonił?", "options": ["Telefon się rozładował", "Był zepsuty", "Zapomniał go nastawić"], "answer": 0},
+        {"q": "Jak zareagował kierownik?", "options": ["Nie był zły", "Krzyczał", "Odesłał go do domu"], "answer": 0},
+        {"q": "Co kupił wieczorem?", "options": ["Budzik", "Telefon", "Zegarek"], "answer": 0},
+     ]},
+    {"id": "r_flat", "level": "A1", "domain": "general", "emoji": "🏠",
+     "title": "Nasze mieszkanie", "minutes": 2,
+     "text": [
+        "We live in a small flat on the third floor.",
+        "There is no lift, so we walk up the stairs every day.",
+        "The flat has two rooms, a kitchen and a bathroom.",
+        "Our kitchen is very small, but we cook there every evening.",
+        "In the living room there is an old sofa, a table and a lamp.",
+        "The bedroom is quiet because the windows are at the back of the building.",
+        "Our neighbours are nice, but they have a dog and it barks at night.",
+        "The rent is high, but the flat is near my work.",
+        "Next year we want a bigger place with a balcony.",
+     ],
+     "questions": [
+        {"q": "Na którym piętrze jest mieszkanie?", "options": ["Na trzecim", "Na pierwszym", "Na parterze"], "answer": 0},
+        {"q": "Co przeszkadza w nocy?", "options": ["Pies sąsiadów", "Ulica", "Winda"], "answer": 0},
+        {"q": "Czego chcą w przyszłym roku?", "options": ["Większego mieszkania z balkonem", "Nowego samochodu", "Psa"], "answer": 0},
+     ]},
+    {"id": "r_doctor", "level": "A2", "domain": "general", "emoji": "🩺",
+     "title": "U lekarza", "minutes": 3,
+     "text": [
+        "Last week I did not feel well, so I made an appointment with the doctor.",
+        "I waited in the waiting room for almost forty minutes.",
+        "There were four other people and everybody looked tired.",
+        "When it was my turn, the doctor asked me a lot of questions.",
+        "\"How long have you had this problem?\" she said.",
+        "I told her that my back hurt for about two weeks.",
+        "She asked about my job and I explained that I lift heavy boxes every day.",
+        "The doctor said that I must be careful and that I should not lift with my back.",
+        "She gave me some tablets and a paper for my manager.",
+        "Now I feel better, but I still remember her words: \"Lift with your legs, not with your back.\"",
+     ],
+     "questions": [
+        {"q": "Jak długo bolały go plecy?", "options": ["Około dwóch tygodni", "Dwa dni", "Miesiąc"], "answer": 0},
+        {"q": "Co poradziła lekarka?", "options": ["Podnosić nogami, nie plecami", "Zmienić pracę", "Więcej odpoczywać w łóżku"], "answer": 0},
+        {"q": "Co dostał od lekarki?", "options": ["Tabletki i papier dla kierownika", "Tylko receptę", "Skierowanie do szpitala"], "answer": 0},
+     ]},
+    {"id": "r_holiday", "level": "A2", "domain": "travel", "emoji": "✈️",
+     "title": "Wakacje, które prawie się nie udały", "minutes": 3,
+     "text": [
+        "Two years ago we went to Spain for a week.",
+        "It was our first holiday abroad with the children.",
+        "At the airport we discovered that our flight was delayed by five hours.",
+        "The children were bored and hungry, and my wife was not happy.",
+        "We finally arrived at the hotel at two o'clock in the morning.",
+        "The room was small and the air conditioner was very loud.",
+        "But the next day everything changed.",
+        "The weather was perfect and the beach was only five minutes from the hotel.",
+        "The children played in the water all day and we ate dinner outside every evening.",
+        "When we came home, my son asked when we could go again.",
+        "Sometimes a bad beginning does not mean a bad holiday.",
+     ],
+     "questions": [
+        {"q": "Co stało się na lotnisku?", "options": ["Lot był opóźniony o pięć godzin", "Zgubili bagaż", "Spóźnili się na samolot"], "answer": 0},
+        {"q": "Jak było następnego dnia?", "options": ["Wszystko się zmieniło na lepsze", "Padał deszcz", "Wrócili do domu"], "answer": 0},
+        {"q": "O co zapytał syn po powrocie?", "options": ["Kiedy pojadą znowu", "Dlaczego było gorąco", "Czy mogą mieć psa"], "answer": 0},
+     ]},
+    {"id": "r_english", "level": "A2", "domain": "general", "emoji": "📚",
+     "title": "Jak uczę się angielskiego", "minutes": 3,
+     "text": [
+        "I have been learning English for eight months now.",
+        "At the beginning it was very difficult because I could not understand fast speech.",
+        "People spoke and I only heard one long word.",
+        "My teacher told me something important: listen to the same recording many times.",
+        "So now I listen to one short story three or four times.",
+        "The first time I understand almost nothing.",
+        "The second time I hear the words I know.",
+        "The third time the story makes sense.",
+        "I also write five new words in my phone every day.",
+        "I do not write long lists, because I forget them anyway.",
+        "The best part is that last week a customer asked me a question at work and I answered without thinking.",
+        "That was the first time it happened.",
+     ],
+     "questions": [
+        {"q": "Co było najtrudniejsze na początku?", "options": ["Rozumienie szybkiej mowy", "Gramatyka", "Pisanie"], "answer": 0},
+        {"q": "Ile razy słucha jednej historii?", "options": ["Trzy lub cztery", "Raz", "Dziesięć"], "answer": 0},
+        {"q": "Co wydarzyło się w zeszłym tygodniu?", "options": ["Odpowiedział klientowi bez zastanowienia", "Zdał egzamin", "Dostał awans"], "answer": 0},
+     ]},
+    {"id": "r_neighbour", "level": "A2", "domain": "general", "emoji": "🧑‍🤝‍🧑",
+     "title": "Sąsiad z góry", "minutes": 3,
+     "text": [
+        "Our neighbour on the fourth floor is an old man called Mr Kowalski.",
+        "He lives alone and he does not have any family in the city.",
+        "Every morning he goes to the shop for bread and a newspaper.",
+        "Last winter he fell on the stairs and he could not get up.",
+        "My wife heard him and we called an ambulance.",
+        "He stayed in hospital for two weeks.",
+        "When he came back, we started to visit him twice a week.",
+        "Sometimes we bring soup, sometimes we only drink tea and talk.",
+        "He tells us stories about the city fifty years ago.",
+        "He says that we are his family now, and I think he is right.",
+     ],
+     "questions": [
+        {"q": "Co stało się zimą?", "options": ["Upadł na schodach", "Zgubił klucze", "Wyjechał"], "answer": 0},
+        {"q": "Jak często go odwiedzają?", "options": ["Dwa razy w tygodniu", "Codziennie", "Raz w miesiącu"], "answer": 0},
+        {"q": "O czym opowiada pan Kowalski?", "options": ["O mieście sprzed pięćdziesięciu lat", "O swojej pracy", "O wnukach"], "answer": 0},
+     ]},
+    {"id": "r_night", "level": "A2", "domain": "work", "emoji": "🌙",
+     "title": "Nocna zmiana", "minutes": 3,
+     "text": [
+        "I worked on nights for six months and it changed my life — not in a good way.",
+        "The shift started at ten in the evening and finished at six in the morning.",
+        "At two o'clock the building was very quiet and everybody was tired.",
+        "We drank a lot of coffee and talked about food.",
+        "The money was better, but I slept badly during the day.",
+        "My children were at school when I was awake, and asleep when I came home.",
+        "After six months I asked my manager to move me to days.",
+        "He said that it was possible from the next month.",
+        "Now I earn less, but I have dinner with my family every evening.",
+        "For me it was the right decision.",
+     ],
+     "questions": [
+        {"q": "O której kończyła się zmiana?", "options": ["O szóstej rano", "O dziesiątej wieczorem", "O drugiej w nocy"], "answer": 0},
+        {"q": "Co było problemem?", "options": ["Źle spał w dzień i nie widywał dzieci", "Praca była za ciężka", "Kierownik był niemiły"], "answer": 0},
+        {"q": "Co zmieniło się na końcu?", "options": ["Przeszedł na dzienne zmiany", "Zmienił pracę", "Dostał podwyżkę"], "answer": 0},
+     ]},
+    {"id": "r_phone", "level": "A2", "domain": "general", "emoji": "📱",
+     "title": "Telefon w kawiarni", "minutes": 3,
+     "text": [
+        "Yesterday I left my phone in a café and I did not notice for two hours.",
+        "When I looked in my bag, my hands started to shake.",
+        "All my photos, my bank app and my messages were on that phone.",
+        "I ran back to the café, but the table was empty and a different family was sitting there.",
+        "I asked the woman behind the counter and she smiled.",
+        "\"Is it black with a green case?\" she said.",
+        "Somebody found it on the chair and gave it to her.",
+        "She kept it under the counter for me.",
+        "I wanted to give her money, but she did not want anything.",
+        "I bought a coffee and left a big tip instead.",
+     ],
+     "questions": [
+        {"q": "Gdzie zostawił telefon?", "options": ["W kawiarni", "W autobusie", "W pracy"], "answer": 0},
+        {"q": "Kto miał telefon?", "options": ["Kobieta zza lady", "Rodzina przy stoliku", "Kierowca"], "answer": 0},
+        {"q": "Jak podziękował?", "options": ["Kupił kawę i zostawił duży napiwek", "Dał jej pieniądze", "Nic nie zrobił"], "answer": 0},
+     ]},
+]
+
+if __name__ == "__main__":
+    import json, os, re
+    for t in TEXTS:
+        words = sum(len(re.findall(r"[A-Za-z']+", s)) for s in t["text"])
+        t["words"] = words
+    d = {"name": "Czytanie — teksty dobierane do słownika ucznia", "texts": TEXTS}
+    p = os.path.join(os.path.dirname(__file__), "..", "data", "czytanie")
+    os.makedirs(p, exist_ok=True)
+    json.dump(d, open(os.path.join(p, "teksty.json"), "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
+    print(f"czytanie: {len(TEXTS)} tekstów, "
+          f"{sum(t['words'] for t in TEXTS)} słów, "
+          f"{sum(len(t['questions']) for t in TEXTS)} pytań")

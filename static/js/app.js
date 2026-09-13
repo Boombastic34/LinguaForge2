@@ -1,17 +1,22 @@
 // Router + nawigacja
 const ROUTES_STUDENT = [
+  ["#today", "🏠 Dziś", viewToday],
+  ["#progress", "📈 Czy to działa?", viewProgress],
+  ["#fluency", "🗣 Płynność", viewFluency],
+  ["#read2", "📖 Czytanie (v2)", viewRead2],
   ["#dashboard", "🏠 Pulpit", viewDashboard],
   // BŁĄD (v2.8.1): zakładka „Podstawy" była w dolnym pasku, ale NIE było jej w tabeli tras,
   // więc router nie znajdował widoku i przekierowywał z powrotem na pulpit — pusta strona.
   ["#basics", "🎒 Podstawy", viewBasics],
   ["#path", "🧭 Ścieżka", viewPath],
   ["#flashcards", "🃏 Fiszki", viewFlashcards],
+  ["#sentences", "✍️ Zdania", viewSentences],
+  ["#verbs", "⚙️ Czasowniki", viewVerbs],
   ["#dialogs", "💬 Rozmowy", viewDialogs],
   ["#reading", "📖 Czytanie", viewReading],
   ["#admin", "🛡 Administrator", viewAdmin, "admin"],
   ["#review", "🔍 Przegląd treści", viewReview, "admin"],
   ["#notes", "📋 Notatki admina", viewReviewNotes, "admin"],
-  ["#verbs", "⚙️ Czasowniki z czasami", viewVerbs],
   ["#grammar", "📐 Gramatyka", viewGrammar],
   ["#translate", "🌐 Tłumaczenia", viewTranslate],
   ["#listening", "🎧 Słuchanie", viewListening],
@@ -23,7 +28,7 @@ const ROUTES_TEACHER = [["#teacher", "🧑‍🏫 Uczniowie", viewTeacher]];
 
 // hash -> identyfikator modułu (do filtrowania wg uprawnień)
 const ROUTE_MODULE = {
-  "#basics": "basics", "#path": "path", "#flashcards": "flashcards", "#verbs": "verbs", "#dialogs": "dialogs",
+  "#basics": "basics", "#path": "path", "#flashcards": "flashcards", "#sentences": "sentences", "#verbs": "verbs", "#dialogs": "dialogs",
   "#reading": "reading", "#listening": "listening", "#translate": "translate",
   "#grammar": "grammar", "#games": "games", "#programs": "programs",
   "#custom": "custom", "#placement": "placement",
@@ -44,6 +49,7 @@ const HIDDEN = { "#placement": viewPlacement, "#student": null };
 
 function boot() {
   if (!API.token || !API.user) { viewAuth(); return; }
+  if (typeof applyV2Class === "function") applyV2Class();   // wersja 2: własna paleta i układ
   const app = document.getElementById("app");
   app.innerHTML = "";
   const routes = API.user.role === "teacher" ? ROUTES_TEACHER : ROUTES_STUDENT;
@@ -51,7 +57,7 @@ function boot() {
   const nav = el("nav", {});
   const aside = el("aside", {},
     el("div", { class: "brand" }, "Lingua", el("span", {}, "Forge")),
-    el("div", { class: "brand-sub", id: "verbox" }, "v3.2.0 · kuźnia języka"),
+    el("div", { class: "brand-sub", id: "verbox" }, "v3.11.1 · kuźnia języka"),
     nav,
     el("div", { class: "spacer" }),
     el("div", { class: "userbox" },
@@ -76,21 +82,26 @@ function boot() {
     const box = document.getElementById("verbox");
     if (!box) return;
     box.textContent = "v" + v.version + " · kuźnia języka";
-    if (v.version !== "3.2.0") {
+    if (v.version !== "3.11.1") {
       box.textContent = "v" + v.version + " · odśwież (Ctrl+F5)";
       box.style.color = "#ffd43b";
     }
   }).catch(() => {});
 
   // pięć głównych zakładek na dole; reszta w arkuszu „Więcej"
+  // w wersji 2 dolny pasek jest krótszy: mniej wyborów = więcej działania
   const TABS = API.user.role === "teacher"
     ? [["#teacher", "🧑‍🏫", "Uczniowie"]]
-    : [["#dashboard", "🏠", "Start"], ["#basics", "🎒", "Podstawy"],
-       ["#path", "🧭", "Ścieżka"], ["#flashcards", "🃏", "Fiszki"]];
+    : ((typeof v2On === "function" && v2On())
+        ? [["#today", "🏠", "Dziś"], ["#path", "🧭", "Ścieżka"],
+           ["#flashcards", "🃏", "Fiszki"], ["#sentences", "✍️", "Zdania"]]
+        : [["#dashboard", "🏠", "Start"], ["#basics", "🎒", "Podstawy"],
+           ["#path", "🧭", "Ścieżka"], ["#flashcards", "🃏", "Fiszki"],
+           ["#sentences", "✍️", "Zdania"]]);
 
   function renderNav() {
     nav.innerHTML = "";
-    const cur = location.hash || "#dashboard";
+    const cur = location.hash || ((typeof v2On === "function" && v2On()) ? "#today" : "#dashboard");
     for (const [hash, icon, label] of TABS) {
       if (!moduleAllowed(hash)) continue;
       nav.append(el("button", {
@@ -136,7 +147,8 @@ function boot() {
   let CURRENT = null;
   async function route() {
     renderNav();
-    const h = location.hash || (API.user.role === "teacher" ? "#teacher" : "#dashboard");
+    const home = (typeof v2On === "function" && v2On()) ? "#today" : "#dashboard";
+    const h = location.hash || (API.user.role === "teacher" ? "#teacher" : home);
     if (CURRENT === h) return;   // ten sam widok już wyrenderowany — bez duplikatu
     CURRENT = h;
     if (h.startsWith("#flashcards:")) return viewFlashcards(h.split(":")[1] === "theme" ? "all" : "all", h.split(":")[2]);

@@ -53,6 +53,18 @@ function answersMatch(given, expected, opts) {
 }
 
 // Pomocnicze funkcje interfejsu
+// DOM-owy append() zamienia null na tekst „null" — a my bardzo często piszemy
+// `warunek ? element : null`. Bez tej poprawki na ekranie pojawia się słowo „null".
+// Nadpisujemy append/prepend tak, żeby po cichu pomijały null i undefined.
+(function patchAppend() {
+  ["append", "prepend"].forEach(name => {
+    const orig = Element.prototype[name];
+    Element.prototype[name] = function (...kids) {
+      return orig.apply(this, kids.filter(k => k !== null && k !== undefined));
+    };
+  });
+})();
+
 function el(tag, attrs = {}, ...children) {
   const n = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {

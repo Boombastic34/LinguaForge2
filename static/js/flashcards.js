@@ -42,7 +42,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     const GROUPS = [
       { name: "Cała baza", emoji: "🎲", themes: [],
         extra: [["all", "Wszystko losowo", "cała baza wymieszana"]] },
-      { name: "Twoje słabe punkty", emoji: "🔥", themes: ["trudne"] },
+      { name: "Twoje słabe punkty", emoji: "🔥", themes: ["trudne", "poprawa"] },
+      { name: "Czasowniki", emoji: "⚙️", themes: ["odmiana", "czasowniki"] },
       { name: "Części mowy", emoji: "🔤",
         themes: ["czasowniki", "przedmioty", "przymiotniki", "liczebniki"] },
       { name: "Wyrażenia i pułapki", emoji: "🔗",
@@ -276,6 +277,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     // karta wprowadzająca wyłącznie w trybie nauki — poza nim od razu pytamy
     if (learn && !c._seen) { c._seen = true; return renderIntro(c); }
     if (c.deck === "hard" && c.cloze) return renderHardGap(c);   // słowo do utrwalenia: samo słowo w luce
+    if (c.deck === "verb" && c.verb) return renderVerb(c);       // czasownik: pytanie o formę + tabela odmiany
+    if (c.deck === "sentence") return renderSentenceCard(c);     // całe zdanie do poprawy
     if (audio !== "off") return renderAudio(c);
     t0 = Date.now();
     stage.innerHTML = "";
@@ -331,6 +334,86 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); send.click(); } if (e.key === "Escape") dunno.click(); };
     stage.append(el("div", { class: "fc-answer-row" }, inp), el("div", { class: "fb-btns fc-btns" }, send, dunno));
     inp.focus();
+  }
+
+  // 📝 ZDANIE DO POPRAWY — całe zdanie, które kiedyś napisałeś źle
+  function renderSentenceCard(c) {
+    t0 = Date.now();
+    stage.innerHTML = "";
+    updateBar();
+    stage.append(el("div", { class: "fc-card" },
+      el("div", { class: "fc-face fc-front" },
+        el("div", { class: "fc-tags" },
+          el("span", { class: "fc-tag tag-fix" }, "📝 ZDANIE DO POPRAWY"),
+          c.hint ? el("span", { class: "fc-tag" }, c.hint) : null),
+        el("div", { class: "sp-pl" }, c.pl),
+        c.example ? el("div", { class: "fc-hint" }, "💡 " + c.example) : null,
+        el("div", { class: "fc-side" }, "napisz całe zdanie po angielsku"))));
+    const inp = el("input", { class: "input fc-input", autocomplete: "off", autocapitalize: "off",
+      spellcheck: "false", placeholder: "całe zdanie…" });
+    const send = el("button", { class: "btn ok", onclick: () => {
+      if (!inp.value.trim()) return;
+      grade(c, answersMatch(inp.value, c.en, { lang: "en", strict: true }), inp.value, false);
+    } }, "Sprawdź ⏎");
+    const dunno = el("button", { class: "btn ghost", onclick: () => grade(c, false, "", true) }, "🤷 Nie wiem");
+    inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); send.click(); } if (e.key === "Escape") dunno.click(); };
+    stage.append(el("div", { class: "fc-answer-row" }, inp), el("div", { class: "fb-btns fc-btns" }, send, dunno));
+    inp.focus();
+  }
+
+  // ⚙️ CZASOWNIK — pytamy o jedną formę, a po odpowiedzi pokazujemy CAŁĄ odmianę w tabeli
+  const VERB_ASK = [
+    { key: "past", q: v => `Jak brzmi 2. forma (Past Simple) czasownika „${v.base}”?`, hint: "wczoraj I ___" },
+    { key: "perf", q: v => `Jak brzmi 3. forma (po „have”) czasownika „${v.base}”?`, hint: "I have ___" },
+    { key: "third", q: v => `„${v.base}” — jak brzmi forma dla he / she / it?`, hint: "he ___" },
+    { key: "ing", q: v => `„${v.base}” — jak brzmi forma z -ing?`, hint: "I am ___" },
+  ];
+  function renderVerb(c) {
+    t0 = Date.now();
+    stage.innerHTML = "";
+    updateBar();
+    const v = c.verb;
+    const ask = VERB_ASK[Math.floor(Math.random() * VERB_ASK.length)];
+    const card = el("div", { class: "fc-card vb-card" },
+      el("div", { class: "fc-face fc-front" },
+        el("div", { class: "fc-tags" },
+          el("span", { class: "fc-tag tag-verb" }, "⚙️ CZASOWNIK"),
+          el("span", { class: "fc-tag" }, v.irregular ? "nieregularny" : "regularny"),
+          c.nr ? el("span", { class: "fc-tag tag-nr" }, "[" + c.nr + "]") : null),
+        el("div", { class: "vb-lemma" }, v.base, " ",
+          el("button", { class: "fc-speak", onclick: e => { e.stopPropagation(); speak(v.base); } }, "🔊"),
+          el("span", { class: "vb-lemma-pl" }, c.pl)),
+        el("div", { class: "vb-question" }, ask.q(v)),
+        el("div", { class: "fc-side" }, ask.hint)));
+    stage.append(card);
+    const inp = el("input", { class: "input fc-input", autocomplete: "off", autocapitalize: "off",
+      spellcheck: "false", placeholder: "wpisz formę…" });
+    const send = el("button", { class: "btn ok", onclick: () => {
+      if (!inp.value.trim()) return;
+      grade(c, answersMatch(inp.value, v[ask.key], { lang: "en", strict: true }), inp.value, false, { ask, v });
+    } }, "Sprawdź ⏎");
+    const dunno = el("button", { class: "btn ghost", onclick: () => grade(c, false, "", true, { ask, v }) }, "🤷 Nie wiem");
+    inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); send.click(); } if (e.key === "Escape") dunno.click(); };
+    stage.append(el("div", { class: "fc-answer-row" }, inp), el("div", { class: "fb-btns fc-btns" }, send, dunno));
+    inp.focus();
+  }
+
+  // Tabela odmiany — czytelny, spokojny układ: forma po lewej, zdanie po prawej, polskie pod spodem.
+  function verbTable(v, highlight) {
+    const t = el("div", { class: "vb-table" });
+    t.append(el("div", { class: "vb-forms" },
+      ...[["base", "podstawowa"], ["third", "he / she / it"], ["ing", "-ing"], ["past", "2. forma"], ["perf", "3. forma"]]
+        .map(([k, label]) => el("div", { class: "vb-form" + (k === highlight ? " vb-form-hi" : "") },
+          el("div", { class: "vb-form-label" }, label),
+          el("div", { class: "vb-form-word" }, v[k], " ",
+            el("button", { class: "mini-tts", onclick: () => speak(v[k]) }, "🔊"))))));
+    v.rows.forEach(r => t.append(el("div", { class: "vb-row" },
+      el("div", { class: "vb-row-tense" }, r.tense),
+      el("div", { class: "vb-row-body" },
+        el("div", { class: "vb-row-en" }, r.en, " ",
+          el("button", { class: "mini-tts", onclick: () => speak(r.en.split(" · ")[0]) }, "🔊")),
+        el("div", { class: "vb-row-pl" }, r.pl)))));
+    return t;
   }
 
   // polskie zdanie jako klikalne słowa — uczeń wskazuje znaczenie trudnego słowa
@@ -531,7 +614,7 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
     grade(c, isCorrect(c, val), val, false);
   }
 
-  async function grade(c, ok, val, gaveUp) {
+  async function grade(c, ok, val, gaveUp, vinfo) {
     const rt = Date.now() - t0;
     const rating = gaveUp || !ok ? 1 : (rt < 6000 ? 4 : 3);
     streak = ok ? streak + 1 : 0;
@@ -541,7 +624,8 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
         example: c.example || "", example_pl: c.example_pl || "" });
     done++;
     if (ok) { sessionXp += r.xp; xpPop(r.xp); }
-    if (r.hard === "added") toast("🔥 „" + c.en + "” trafia do utrwalenia");
+    if (r.hard === "sentence_released") toast("✨ Zdanie opanowane — wypada z talii do poprawy");
+    else if (r.hard === "added") toast("🔥 „" + c.en + "” trafia do utrwalenia");
     else if (r.hard === "released") toast("✨ „" + c.en + "” opanowane — wypada z utrwalania");
     stage.innerHTML = "";
     speakAuto(c.en);                     // lektor czyta angielskie słowo po odpowiedzi
@@ -559,6 +643,10 @@ async function viewFlashcards(cat, theme, count, retype, dirMode, learnMode, aud
         c.example ? el("div", { class: "fc-example", onclick: () => speak(c.example) }, "„" + c.example + "”",
           c.example_pl ? el("div", { class: "muted small" }, c.example_pl) : null) : null,
         meaningPicker(c),
+        vinfo ? el("div", { class: "vb-answer" },
+          "Pytanie o formę: ", el("b", {}, vinfo.v[vinfo.ask.key]),
+          el("div", { class: "muted small" }, "Cała odmiana:")) : null,
+        vinfo ? verbTable(vinfo.v, vinfo.ask.key) : null,
         el("div", { class: "fc-meta" }, `następna powtórka: ${r.next_in}` +
           (r.mature ? " · OPANOWANE ✔" : "") + (r.leech ? " · pijawka 🩸" : ""))));
     stage.append(flip);

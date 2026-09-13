@@ -1,0 +1,65 @@
+# -*- coding: utf-8 -*-
+"""Faza 0 — minimalne pary dla Polaków (kontrasty, których polski nie ma).
+Uruchom: python tools/wymowa.py
+"""
+CONTRASTS = [
+ {"id": "i_ii", "name": "ship / sheep", "title": "krótkie i — długie ii",
+  "why": "Polskie „i” jest jedno. Angielski ma dwa dźwięki: krótkie, luźne /ɪ/ (ship) i długie, napięte /iː/ (sheep). "
+         "Mylenie ich zmienia znaczenie: „I need a shit” zamiast „sheet” to klasyczna wpadka.",
+  "tip": "Krótkie /ɪ/ — usta prawie nieruchome, dźwięk urwany. Długie /iː/ — uśmiech, dźwięk ciągnięty.",
+  "pairs": [["ship","statek","sheep","owca"],["bit","kawałek","beat","bić / rytm"],
+            ["live","żyć","leave","wyjść"],["fill","napełnić","feel","czuć"],
+            ["sit","siedzieć","seat","siedzenie"],["chip","frytka","cheap","tani"]]},
+ {"id": "ae_e", "name": "bad / bed", "title": "æ — otwarte a",
+  "why": "Dźwięk /æ/ (bad, cat, man) nie istnieje w polskim. Polacy zastępują go przez „e” — i wtedy „bad” brzmi jak „bed”, "
+         "a „man” jak „men”.",
+  "tip": "Opuść szczękę niżej niż przy polskim „e”, jakbyś zaczynał ziewać. To dźwięk między „e” a „a”.",
+  "pairs": [["bad","zły","bed","łóżko"],["man","mężczyzna","men","mężczyźni"],
+            ["sat","siedział","set","zestaw"],["had","miał","head","głowa"],
+            ["cat","kot","get","dostać"],["bat","nietoperz","bet","zakład"]]},
+ {"id": "th", "name": "think / sink", "title": "th — język między zębami",
+  "why": "Dwa dźwięki, których polski nie ma: bezdźwięczne /θ/ (think) i dźwięczne /ð/ (this). "
+         "Polacy zastępują je przez s/z lub f/w. „I sink” zamiast „I think” znaczy „tonę”.",
+  "tip": "Czubek języka lekko między zębami, dmuchnij. Przy „this” dodaj głos — poczuj drganie w gardle.",
+  "pairs": [["think","myśleć","sink","zlew / tonąć"],["three","trzy","tree","drzewo"],
+            ["thin","cienki","sin","grzech"],["mouth","usta","mouse","mysz"],
+            ["thank","dziękować","sank","zatonął"],["path","ścieżka","pass","minąć"]]},
+ {"id": "v_w", "name": "vest / west", "title": "v — górne zęby na wardze",
+  "why": "Polskie „w” jest bliższe angielskiemu /v/, ale angielskie /w/ (west, water) to dźwięk zaokrąglonych warg, "
+         "jak polskie „ł”. Zamiana zmienia słowo.",
+  "tip": "/v/ — górne zęby dotykają dolnej wargi. /w/ — usta w dziobek, zębów nie ma w grze.",
+  "pairs": [["vest","kamizelka","west","zachód"],["vine","winorośl","wine","wino"],
+            ["veil","welon","wail","zawodzić"],["very","bardzo","wary","ostrożny"],
+            ["invest","inwestować","in west","na zachodzie"],["V","litera V","we","my"]]},
+ {"id": "u_uu", "name": "full / fool", "title": "krótkie u — długie uu",
+  "why": "Podobnie jak przy i/ii: /ʊ/ (full, book) jest krótkie i luźne, /uː/ (fool, food) długie i napięte.",
+  "tip": "Krótkie — usta ledwo zaokrąglone, dźwięk urwany. Długie — mocny dziobek, dźwięk ciągnięty.",
+  "pairs": [["full","pełny","fool","głupiec"],["pull","ciągnąć","pool","basen"],
+            ["look","patrzeć","Luke","imię Łukasz"],["foot","stopa","food","jedzenie"],
+            ["should","powinien","shooed","przegonił"],["cook","gotować","cool","fajny"]]},
+ {"id": "ending", "name": "-s, -ed na końcu", "title": "końcówki, które Polacy gubią",
+  "why": "Po polsku końcówki są w środku wyrazu i zawsze wyraźne. Po angielsku niosą całą gramatykę i są ciche — "
+         "kto ich nie wymawia, brzmi jakby nie znał czasów.",
+  "tip": "„Works” = works, nie „work”. „Asked” = askt (jedna sylaba!), nie „asked-ed”.",
+  "pairs": [["work","pracować","works","pracuje"],["play","grać","played","grał"],
+            ["like","lubić","liked","lubił"],["want","chcieć","wanted","chciał (2 sylaby!)"],
+            ["car","samochód","cars","samochody"],["watch","oglądać","watched","oglądał"]]},
+ {"id": "stress", "name": "akcent wyrazowy", "title": "gdzie pada akcent",
+  "why": "Polski akcentuje przedostatnią sylabę prawie zawsze. Angielski akcentuje dowolną — i to akcent, a nie głoski, "
+         "decyduje o tym, czy native Cię zrozumie.",
+  "tip": "Akcentowana sylaba jest DŁUŻSZA i GŁOŚNIEJSZA; reszta się redukuje do „y” (schwa).",
+  "pairs": [["PREsent (dar)","rzeczownik","preSENT (przedstawiać)","czasownik"],
+            ["REcord (nagranie)","rzeczownik","reCORD (nagrywać)","czasownik"],
+            ["PHOtograph","zdjęcie","phoTOgrapher","fotograf"],
+            ["THIRteen","trzynaście","THIRty","trzydzieści"],
+            ["OBject (przedmiot)","rzeczownik","obJECT (sprzeciwiać się)","czasownik"],
+            ["DEsert (pustynia)","rzeczownik","desSERT (deser)","rzeczownik"]]},
+]
+
+if __name__ == "__main__":
+    import json, os
+    d = {"name": "Wymowa — minimalne pary", "contrasts": CONTRASTS}
+    p = os.path.join(os.path.dirname(__file__), "..", "data", "wymowa")
+    os.makedirs(p, exist_ok=True)
+    json.dump(d, open(os.path.join(p, "pary.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print("wymowa:", len(CONTRASTS), "kontrastów,", sum(len(c["pairs"]) for c in CONTRASTS), "par")

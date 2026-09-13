@@ -109,8 +109,9 @@ async function viewDashboard() {
     ["#basics", "🎒", "Podstawy", "teoria + ćwiczenia + test", "12 tematów gramatyki A1–A2", "indigo"],
     ["#dialogs", "💬", "Rozmowy", "symulacje z życia", "praca, urlop, lekarz, kantyna", "teal"],
     ["#repair", "🩹", "Napraw błędy", "sesja z Twoich potknięć", "pijawki + najczęstsze błędy", "gold"],
+    ["#sentences", "✍️", "Zdania", "tworzenie i słuchanie", "buduj zdania po angielsku albo zapisuj ze słuchu", "violet"],
+    ["#verbs", "⚙️", "Czasowniki", `${stats.verbs} z odmianą`, "przeglądaj formy, czasy i przykłady", "teal"],
     ["#flashcards", "🃏", "Fiszki", d.due ? `${d.due} do powtórki` : "wszystko powtórzone", `${stats.vocab_total} słówek w bazie`, "ember"],
-    ["#verbs", "⚙️", "Czasowniki z czasami", d.verb_due ? `${d.verb_due} do powtórki` : "trenuj odmianę", `${stats.verbs} czasowników × 3 czasy × 2 kierunki`, "teal"],
     ["#grammar", "📐", "Gramatyka", "tematy + mieszane", `${stats.grammar.topics} tematów · ${stats.grammar.exercises} ćwiczeń`, "indigo"],
     ["#translate", "🌐", "Tłumaczenia", "PL → EN z oceną czasu", `${stats.translations} zdań`, "teal"],
     ["#listening", "🎧", "Słuchanie", "EN i PL→EN", `${stats.listening + stats.placement.listening + stats.placement.listening_pl} nagrań`, "violet"],
@@ -219,6 +220,15 @@ async function viewDashboard() {
           onchange: e => LFSET.set("haptics", e.target.checked) }),
         " 📳 Wibracje przy odpowiedzi"),
       el("button", { class: "btn ok", onclick: ttsDiagnose }, "🔊 Sprawdź lektora")),
+    el("div", { class: "set-row set-version" },
+      el("div", {},
+        el("b", {}, "Wersja aplikacji"),
+        el("div", { class: "muted small" },
+          "Wersja 1 — klasyczna: menu modułów, sesje tematyczne. " +
+          "Wersja 2 — przebudowana wg badań: jeden krok dnia, sesja z łukiem, " +
+          "przeplatane zadania, mieszane słownictwo, rdza zamiast listy zaległości, wymowa na start.")),
+      el("button", { class: "btn ok", onclick: switchVersion },
+        (typeof v2On === "function" && v2On()) ? "↔ Wróć do wersji 1" : "↔ Wypróbuj wersję 2")),
     el("div", { class: "set-row" }, "Tempo lektora: ",
       speedPicker(ttsRate(), () => speak("Hello! This is my speaking speed.", undefined, "en", true))),
     el("button", { class: "btn ok", onclick: async () => {

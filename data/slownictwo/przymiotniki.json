@@ -12,7 +12,9 @@
    "en": "big",
    "pl": "duży",
    "level": "A1",
-   "rank": 800
+   "rank": 800,
+   "example": "We have a big kitchen.",
+   "example_pl": "Mamy dużą kuchnię."
   },
   {
    "nr": 2,
@@ -20,7 +22,9 @@
    "en": "small",
    "pl": "mały",
    "level": "A1",
-   "rank": 801
+   "rank": 801,
+   "example": "The room is small.",
+   "example_pl": "Pokój jest mały."
   },
   {
    "nr": 3,
@@ -28,7 +32,9 @@
    "en": "long",
    "pl": "długi",
    "level": "A1",
-   "rank": 802
+   "rank": 802,
+   "example": "It is a long day.",
+   "example_pl": "To długi dzień."
   },
   {
    "nr": 4,
@@ -36,7 +42,9 @@
    "en": "short",
    "pl": "krótki / niski",
    "level": "A1",
-   "rank": 803
+   "rank": 803,
+   "example": "My brother is short.",
+   "example_pl": "Mój brat jest niski."
   },
   {
    "nr": 5,
@@ -44,7 +52,9 @@
    "en": "tall",
    "pl": "wysoki (o osobie)",
    "level": "A1",
-   "rank": 804
+   "rank": 804,
+   "example": "My father is very tall.",
+   "example_pl": "Mój tata jest bardzo wysoki."
   },
   {
    "nr": 6,
@@ -52,7 +62,9 @@
    "en": "wide",
    "pl": "szeroki",
    "level": "A1",
-   "rank": 805
+   "rank": 805,
+   "example": "The road is wide.",
+   "example_pl": "Droga jest szeroka."
   },
   {
    "nr": 7,
@@ -60,7 +72,9 @@
    "en": "narrow",
    "pl": "wąski",
    "level": "A1",
-   "rank": 806
+   "rank": 806,
+   "example": "The street is narrow.",
+   "example_pl": "Ulica jest wąska."
   },
   {
    "nr": 8,
@@ -68,7 +82,9 @@
    "en": "thick",
    "pl": "gruby",
    "level": "A1",
-   "rank": 807
+   "rank": 807,
+   "example": "This book is thick.",
+   "example_pl": "Ta książka jest gruba."
   },
   {
    "nr": 9,
@@ -76,7 +92,9 @@
    "en": "thin",
    "pl": "cienki / chudy",
    "level": "A1",
-   "rank": 808
+   "rank": 808,
+   "example": "The walls are thin.",
+   "example_pl": "Ściany są cienkie."
   },
   {
    "nr": 10,
@@ -84,7 +102,9 @@
    "en": "deep",
    "pl": "głęboki",
    "level": "A1",
-   "rank": 809
+   "rank": 809,
+   "example": "The river is deep here.",
+   "example_pl": "Rzeka jest tu głęboka."
   },
   {
    "nr": 11,
@@ -92,7 +112,9 @@
    "en": "full",
    "pl": "pełny",
    "level": "A1",
-   "rank": 810
+   "rank": 810,
+   "example": "The bus is full.",
+   "example_pl": "Autobus jest pełny."
   },
   {
    "nr": 12,
@@ -100,7 +122,9 @@
    "en": "empty",
    "pl": "pusty",
    "level": "A1",
-   "rank": 811
+   "rank": 811,
+   "example": "The box is empty.",
+   "example_pl": "Pudełko jest puste."
   },
   {
    "nr": 13,
@@ -109,7 +133,9 @@
    "pl": "czysty",
    "level": "A1",
    "rank": 812,
-   "hint": "przymiotnik: jaki? czysty"
+   "hint": "przymiotnik: jaki? czysty",
+   "example": "The kitchen is clean.",
+   "example_pl": "Kuchnia jest czysta."
   },
   {
    "nr": 14,
@@ -117,7 +143,9 @@
    "en": "dirty",
    "pl": "brudny",
    "level": "A1",
-   "rank": 813
+   "rank": 813,
+   "example": "My shoes are dirty.",
+   "example_pl": "Moje buty są brudne."
   },
   {
    "nr": 15,
@@ -125,7 +153,9 @@
    "en": "wet",
    "pl": "mokry",
    "level": "A1",
-   "rank": 814
+   "rank": 814,
+   "example": "The floor is wet.",
+   "example_pl": "Podłoga jest mokra."
   },
   {
    "nr": 16,
@@ -133,7 +163,9 @@
    "en": "dry",
    "pl": "suchy",
    "level": "A1",
-   "rank": 815
+   "rank": 815,
+   "example": "The towel is dry.",
+   "example_pl": "Ręcznik jest suchy."
   },
   {
    "nr": 17,
@@ -141,7 +173,9 @@
    "en": "hot",
    "pl": "gorący",
    "level": "A1",
-   "rank": 816
+   "rank": 816,
+   "example": "The soup is hot.",
+   "example_pl": "Zupa jest gorąca."
   },
   {
    "nr": 18,
@@ -149,7 +183,9 @@
    "en": "cold",
    "pl": "zimny",
    "level": "A1",
-   "rank": 817
+   "rank": 817,
+   "example": "The water is cold.",
+   "example_pl": "Woda jest zimna."
   },
   {
    "nr": 19,
@@ -157,7 +193,9 @@
    "en": "new",
    "pl": "nowy",
    "level": "A1",
-   "rank": 818
+   "rank": 818,
+   "example": "I have a new phone.",
+   "example_pl": "Mam nowy telefon."
   },
   {
    "nr": 20,
@@ -165,7 +203,9 @@
    "en": "old",
    "pl": "stary",
    "level": "A1",
-   "rank": 819
+   "rank": 819,
+   "example": "This car is old.",
+   "example_pl": "Ten samochód jest stary."
   },
   {
    "nr": 21,
@@ -173,7 +213,9 @@
    "en": "young",
    "pl": "młody",
    "level": "A1",
-   "rank": 820
+   "rank": 820,
+   "example": "She is young.",
+   "example_pl": "Ona jest młoda."
   },
   {
    "nr": 22,
@@ -181,7 +223,9 @@
    "en": "modern",
    "pl": "nowoczesny",
    "level": "A1",
-   "rank": 821
+   "rank": 821,
+   "example": "It is a modern flat.",
+   "example_pl": "To nowoczesne mieszkanie."
   },
   {
    "nr": 23,
@@ -189,7 +233,9 @@
    "en": "cheap",
    "pl": "tani",
    "level": "A1",
-   "rank": 822
+   "rank": 822,
+   "example": "The tickets are cheap.",
+   "example_pl": "Bilety są tanie."
   },
   {
    "nr": 24,
@@ -197,7 +243,9 @@
    "en": "expensive",
    "pl": "drogi",
    "level": "A1",
-   "rank": 823
+   "rank": 823,
+   "example": "This coat is expensive.",
+   "example_pl": "Ten płaszcz jest drogi."
   },
   {
    "nr": 25,
@@ -205,7 +253,9 @@
    "en": "rich",
    "pl": "bogaty",
    "level": "A1",
-   "rank": 824
+   "rank": 824,
+   "example": "They are rich.",
+   "example_pl": "Oni są bogaci."
   },
   {
    "nr": 26,
@@ -213,7 +263,9 @@
    "en": "poor",
    "pl": "biedny",
    "level": "A1",
-   "rank": 825
+   "rank": 825,
+   "example": "He is poor but happy.",
+   "example_pl": "On jest biedny, ale szczęśliwy."
   },
   {
    "nr": 27,
@@ -221,7 +273,9 @@
    "en": "easy",
    "pl": "łatwy",
    "level": "A1",
-   "rank": 826
+   "rank": 826,
+   "example": "The test is easy.",
+   "example_pl": "Test jest łatwy."
   },
   {
    "nr": 28,
@@ -229,7 +283,9 @@
    "en": "difficult",
    "pl": "trudny",
    "level": "A1",
-   "rank": 827
+   "rank": 827,
+   "example": "English is difficult.",
+   "example_pl": "Angielski jest trudny."
   },
   {
    "nr": 29,
@@ -237,7 +293,9 @@
    "en": "important",
    "pl": "ważny",
    "level": "A1",
-   "rank": 828
+   "rank": 828,
+   "example": "This is important.",
+   "example_pl": "To jest ważne."
   },
   {
    "nr": 30,
@@ -245,7 +303,9 @@
    "en": "necessary",
    "pl": "konieczny",
    "level": "A1",
-   "rank": 829
+   "rank": 829,
+   "example": "Is it necessary?",
+   "example_pl": "Czy to konieczne?"
   },
   {
    "nr": 31,
@@ -253,7 +313,9 @@
    "en": "possible",
    "pl": "możliwy",
    "level": "A1",
-   "rank": 830
+   "rank": 830,
+   "example": "It is possible.",
+   "example_pl": "To możliwe."
   },
   {
    "nr": 32,
@@ -261,7 +323,9 @@
    "en": "impossible",
    "pl": "niemożliwy",
    "level": "A1",
-   "rank": 831
+   "rank": 831,
+   "example": "That is impossible!",
+   "example_pl": "To niemożliwe!"
   },
   {
    "nr": 33,
@@ -269,7 +333,9 @@
    "en": "ready",
    "pl": "gotowy",
    "level": "A1",
-   "rank": 832
+   "rank": 832,
+   "example": "Dinner is ready.",
+   "example_pl": "Obiad jest gotowy."
   },
   {
    "nr": 34,
@@ -277,7 +343,9 @@
    "en": "busy",
    "pl": "zajęty",
    "level": "A1",
-   "rank": 833
+   "rank": 833,
+   "example": "I am busy today.",
+   "example_pl": "Jestem dziś zajęty."
   },
   {
    "nr": 35,
@@ -285,7 +353,9 @@
    "en": "free (available)",
    "pl": "wolny / darmowy",
    "level": "A1",
-   "rank": 834
+   "rank": 834,
+   "example": "Are you free tomorrow?",
+   "example_pl": "Jesteś jutro wolny?"
   },
   {
    "nr": 36,
@@ -293,7 +363,9 @@
    "en": "open (adj)",
    "pl": "otwarty",
    "level": "A1",
-   "rank": 835
+   "rank": 835,
+   "example": "The shop is open.",
+   "example_pl": "Sklep jest otwarty."
   },
   {
    "nr": 37,
@@ -301,7 +373,9 @@
    "en": "closed",
    "pl": "zamknięty",
    "level": "A1",
-   "rank": 836
+   "rank": 836,
+   "example": "The bank is closed.",
+   "example_pl": "Bank jest zamknięty."
   },
   {
    "nr": 38,
@@ -309,7 +383,9 @@
    "en": "loud",
    "pl": "głośny",
    "level": "A1",
-   "rank": 837
+   "rank": 837,
+   "example": "The music is too loud.",
+   "example_pl": "Muzyka jest za głośna."
   },
   {
    "nr": 39,
@@ -317,7 +393,9 @@
    "en": "silent",
    "pl": "cichy",
    "level": "A1",
-   "rank": 838
+   "rank": 838,
+   "example": "The house is silent at night.",
+   "example_pl": "Dom jest cichy w nocy."
   },
   {
    "nr": 40,
@@ -325,7 +403,9 @@
    "en": "fast",
    "pl": "szybki",
    "level": "A1",
-   "rank": 839
+   "rank": 839,
+   "example": "This car is fast.",
+   "example_pl": "Ten samochód jest szybki."
   },
   {
    "nr": 41,
@@ -333,7 +413,9 @@
    "en": "slow",
    "pl": "wolny (powolny)",
    "level": "A1",
-   "rank": 840
+   "rank": 840,
+   "example": "The bus is slow.",
+   "example_pl": "Autobus jest wolny."
   },
   {
    "nr": 42,
@@ -341,7 +423,9 @@
    "en": "dangerous",
    "pl": "niebezpieczny",
    "level": "A1",
-   "rank": 841
+   "rank": 841,
+   "example": "This road is dangerous.",
+   "example_pl": "Ta droga jest niebezpieczna."
   },
   {
    "nr": 43,
@@ -349,7 +433,9 @@
    "en": "safe (adj)",
    "pl": "bezpieczny",
    "level": "A1",
-   "rank": 842
+   "rank": 842,
+   "example": "It is safe here.",
+   "example_pl": "Tu jest bezpiecznie."
   },
   {
    "nr": 44,
@@ -357,7 +443,9 @@
    "en": "useful",
    "pl": "przydatny",
    "level": "A1",
-   "rank": 843
+   "rank": 843,
+   "example": "This app is useful.",
+   "example_pl": "Ta aplikacja jest przydatna."
   },
   {
    "nr": 45,
@@ -365,7 +453,9 @@
    "en": "useless",
    "pl": "bezużyteczny",
    "level": "A1",
-   "rank": 844
+   "rank": 844,
+   "example": "This old map is useless.",
+   "example_pl": "Ta stara mapa jest bezużyteczna."
   },
   {
    "nr": 46,
@@ -373,7 +463,9 @@
    "en": "similar",
    "pl": "podobny",
    "level": "A1",
-   "rank": 845
+   "rank": 845,
+   "example": "Our jobs are similar.",
+   "example_pl": "Nasze prace są podobne."
   },
   {
    "nr": 47,
@@ -381,7 +473,9 @@
    "en": "different",
    "pl": "inny / różny",
    "level": "A1",
-   "rank": 846
+   "rank": 846,
+   "example": "The two rooms are different.",
+   "example_pl": "Te dwa pokoje są różne."
   },
   {
    "nr": 48,
@@ -389,7 +483,9 @@
    "en": "same",
    "pl": "taki sam",
    "level": "A1",
-   "rank": 847
+   "rank": 847,
+   "example": "We have the same car.",
+   "example_pl": "Mamy taki sam samochód."
   },
   {
    "nr": 49,
@@ -398,7 +494,9 @@
    "pl": "poprawny",
    "level": "A1",
    "rank": 848,
-   "hint": "przymiotnik: jaki? poprawny"
+   "hint": "przymiotnik: jaki? poprawny",
+   "example": "Your answer is correct.",
+   "example_pl": "Twoja odpowiedź jest poprawna."
   },
   {
    "nr": 50,
@@ -406,7 +504,9 @@
    "en": "wrong",
    "pl": "zły / błędny",
    "level": "A1",
-   "rank": 849
+   "rank": 849,
+   "example": "This number is wrong.",
+   "example_pl": "Ten numer jest zły."
   }
  ]
 }

@@ -1,189 +1,512 @@
 {
- "name": "Teksty do czytania",
+ "name": "Czytanie — teksty dobierane do słownika ucznia",
  "texts": [
   {
-   "id": "r_a1_shift",
+   "id": "r_first_day",
    "level": "A1",
-   "title": "My first shift",
-   "emoji": "📦",
-   "text": "My name is Marek. Today is my first day at the warehouse. I get up at four o'clock. It is very early and dark outside. I drink coffee and eat two sandwiches. My bike is old but it works. The ride takes twenty minutes.\n\nAt the gate I meet Kees. He is my team leader. He gives me a scanner and a yellow vest. The vest is too big, but it is fine. We walk to aisle number seven. There are many boxes here. Some boxes are small, some are very heavy.\n\nAt ten o'clock we have a break. I eat an apple and talk to Anna. She is from Romania and she works here for two years. She says the job is hard but the people are nice. I think she is right.",
-   "text_pl": "Mam na imię Marek. Dziś jest mój pierwszy dzień w magazynie. Wstaję o czwartej. Jest bardzo wcześnie i ciemno na dworze. Piję kawę i jem dwie kanapki. Mój rower jest stary, ale działa. Jazda zajmuje dwadzieścia minut.\n\nPrzy bramie spotykam Keesa. Jest moim liderem zespołu. Daje mi skaner i żółtą kamizelkę. Kamizelka jest za duża, ale jest w porządku. Idziemy do alejki numer siedem. Jest tu dużo pudeł. Niektóre są małe, niektóre bardzo ciężkie.\n\nO dziesiątej mamy przerwę. Jem jabłko i rozmawiam z Anną. Jest z Rumunii i pracuje tu od dwóch lat. Mówi, że praca jest ciężka, ale ludzie są mili. Myślę, że ma rację.",
+   "domain": "work",
+   "emoji": "🏭",
+   "title": "Pierwszy dzień w pracy",
+   "minutes": 2,
+   "text": [
+    "My name is Marek and I am from Poland.",
+    "Last month I started a new job in a big warehouse near the city.",
+    "On my first day I was very nervous.",
+    "I did not know anybody and my English was not good.",
+    "A man called Tom showed me the building.",
+    "He was patient and he spoke slowly.",
+    "He gave me a scanner and a high-vis vest.",
+    "\"Don't worry,\" he said. \"Everybody is slow on the first day.\"",
+    "In the morning I made a lot of mistakes.",
+    "I put three boxes on the wrong pallet.",
+    "But after the break it was better.",
+    "Now I work here every day and I like my team.",
+    "Tom is still my friend and we often have lunch together."
+   ],
    "questions": [
     {
-     "text": "How does Marek get to work?",
+     "q": "Gdzie pracuje Marek?",
      "options": [
-      "By car",
-      "By bicycle",
-      "On foot",
-      "By bus"
+      "W magazynie",
+      "W sklepie",
+      "W szkole"
      ],
-     "answer": 1,
-     "options_pl": [
-      "Samochodem",
-      "Rowerem",
-      "Pieszo",
-      "Autobusem"
-     ],
-     "pl": "Rowerem — „my bike… the ride takes twenty minutes”."
+     "answer": 0
     },
     {
-     "text": "What does Kees give him?",
+     "q": "Jaki był Marek pierwszego dnia?",
      "options": [
-      "Coffee and food",
-      "A scanner and a vest",
-      "A bike",
-      "A map of the city"
+      "Zdenerwowany",
+      "Spóźniony",
+      "Chory"
      ],
-     "answer": 1,
-     "options_pl": [
-      "Kawę i jedzenie",
-      "Skaner i kamizelkę",
-      "Rower",
-      "Mapę miasta"
-     ],
-     "pl": "Skaner i żółtą kamizelkę."
+     "answer": 0
     },
     {
-     "text": "What does Anna think about the job?",
+     "q": "Co powiedział Tom?",
      "options": [
-      "It is easy and boring",
-      "It is demanding but the team is friendly",
-      "She wants to leave",
-      "She has just started"
+      "Że każdy jest wolny pierwszego dnia",
+      "Że Marek musi pracować szybciej",
+      "Że praca jest łatwa"
      ],
-     "answer": 1,
-     "options_pl": [
-      "Jest łatwa i nudna",
-      "Jest wymagająca, ale zespół jest miły",
-      "Chce odejść",
-      "Dopiero zaczęła"
-     ],
-     "pl": "Praca jest ciężka, ale ludzie mili."
+     "answer": 0
     }
-   ]
+   ],
+   "words": 124
   },
   {
-   "id": "r_a2_email",
+   "id": "r_saturday",
+   "level": "A1",
+   "domain": "general",
+   "emoji": "🛒",
+   "title": "Sobota w mieście",
+   "minutes": 2,
+   "text": [
+    "On Saturday morning I go to the market with my wife.",
+    "We always buy bread, cheese, tomatoes and apples.",
+    "The market is not expensive and the food is fresh.",
+    "After the market we drink coffee in a small café near the church.",
+    "My wife likes cake, but I only want coffee.",
+    "Then we walk in the park for an hour.",
+    "In the afternoon we visit my parents.",
+    "My mother cooks soup and we talk about the week.",
+    "My father asks the same question every Saturday: \"How is your car?\"",
+    "In the evening we watch a film at home.",
+    "It is a simple day, but it is my favourite day of the week."
+   ],
+   "questions": [
+    {
+     "q": "Kiedy dzieje się ta historia?",
+     "options": [
+      "W sobotę",
+      "W niedzielę",
+      "W piątek"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Co robią po targu?",
+     "options": [
+      "Piją kawę",
+      "Jadą do pracy",
+      "Idą do kina"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "O co zawsze pyta ojciec?",
+     "options": [
+      "O samochód",
+      "O pracę",
+      "O pogodę"
+     ],
+     "answer": 0
+    }
+   ],
+   "words": 112
+  },
+  {
+   "id": "r_late",
+   "level": "A1",
+   "domain": "general",
+   "emoji": "🚌",
+   "title": "Spóźniony autobus",
+   "minutes": 2,
+   "text": [
+    "This morning I was late for work.",
+    "My alarm did not ring because my phone was dead.",
+    "I got up at seven, but my shift starts at half past seven.",
+    "I ran to the bus stop without breakfast.",
+    "The bus was ten minutes late and it was full.",
+    "I stood next to the door and I looked at my watch every minute.",
+    "When I arrived, the manager was in the office.",
+    "\"You are twenty minutes late,\" he said.",
+    "I said sorry and I explained the problem with my phone.",
+    "He was not angry, but he asked me to buy a real alarm clock.",
+    "In the evening I bought one for five pounds."
+   ],
+   "questions": [
+    {
+     "q": "Dlaczego budzik nie zadzwonił?",
+     "options": [
+      "Telefon się rozładował",
+      "Był zepsuty",
+      "Zapomniał go nastawić"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Jak zareagował kierownik?",
+     "options": [
+      "Nie był zły",
+      "Krzyczał",
+      "Odesłał go do domu"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Co kupił wieczorem?",
+     "options": [
+      "Budzik",
+      "Telefon",
+      "Zegarek"
+     ],
+     "answer": 0
+    }
+   ],
+   "words": 112
+  },
+  {
+   "id": "r_flat",
+   "level": "A1",
+   "domain": "general",
+   "emoji": "🏠",
+   "title": "Nasze mieszkanie",
+   "minutes": 2,
+   "text": [
+    "We live in a small flat on the third floor.",
+    "There is no lift, so we walk up the stairs every day.",
+    "The flat has two rooms, a kitchen and a bathroom.",
+    "Our kitchen is very small, but we cook there every evening.",
+    "In the living room there is an old sofa, a table and a lamp.",
+    "The bedroom is quiet because the windows are at the back of the building.",
+    "Our neighbours are nice, but they have a dog and it barks at night.",
+    "The rent is high, but the flat is near my work.",
+    "Next year we want a bigger place with a balcony."
+   ],
+   "questions": [
+    {
+     "q": "Na którym piętrze jest mieszkanie?",
+     "options": [
+      "Na trzecim",
+      "Na pierwszym",
+      "Na parterze"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Co przeszkadza w nocy?",
+     "options": [
+      "Pies sąsiadów",
+      "Ulica",
+      "Winda"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Czego chcą w przyszłym roku?",
+     "options": [
+      "Większego mieszkania z balkonem",
+      "Nowego samochodu",
+      "Psa"
+     ],
+     "answer": 0
+    }
+   ],
+   "words": 106
+  },
+  {
+   "id": "r_doctor",
    "level": "A2",
-   "title": "An email from the office",
-   "emoji": "✉️",
-   "text": "Hi everyone,\n\nNext Monday we are changing the schedule. The morning shift will start at 5:30 instead of 6:00. The reason is simple: three big trucks arrive early and we need more people at the ramp.\n\nPlease remember two things. First, park your bikes behind building B, not in front of the main entrance. Second, if you cannot come to work, call your team leader before 5:00. Do not send a message on WhatsApp — nobody reads it at night.\n\nThe canteen will open at 5:15, so you can still have coffee before work. On Friday we will order pizza for everyone who worked the early shift.\n\nThanks for your patience,\nHR Department",
-   "text_pl": "Cześć wszystkim,\n\nW przyszły poniedziałek zmieniamy grafik. Poranna zmiana zacznie się o 5:30 zamiast 6:00. Powód jest prosty: trzy duże ciężarówki przyjeżdżają wcześnie i potrzebujemy więcej ludzi przy rampie.\n\nPamiętajcie o dwóch rzeczach. Po pierwsze, parkujcie rowery za budynkiem B, nie przed głównym wejściem. Po drugie, jeśli nie możecie przyjść do pracy, zadzwońcie do lidera przed 5:00. Nie wysyłajcie wiadomości na WhatsApp — nikt tego nie czyta w nocy.\n\nStołówka otworzy się o 5:15, więc nadal zdążycie na kawę przed pracą. W piątek zamówimy pizzę dla wszystkich, którzy pracowali na wczesnej zmianie.\n\nDzięki za cierpliwość,\nDział HR",
+   "domain": "general",
+   "emoji": "🩺",
+   "title": "U lekarza",
+   "minutes": 3,
+   "text": [
+    "Last week I did not feel well, so I made an appointment with the doctor.",
+    "I waited in the waiting room for almost forty minutes.",
+    "There were four other people and everybody looked tired.",
+    "When it was my turn, the doctor asked me a lot of questions.",
+    "\"How long have you had this problem?\" she said.",
+    "I told her that my back hurt for about two weeks.",
+    "She asked about my job and I explained that I lift heavy boxes every day.",
+    "The doctor said that I must be careful and that I should not lift with my back.",
+    "She gave me some tablets and a paper for my manager.",
+    "Now I feel better, but I still remember her words: \"Lift with your legs, not with your back.\""
+   ],
    "questions": [
     {
-     "text": "Why is the shift starting earlier?",
+     "q": "Jak długo bolały go plecy?",
      "options": [
-      "The canteen opens earlier",
-      "Deliveries arrive sooner and need more staff",
-      "Workers asked for it",
-      "The building is closed at six"
+      "Około dwóch tygodni",
+      "Dwa dni",
+      "Miesiąc"
      ],
-     "answer": 1,
-     "options_pl": [
-      "Stołówka otwiera się wcześniej",
-      "Dostawy przyjeżdżają wcześniej i trzeba więcej ludzi",
-      "Pracownicy o to prosili",
-      "Budynek jest zamknięty o szóstej"
-     ],
-     "pl": "Trzy ciężarówki przyjeżdżają wcześnie."
+     "answer": 0
     },
     {
-     "text": "What should you do if you are ill?",
+     "q": "Co poradziła lekarka?",
      "options": [
-      "Send a WhatsApp message",
-      "Phone your team leader before five",
-      "Wait until the morning meeting",
-      "Write an email to HR"
+      "Podnosić nogami, nie plecami",
+      "Zmienić pracę",
+      "Więcej odpoczywać w łóżku"
      ],
-     "answer": 1,
-     "options_pl": [
-      "Wysłać wiadomość na WhatsApp",
-      "Zadzwonić do lidera przed piątą",
-      "Poczekać do porannej odprawy",
-      "Napisać e-mail do HR"
-     ],
-     "pl": "Zadzwonić do lidera przed 5:00."
+     "answer": 0
     },
     {
-     "text": "Where should bikes be left?",
+     "q": "Co dostał od lekarki?",
      "options": [
-      "In front of the main entrance",
-      "Behind building B",
-      "Inside the canteen",
-      "Next to the ramp"
+      "Tabletki i papier dla kierownika",
+      "Tylko receptę",
+      "Skierowanie do szpitala"
      ],
-     "answer": 1,
-     "options_pl": [
-      "Przed głównym wejściem",
-      "Za budynkiem B",
-      "W stołówce",
-      "Przy rampie"
-     ],
-     "pl": "Za budynkiem B."
+     "answer": 0
     }
-   ]
+   ],
+   "words": 128
   },
   {
-   "id": "r_b1_robots",
-   "level": "B1",
-   "title": "Robots on the floor",
-   "emoji": "🤖",
-   "text": "Six months ago our company installed twelve robots in the picking area. At first, most of us were worried. People said the machines would take our jobs and that we would all be looking for work by Christmas.\n\nWhat actually happened was different. The robots carry heavy pallets between the aisles, which used to be the hardest part of the day. Nobody misses that. However, somebody has to tell the robots where to go, check their batteries and solve problems when a pallet is not where the system thinks it is. Those tasks did not exist before.\n\nThree colleagues from my team have already moved to the control room. They earn more than they did on the floor, but they had to learn new software and improve their English, because all the manuals are written in English. The company paid for the training.\n\nI have applied for the next course. I am not sure I will get a place, but if I do not try, nothing will change.",
-   "text_pl": "Pół roku temu nasza firma zainstalowała dwanaście robotów w strefie kompletacji. Na początku większość z nas się martwiła. Ludzie mówili, że maszyny zabiorą nam pracę i że do świąt wszyscy będziemy jej szukać.\n\nTo, co się stało naprawdę, było inne. Roboty wożą ciężkie palety między alejkami, co było najtrudniejszą częścią dnia. Nikt za tym nie tęskni. Jednak ktoś musi mówić robotom, dokąd jechać, sprawdzać ich baterie i rozwiązywać problemy, gdy paleta nie jest tam, gdzie sądzi system. Tych zadań wcześniej nie było.\n\nTroje kolegów z mojego zespołu przeszło już do sterowni. Zarabiają więcej niż na hali, ale musieli nauczyć się nowego oprogramowania i poprawić angielski, bo wszystkie instrukcje są po angielsku. Firma zapłaciła za szkolenie.\n\nZłożyłem podanie na następny kurs. Nie jestem pewien, czy dostanę miejsce, ale jeśli nie spróbuję, nic się nie zmieni.",
+   "id": "r_holiday",
+   "level": "A2",
+   "domain": "travel",
+   "emoji": "✈️",
+   "title": "Wakacje, które prawie się nie udały",
+   "minutes": 3,
+   "text": [
+    "Two years ago we went to Spain for a week.",
+    "It was our first holiday abroad with the children.",
+    "At the airport we discovered that our flight was delayed by five hours.",
+    "The children were bored and hungry, and my wife was not happy.",
+    "We finally arrived at the hotel at two o'clock in the morning.",
+    "The room was small and the air conditioner was very loud.",
+    "But the next day everything changed.",
+    "The weather was perfect and the beach was only five minutes from the hotel.",
+    "The children played in the water all day and we ate dinner outside every evening.",
+    "When we came home, my son asked when we could go again.",
+    "Sometimes a bad beginning does not mean a bad holiday."
+   ],
    "questions": [
     {
-     "text": "What were people afraid of at the beginning?",
+     "q": "Co stało się na lotnisku?",
      "options": [
-      "That the robots would break down",
-      "That they would lose their jobs",
-      "That the work would get heavier",
-      "That salaries would rise"
+      "Lot był opóźniony o pięć godzin",
+      "Zgubili bagaż",
+      "Spóźnili się na samolot"
      ],
-     "answer": 1,
-     "options_pl": [
-      "Że roboty się zepsują",
-      "Że stracą pracę",
-      "Że praca stanie się cięższa",
-      "Że wzrosną pensje"
-     ],
-     "pl": "Bali się utraty pracy."
+     "answer": 0
     },
     {
-     "text": "What new kind of work appeared?",
+     "q": "Jak było następnego dnia?",
      "options": [
-      "Carrying pallets by hand",
-      "Supervising the machines and fixing problems",
-      "Cleaning the aisles",
-      "Driving trucks"
+      "Wszystko się zmieniło na lepsze",
+      "Padał deszcz",
+      "Wrócili do domu"
      ],
-     "answer": 1,
-     "options_pl": [
-      "Ręczne noszenie palet",
-      "Nadzorowanie maszyn i rozwiązywanie problemów",
-      "Sprzątanie alejek",
-      "Prowadzenie ciężarówek"
-     ],
-     "pl": "Kierowanie robotami, baterie, rozwiązywanie problemów."
+     "answer": 0
     },
     {
-     "text": "What did the colleagues need in order to move to the control room?",
+     "q": "O co zapytał syn po powrocie?",
      "options": [
-      "Longer experience only",
-      "New software skills and better English",
-      "A driving licence",
-      "Permission from the customers"
+      "Kiedy pojadą znowu",
+      "Dlaczego było gorąco",
+      "Czy mogą mieć psa"
      ],
-     "answer": 1,
-     "options_pl": [
-      "Tylko dłuższy staż",
-      "Znajomość nowego oprogramowania i lepszy angielski",
-      "Prawo jazdy",
-      "Zgodę klientów"
-     ],
-     "pl": "Nowe oprogramowanie i lepszy angielski."
+     "answer": 0
     }
-   ]
+   ],
+   "words": 124
+  },
+  {
+   "id": "r_english",
+   "level": "A2",
+   "domain": "general",
+   "emoji": "📚",
+   "title": "Jak uczę się angielskiego",
+   "minutes": 3,
+   "text": [
+    "I have been learning English for eight months now.",
+    "At the beginning it was very difficult because I could not understand fast speech.",
+    "People spoke and I only heard one long word.",
+    "My teacher told me something important: listen to the same recording many times.",
+    "So now I listen to one short story three or four times.",
+    "The first time I understand almost nothing.",
+    "The second time I hear the words I know.",
+    "The third time the story makes sense.",
+    "I also write five new words in my phone every day.",
+    "I do not write long lists, because I forget them anyway.",
+    "The best part is that last week a customer asked me a question at work and I answered without thinking.",
+    "That was the first time it happened."
+   ],
+   "questions": [
+    {
+     "q": "Co było najtrudniejsze na początku?",
+     "options": [
+      "Rozumienie szybkiej mowy",
+      "Gramatyka",
+      "Pisanie"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Ile razy słucha jednej historii?",
+     "options": [
+      "Trzy lub cztery",
+      "Raz",
+      "Dziesięć"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Co wydarzyło się w zeszłym tygodniu?",
+     "options": [
+      "Odpowiedział klientowi bez zastanowienia",
+      "Zdał egzamin",
+      "Dostał awans"
+     ],
+     "answer": 0
+    }
+   ],
+   "words": 129
+  },
+  {
+   "id": "r_neighbour",
+   "level": "A2",
+   "domain": "general",
+   "emoji": "🧑‍🤝‍🧑",
+   "title": "Sąsiad z góry",
+   "minutes": 3,
+   "text": [
+    "Our neighbour on the fourth floor is an old man called Mr Kowalski.",
+    "He lives alone and he does not have any family in the city.",
+    "Every morning he goes to the shop for bread and a newspaper.",
+    "Last winter he fell on the stairs and he could not get up.",
+    "My wife heard him and we called an ambulance.",
+    "He stayed in hospital for two weeks.",
+    "When he came back, we started to visit him twice a week.",
+    "Sometimes we bring soup, sometimes we only drink tea and talk.",
+    "He tells us stories about the city fifty years ago.",
+    "He says that we are his family now, and I think he is right."
+   ],
+   "questions": [
+    {
+     "q": "Co stało się zimą?",
+     "options": [
+      "Upadł na schodach",
+      "Zgubił klucze",
+      "Wyjechał"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Jak często go odwiedzają?",
+     "options": [
+      "Dwa razy w tygodniu",
+      "Codziennie",
+      "Raz w miesiącu"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "O czym opowiada pan Kowalski?",
+     "options": [
+      "O mieście sprzed pięćdziesięciu lat",
+      "O swojej pracy",
+      "O wnukach"
+     ],
+     "answer": 0
+    }
+   ],
+   "words": 114
+  },
+  {
+   "id": "r_night",
+   "level": "A2",
+   "domain": "work",
+   "emoji": "🌙",
+   "title": "Nocna zmiana",
+   "minutes": 3,
+   "text": [
+    "I worked on nights for six months and it changed my life — not in a good way.",
+    "The shift started at ten in the evening and finished at six in the morning.",
+    "At two o'clock the building was very quiet and everybody was tired.",
+    "We drank a lot of coffee and talked about food.",
+    "The money was better, but I slept badly during the day.",
+    "My children were at school when I was awake, and asleep when I came home.",
+    "After six months I asked my manager to move me to days.",
+    "He said that it was possible from the next month.",
+    "Now I earn less, but I have dinner with my family every evening.",
+    "For me it was the right decision."
+   ],
+   "questions": [
+    {
+     "q": "O której kończyła się zmiana?",
+     "options": [
+      "O szóstej rano",
+      "O dziesiątej wieczorem",
+      "O drugiej w nocy"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Co było problemem?",
+     "options": [
+      "Źle spał w dzień i nie widywał dzieci",
+      "Praca była za ciężka",
+      "Kierownik był niemiły"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Co zmieniło się na końcu?",
+     "options": [
+      "Przeszedł na dzienne zmiany",
+      "Zmienił pracę",
+      "Dostał podwyżkę"
+     ],
+     "answer": 0
+    }
+   ],
+   "words": 122
+  },
+  {
+   "id": "r_phone",
+   "level": "A2",
+   "domain": "general",
+   "emoji": "📱",
+   "title": "Telefon w kawiarni",
+   "minutes": 3,
+   "text": [
+    "Yesterday I left my phone in a café and I did not notice for two hours.",
+    "When I looked in my bag, my hands started to shake.",
+    "All my photos, my bank app and my messages were on that phone.",
+    "I ran back to the café, but the table was empty and a different family was sitting there.",
+    "I asked the woman behind the counter and she smiled.",
+    "\"Is it black with a green case?\" she said.",
+    "Somebody found it on the chair and gave it to her.",
+    "She kept it under the counter for me.",
+    "I wanted to give her money, but she did not want anything.",
+    "I bought a coffee and left a big tip instead."
+   ],
+   "questions": [
+    {
+     "q": "Gdzie zostawił telefon?",
+     "options": [
+      "W kawiarni",
+      "W autobusie",
+      "W pracy"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Kto miał telefon?",
+     "options": [
+      "Kobieta zza lady",
+      "Rodzina przy stoliku",
+      "Kierowca"
+     ],
+     "answer": 0
+    },
+    {
+     "q": "Jak podziękował?",
+     "options": [
+      "Kupił kawę i zostawił duży napiwek",
+      "Dał jej pieniądze",
+      "Nic nie zrobił"
+     ],
+     "answer": 0
+    }
+   ],
+   "words": 118
   }
- ],
- "etykieta": "Teksty do czytania"
+ ]
 }

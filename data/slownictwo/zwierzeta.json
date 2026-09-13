@@ -11,7 +11,9 @@
    "en": "dog",
    "pl": "pies",
    "level": "A1",
-   "rank": 300
+   "rank": 300,
+   "example": "My dog is very friendly.",
+   "example_pl": "Mój pies jest bardzo przyjazny."
   },
   {
    "nr": 2,
@@ -19,7 +21,9 @@
    "en": "cat",
    "pl": "kot",
    "level": "A1",
-   "rank": 301
+   "rank": 301,
+   "example": "The cat is on the sofa.",
+   "example_pl": "Kot jest na kanapie."
   },
   {
    "nr": 3,
@@ -27,7 +31,9 @@
    "en": "bird",
    "pl": "ptak",
    "level": "A1",
-   "rank": 302
+   "rank": 302,
+   "example": "A bird is singing.",
+   "example_pl": "Ptak śpiewa."
   },
   {
    "nr": 4,
@@ -35,7 +41,9 @@
    "en": "fish",
    "pl": "ryba",
    "level": "A1",
-   "rank": 303
+   "rank": 303,
+   "example": "We have three fish.",
+   "example_pl": "Mamy trzy rybki."
   },
   {
    "nr": 5,
@@ -43,7 +51,9 @@
    "en": "horse",
    "pl": "koń",
    "level": "A1",
-   "rank": 304
+   "rank": 304,
+   "example": "The horse is big and strong.",
+   "example_pl": "Koń jest duży i silny."
   },
   {
    "nr": 6,
@@ -51,7 +61,9 @@
    "en": "cow",
    "pl": "krowa",
    "level": "A1",
-   "rank": 305
+   "rank": 305,
+   "example": "Cows give us milk.",
+   "example_pl": "Krowy dają nam mleko."
   },
   {
    "nr": 7,
@@ -59,7 +71,9 @@
    "en": "pig",
    "pl": "świnia",
    "level": "A1",
-   "rank": 306
+   "rank": 306,
+   "example": "Pigs are clever animals.",
+   "example_pl": "Świnie to mądre zwierzęta."
   },
   {
    "nr": 8,
@@ -67,7 +81,9 @@
    "en": "sheep",
    "pl": "owca",
    "level": "A1",
-   "rank": 307
+   "rank": 307,
+   "example": "The sheep are in the field.",
+   "example_pl": "Owce są na polu."
   },
   {
    "nr": 9,
@@ -75,7 +91,9 @@
    "en": "chicken",
    "pl": "kurczak / kura",
    "level": "A1",
-   "rank": 308
+   "rank": 308,
+   "example": "We have ten chickens.",
+   "example_pl": "Mamy dziesięć kur."
   },
   {
    "nr": 10,
@@ -83,7 +101,9 @@
    "en": "duck",
    "pl": "kaczka",
    "level": "A1",
-   "rank": 309
+   "rank": 309,
+   "example": "The ducks are on the water.",
+   "example_pl": "Kaczki są na wodzie."
   },
   {
    "nr": 11,
@@ -91,7 +111,9 @@
    "en": "rabbit",
    "pl": "królik",
    "level": "A1",
-   "rank": 310
+   "rank": 310,
+   "example": "My daughter has a rabbit.",
+   "example_pl": "Moja córka ma królika."
   },
   {
    "nr": 12,
@@ -99,7 +121,9 @@
    "en": "mouse",
    "pl": "mysz",
    "level": "A1",
-   "rank": 311
+   "rank": 311,
+   "example": "There is a mouse in the kitchen.",
+   "example_pl": "W kuchni jest mysz."
   },
   {
    "nr": 13,
@@ -107,7 +131,9 @@
    "en": "rat",
    "pl": "szczur",
    "level": "A1",
-   "rank": 312
+   "rank": 312,
+   "example": "Rats live near the bins.",
+   "example_pl": "Szczury żyją przy śmietnikach."
   },
   {
    "nr": 14,
@@ -115,7 +141,9 @@
    "en": "bear",
    "pl": "niedźwiedź",
    "level": "A1",
-   "rank": 313
+   "rank": 313,
+   "example": "Bears live in the forest.",
+   "example_pl": "Niedźwiedzie żyją w lesie."
   },
   {
    "nr": 15,
@@ -123,7 +151,9 @@
    "en": "wolf",
    "pl": "wilk",
    "level": "A1",
-   "rank": 314
+   "rank": 314,
+   "example": "The wolf is grey.",
+   "example_pl": "Wilk jest szary."
   },
   {
    "nr": 16,
@@ -131,7 +161,9 @@
    "en": "fox",
    "pl": "lis",
    "level": "A1",
-   "rank": 315
+   "rank": 315,
+   "example": "A fox is in the garden.",
+   "example_pl": "W ogrodzie jest lis."
   },
   {
    "nr": 17,
@@ -139,7 +171,9 @@
    "en": "deer",
    "pl": "jeleń",
    "level": "A1",
-   "rank": 316
+   "rank": 316,
+   "example": "We saw a deer this morning.",
+   "example_pl": "Dziś rano widzieliśmy jelenia."
   },
   {
    "nr": 18,
@@ -147,7 +181,9 @@
    "en": "lion",
    "pl": "lew",
    "level": "A1",
-   "rank": 317
+   "rank": 317,
+   "example": "The lion is sleeping.",
+   "example_pl": "Lew śpi."
   },
   {
    "nr": 19,
@@ -155,7 +191,9 @@
    "en": "tiger",
    "pl": "tygrys",
    "level": "A1",
-   "rank": 318
+   "rank": 318,
+   "example": "Tigers are orange and black.",
+   "example_pl": "Tygrysy są pomarańczowo-czarne."
   },
   {
    "nr": 20,
@@ -163,7 +201,9 @@
    "en": "elephant",
    "pl": "słoń",
    "level": "A1",
-   "rank": 319
+   "rank": 319,
+   "example": "The elephant is very big.",
+   "example_pl": "Słoń jest bardzo duży."
   },
   {
    "nr": 21,
@@ -171,7 +211,9 @@
    "en": "giraffe",
    "pl": "żyrafa",
    "level": "A1",
-   "rank": 320
+   "rank": 320,
+   "example": "A giraffe has a long neck.",
+   "example_pl": "Żyrafa ma długą szyję."
   },
   {
    "nr": 22,
@@ -179,7 +221,9 @@
    "en": "monkey",
    "pl": "małpa",
    "level": "A1",
-   "rank": 321
+   "rank": 321,
+   "example": "The monkey is funny.",
+   "example_pl": "Małpa jest zabawna."
   },
   {
    "nr": 23,
@@ -187,7 +231,9 @@
    "en": "snake",
    "pl": "wąż",
    "level": "A1",
-   "rank": 322
+   "rank": 322,
+   "example": "I am afraid of snakes.",
+   "example_pl": "Boję się węży."
   },
   {
    "nr": 24,
@@ -195,7 +241,9 @@
    "en": "spider",
    "pl": "pająk",
    "level": "A1",
-   "rank": 323
+   "rank": 323,
+   "example": "There is a spider on the wall.",
+   "example_pl": "Na ścianie jest pająk."
   },
   {
    "nr": 25,
@@ -203,7 +251,9 @@
    "en": "bee",
    "pl": "pszczoła",
    "level": "A1",
-   "rank": 324
+   "rank": 324,
+   "example": "Bees make honey.",
+   "example_pl": "Pszczoły robią miód."
   },
   {
    "nr": 26,
@@ -212,7 +262,9 @@
    "pl": "mucha",
    "level": "A1",
    "rank": 325,
-   "hint": "owad"
+   "hint": "owad",
+   "example": "There is a fly in my soup.",
+   "example_pl": "W mojej zupie jest mucha."
   },
   {
    "nr": 27,
@@ -220,7 +272,9 @@
    "en": "ant",
    "pl": "mrówka",
    "level": "A1",
-   "rank": 326
+   "rank": 326,
+   "example": "The ants are in the kitchen.",
+   "example_pl": "Mrówki są w kuchni."
   },
   {
    "nr": 28,
@@ -228,7 +282,9 @@
    "en": "frog",
    "pl": "żaba",
    "level": "A1",
-   "rank": 327
+   "rank": 327,
+   "example": "The frog is green.",
+   "example_pl": "Żaba jest zielona."
   },
   {
    "nr": 29,
@@ -236,7 +292,9 @@
    "en": "goat",
    "pl": "koza",
    "level": "A1",
-   "rank": 329
+   "rank": 329,
+   "example": "The goat eats everything.",
+   "example_pl": "Koza je wszystko."
   },
   {
    "nr": 30,
@@ -244,7 +302,9 @@
    "en": "donkey",
    "pl": "osioł",
    "level": "A1",
-   "rank": 330
+   "rank": 330,
+   "example": "The donkey is small.",
+   "example_pl": "Osioł jest mały."
   },
   {
    "nr": 31,
@@ -252,7 +312,9 @@
    "en": "goose",
    "pl": "gęś",
    "level": "A1",
-   "rank": 331
+   "rank": 331,
+   "example": "The goose is loud.",
+   "example_pl": "Gęś jest głośna."
   },
   {
    "nr": 32,
@@ -260,7 +322,9 @@
    "en": "turkey",
    "pl": "indyk",
    "level": "A1",
-   "rank": 332
+   "rank": 332,
+   "example": "We eat turkey at Christmas.",
+   "example_pl": "Na święta jemy indyka."
   },
   {
    "nr": 33,
@@ -268,7 +332,9 @@
    "en": "bull",
    "pl": "byk",
    "level": "A1",
-   "rank": 333
+   "rank": 333,
+   "example": "The bull is dangerous.",
+   "example_pl": "Byk jest niebezpieczny."
   },
   {
    "nr": 34,
@@ -276,7 +342,9 @@
    "en": "calf",
    "pl": "cielę",
    "level": "A1",
-   "rank": 334
+   "rank": 334,
+   "example": "The calf is one week old.",
+   "example_pl": "Cielę ma tydzień."
   },
   {
    "nr": 35,
@@ -284,7 +352,9 @@
    "en": "lamb",
    "pl": "jagnię",
    "level": "A1",
-   "rank": 335
+   "rank": 335,
+   "example": "The lamb is with its mother.",
+   "example_pl": "Jagnię jest przy matce."
   },
   {
    "nr": 36,
@@ -292,7 +362,9 @@
    "en": "puppy",
    "pl": "szczeniak",
    "level": "A1",
-   "rank": 336
+   "rank": 336,
+   "example": "Our puppy is three months old.",
+   "example_pl": "Nasz szczeniak ma trzy miesiące."
   },
   {
    "nr": 37,
@@ -300,7 +372,9 @@
    "en": "kitten",
    "pl": "kociak",
    "level": "A1",
-   "rank": 337
+   "rank": 337,
+   "example": "The kitten is very small.",
+   "example_pl": "Kociak jest bardzo mały."
   },
   {
    "nr": 38,
@@ -308,7 +382,9 @@
    "en": "hen",
    "pl": "kura",
    "level": "A1",
-   "rank": 338
+   "rank": 338,
+   "example": "The hen has six eggs.",
+   "example_pl": "Kura ma sześć jajek."
   },
   {
    "nr": 39,
@@ -316,7 +392,9 @@
    "en": "rooster",
    "pl": "kogut",
    "level": "A1",
-   "rank": 339
+   "rank": 339,
+   "example": "The rooster wakes me up.",
+   "example_pl": "Kogut mnie budzi."
   },
   {
    "nr": 40,
@@ -324,7 +402,9 @@
    "en": "pigeon",
    "pl": "gołąb",
    "level": "A1",
-   "rank": 340
+   "rank": 340,
+   "example": "Pigeons are everywhere in the city.",
+   "example_pl": "Gołębie są wszędzie w mieście."
   },
   {
    "nr": 41,
@@ -332,7 +412,9 @@
    "en": "owl",
    "pl": "sowa",
    "level": "A1",
-   "rank": 341
+   "rank": 341,
+   "example": "The owl hunts at night.",
+   "example_pl": "Sowa poluje w nocy."
   },
   {
    "nr": 42,
@@ -340,7 +422,9 @@
    "en": "eagle",
    "pl": "orzeł",
    "level": "A1",
-   "rank": 342
+   "rank": 342,
+   "example": "The eagle is a big bird.",
+   "example_pl": "Orzeł to duży ptak."
   },
   {
    "nr": 43,
@@ -348,7 +432,9 @@
    "en": "swan",
    "pl": "łabędź",
    "level": "A1",
-   "rank": 343
+   "rank": 343,
+   "example": "The swan is white.",
+   "example_pl": "Łabędź jest biały."
   },
   {
    "nr": 44,
@@ -356,7 +442,9 @@
    "en": "seagull",
    "pl": "mewa",
    "level": "A1",
-   "rank": 344
+   "rank": 344,
+   "example": "Seagulls are noisy.",
+   "example_pl": "Mewy są hałaśliwe."
   },
   {
    "nr": 45,
@@ -364,7 +452,9 @@
    "en": "shark",
    "pl": "rekin",
    "level": "A1",
-   "rank": 345
+   "rank": 345,
+   "example": "Sharks live in the sea.",
+   "example_pl": "Rekiny żyją w morzu."
   },
   {
    "nr": 46,
@@ -372,7 +462,9 @@
    "en": "whale",
    "pl": "wieloryb",
    "level": "A1",
-   "rank": 346
+   "rank": 346,
+   "example": "The whale is the biggest animal.",
+   "example_pl": "Wieloryb to największe zwierzę."
   },
   {
    "nr": 47,
@@ -380,7 +472,9 @@
    "en": "dolphin",
    "pl": "delfin",
    "level": "A1",
-   "rank": 347
+   "rank": 347,
+   "example": "Dolphins are very clever.",
+   "example_pl": "Delfiny są bardzo mądre."
   },
   {
    "nr": 48,
@@ -388,7 +482,9 @@
    "en": "crab",
    "pl": "krab",
    "level": "A1",
-   "rank": 348
+   "rank": 348,
+   "example": "There is a crab on the sand.",
+   "example_pl": "Na piasku jest krab."
   },
   {
    "nr": 49,
@@ -396,7 +492,9 @@
    "en": "butterfly",
    "pl": "motyl",
    "level": "A1",
-   "rank": 349
+   "rank": 349,
+   "example": "The butterfly is beautiful.",
+   "example_pl": "Motyl jest piękny."
   },
   {
    "nr": 50,
@@ -404,7 +502,9 @@
    "en": "mosquito",
    "pl": "komar",
    "level": "A1",
-   "rank": 350
+   "rank": 350,
+   "example": "A mosquito bit me.",
+   "example_pl": "Ugryzł mnie komar."
   },
   {
    "nr": 51,
@@ -412,7 +512,9 @@
    "en": "wasp",
    "pl": "osa",
    "level": "A1",
-   "rank": 351
+   "rank": 351,
+   "example": "There is a wasp in the room.",
+   "example_pl": "W pokoju jest osa."
   },
   {
    "nr": 52,
@@ -420,7 +522,9 @@
    "en": "worm",
    "pl": "robak",
    "level": "A1",
-   "rank": 352
+   "rank": 352,
+   "example": "Birds eat worms.",
+   "example_pl": "Ptaki jedzą robaki."
   },
   {
    "nr": 53,
@@ -428,7 +532,9 @@
    "en": "snail",
    "pl": "ślimak",
    "level": "A1",
-   "rank": 353
+   "rank": 353,
+   "example": "The snail is very slow.",
+   "example_pl": "Ślimak jest bardzo wolny."
   },
   {
    "nr": 54,
@@ -436,7 +542,9 @@
    "en": "squirrel",
    "pl": "wiewiórka",
    "level": "A1",
-   "rank": 354
+   "rank": 354,
+   "example": "A squirrel is in the tree.",
+   "example_pl": "Wiewiórka jest na drzewie."
   },
   {
    "nr": 55,
@@ -444,7 +552,9 @@
    "en": "hedgehog",
    "pl": "jeż",
    "level": "A1",
-   "rank": 355
+   "rank": 355,
+   "example": "The hedgehog sleeps in winter.",
+   "example_pl": "Jeż śpi zimą."
   },
   {
    "nr": 56,
@@ -452,7 +562,9 @@
    "en": "bat",
    "pl": "nietoperz",
    "level": "A1",
-   "rank": 356
+   "rank": 356,
+   "example": "Bats fly at night.",
+   "example_pl": "Nietoperze latają nocą."
   },
   {
    "nr": 57,
@@ -460,7 +572,9 @@
    "en": "camel",
    "pl": "wielbłąd",
    "level": "A1",
-   "rank": 357
+   "rank": 357,
+   "example": "Camels live in the desert.",
+   "example_pl": "Wielbłądy żyją na pustyni."
   },
   {
    "nr": 58,
@@ -468,7 +582,9 @@
    "en": "zebra",
    "pl": "zebra",
    "level": "A1",
-   "rank": 358
+   "rank": 358,
+   "example": "A zebra is black and white.",
+   "example_pl": "Zebra jest czarno-biała."
   },
   {
    "nr": 59,
@@ -476,7 +592,9 @@
    "en": "crocodile",
    "pl": "krokodyl",
    "level": "A1",
-   "rank": 359
+   "rank": 359,
+   "example": "The crocodile is in the water.",
+   "example_pl": "Krokodyl jest w wodzie."
   },
   {
    "nr": 60,
@@ -484,7 +602,9 @@
    "en": "turtle",
    "pl": "żółw",
    "level": "A1",
-   "rank": 360
+   "rank": 360,
+   "example": "The turtle is very old.",
+   "example_pl": "Żółw jest bardzo stary."
   },
   {
    "nr": 61,
@@ -492,7 +612,9 @@
    "en": "penguin",
    "pl": "pingwin",
    "level": "A1",
-   "rank": 361
+   "rank": 361,
+   "example": "Penguins can't fly.",
+   "example_pl": "Pingwiny nie potrafią latać."
   },
   {
    "nr": 62,
@@ -500,7 +622,9 @@
    "en": "tail",
    "pl": "ogon",
    "level": "A1",
-   "rank": 362
+   "rank": 362,
+   "example": "The dog's tail is long.",
+   "example_pl": "Ogon psa jest długi."
   },
   {
    "nr": 63,
@@ -508,7 +632,9 @@
    "en": "wing",
    "pl": "skrzydło",
    "level": "A1",
-   "rank": 363
+   "rank": 363,
+   "example": "The bird has a broken wing.",
+   "example_pl": "Ptak ma złamane skrzydło."
   },
   {
    "nr": 64,
@@ -516,7 +642,9 @@
    "en": "paw",
    "pl": "łapa",
    "level": "A1",
-   "rank": 364
+   "rank": 364,
+   "example": "The cat's paw is white.",
+   "example_pl": "Łapa kota jest biała."
   },
   {
    "nr": 65,
@@ -524,7 +652,9 @@
    "en": "fur",
    "pl": "futro / sierść",
    "level": "A1",
-   "rank": 365
+   "rank": 365,
+   "example": "The rabbit has soft fur.",
+   "example_pl": "Królik ma miękkie futro."
   },
   {
    "nr": 66,
@@ -532,7 +662,9 @@
    "en": "feather",
    "pl": "pióro",
    "level": "A1",
-   "rank": 366
+   "rank": 366,
+   "example": "There is a feather on the ground.",
+   "example_pl": "Na ziemi leży pióro."
   },
   {
    "nr": 67,
@@ -540,7 +672,9 @@
    "en": "pet",
    "pl": "zwierzę domowe",
    "level": "A1",
-   "rank": 367
+   "rank": 367,
+   "example": "Do you have a pet?",
+   "example_pl": "Masz zwierzę domowe?"
   },
   {
    "nr": 68,
@@ -548,7 +682,9 @@
    "en": "cage",
    "pl": "klatka",
    "level": "A1",
-   "rank": 368
+   "rank": 368,
+   "example": "The bird is in the cage.",
+   "example_pl": "Ptak jest w klatce."
   }
  ]
 }

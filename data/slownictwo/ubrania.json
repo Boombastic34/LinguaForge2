@@ -11,7 +11,9 @@
    "en": "shirt",
    "pl": "koszula",
    "level": "A1",
-   "rank": 500
+   "rank": 500,
+   "example": "My shirt is white.",
+   "example_pl": "Moja koszula jest biała."
   },
   {
    "nr": 2,
@@ -19,7 +21,9 @@
    "en": "t-shirt",
    "pl": "koszulka",
    "level": "A1",
-   "rank": 501
+   "rank": 501,
+   "example": "He wears a black t-shirt.",
+   "example_pl": "On nosi czarną koszulkę."
   },
   {
    "nr": 3,
@@ -27,7 +31,9 @@
    "en": "trousers",
    "pl": "spodnie",
    "level": "A1",
-   "rank": 502
+   "rank": 502,
+   "example": "These trousers are too long.",
+   "example_pl": "Te spodnie są za długie."
   },
   {
    "nr": 4,
@@ -35,7 +41,9 @@
    "en": "jeans",
    "pl": "dżinsy",
    "level": "A1",
-   "rank": 503
+   "rank": 503,
+   "example": "I wear jeans every day.",
+   "example_pl": "Codziennie noszę dżinsy."
   },
   {
    "nr": 5,
@@ -43,7 +51,9 @@
    "en": "shorts",
    "pl": "krótkie spodenki",
    "level": "A1",
-   "rank": 504
+   "rank": 504,
+   "example": "Shorts are good in summer.",
+   "example_pl": "Krótkie spodenki są dobre latem."
   },
   {
    "nr": 6,
@@ -51,7 +61,9 @@
    "en": "skirt",
    "pl": "spódnica",
    "level": "A1",
-   "rank": 505
+   "rank": 505,
+   "example": "She has a blue skirt.",
+   "example_pl": "Ona ma niebieską spódnicę."
   },
   {
    "nr": 7,
@@ -59,7 +71,9 @@
    "en": "jacket",
    "pl": "kurtka",
    "level": "A1",
-   "rank": 507
+   "rank": 507,
+   "example": "Take your jacket, it is cold.",
+   "example_pl": "Weź kurtkę, jest zimno."
   },
   {
    "nr": 8,
@@ -67,7 +81,9 @@
    "en": "coat",
    "pl": "płaszcz",
    "level": "A1",
-   "rank": 508
+   "rank": 508,
+   "example": "My coat is in the car.",
+   "example_pl": "Mój płaszcz jest w samochodzie."
   },
   {
    "nr": 9,
@@ -75,7 +91,9 @@
    "en": "sweater",
    "pl": "sweter",
    "level": "A1",
-   "rank": 509
+   "rank": 509,
+   "example": "This sweater is warm.",
+   "example_pl": "Ten sweter jest ciepły."
   },
   {
    "nr": 10,
@@ -83,7 +101,9 @@
    "en": "sock",
    "pl": "skarpetka",
    "level": "A1",
-   "rank": 510
+   "rank": 510,
+   "example": "I need clean socks.",
+   "example_pl": "Potrzebuję czystych skarpetek."
   },
   {
    "nr": 11,
@@ -91,7 +111,9 @@
    "en": "boot",
    "pl": "but (wysoki)",
    "level": "A1",
-   "rank": 511
+   "rank": 511,
+   "example": "My boots are dirty.",
+   "example_pl": "Moje buty są brudne."
   },
   {
    "nr": 12,
@@ -99,7 +121,9 @@
    "en": "trainers",
    "pl": "buty sportowe",
    "level": "A1",
-   "rank": 512
+   "rank": 512,
+   "example": "I run in old trainers.",
+   "example_pl": "Biegam w starych butach sportowych."
   },
   {
    "nr": 13,
@@ -107,7 +131,9 @@
    "en": "hat",
    "pl": "czapka / kapelusz",
    "level": "A1",
-   "rank": 513
+   "rank": 513,
+   "example": "Wear a hat, it is cold.",
+   "example_pl": "Załóż czapkę, jest zimno."
   },
   {
    "nr": 14,
@@ -115,7 +141,9 @@
    "en": "cap",
    "pl": "czapka z daszkiem",
    "level": "A1",
-   "rank": 514
+   "rank": 514,
+   "example": "He always wears a cap.",
+   "example_pl": "On zawsze nosi czapkę z daszkiem."
   },
   {
    "nr": 15,
@@ -123,7 +151,9 @@
    "en": "glove",
    "pl": "rękawiczka",
    "level": "A1",
-   "rank": 515
+   "rank": 515,
+   "example": "I lost one glove.",
+   "example_pl": "Zgubiłem jedną rękawiczkę."
   },
   {
    "nr": 16,
@@ -131,7 +161,9 @@
    "en": "scarf",
    "pl": "szalik",
    "level": "A1",
-   "rank": 516
+   "rank": 516,
+   "example": "This scarf is a present.",
+   "example_pl": "Ten szalik to prezent."
   },
   {
    "nr": 17,
@@ -139,7 +171,9 @@
    "en": "belt",
    "pl": "pasek",
    "level": "A1",
-   "rank": 517
+   "rank": 517,
+   "example": "I need a new belt.",
+   "example_pl": "Potrzebuję nowego paska."
   },
   {
    "nr": 18,
@@ -147,7 +181,9 @@
    "en": "pocket",
    "pl": "kieszeń",
    "level": "A1",
-   "rank": 518
+   "rank": 518,
+   "example": "The keys are in my pocket.",
+   "example_pl": "Klucze są w mojej kieszeni."
   },
   {
    "nr": 19,
@@ -155,7 +191,9 @@
    "en": "button",
    "pl": "guzik",
    "level": "A1",
-   "rank": 519
+   "rank": 519,
+   "example": "A button is missing.",
+   "example_pl": "Brakuje guzika."
   },
   {
    "nr": 20,
@@ -163,7 +201,9 @@
    "en": "suit",
    "pl": "garnitur",
    "level": "A1",
-   "rank": 321
+   "rank": 321,
+   "example": "He wears a suit at work.",
+   "example_pl": "On nosi garnitur w pracy."
   },
   {
    "nr": 21,
@@ -171,7 +211,9 @@
    "en": "tie",
    "pl": "krawat",
    "level": "A1",
-   "rank": 322
+   "rank": 322,
+   "example": "I don't like ties.",
+   "example_pl": "Nie lubię krawatów."
   },
   {
    "nr": 22,
@@ -179,7 +221,9 @@
    "en": "blouse",
    "pl": "bluzka",
    "level": "A1",
-   "rank": 323
+   "rank": 323,
+   "example": "Her blouse is pink.",
+   "example_pl": "Jej bluzka jest różowa."
   },
   {
    "nr": 23,
@@ -187,7 +231,9 @@
    "en": "hoodie",
    "pl": "bluza z kapturem",
    "level": "A1",
-   "rank": 324
+   "rank": 324,
+   "example": "My son wears a hoodie.",
+   "example_pl": "Mój syn nosi bluzę z kapturem."
   },
   {
    "nr": 24,
@@ -195,7 +241,9 @@
    "en": "underwear",
    "pl": "bielizna",
    "level": "A1",
-   "rank": 325
+   "rank": 325,
+   "example": "Pack some underwear.",
+   "example_pl": "Spakuj trochę bielizny."
   },
   {
    "nr": 25,
@@ -203,7 +251,9 @@
    "en": "pyjamas",
    "pl": "piżama",
    "level": "A1",
-   "rank": 326
+   "rank": 326,
+   "example": "The children are in pyjamas.",
+   "example_pl": "Dzieci są w piżamach."
   },
   {
    "nr": 26,
@@ -211,7 +261,9 @@
    "en": "swimsuit",
    "pl": "strój kąpielowy",
    "level": "A1",
-   "rank": 327
+   "rank": 327,
+   "example": "Take your swimsuit.",
+   "example_pl": "Weź strój kąpielowy."
   },
   {
    "nr": 27,
@@ -219,7 +271,9 @@
    "en": "raincoat",
    "pl": "płaszcz przeciwdeszczowy",
    "level": "A1",
-   "rank": 328
+   "rank": 328,
+   "example": "A raincoat is useful here.",
+   "example_pl": "Płaszcz przeciwdeszczowy jest tu przydatny."
   },
   {
    "nr": 28,
@@ -227,7 +281,9 @@
    "en": "gloves (work)",
    "pl": "rękawice robocze",
    "level": "A1",
-   "rank": 329
+   "rank": 329,
+   "example": "Wear gloves in the warehouse.",
+   "example_pl": "Noś rękawice w magazynie."
   },
   {
    "nr": 29,
@@ -235,7 +291,9 @@
    "en": "helmet",
    "pl": "kask",
    "level": "A1",
-   "rank": 330
+   "rank": 330,
+   "example": "A helmet is necessary here.",
+   "example_pl": "Kask jest tu konieczny."
   },
   {
    "nr": 30,
@@ -243,7 +301,9 @@
    "en": "goggles",
    "pl": "gogle ochronne",
    "level": "A1",
-   "rank": 331
+   "rank": 331,
+   "example": "Put on the goggles.",
+   "example_pl": "Załóż gogle ochronne."
   },
   {
    "nr": 31,
@@ -251,7 +311,9 @@
    "en": "earplugs",
    "pl": "zatyczki do uszu",
    "level": "A1",
-   "rank": 332
+   "rank": 332,
+   "example": "The machines are loud — use earplugs.",
+   "example_pl": "Maszyny są głośne — użyj zatyczek."
   },
   {
    "nr": 32,
@@ -259,7 +321,9 @@
    "en": "high-vis vest",
    "pl": "kamizelka odblaskowa",
    "level": "A1",
-   "rank": 334
+   "rank": 334,
+   "example": "Every worker has a high-vis vest.",
+   "example_pl": "Każdy pracownik ma kamizelkę odblaskową."
   },
   {
    "nr": 33,
@@ -267,7 +331,9 @@
    "en": "uniform",
    "pl": "mundur / strój firmowy",
    "level": "A1",
-   "rank": 335
+   "rank": 335,
+   "example": "The uniform is navy blue.",
+   "example_pl": "Mundur jest granatowy."
   },
   {
    "nr": 34,
@@ -275,7 +341,9 @@
    "en": "size",
    "pl": "rozmiar",
    "level": "A1",
-   "rank": 336
+   "rank": 336,
+   "example": "What size do you wear?",
+   "example_pl": "Jaki nosisz rozmiar?"
   },
   {
    "nr": 35,
@@ -283,7 +351,9 @@
    "en": "sleeve",
    "pl": "rękaw",
    "level": "A1",
-   "rank": 337
+   "rank": 337,
+   "example": "The sleeve is too short.",
+   "example_pl": "Rękaw jest za krótki."
   },
   {
    "nr": 36,
@@ -291,7 +361,9 @@
    "en": "collar",
    "pl": "kołnierz",
    "level": "A1",
-   "rank": 338
+   "rank": 338,
+   "example": "The collar is dirty.",
+   "example_pl": "Kołnierz jest brudny."
   },
   {
    "nr": 37,
@@ -299,7 +371,9 @@
    "en": "zip",
    "pl": "zamek błyskawiczny",
    "level": "A1",
-   "rank": 339
+   "rank": 339,
+   "example": "The zip is broken.",
+   "example_pl": "Zamek jest zepsuty."
   },
   {
    "nr": 38,
@@ -307,7 +381,9 @@
    "en": "shoelace",
    "pl": "sznurowadło",
    "level": "A1",
-   "rank": 340
+   "rank": 340,
+   "example": "Your shoelace is loose.",
+   "example_pl": "Twoje sznurowadło jest rozwiązane."
   },
   {
    "nr": 39,
@@ -315,7 +391,9 @@
    "en": "jewellery",
    "pl": "biżuteria",
    "level": "A1",
-   "rank": 341
+   "rank": 341,
+   "example": "No jewellery at work, please.",
+   "example_pl": "Bez biżuterii w pracy, proszę."
   },
   {
    "nr": 40,
@@ -324,7 +402,9 @@
    "pl": "pierścionek",
    "level": "A1",
    "rank": 342,
-   "hint": "biżuteria na palec"
+   "hint": "biżuteria na palec",
+   "example": "She wears a gold ring.",
+   "example_pl": "Ona nosi złoty pierścionek."
   },
   {
    "nr": 41,
@@ -332,7 +412,9 @@
    "en": "watch (object)",
    "pl": "zegarek",
    "level": "A1",
-   "rank": 343
+   "rank": 343,
+   "example": "My watch is slow.",
+   "example_pl": "Mój zegarek się spóźnia."
   },
   {
    "nr": 42,
@@ -340,7 +422,9 @@
    "en": "umbrella",
    "pl": "parasol",
    "level": "A1",
-   "rank": 344
+   "rank": 344,
+   "example": "Take an umbrella, it is raining.",
+   "example_pl": "Weź parasol, pada."
   },
   {
    "nr": 43,
@@ -348,7 +432,9 @@
    "en": "backpack",
    "pl": "plecak",
    "level": "A1",
-   "rank": 345
+   "rank": 345,
+   "example": "My backpack is heavy.",
+   "example_pl": "Mój plecak jest ciężki."
   },
   {
    "nr": 44,
@@ -356,7 +442,9 @@
    "en": "wallet",
    "pl": "portfel",
    "level": "A1",
-   "rank": 346
+   "rank": 346,
+   "example": "I lost my wallet.",
+   "example_pl": "Zgubiłem portfel."
   },
   {
    "nr": 45,
@@ -364,7 +452,9 @@
    "en": "handbag",
    "pl": "torebka",
    "level": "A1",
-   "rank": 347
+   "rank": 347,
+   "example": "Her handbag is new.",
+   "example_pl": "Jej torebka jest nowa."
   },
   {
    "nr": 46,
@@ -372,7 +462,9 @@
    "en": "wear out clothes",
    "pl": "znosić ubranie",
    "level": "A1",
-   "rank": 348
+   "rank": 348,
+   "example": "Children wear out clothes fast.",
+   "example_pl": "Dzieci szybko znoszą ubrania."
   },
   {
    "nr": 47,
@@ -380,7 +472,9 @@
    "en": "fit (clothes)",
    "pl": "pasować rozmiarem",
    "level": "A1",
-   "rank": 349
+   "rank": 349,
+   "example": "These shoes don't fit me.",
+   "example_pl": "Te buty na mnie nie pasują."
   },
   {
    "nr": 48,
@@ -388,7 +482,9 @@
    "en": "tight",
    "pl": "obcisły / ciasny",
    "level": "A1",
-   "rank": 350
+   "rank": 350,
+   "example": "These jeans are too tight.",
+   "example_pl": "Te dżinsy są za obcisłe."
   },
   {
    "nr": 49,
@@ -396,7 +492,9 @@
    "en": "loose",
    "pl": "luźny",
    "level": "A1",
-   "rank": 351
+   "rank": 351,
+   "example": "The shirt is loose.",
+   "example_pl": "Koszula jest luźna."
   }
  ]
 }

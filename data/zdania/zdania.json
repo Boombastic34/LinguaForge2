@@ -1,0 +1,1145 @@
+{
+ "name": "Bank zdań — tworzenie i słuchanie",
+ "stages": [
+  {
+   "id": "s1",
+   "group": "slownictwo",
+   "diff": 1,
+   "level": "A1",
+   "name": "Zdania proste 1 — jestem, mam, lubię",
+   "emoji": "🌱",
+   "short": "Najkrótsze zdania: kto to jest, co mam, co lubię.",
+   "items": [
+    {
+     "id": "s1_1",
+     "en": "I am a driver.",
+     "pl": "Jestem kierowcą.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s1_2",
+     "en": "She is my sister.",
+     "pl": "Ona jest moją siostrą.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s1_3",
+     "en": "We are at home.",
+     "pl": "Jesteśmy w domu.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s1_4",
+     "en": "I have two children.",
+     "pl": "Mam dwoje dzieci.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s1_5",
+     "en": "He has a new car.",
+     "pl": "On ma nowy samochód.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s1_6",
+     "en": "I like coffee.",
+     "pl": "Lubię kawę.",
+     "note": "",
+     "words": 3
+    },
+    {
+     "id": "s1_7",
+     "en": "They live in Poland.",
+     "pl": "Oni mieszkają w Polsce.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s1_8",
+     "en": "My name is Anna.",
+     "pl": "Mam na imię Anna.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s1_9",
+     "en": "This is my house.",
+     "pl": "To jest mój dom.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s1_10",
+     "en": "The dog is very big.",
+     "pl": "Pies jest bardzo duży.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s1_11",
+     "en": "I work in a warehouse.",
+     "pl": "Pracuję w magazynie.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s1_12",
+     "en": "You are my friend.",
+     "pl": "Jesteś moim przyjacielem.",
+     "note": "",
+     "words": 4
+    }
+   ]
+  },
+  {
+   "id": "s2",
+   "group": "slownictwo",
+   "diff": 1,
+   "level": "A1",
+   "name": "Zdania proste 2 — pytania i przeczenia",
+   "emoji": "🌱",
+   "short": "To samo słownictwo, ale w pytaniu i przeczeniu.",
+   "items": [
+    {
+     "id": "s2_1",
+     "en": "I don't like tea.",
+     "pl": "Nie lubię herbaty.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s2_2",
+     "en": "She isn't at work today.",
+     "pl": "Nie ma jej dziś w pracy.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s2_3",
+     "en": "Do you have a car?",
+     "pl": "Masz samochód?",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s2_4",
+     "en": "Does he live here?",
+     "pl": "Czy on tu mieszka?",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s2_5",
+     "en": "Are you tired?",
+     "pl": "Jesteś zmęczony?",
+     "note": "",
+     "words": 3
+    },
+    {
+     "id": "s2_6",
+     "en": "We don't work on Sunday.",
+     "pl": "Nie pracujemy w niedzielę.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s2_7",
+     "en": "Is this your bag?",
+     "pl": "Czy to twoja torba?",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s2_8",
+     "en": "They aren't ready.",
+     "pl": "Oni nie są gotowi.",
+     "note": "",
+     "words": 3
+    },
+    {
+     "id": "s2_9",
+     "en": "Where do you live?",
+     "pl": "Gdzie mieszkasz?",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s2_10",
+     "en": "What is your name?",
+     "pl": "Jak masz na imię?",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s2_11",
+     "en": "He doesn't speak Polish.",
+     "pl": "On nie mówi po polsku.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "s2_12",
+     "en": "Why are you late?",
+     "pl": "Dlaczego się spóźniłeś?",
+     "note": "",
+     "words": 4
+    }
+   ]
+  },
+  {
+   "id": "s3",
+   "group": "slownictwo",
+   "diff": 2,
+   "level": "A1",
+   "name": "Codzienne sprawy 1 — dom i rodzina",
+   "emoji": "🏠",
+   "short": "Dłuższe zdania o domu, rodzinie i codziennym dniu.",
+   "items": [
+    {
+     "id": "s3_1",
+     "en": "My brother works in a big factory.",
+     "pl": "Mój brat pracuje w dużej fabryce.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s3_2",
+     "en": "The children are in the garden.",
+     "pl": "Dzieci są w ogrodzie.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s3_3",
+     "en": "I get up at six every morning.",
+     "pl": "Wstaję o szóstej każdego ranka.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s3_4",
+     "en": "We have dinner at seven.",
+     "pl": "Jemy obiad o siódmej.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s3_5",
+     "en": "My wife doesn't drink coffee.",
+     "pl": "Moja żona nie pije kawy.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s3_6",
+     "en": "The washing machine is broken.",
+     "pl": "Pralka jest zepsuta.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s3_7",
+     "en": "Can you close the window, please?",
+     "pl": "Możesz zamknąć okno, proszę?",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s3_8",
+     "en": "There is a shop near my house.",
+     "pl": "Niedaleko mojego domu jest sklep.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s3_9",
+     "en": "My parents live in a small village.",
+     "pl": "Moi rodzice mieszkają w małej wiosce.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s3_10",
+     "en": "I go to work by bus.",
+     "pl": "Jeżdżę do pracy autobusem.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s3_11",
+     "en": "The keys are in the drawer.",
+     "pl": "Klucze są w szufladzie.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s3_12",
+     "en": "We need milk and bread.",
+     "pl": "Potrzebujemy mleka i chleba.",
+     "note": "",
+     "words": 5
+    }
+   ]
+  },
+  {
+   "id": "s4",
+   "group": "slownictwo",
+   "diff": 2,
+   "level": "A1",
+   "name": "Codzienne sprawy 2 — praca i zakupy",
+   "emoji": "🛒",
+   "short": "Zdania z pracy, sklepu i drogi.",
+   "items": [
+    {
+     "id": "s4_1",
+     "en": "The shop opens at eight o'clock.",
+     "pl": "Sklep otwiera się o ósmej.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s4_2",
+     "en": "How much does it cost?",
+     "pl": "Ile to kosztuje?",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s4_3",
+     "en": "I need a bigger size, please.",
+     "pl": "Poproszę większy rozmiar.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s4_4",
+     "en": "My shift starts at six in the morning.",
+     "pl": "Moja zmiana zaczyna się o szóstej rano.",
+     "note": "",
+     "words": 8
+    },
+    {
+     "id": "s4_5",
+     "en": "The break is thirty minutes long.",
+     "pl": "Przerwa trwa trzydzieści minut.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s4_6",
+     "en": "Can I pay by card?",
+     "pl": "Mogę zapłacić kartą?",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s4_7",
+     "en": "The bus is ten minutes late.",
+     "pl": "Autobus jest dziesięć minut spóźniony.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s4_8",
+     "en": "I work five days a week.",
+     "pl": "Pracuję pięć dni w tygodniu.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s4_9",
+     "en": "Where is the nearest bus stop?",
+     "pl": "Gdzie jest najbliższy przystanek?",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s4_10",
+     "en": "This box is too heavy for me.",
+     "pl": "To pudło jest dla mnie za ciężkie.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s4_11",
+     "en": "We finish early on Friday.",
+     "pl": "W piątek kończymy wcześniej.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s4_12",
+     "en": "Excuse me, do you speak English?",
+     "pl": "Przepraszam, mówi pan po angielsku?",
+     "note": "",
+     "words": 6
+    }
+   ]
+  },
+  {
+   "id": "s5",
+   "group": "slownictwo",
+   "diff": 3,
+   "level": "A2",
+   "name": "Trudniejsze słownictwo 1 — opisy i opinie",
+   "emoji": "💬",
+   "short": "Zdania z przymiotnikami, opiniami i porównaniami.",
+   "items": [
+    {
+     "id": "s5_1",
+     "en": "This film is more interesting than the book.",
+     "pl": "Ten film jest ciekawszy niż książka.",
+     "note": "",
+     "words": 8
+    },
+    {
+     "id": "s5_2",
+     "en": "I think the weather will be better tomorrow.",
+     "pl": "Myślę, że jutro pogoda będzie lepsza.",
+     "note": "",
+     "words": 8
+    },
+    {
+     "id": "s5_3",
+     "en": "She is the best worker in our team.",
+     "pl": "Ona jest najlepszym pracownikiem w naszym zespole.",
+     "note": "",
+     "words": 8
+    },
+    {
+     "id": "s5_4",
+     "en": "The food was delicious, but very expensive.",
+     "pl": "Jedzenie było pyszne, ale bardzo drogie.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s5_5",
+     "en": "I am not sure about this decision.",
+     "pl": "Nie jestem pewien co do tej decyzji.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s5_6",
+     "en": "It depends on the price.",
+     "pl": "To zależy od ceny.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s5_7",
+     "en": "The instructions are difficult to understand.",
+     "pl": "Instrukcje są trudne do zrozumienia.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s5_8",
+     "en": "In my opinion, this is a good idea.",
+     "pl": "Moim zdaniem to dobry pomysł.",
+     "note": "",
+     "words": 8
+    },
+    {
+     "id": "s5_9",
+     "en": "He is much taller than his brother.",
+     "pl": "On jest dużo wyższy od swojego brata.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s5_10",
+     "en": "The traffic was terrible this morning.",
+     "pl": "Ruch był dziś rano okropny.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "s5_11",
+     "en": "I would like to change my appointment.",
+     "pl": "Chciałbym zmienić termin spotkania.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s5_12",
+     "en": "Everything is ready for tomorrow.",
+     "pl": "Wszystko jest gotowe na jutro.",
+     "note": "",
+     "words": 5
+    }
+   ]
+  },
+  {
+   "id": "s6",
+   "group": "slownictwo",
+   "diff": 4,
+   "level": "A2",
+   "name": "Trudniejsze słownictwo 2 — sprawy urzędowe",
+   "emoji": "📋",
+   "short": "Zdania, których potrzebujesz u lekarza, w urzędzie i w pracy.",
+   "items": [
+    {
+     "id": "s6_1",
+     "en": "I would like to make an appointment with the doctor.",
+     "pl": "Chciałbym umówić się do lekarza.",
+     "note": "",
+     "words": 10
+    },
+    {
+     "id": "s6_2",
+     "en": "Could you explain this to me again, please?",
+     "pl": "Mógłby mi pan to jeszcze raz wyjaśnić?",
+     "note": "",
+     "words": 8
+    },
+    {
+     "id": "s6_3",
+     "en": "I need to fill in this form.",
+     "pl": "Muszę wypełnić ten formularz.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s6_4",
+     "en": "My contract ends at the end of the month.",
+     "pl": "Moja umowa kończy się z końcem miesiąca.",
+     "note": "",
+     "words": 9
+    },
+    {
+     "id": "s6_5",
+     "en": "Do I have to bring my passport?",
+     "pl": "Czy muszę przynieść paszport?",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s6_6",
+     "en": "I am afraid there is a problem with my payment.",
+     "pl": "Obawiam się, że jest problem z moją wypłatą.",
+     "note": "",
+     "words": 10
+    },
+    {
+     "id": "s6_7",
+     "en": "Could you write it down for me?",
+     "pl": "Mógłby pan mi to zapisać?",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s6_8",
+     "en": "I have an accident insurance.",
+     "pl": "Mam ubezpieczenie od wypadków.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "s6_9",
+     "en": "The manager will call you back tomorrow.",
+     "pl": "Kierownik oddzwoni do pana jutro.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s6_10",
+     "en": "I would rather work in the morning.",
+     "pl": "Wolałbym pracować rano.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "s6_11",
+     "en": "Please let me know as soon as possible.",
+     "pl": "Proszę dać mi znać jak najszybciej.",
+     "note": "",
+     "words": 8
+    },
+    {
+     "id": "s6_12",
+     "en": "We should discuss this with the team.",
+     "pl": "Powinniśmy omówić to z zespołem.",
+     "note": "",
+     "words": 7
+    }
+   ]
+  },
+  {
+   "id": "p1",
+   "group": "phrasal",
+   "diff": 3,
+   "level": "A2",
+   "name": "Dwa wyrazy — inne znaczenie 1",
+   "emoji": "🔗",
+   "short": "Czasownik + małe słówko zmienia znaczenie: get up, look for, turn off.",
+   "items": [
+    {
+     "id": "p1_1",
+     "en": "I get up at five o'clock.",
+     "pl": "Wstaję o piątej.",
+     "note": "get up = wstawać (nie: „dostać w górę”)",
+     "words": 6
+    },
+    {
+     "id": "p1_2",
+     "en": "Please turn off the light.",
+     "pl": "Proszę zgaś światło.",
+     "note": "turn off = wyłączyć",
+     "words": 5
+    },
+    {
+     "id": "p1_3",
+     "en": "Turn on the machine, please.",
+     "pl": "Włącz maszynę, proszę.",
+     "note": "turn on = włączyć",
+     "words": 5
+    },
+    {
+     "id": "p1_4",
+     "en": "I am looking for my keys.",
+     "pl": "Szukam kluczy.",
+     "note": "look for = szukać (nie: „patrzeć dla”)",
+     "words": 6
+    },
+    {
+     "id": "p1_5",
+     "en": "Can you pick up the phone?",
+     "pl": "Możesz odebrać telefon?",
+     "note": "pick up = podnieść / odebrać",
+     "words": 6
+    },
+    {
+     "id": "p1_6",
+     "en": "Put on your jacket, it is cold.",
+     "pl": "Załóż kurtkę, jest zimno.",
+     "note": "put on = założyć (ubranie)",
+     "words": 7
+    },
+    {
+     "id": "p1_7",
+     "en": "Take off your shoes, please.",
+     "pl": "Zdejmij buty, proszę.",
+     "note": "take off = zdjąć",
+     "words": 5
+    },
+    {
+     "id": "p1_8",
+     "en": "We are running out of boxes.",
+     "pl": "Kończą nam się pudła.",
+     "note": "run out of = kończyć się (zapas)",
+     "words": 6
+    },
+    {
+     "id": "p1_9",
+     "en": "Sit down and wait here, please.",
+     "pl": "Usiądź i poczekaj tutaj.",
+     "note": "sit down = usiąść",
+     "words": 6
+    },
+    {
+     "id": "p1_10",
+     "en": "The meeting was called off.",
+     "pl": "Spotkanie zostało odwołane.",
+     "note": "call off = odwołać",
+     "words": 5
+    },
+    {
+     "id": "p1_11",
+     "en": "I will find out tomorrow.",
+     "pl": "Dowiem się jutro.",
+     "note": "find out = dowiedzieć się",
+     "words": 5
+    },
+    {
+     "id": "p1_12",
+     "en": "Please fill in this form.",
+     "pl": "Proszę wypełnić ten formularz.",
+     "note": "fill in = wypełnić (dokument)",
+     "words": 5
+    }
+   ]
+  },
+  {
+   "id": "p2",
+   "group": "phrasal",
+   "diff": 4,
+   "level": "A2",
+   "name": "Dwa wyrazy — inne znaczenie 2",
+   "emoji": "🔗",
+   "short": "Kolejne pary, które trzeba znać w pracy i w rozmowie.",
+   "items": [
+    {
+     "id": "p2_1",
+     "en": "I have to give up smoking.",
+     "pl": "Muszę rzucić palenie.",
+     "note": "give up = rzucić (nałóg), poddać się",
+     "words": 6
+    },
+    {
+     "id": "p2_2",
+     "en": "Look out! The floor is wet.",
+     "pl": "Uważaj! Podłoga jest mokra.",
+     "note": "look out = uważać",
+     "words": 6
+    },
+    {
+     "id": "p2_3",
+     "en": "Can you look after my dog?",
+     "pl": "Możesz zaopiekować się moim psem?",
+     "note": "look after = opiekować się",
+     "words": 6
+    },
+    {
+     "id": "p2_4",
+     "en": "The plane takes off at noon.",
+     "pl": "Samolot startuje w południe.",
+     "note": "take off = startować (samolot)",
+     "words": 6
+    },
+    {
+     "id": "p2_5",
+     "en": "Please write down the number.",
+     "pl": "Proszę zapisać numer.",
+     "note": "write down = zapisać",
+     "words": 5
+    },
+    {
+     "id": "p2_6",
+     "en": "I get on well with my colleagues.",
+     "pl": "Dobrze dogaduję się z kolegami.",
+     "note": "get on with = dogadywać się",
+     "words": 7
+    },
+    {
+     "id": "p2_7",
+     "en": "We set off at six in the morning.",
+     "pl": "Wyruszyliśmy o szóstej rano.",
+     "note": "set off = wyruszyć",
+     "words": 8
+    },
+    {
+     "id": "p2_8",
+     "en": "Hold on a moment, please.",
+     "pl": "Proszę chwilę poczekać.",
+     "note": "hold on = poczekać (przy telefonie)",
+     "words": 5
+    },
+    {
+     "id": "p2_9",
+     "en": "The car broke down on the motorway.",
+     "pl": "Samochód zepsuł się na autostradzie.",
+     "note": "break down = zepsuć się",
+     "words": 7
+    },
+    {
+     "id": "p2_10",
+     "en": "I have to check in at the hotel first.",
+     "pl": "Najpierw muszę się zameldować w hotelu.",
+     "note": "check in = zameldować się",
+     "words": 9
+    },
+    {
+     "id": "p2_11",
+     "en": "Please put out your cigarette.",
+     "pl": "Proszę zgasić papierosa.",
+     "note": "put out = zgasić",
+     "words": 5
+    },
+    {
+     "id": "p2_12",
+     "en": "She came up with a good idea.",
+     "pl": "Ona wpadła na dobry pomysł.",
+     "note": "come up with = wpaść na (pomysł)",
+     "words": 7
+    }
+   ]
+  },
+  {
+   "id": "t1",
+   "group": "czasy",
+   "diff": 2,
+   "level": "A1",
+   "name": "Czas teraźniejszy — Present Simple",
+   "emoji": "⏱",
+   "short": "Co robisz zwykle, codziennie, zawsze.",
+   "items": [
+    {
+     "id": "t1_1",
+     "en": "I start work at seven.",
+     "pl": "Zaczynam pracę o siódmej.",
+     "note": "Present Simple — rutyna, stały plan",
+     "words": 5
+    },
+    {
+     "id": "t1_2",
+     "en": "She works in a hospital.",
+     "pl": "Ona pracuje w szpitalu.",
+     "note": "he / she / it → końcówka -s",
+     "words": 5
+    },
+    {
+     "id": "t1_3",
+     "en": "We always have lunch at twelve.",
+     "pl": "Zawsze jemy lunch o dwunastej.",
+     "note": "always = zawsze → Present Simple",
+     "words": 6
+    },
+    {
+     "id": "t1_4",
+     "en": "He doesn't drink alcohol.",
+     "pl": "On nie pije alkoholu.",
+     "note": "przeczenie: doesn't + forma podstawowa",
+     "words": 4
+    },
+    {
+     "id": "t1_5",
+     "en": "Do they work on Saturdays?",
+     "pl": "Czy oni pracują w soboty?",
+     "note": "pytanie: do + osoba + czasownik",
+     "words": 5
+    },
+    {
+     "id": "t1_6",
+     "en": "The shop closes at eight.",
+     "pl": "Sklep zamyka się o ósmej.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "t1_7",
+     "en": "I never eat breakfast.",
+     "pl": "Nigdy nie jem śniadania.",
+     "note": "never już zawiera przeczenie",
+     "words": 4
+    },
+    {
+     "id": "t1_8",
+     "en": "My son goes to school every day.",
+     "pl": "Mój syn chodzi codziennie do szkoły.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "t1_9",
+     "en": "How often do you visit them?",
+     "pl": "Jak często ich odwiedzasz?",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "t1_10",
+     "en": "Water boils at 100 degrees.",
+     "pl": "Woda wrze w 100 stopniach.",
+     "note": "fakt, prawda ogólna",
+     "words": 5
+    },
+    {
+     "id": "t1_11",
+     "en": "She usually takes the bus.",
+     "pl": "Ona zwykle jedzie autobusem.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "t1_12",
+     "en": "We don't have time today.",
+     "pl": "Nie mamy dziś czasu.",
+     "note": "",
+     "words": 5
+    }
+   ]
+  },
+  {
+   "id": "t2",
+   "group": "czasy",
+   "diff": 3,
+   "level": "A1",
+   "name": "Teraz właśnie — Present Continuous",
+   "emoji": "⏱",
+   "short": "Co dzieje się w tej chwili: am / is / are + -ing.",
+   "items": [
+    {
+     "id": "t2_1",
+     "en": "I am working now.",
+     "pl": "Teraz pracuję.",
+     "note": "am + -ing = w tej chwili",
+     "words": 4
+    },
+    {
+     "id": "t2_2",
+     "en": "She is talking to the manager.",
+     "pl": "Ona rozmawia z kierownikiem.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "t2_3",
+     "en": "They are waiting outside.",
+     "pl": "Oni czekają na zewnątrz.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "t2_4",
+     "en": "What are you doing?",
+     "pl": "Co robisz?",
+     "note": "pytanie: are + osoba + -ing",
+     "words": 4
+    },
+    {
+     "id": "t2_5",
+     "en": "It is raining again.",
+     "pl": "Znowu pada.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "t2_6",
+     "en": "I am not listening to music.",
+     "pl": "Nie słucham muzyki.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "t2_7",
+     "en": "We are having lunch right now.",
+     "pl": "Właśnie jemy lunch.",
+     "note": "",
+     "words": 6
+    },
+    {
+     "id": "t2_8",
+     "en": "The truck is coming at ten.",
+     "pl": "Ciężarówka przyjeżdża o dziesiątej.",
+     "note": "plan na najbliższą przyszłość",
+     "words": 6
+    },
+    {
+     "id": "t2_9",
+     "en": "He is looking for a new job.",
+     "pl": "On szuka nowej pracy.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "t2_10",
+     "en": "Why are you laughing?",
+     "pl": "Dlaczego się śmiejesz?",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "t2_11",
+     "en": "The children are sleeping.",
+     "pl": "Dzieci śpią.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "t2_12",
+     "en": "I am learning English this year.",
+     "pl": "Uczę się w tym roku angielskiego.",
+     "note": "",
+     "words": 6
+    }
+   ]
+  },
+  {
+   "id": "t3",
+   "group": "czasy",
+   "diff": 3,
+   "level": "A2",
+   "name": "Przeszłość — Past Simple",
+   "emoji": "⏱",
+   "short": "Co się wydarzyło i skończyło: wczoraj, w zeszłym tygodniu.",
+   "items": [
+    {
+     "id": "t3_1",
+     "en": "I worked late yesterday.",
+     "pl": "Wczoraj pracowałem do późna.",
+     "note": "-ed = czasownik regularny",
+     "words": 4
+    },
+    {
+     "id": "t3_2",
+     "en": "We went to London last year.",
+     "pl": "W zeszłym roku pojechaliśmy do Londynu.",
+     "note": "go → went (nieregularny)",
+     "words": 6
+    },
+    {
+     "id": "t3_3",
+     "en": "She was very tired.",
+     "pl": "Ona była bardzo zmęczona.",
+     "note": "was = przeszła forma is",
+     "words": 4
+    },
+    {
+     "id": "t3_4",
+     "en": "They were at home all day.",
+     "pl": "Byli w domu cały dzień.",
+     "note": "were dla you / we / they",
+     "words": 6
+    },
+    {
+     "id": "t3_5",
+     "en": "I didn't see him yesterday.",
+     "pl": "Nie widziałem go wczoraj.",
+     "note": "przeczenie: didn't + forma podstawowa",
+     "words": 5
+    },
+    {
+     "id": "t3_6",
+     "en": "Did you call the office?",
+     "pl": "Zadzwoniłeś do biura?",
+     "note": "pytanie: did + osoba + czasownik",
+     "words": 5
+    },
+    {
+     "id": "t3_7",
+     "en": "He bought a new phone last week.",
+     "pl": "W zeszłym tygodniu kupił nowy telefon.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "t3_8",
+     "en": "The train arrived on time.",
+     "pl": "Pociąg przyjechał punktualnie.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "t3_9",
+     "en": "I forgot my password.",
+     "pl": "Zapomniałem hasła.",
+     "note": "",
+     "words": 4
+    },
+    {
+     "id": "t3_10",
+     "en": "We didn't have any problems.",
+     "pl": "Nie mieliśmy żadnych problemów.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "t3_11",
+     "en": "What did you do at the weekend?",
+     "pl": "Co robiłeś w weekend?",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "t3_12",
+     "en": "She left the company in May.",
+     "pl": "Odeszła z firmy w maju.",
+     "note": "",
+     "words": 6
+    }
+   ]
+  },
+  {
+   "id": "t4",
+   "group": "czasy",
+   "diff": 3,
+   "level": "A2",
+   "name": "Przyszłość — will i going to",
+   "emoji": "⏱",
+   "short": "Co się stanie: decyzja teraz (will) i plan (going to).",
+   "items": [
+    {
+     "id": "t4_1",
+     "en": "I will call you tomorrow.",
+     "pl": "Zadzwonię do ciebie jutro.",
+     "note": "will = decyzja podjęta teraz",
+     "words": 5
+    },
+    {
+     "id": "t4_2",
+     "en": "We are going to buy a house.",
+     "pl": "Zamierzamy kupić dom.",
+     "note": "going to = plan, zamiar",
+     "words": 7
+    },
+    {
+     "id": "t4_3",
+     "en": "It will be cold tonight.",
+     "pl": "Dziś w nocy będzie zimno.",
+     "note": "przewidywanie",
+     "words": 5
+    },
+    {
+     "id": "t4_4",
+     "en": "She won't come to the party.",
+     "pl": "Ona nie przyjdzie na imprezę.",
+     "note": "won't = will not",
+     "words": 6
+    },
+    {
+     "id": "t4_5",
+     "en": "Will you help me, please?",
+     "pl": "Pomożesz mi, proszę?",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "t4_6",
+     "en": "I am going to look for a new flat.",
+     "pl": "Zamierzam poszukać nowego mieszkania.",
+     "note": "",
+     "words": 9
+    },
+    {
+     "id": "t4_7",
+     "en": "They will finish the job on Friday.",
+     "pl": "Skończą tę pracę w piątek.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "t4_8",
+     "en": "I think it will rain.",
+     "pl": "Myślę, że będzie padać.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "t4_9",
+     "en": "We are going to start at eight.",
+     "pl": "Zamierzamy zacząć o ósmej.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "t4_10",
+     "en": "He will be back in an hour.",
+     "pl": "Wróci za godzinę.",
+     "note": "",
+     "words": 7
+    },
+    {
+     "id": "t4_11",
+     "en": "I won't forget about it.",
+     "pl": "Nie zapomnę o tym.",
+     "note": "",
+     "words": 5
+    },
+    {
+     "id": "t4_12",
+     "en": "What are you going to do next year?",
+     "pl": "Co zamierzasz robić w przyszłym roku?",
+     "note": "",
+     "words": 8
+    }
+   ]
+  }
+ ]
+}

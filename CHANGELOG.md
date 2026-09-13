@@ -1,5 +1,43 @@
 # LinguaForge — CHANGELOG
 
+## v3.11.1 (2026-09-13) — poprawka „nullnull" na pulpicie
+
+- **Na pulpicie (wersja 1) pod nagłówkiem „Lektor i cel nauki" wyświetlał się napis
+  „nullnull".** Przyczyna: w kodzie często piszemy `warunek ? element : null`, a DOM-owe
+  `append()` zamienia `null` na tekst „null" (nasza własna funkcja `el()` je pomijała,
+  więc błąd pojawiał się tylko tam, gdzie elementy dokładane są bezpośrednio). W tym
+  miejscu były dwa pola widoczne tylko dla nauczyciela — stąd dokładnie dwa „null".
+- Poprawka globalna: `append()` i `prepend()` pomijają teraz `null` i `undefined` w całej
+  aplikacji, więc ten sam błąd nie wypłynie w żadnym innym widoku. Sprawdzone: zero
+  wystąpień słowa „null" na pulpicie, Ścieżce, Fiszkach, Podstawach, Zdaniach i Czasownikach.
+
+## v3.11.0 (2026-09-09) — wersja 2: czytanie dobierane do słownika ucznia
+
+Ostatni punkt z planu badawczego. **Wersja 1 bez zmian** (12 zestawów testów przechodzi).
+
+## 📖 Czytanie — próg 98 % pokrycia
+Teksty **nie są dobierane do etykiety poziomu**, tylko do słownika konkretnego ucznia.
+Badania nad pokryciem leksykalnym (Hu i Nation): do swobodnego czytania bez słownika
+potrzeba znajomości ok. 98 % słów; przy 95 % czytanie męczy, poniżej 90 % nie ma sensu.
+Aplikacja zna fiszki ucznia, więc liczy pokrycie osobno dla każdego tekstu — i to jedyna
+rzecz, w której bije papierowy podręcznik.
+
+- **10 tekstów** (1189 słów, 30 pytań) o pracy, domu, lekarzu, podróży, nauce.
+- Lista posortowana wg pokrycia, z paskiem i kolorem: zielony ≥98 % („czytaj śmiało"),
+  żółty 95–98 % („da się, ale wolniej"), czerwony <95 % („na razie za trudny").
+- Liczenie pokrycia uwzględnia **odmianę** (made/make, boxes/box, stopping/stop) i formy
+  nieregularne, inaczej wynik zaniżałby się o kilkanaście procent.
+- W tekście: lektor przy każdym zdaniu, **nieznane słowa podkreślone i klikalne** —
+  dotknięcie pokazuje tłumaczenie i pozwala dodać słowo do „🔥 Do utrwalenia".
+- Po tekście trzy pytania o zrozumienie (nie o szczegóły — o sens).
+- Szacunek słownika z testu wstępnego trafia teraz do profilu i steruje doborem tekstów:
+  początkujący widzi 56–59 % pokrycia (nic do czytania), uczeń po teście z wynikiem
+  ~1500 słów — 93–97 % (dwa teksty gotowe).
+
+## Nowe API i pliki
+`GET /api/v2/reading`, `GET /api/v2/reading/{id}`, `POST /api/v2/reading/{id}` ·
+`data/czytanie/teksty.json` · `tools/czytanie.py` · plik ucznia `reading_done.json`.
+
 ## v3.10.0 (2026-09-09) — wersja 2: płynność (4/3/2 i shadowing)
 
 Piąty krok wdrażania dokumentu. **Wersja 1 bez zmian** (11 zestawów testów przechodzi,

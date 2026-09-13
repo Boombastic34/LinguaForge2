@@ -11,7 +11,9 @@
    "en": "apple",
    "pl": "jabłko",
    "level": "A1",
-   "rank": 340
+   "rank": 340,
+   "example": "I eat an apple every day.",
+   "example_pl": "Codziennie jem jabłko."
   },
   {
    "nr": 2,
@@ -19,7 +21,9 @@
    "en": "banana",
    "pl": "banan",
    "level": "A1",
-   "rank": 341
+   "rank": 341,
+   "example": "Bananas are cheap here.",
+   "example_pl": "Banany są tu tanie."
   },
   {
    "nr": 3,
@@ -27,7 +31,9 @@
    "en": "orange",
    "pl": "pomarańcza",
    "level": "A1",
-   "rank": 342
+   "rank": 342,
+   "example": "This orange is sweet.",
+   "example_pl": "Ta pomarańcza jest słodka."
   },
   {
    "nr": 4,
@@ -35,7 +41,9 @@
    "en": "lemon",
    "pl": "cytryna",
    "level": "A1",
-   "rank": 343
+   "rank": 343,
+   "example": "I want tea with lemon.",
+   "example_pl": "Chcę herbatę z cytryną."
   },
   {
    "nr": 5,
@@ -43,7 +51,9 @@
    "en": "tomato",
    "pl": "pomidor",
    "level": "A1",
-   "rank": 344
+   "rank": 344,
+   "example": "Tomatoes are red.",
+   "example_pl": "Pomidory są czerwone."
   },
   {
    "nr": 6,
@@ -51,7 +61,9 @@
    "en": "potato",
    "pl": "ziemniak",
    "level": "A1",
-   "rank": 345
+   "rank": 345,
+   "example": "We have potatoes for dinner.",
+   "example_pl": "Na obiad mamy ziemniaki."
   },
   {
    "nr": 7,
@@ -59,7 +71,9 @@
    "en": "onion",
    "pl": "cebula",
    "level": "A1",
-   "rank": 346
+   "rank": 346,
+   "example": "I don't like onion.",
+   "example_pl": "Nie lubię cebuli."
   },
   {
    "nr": 8,
@@ -67,7 +81,9 @@
    "en": "carrot",
    "pl": "marchewka",
    "level": "A1",
-   "rank": 347
+   "rank": 347,
+   "example": "Rabbits eat carrots.",
+   "example_pl": "Króliki jedzą marchewki."
   },
   {
    "nr": 9,
@@ -75,7 +91,9 @@
    "en": "cucumber",
    "pl": "ogórek",
    "level": "A1",
-   "rank": 348
+   "rank": 348,
+   "example": "The salad has cucumber in it.",
+   "example_pl": "W sałatce jest ogórek."
   },
   {
    "nr": 10,
@@ -83,7 +101,9 @@
    "en": "cheese",
    "pl": "ser",
    "level": "A1",
-   "rank": 349
+   "rank": 349,
+   "example": "I want a cheese sandwich.",
+   "example_pl": "Chcę kanapkę z serem."
   },
   {
    "nr": 11,
@@ -91,7 +111,9 @@
    "en": "butter",
    "pl": "masło",
    "level": "A1",
-   "rank": 350
+   "rank": 350,
+   "example": "Bread with butter is simple and good.",
+   "example_pl": "Chleb z masłem jest prosty i dobry."
   },
   {
    "nr": 12,
@@ -99,7 +121,9 @@
    "en": "egg",
    "pl": "jajko",
    "level": "A1",
-   "rank": 351
+   "rank": 351,
+   "example": "I eat two eggs for breakfast.",
+   "example_pl": "Jem dwa jajka na śniadanie."
   },
   {
    "nr": 13,
@@ -107,7 +131,9 @@
    "en": "meat",
    "pl": "mięso",
    "level": "A1",
-   "rank": 352
+   "rank": 352,
+   "example": "My sister doesn't eat meat.",
+   "example_pl": "Moja siostra nie je mięsa."
   },
   {
    "nr": 14,
@@ -115,7 +141,9 @@
    "en": "chicken (food)",
    "pl": "kurczak (mięso)",
    "level": "A1",
-   "rank": 353
+   "rank": 353,
+   "example": "We have chicken and rice.",
+   "example_pl": "Mamy kurczaka z ryżem."
   },
   {
    "nr": 15,
@@ -123,7 +151,9 @@
    "en": "pork",
    "pl": "wieprzowina",
    "level": "A1",
-   "rank": 354
+   "rank": 354,
+   "example": "Pork is popular in Poland.",
+   "example_pl": "Wieprzowina jest popularna w Polsce."
   },
   {
    "nr": 16,
@@ -131,7 +161,9 @@
    "en": "beef",
    "pl": "wołowina",
    "level": "A1",
-   "rank": 355
+   "rank": 355,
+   "example": "This beef is very good.",
+   "example_pl": "Ta wołowina jest bardzo dobra."
   },
   {
    "nr": 17,
@@ -139,7 +171,9 @@
    "en": "fish (food)",
    "pl": "ryba (potrawa)",
    "level": "A1",
-   "rank": 356
+   "rank": 356,
+   "example": "We eat fish on Friday.",
+   "example_pl": "W piątek jemy rybę."
   },
   {
    "nr": 18,
@@ -147,7 +181,9 @@
    "en": "rice",
    "pl": "ryż",
    "level": "A1",
-   "rank": 357
+   "rank": 357,
+   "example": "Rice is cheap and healthy.",
+   "example_pl": "Ryż jest tani i zdrowy."
   },
   {
    "nr": 19,
@@ -155,7 +191,9 @@
    "en": "pasta",
    "pl": "makaron",
    "level": "A1",
-   "rank": 358
+   "rank": 358,
+   "example": "The children love pasta.",
+   "example_pl": "Dzieci uwielbiają makaron."
   },
   {
    "nr": 20,
@@ -163,7 +201,9 @@
    "en": "soup",
    "pl": "zupa",
    "level": "A1",
-   "rank": 359
+   "rank": 359,
+   "example": "The soup is hot.",
+   "example_pl": "Zupa jest gorąca."
   },
   {
    "nr": 21,
@@ -171,7 +211,9 @@
    "en": "salad",
    "pl": "sałatka",
    "level": "A1",
-   "rank": 360
+   "rank": 360,
+   "example": "I want a salad, please.",
+   "example_pl": "Poproszę sałatkę."
   },
   {
    "nr": 22,
@@ -179,7 +221,9 @@
    "en": "sandwich",
    "pl": "kanapka",
    "level": "A1",
-   "rank": 361
+   "rank": 361,
+   "example": "I have a sandwich for lunch.",
+   "example_pl": "Na lunch mam kanapkę."
   },
   {
    "nr": 23,
@@ -187,7 +231,9 @@
    "en": "pizza",
    "pl": "pizza",
    "level": "A1",
-   "rank": 362
+   "rank": 362,
+   "example": "Pizza is my favourite food.",
+   "example_pl": "Pizza to moje ulubione jedzenie."
   },
   {
    "nr": 24,
@@ -195,7 +241,9 @@
    "en": "cake",
    "pl": "ciasto",
    "level": "A1",
-   "rank": 363
+   "rank": 363,
+   "example": "The cake is delicious.",
+   "example_pl": "Ciasto jest pyszne."
   },
   {
    "nr": 25,
@@ -203,7 +251,9 @@
    "en": "cookie",
    "pl": "ciastko",
    "level": "A1",
-   "rank": 364
+   "rank": 364,
+   "example": "Do you want a cookie?",
+   "example_pl": "Chcesz ciastko?"
   },
   {
    "nr": 26,
@@ -211,7 +261,9 @@
    "en": "chocolate",
    "pl": "czekolada",
    "level": "A1",
-   "rank": 365
+   "rank": 365,
+   "example": "I love chocolate.",
+   "example_pl": "Kocham czekoladę."
   },
   {
    "nr": 27,
@@ -219,7 +271,9 @@
    "en": "sugar",
    "pl": "cukier",
    "level": "A1",
-   "rank": 366
+   "rank": 366,
+   "example": "No sugar in my coffee, please.",
+   "example_pl": "Bez cukru w kawie, proszę."
   },
   {
    "nr": 28,
@@ -227,7 +281,9 @@
    "en": "salt",
    "pl": "sól",
    "level": "A1",
-   "rank": 367
+   "rank": 367,
+   "example": "Pass me the salt, please.",
+   "example_pl": "Podaj mi sól, proszę."
   },
   {
    "nr": 29,
@@ -235,7 +291,9 @@
    "en": "pepper",
    "pl": "pieprz",
    "level": "A1",
-   "rank": 368
+   "rank": 368,
+   "example": "The soup needs pepper.",
+   "example_pl": "Zupa potrzebuje pieprzu."
   },
   {
    "nr": 30,
@@ -243,7 +301,9 @@
    "en": "oil",
    "pl": "olej",
    "level": "A1",
-   "rank": 369
+   "rank": 369,
+   "example": "Fry it in oil.",
+   "example_pl": "Usmaż to na oleju."
   },
   {
    "nr": 31,
@@ -251,7 +311,9 @@
    "en": "juice",
    "pl": "sok",
    "level": "A1",
-   "rank": 370
+   "rank": 370,
+   "example": "I drink orange juice.",
+   "example_pl": "Piję sok pomarańczowy."
   },
   {
    "nr": 32,
@@ -259,7 +321,9 @@
    "en": "beer",
    "pl": "piwo",
    "level": "A1",
-   "rank": 371
+   "rank": 371,
+   "example": "Do you want a beer?",
+   "example_pl": "Chcesz piwo?"
   },
   {
    "nr": 33,
@@ -267,7 +331,9 @@
    "en": "wine",
    "pl": "wino",
    "level": "A1",
-   "rank": 372
+   "rank": 372,
+   "example": "We drink wine at dinner.",
+   "example_pl": "Pijemy wino do obiadu."
   },
   {
    "nr": 34,
@@ -275,7 +341,9 @@
    "en": "breakfast",
    "pl": "śniadanie",
    "level": "A1",
-   "rank": 373
+   "rank": 373,
+   "example": "Breakfast is at seven.",
+   "example_pl": "Śniadanie jest o siódmej."
   },
   {
    "nr": 35,
@@ -283,7 +351,9 @@
    "en": "lunch",
    "pl": "lunch / obiad w pracy",
    "level": "A1",
-   "rank": 374
+   "rank": 374,
+   "example": "Lunch is at twelve.",
+   "example_pl": "Lunch jest o dwunastej."
   },
   {
    "nr": 36,
@@ -291,7 +361,9 @@
    "en": "dinner",
    "pl": "obiad / kolacja",
    "level": "A1",
-   "rank": 375
+   "rank": 375,
+   "example": "Dinner is ready!",
+   "example_pl": "Obiad gotowy!"
   },
   {
    "nr": 37,
@@ -299,7 +371,9 @@
    "en": "snack",
    "pl": "przekąska",
    "level": "A1",
-   "rank": 376
+   "rank": 376,
+   "example": "I have a snack at ten.",
+   "example_pl": "O dziesiątej mam przekąskę."
   },
   {
    "nr": 38,
@@ -307,7 +381,9 @@
    "en": "meal",
    "pl": "posiłek",
    "level": "A1",
-   "rank": 377
+   "rank": 377,
+   "example": "It is a big meal.",
+   "example_pl": "To duży posiłek."
   },
   {
    "nr": 39,
@@ -315,7 +391,9 @@
    "en": "flour",
    "pl": "mąka",
    "level": "A1",
-   "rank": 339
+   "rank": 339,
+   "example": "We need flour for the cake.",
+   "example_pl": "Potrzebujemy mąki na ciasto."
   },
   {
    "nr": 40,
@@ -323,7 +401,9 @@
    "en": "honey",
    "pl": "miód",
    "level": "A1",
-   "rank": 340
+   "rank": 340,
+   "example": "Tea with honey is good for you.",
+   "example_pl": "Herbata z miodem jest zdrowa."
   },
   {
    "nr": 41,
@@ -331,7 +411,9 @@
    "en": "jam",
    "pl": "dżem",
    "level": "A1",
-   "rank": 341
+   "rank": 341,
+   "example": "I like strawberry jam.",
+   "example_pl": "Lubię dżem truskawkowy."
   },
   {
    "nr": 42,
@@ -339,7 +421,9 @@
    "en": "yoghurt",
    "pl": "jogurt",
    "level": "A1",
-   "rank": 342
+   "rank": 342,
+   "example": "I eat yoghurt every morning.",
+   "example_pl": "Codziennie rano jem jogurt."
   },
   {
    "nr": 43,
@@ -347,7 +431,9 @@
    "en": "cream",
    "pl": "śmietana",
    "level": "A1",
-   "rank": 343
+   "rank": 343,
+   "example": "Coffee with cream, please.",
+   "example_pl": "Kawa ze śmietanką, proszę."
   },
   {
    "nr": 44,
@@ -355,7 +441,9 @@
    "en": "sausage",
    "pl": "kiełbasa",
    "level": "A1",
-   "rank": 344
+   "rank": 344,
+   "example": "Polish sausage is famous.",
+   "example_pl": "Polska kiełbasa jest sławna."
   },
   {
    "nr": 45,
@@ -363,7 +451,9 @@
    "en": "ham",
    "pl": "szynka",
    "level": "A1",
-   "rank": 345
+   "rank": 345,
+   "example": "A ham sandwich, please.",
+   "example_pl": "Poproszę kanapkę z szynką."
   },
   {
    "nr": 46,
@@ -371,7 +461,9 @@
    "en": "bacon",
    "pl": "boczek",
    "level": "A1",
-   "rank": 346
+   "rank": 346,
+   "example": "Eggs and bacon for breakfast.",
+   "example_pl": "Jajka z boczkiem na śniadanie."
   },
   {
    "nr": 47,
@@ -379,7 +471,9 @@
    "en": "fish fillet",
    "pl": "filet rybny",
    "level": "A1",
-   "rank": 347
+   "rank": 347,
+   "example": "The fish fillet is fresh.",
+   "example_pl": "Filet rybny jest świeży."
   },
   {
    "nr": 48,
@@ -387,7 +481,9 @@
    "en": "soup spoon",
    "pl": "łyżka do zupy",
    "level": "A1",
-   "rank": 348
+   "rank": 348,
+   "example": "Take a soup spoon.",
+   "example_pl": "Weź łyżkę do zupy."
   },
   {
    "nr": 49,
@@ -395,7 +491,9 @@
    "en": "garlic",
    "pl": "czosnek",
    "level": "A1",
-   "rank": 349
+   "rank": 349,
+   "example": "The sauce has a lot of garlic.",
+   "example_pl": "W sosie jest dużo czosnku."
   },
   {
    "nr": 50,
@@ -403,7 +501,9 @@
    "en": "mushroom",
    "pl": "grzyb",
    "level": "A1",
-   "rank": 350
+   "rank": 350,
+   "example": "I like mushroom soup.",
+   "example_pl": "Lubię zupę grzybową."
   },
   {
    "nr": 51,
@@ -411,7 +511,9 @@
    "en": "pepper (vegetable)",
    "pl": "papryka",
    "level": "A1",
-   "rank": 351
+   "rank": 351,
+   "example": "Red pepper is sweet.",
+   "example_pl": "Czerwona papryka jest słodka."
   },
   {
    "nr": 52,
@@ -419,7 +521,9 @@
    "en": "cabbage",
    "pl": "kapusta",
    "level": "A1",
-   "rank": 352
+   "rank": 352,
+   "example": "Cabbage is cheap in winter.",
+   "example_pl": "Kapusta jest tania zimą."
   },
   {
    "nr": 53,
@@ -427,7 +531,9 @@
    "en": "lettuce",
    "pl": "sałata",
    "level": "A1",
-   "rank": 353
+   "rank": 353,
+   "example": "Wash the lettuce.",
+   "example_pl": "Umyj sałatę."
   },
   {
    "nr": 54,
@@ -435,7 +541,9 @@
    "en": "bean",
    "pl": "fasola",
    "level": "A1",
-   "rank": 354
+   "rank": 354,
+   "example": "Beans are healthy.",
+   "example_pl": "Fasola jest zdrowa."
   },
   {
    "nr": 55,
@@ -443,7 +551,9 @@
    "en": "pea",
    "pl": "groszek",
    "level": "A1",
-   "rank": 355
+   "rank": 355,
+   "example": "The soup has peas in it.",
+   "example_pl": "W zupie jest groszek."
   },
   {
    "nr": 56,
@@ -451,7 +561,9 @@
    "en": "corn",
    "pl": "kukurydza",
    "level": "A1",
-   "rank": 356
+   "rank": 356,
+   "example": "I like corn on pizza.",
+   "example_pl": "Lubię kukurydzę na pizzy."
   },
   {
    "nr": 57,
@@ -459,7 +571,9 @@
    "en": "strawberry",
    "pl": "truskawka",
    "level": "A1",
-   "rank": 357
+   "rank": 357,
+   "example": "Strawberries are sweet in June.",
+   "example_pl": "Truskawki są słodkie w czerwcu."
   },
   {
    "nr": 58,
@@ -467,7 +581,9 @@
    "en": "raspberry",
    "pl": "malina",
    "level": "A1",
-   "rank": 358
+   "rank": 358,
+   "example": "My garden has raspberries.",
+   "example_pl": "W moim ogrodzie są maliny."
   },
   {
    "nr": 59,
@@ -475,7 +591,9 @@
    "en": "cherry",
    "pl": "wiśnia",
    "level": "A1",
-   "rank": 359
+   "rank": 359,
+   "example": "The cherry cake is great.",
+   "example_pl": "Ciasto wiśniowe jest świetne."
   },
   {
    "nr": 60,
@@ -483,7 +601,9 @@
    "en": "pear",
    "pl": "gruszka",
    "level": "A1",
-   "rank": 360
+   "rank": 360,
+   "example": "This pear is soft.",
+   "example_pl": "Ta gruszka jest miękka."
   },
   {
    "nr": 61,
@@ -491,7 +611,9 @@
    "en": "plum",
    "pl": "śliwka",
    "level": "A1",
-   "rank": 361
+   "rank": 361,
+   "example": "Plums are ripe in August.",
+   "example_pl": "Śliwki dojrzewają w sierpniu."
   },
   {
    "nr": 62,
@@ -499,7 +621,9 @@
    "en": "grape",
    "pl": "winogrono",
    "level": "A1",
-   "rank": 362
+   "rank": 362,
+   "example": "I buy grapes at the market.",
+   "example_pl": "Kupuję winogrona na targu."
   },
   {
    "nr": 63,
@@ -507,7 +631,9 @@
    "en": "watermelon",
    "pl": "arbuz",
    "level": "A1",
-   "rank": 363
+   "rank": 363,
+   "example": "Watermelon is good in summer.",
+   "example_pl": "Arbuz jest dobry latem."
   },
   {
    "nr": 64,
@@ -515,7 +641,9 @@
    "en": "nut",
    "pl": "orzech",
    "level": "A1",
-   "rank": 364
+   "rank": 364,
+   "example": "I eat nuts as a snack.",
+   "example_pl": "Jem orzechy jako przekąskę."
   },
   {
    "nr": 65,
@@ -523,7 +651,9 @@
    "en": "raisin",
    "pl": "rodzynka",
    "level": "A1",
-   "rank": 365
+   "rank": 365,
+   "example": "The cake has raisins in it.",
+   "example_pl": "W cieście są rodzynki."
   },
   {
    "nr": 66,
@@ -531,7 +661,9 @@
    "en": "pancake",
    "pl": "naleśnik",
    "level": "A1",
-   "rank": 366
+   "rank": 366,
+   "example": "We eat pancakes on Sunday.",
+   "example_pl": "W niedzielę jemy naleśniki."
   },
   {
    "nr": 67,
@@ -539,7 +671,9 @@
    "en": "porridge",
    "pl": "owsianka",
    "level": "A1",
-   "rank": 367
+   "rank": 367,
+   "example": "Porridge is a healthy breakfast.",
+   "example_pl": "Owsianka to zdrowe śniadanie."
   },
   {
    "nr": 68,
@@ -547,7 +681,9 @@
    "en": "cereal",
    "pl": "płatki śniadaniowe",
    "level": "A1",
-   "rank": 368
+   "rank": 368,
+   "example": "The children eat cereal with milk.",
+   "example_pl": "Dzieci jedzą płatki z mlekiem."
   },
   {
    "nr": 69,
@@ -555,7 +691,9 @@
    "en": "toast",
    "pl": "tost",
    "level": "A1",
-   "rank": 369
+   "rank": 369,
+   "example": "Two slices of toast, please.",
+   "example_pl": "Dwie kromki tostu, proszę."
   },
   {
    "nr": 70,
@@ -563,7 +701,9 @@
    "en": "roll",
    "pl": "bułka",
    "level": "A1",
-   "rank": 370
+   "rank": 370,
+   "example": "A roll with butter, please.",
+   "example_pl": "Bułka z masłem, proszę."
   },
   {
    "nr": 71,
@@ -571,7 +711,9 @@
    "en": "pastry",
    "pl": "ciastko francuskie",
    "level": "A1",
-   "rank": 371
+   "rank": 371,
+   "example": "The pastry is fresh.",
+   "example_pl": "Ciastko jest świeże."
   },
   {
    "nr": 72,
@@ -579,7 +721,9 @@
    "en": "ice cream",
    "pl": "lody",
    "level": "A1",
-   "rank": 372
+   "rank": 372,
+   "example": "Ice cream is good in summer.",
+   "example_pl": "Lody są dobre latem."
   },
   {
    "nr": 73,
@@ -587,7 +731,9 @@
    "en": "dessert",
    "pl": "deser",
    "level": "A1",
-   "rank": 373
+   "rank": 373,
+   "example": "What is for dessert?",
+   "example_pl": "Co jest na deser?"
   },
   {
    "nr": 74,
@@ -595,7 +741,9 @@
    "en": "sauce",
    "pl": "sos",
    "level": "A1",
-   "rank": 374
+   "rank": 374,
+   "example": "Pasta with tomato sauce.",
+   "example_pl": "Makaron z sosem pomidorowym."
   },
   {
    "nr": 75,
@@ -603,7 +751,9 @@
    "en": "vinegar",
    "pl": "ocet",
    "level": "A1",
-   "rank": 375
+   "rank": 375,
+   "example": "The salad needs vinegar.",
+   "example_pl": "Sałatka potrzebuje octu."
   },
   {
    "nr": 76,
@@ -611,7 +761,9 @@
    "en": "spice",
    "pl": "przyprawa",
    "level": "A1",
-   "rank": 376
+   "rank": 376,
+   "example": "I like spices in my food.",
+   "example_pl": "Lubię przyprawy w jedzeniu."
   },
   {
    "nr": 77,
@@ -619,7 +771,9 @@
    "en": "recipe",
    "pl": "przepis",
    "level": "A1",
-   "rank": 377
+   "rank": 377,
+   "example": "This is my mother's recipe.",
+   "example_pl": "To przepis mojej mamy."
   },
   {
    "nr": 78,
@@ -627,7 +781,9 @@
    "en": "taste",
    "pl": "smak / smakować",
    "level": "A1",
-   "rank": 378
+   "rank": 378,
+   "example": "The taste is strange.",
+   "example_pl": "Smak jest dziwny."
   },
   {
    "nr": 79,
@@ -635,7 +791,9 @@
    "en": "fresh",
    "pl": "świeży",
    "level": "A1",
-   "rank": 379
+   "rank": 379,
+   "example": "The bread is fresh.",
+   "example_pl": "Chleb jest świeży."
   },
   {
    "nr": 80,
@@ -643,7 +801,9 @@
    "en": "frozen",
    "pl": "mrożony",
    "level": "A1",
-   "rank": 380
+   "rank": 380,
+   "example": "We have frozen pizza.",
+   "example_pl": "Mamy mrożoną pizzę."
   },
   {
    "nr": 81,
@@ -651,7 +811,9 @@
    "en": "boiled",
    "pl": "gotowany",
    "level": "A1",
-   "rank": 381
+   "rank": 381,
+   "example": "I like boiled eggs.",
+   "example_pl": "Lubię gotowane jajka."
   },
   {
    "nr": 82,
@@ -659,7 +821,9 @@
    "en": "fried",
    "pl": "smażony",
    "level": "A1",
-   "rank": 382
+   "rank": 382,
+   "example": "Fried chicken is not healthy.",
+   "example_pl": "Smażony kurczak nie jest zdrowy."
   },
   {
    "nr": 83,
@@ -667,7 +831,9 @@
    "en": "baked",
    "pl": "pieczony",
    "level": "A1",
-   "rank": 383
+   "rank": 383,
+   "example": "Baked potatoes are great.",
+   "example_pl": "Pieczone ziemniaki są świetne."
   },
   {
    "nr": 84,
@@ -675,7 +841,9 @@
    "en": "hungry",
    "pl": "głodny",
    "level": "A1",
-   "rank": 384
+   "rank": 384,
+   "example": "I am hungry.",
+   "example_pl": "Jestem głodny."
   },
   {
    "nr": 85,
@@ -683,7 +851,9 @@
    "en": "thirsty",
    "pl": "spragniony",
    "level": "A1",
-   "rank": 385
+   "rank": 385,
+   "example": "Are you thirsty?",
+   "example_pl": "Chce ci się pić?"
   },
   {
    "nr": 86,
@@ -691,7 +861,9 @@
    "en": "delicious",
    "pl": "pyszny",
    "level": "A1",
-   "rank": 386
+   "rank": 386,
+   "example": "The pizza is delicious.",
+   "example_pl": "Pizza jest pyszna."
   }
  ]
 }
