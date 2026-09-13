@@ -1,0 +1,590 @@
+{
+ "name": "Kalendarz i czas",
+ "domain": "general",
+ "cat": "nouns",
+ "theme": "kalendarz",
+ "level": "A1",
+ "items": [
+  {
+   "nr": 1,
+   "id": "kalendarz_1",
+   "en": "Monday",
+   "pl": "poniedziałek",
+   "level": "A1",
+   "rank": 660,
+   "example": "The meeting is on Monday.",
+   "example_pl": "Spotkanie jest w poniedziałek."
+  },
+  {
+   "nr": 2,
+   "id": "kalendarz_2",
+   "en": "Tuesday",
+   "pl": "wtorek",
+   "level": "A1",
+   "rank": 661,
+   "example": "I have English on Tuesday.",
+   "example_pl": "Mam angielski we wtorek."
+  },
+  {
+   "nr": 3,
+   "id": "kalendarz_3",
+   "en": "Wednesday",
+   "pl": "środa",
+   "level": "A1",
+   "rank": 662,
+   "example": "Wednesday is my day off.",
+   "example_pl": "Środa to mój dzień wolny."
+  },
+  {
+   "nr": 4,
+   "id": "kalendarz_4",
+   "en": "Thursday",
+   "pl": "czwartek",
+   "level": "A1",
+   "rank": 663,
+   "example": "We finish early on Thursday.",
+   "example_pl": "W czwartek kończymy wcześniej."
+  },
+  {
+   "nr": 5,
+   "id": "kalendarz_5",
+   "en": "Friday",
+   "pl": "piątek",
+   "level": "A1",
+   "rank": 664,
+   "example": "Friday is my favourite day.",
+   "example_pl": "Piątek to mój ulubiony dzień."
+  },
+  {
+   "nr": 6,
+   "id": "kalendarz_6",
+   "en": "Saturday",
+   "pl": "sobota",
+   "level": "A1",
+   "rank": 665,
+   "example": "Do you work on Saturday?",
+   "example_pl": "Pracujesz w sobotę?"
+  },
+  {
+   "nr": 7,
+   "id": "kalendarz_7",
+   "en": "Sunday",
+   "pl": "niedziela",
+   "level": "A1",
+   "rank": 666,
+   "example": "The shop is closed on Sunday.",
+   "example_pl": "Sklep jest zamknięty w niedzielę."
+  },
+  {
+   "nr": 8,
+   "id": "kalendarz_8",
+   "en": "January",
+   "pl": "styczeń",
+   "level": "A1",
+   "rank": 667,
+   "example": "It is cold in January.",
+   "example_pl": "W styczniu jest zimno."
+  },
+  {
+   "nr": 9,
+   "id": "kalendarz_9",
+   "en": "February",
+   "pl": "luty",
+   "level": "A1",
+   "rank": 668,
+   "example": "February is a short month.",
+   "example_pl": "Luty to krótki miesiąc."
+  },
+  {
+   "nr": 10,
+   "id": "kalendarz_10",
+   "en": "March",
+   "pl": "marzec",
+   "level": "A1",
+   "rank": 669,
+   "example": "Spring starts in March.",
+   "example_pl": "Wiosna zaczyna się w marcu."
+  },
+  {
+   "nr": 11,
+   "id": "kalendarz_11",
+   "en": "April",
+   "pl": "kwiecień",
+   "level": "A1",
+   "rank": 670,
+   "example": "My birthday is in April.",
+   "example_pl": "Moje urodziny są w kwietniu."
+  },
+  {
+   "nr": 12,
+   "id": "kalendarz_12",
+   "en": "May",
+   "pl": "maj",
+   "level": "A1",
+   "rank": 671,
+   "example": "We have a holiday in May.",
+   "example_pl": "W maju mamy wolne."
+  },
+  {
+   "nr": 13,
+   "id": "kalendarz_13",
+   "en": "June",
+   "pl": "czerwiec",
+   "level": "A1",
+   "rank": 672,
+   "example": "School ends in June.",
+   "example_pl": "Szkoła kończy się w czerwcu."
+  },
+  {
+   "nr": 14,
+   "id": "kalendarz_14",
+   "en": "July",
+   "pl": "lipiec",
+   "level": "A1",
+   "rank": 673,
+   "example": "July is very hot.",
+   "example_pl": "Lipiec jest bardzo gorący."
+  },
+  {
+   "nr": 15,
+   "id": "kalendarz_15",
+   "en": "August",
+   "pl": "sierpień",
+   "level": "A1",
+   "rank": 674,
+   "example": "We go on holiday in August.",
+   "example_pl": "W sierpniu jedziemy na wakacje."
+  },
+  {
+   "nr": 16,
+   "id": "kalendarz_16",
+   "en": "September",
+   "pl": "wrzesień",
+   "level": "A1",
+   "rank": 675,
+   "example": "Work starts again in September.",
+   "example_pl": "Praca zaczyna się znów we wrześniu."
+  },
+  {
+   "nr": 17,
+   "id": "kalendarz_17",
+   "en": "October",
+   "pl": "październik",
+   "level": "A1",
+   "rank": 676,
+   "example": "The leaves fall in October.",
+   "example_pl": "Liście spadają w październiku."
+  },
+  {
+   "nr": 18,
+   "id": "kalendarz_18",
+   "en": "November",
+   "pl": "listopad",
+   "level": "A1",
+   "rank": 677,
+   "example": "November is grey and wet.",
+   "example_pl": "Listopad jest szary i mokry."
+  },
+  {
+   "nr": 19,
+   "id": "kalendarz_19",
+   "en": "December",
+   "pl": "grudzień",
+   "level": "A1",
+   "rank": 678,
+   "example": "Christmas is in December.",
+   "example_pl": "Boże Narodzenie jest w grudniu."
+  },
+  {
+   "nr": 20,
+   "id": "kalendarz_20",
+   "en": "spring",
+   "pl": "wiosna",
+   "level": "A1",
+   "rank": 679,
+   "example": "I like spring.",
+   "example_pl": "Lubię wiosnę."
+  },
+  {
+   "nr": 21,
+   "id": "kalendarz_21",
+   "en": "summer",
+   "pl": "lato",
+   "level": "A1",
+   "rank": 680,
+   "example": "Summer is short in Poland.",
+   "example_pl": "Lato w Polsce jest krótkie."
+  },
+  {
+   "nr": 22,
+   "id": "kalendarz_22",
+   "en": "autumn",
+   "pl": "jesień",
+   "level": "A1",
+   "rank": 681,
+   "example": "Autumn is beautiful here.",
+   "example_pl": "Jesień jest tu piękna."
+  },
+  {
+   "nr": 23,
+   "id": "kalendarz_23",
+   "en": "winter",
+   "pl": "zima",
+   "level": "A1",
+   "rank": 682,
+   "example": "Winter is cold and dark.",
+   "example_pl": "Zima jest zimna i ciemna."
+  },
+  {
+   "nr": 24,
+   "id": "kalendarz_24",
+   "en": "today",
+   "pl": "dzisiaj",
+   "level": "A1",
+   "rank": 683,
+   "example": "I am at home today.",
+   "example_pl": "Dziś jestem w domu."
+  },
+  {
+   "nr": 25,
+   "id": "kalendarz_25",
+   "en": "tomorrow",
+   "pl": "jutro",
+   "level": "A1",
+   "rank": 684,
+   "example": "See you tomorrow!",
+   "example_pl": "Do jutra!"
+  },
+  {
+   "nr": 26,
+   "id": "kalendarz_26",
+   "en": "yesterday",
+   "pl": "wczoraj",
+   "level": "A1",
+   "rank": 685,
+   "example": "I was ill yesterday.",
+   "example_pl": "Wczoraj byłem chory."
+  },
+  {
+   "nr": 27,
+   "id": "kalendarz_27",
+   "en": "weekend",
+   "pl": "weekend",
+   "level": "A1",
+   "rank": 686,
+   "example": "What do you do at the weekend?",
+   "example_pl": "Co robisz w weekend?"
+  },
+  {
+   "nr": 28,
+   "id": "kalendarz_28",
+   "en": "midnight",
+   "pl": "północ",
+   "level": "A1",
+   "rank": 687,
+   "example": "The shift ends at midnight.",
+   "example_pl": "Zmiana kończy się o północy."
+  },
+  {
+   "nr": 29,
+   "id": "kalendarz_29",
+   "en": "noon",
+   "pl": "południe (12:00)",
+   "level": "A1",
+   "rank": 688,
+   "example": "Lunch is at noon.",
+   "example_pl": "Lunch jest w południe."
+  },
+  {
+   "nr": 30,
+   "id": "kalendarz_30",
+   "en": "date",
+   "pl": "data",
+   "level": "A1",
+   "rank": 330,
+   "example": "What is the date today?",
+   "example_pl": "Jaka jest dziś data?"
+  },
+  {
+   "nr": 31,
+   "id": "kalendarz_31",
+   "en": "hour",
+   "pl": "godzina",
+   "level": "A1",
+   "rank": 331,
+   "example": "The break is one hour.",
+   "example_pl": "Przerwa trwa godzinę."
+  },
+  {
+   "nr": 32,
+   "id": "kalendarz_32",
+   "en": "minute",
+   "pl": "minuta",
+   "level": "A1",
+   "rank": 332,
+   "example": "Wait a minute, please.",
+   "example_pl": "Poczekaj minutę, proszę."
+  },
+  {
+   "nr": 33,
+   "id": "kalendarz_33",
+   "en": "second",
+   "pl": "sekunda",
+   "level": "A1",
+   "rank": 333,
+   "hint": "jednostka czasu",
+   "example": "Just a second!",
+   "example_pl": "Sekundkę!"
+  },
+  {
+   "nr": 34,
+   "id": "kalendarz_34",
+   "en": "o'clock",
+   "pl": "godzina (pełna)",
+   "level": "A1",
+   "rank": 334,
+   "example": "It is seven o'clock.",
+   "example_pl": "Jest siódma."
+  },
+  {
+   "nr": 35,
+   "id": "kalendarz_35",
+   "en": "quarter past",
+   "pl": "kwadrans po",
+   "level": "A1",
+   "rank": 335,
+   "example": "It is quarter past nine.",
+   "example_pl": "Jest kwadrans po dziewiątej."
+  },
+  {
+   "nr": 36,
+   "id": "kalendarz_36",
+   "en": "half past",
+   "pl": "wpół do",
+   "level": "A1",
+   "rank": 336,
+   "example": "The bus leaves at half past six.",
+   "example_pl": "Autobus odjeżdża o wpół do siódmej."
+  },
+  {
+   "nr": 37,
+   "id": "kalendarz_37",
+   "en": "quarter to",
+   "pl": "za kwadrans",
+   "level": "A1",
+   "rank": 337,
+   "example": "It is quarter to five.",
+   "example_pl": "Jest za kwadrans piąta."
+  },
+  {
+   "nr": 38,
+   "id": "kalendarz_38",
+   "en": "morning shift",
+   "pl": "zmiana poranna",
+   "level": "A1",
+   "rank": 338,
+   "example": "I am on the morning shift this week.",
+   "example_pl": "W tym tygodniu jestem na porannej zmianie."
+  },
+  {
+   "nr": 39,
+   "id": "kalendarz_39",
+   "en": "night shift",
+   "pl": "zmiana nocna",
+   "level": "A1",
+   "rank": 339,
+   "example": "The night shift starts at ten.",
+   "example_pl": "Nocna zmiana zaczyna się o dziesiątej."
+  },
+  {
+   "nr": 40,
+   "id": "kalendarz_40",
+   "en": "afternoon",
+   "pl": "popołudnie",
+   "level": "A1",
+   "rank": 340,
+   "example": "I am free in the afternoon.",
+   "example_pl": "Po południu jestem wolny."
+  },
+  {
+   "nr": 41,
+   "id": "kalendarz_41",
+   "en": "tonight",
+   "pl": "dziś wieczorem",
+   "level": "A1",
+   "rank": 341,
+   "example": "We are going out tonight.",
+   "example_pl": "Dziś wieczorem wychodzimy."
+  },
+  {
+   "nr": 42,
+   "id": "kalendarz_42",
+   "en": "the day after tomorrow",
+   "pl": "pojutrze",
+   "level": "A1",
+   "rank": 342,
+   "example": "The delivery is the day after tomorrow.",
+   "example_pl": "Dostawa jest pojutrze."
+  },
+  {
+   "nr": 43,
+   "id": "kalendarz_43",
+   "en": "the day before yesterday",
+   "pl": "przedwczoraj",
+   "level": "A1",
+   "rank": 343,
+   "example": "I saw him the day before yesterday.",
+   "example_pl": "Widziałem go przedwczoraj."
+  },
+  {
+   "nr": 44,
+   "id": "kalendarz_44",
+   "en": "last week",
+   "pl": "w zeszłym tygodniu",
+   "level": "A1",
+   "rank": 344,
+   "example": "I was in London last week.",
+   "example_pl": "W zeszłym tygodniu byłem w Londynie."
+  },
+  {
+   "nr": 45,
+   "id": "kalendarz_45",
+   "en": "next month",
+   "pl": "w przyszłym miesiącu",
+   "level": "A1",
+   "rank": 345,
+   "example": "We move next month.",
+   "example_pl": "Przeprowadzamy się w przyszłym miesiącu."
+  },
+  {
+   "nr": 46,
+   "id": "kalendarz_46",
+   "en": "public holiday",
+   "pl": "dzień wolny od pracy",
+   "level": "A1",
+   "rank": 346,
+   "example": "Monday is a public holiday.",
+   "example_pl": "Poniedziałek jest dniem wolnym od pracy."
+  },
+  {
+   "nr": 47,
+   "id": "kalendarz_47",
+   "en": "deadline",
+   "pl": "termin ostateczny",
+   "level": "A1",
+   "rank": 347,
+   "example": "The deadline is on Friday.",
+   "example_pl": "Termin jest w piątek."
+  },
+  {
+   "nr": 48,
+   "id": "kalendarz_48",
+   "en": "schedule (time)",
+   "pl": "harmonogram",
+   "level": "A1",
+   "rank": 348,
+   "example": "Check the schedule, please.",
+   "example_pl": "Sprawdź harmonogram, proszę."
+  },
+  {
+   "nr": 49,
+   "id": "kalendarz_49",
+   "en": "appointment (time)",
+   "pl": "umówione spotkanie",
+   "level": "A1",
+   "rank": 349,
+   "example": "I have an appointment at three.",
+   "example_pl": "Mam umówione spotkanie o trzeciej."
+  },
+  {
+   "nr": 50,
+   "id": "kalendarz_50",
+   "en": "early",
+   "pl": "wcześnie",
+   "level": "A1",
+   "rank": 350,
+   "example": "I get up early.",
+   "example_pl": "Wstaję wcześnie."
+  },
+  {
+   "nr": 51,
+   "id": "kalendarz_51",
+   "en": "late",
+   "pl": "późno",
+   "level": "A1",
+   "rank": 351,
+   "example": "Sorry, I am late.",
+   "example_pl": "Przepraszam za spóźnienie."
+  },
+  {
+   "nr": 52,
+   "id": "kalendarz_52",
+   "en": "on time",
+   "pl": "punktualnie",
+   "level": "A1",
+   "rank": 352,
+   "example": "The train is on time.",
+   "example_pl": "Pociąg jest punktualnie."
+  },
+  {
+   "nr": 53,
+   "id": "kalendarz_53",
+   "en": "soon",
+   "pl": "wkrótce",
+   "level": "A1",
+   "rank": 353,
+   "example": "See you soon!",
+   "example_pl": "Do zobaczenia wkrótce!"
+  },
+  {
+   "nr": 54,
+   "id": "kalendarz_54",
+   "en": "already",
+   "pl": "już",
+   "level": "A1",
+   "rank": 354,
+   "example": "The bus is already here.",
+   "example_pl": "Autobus już tu jest."
+  },
+  {
+   "nr": 55,
+   "id": "kalendarz_55",
+   "en": "still",
+   "pl": "nadal",
+   "level": "A1",
+   "rank": 355,
+   "example": "He is still at work.",
+   "example_pl": "On nadal jest w pracy."
+  },
+  {
+   "nr": 56,
+   "id": "kalendarz_56",
+   "en": "yet",
+   "pl": "jeszcze",
+   "level": "A1",
+   "rank": 356,
+   "example": "Dinner is not ready yet.",
+   "example_pl": "Obiad nie jest jeszcze gotowy."
+  },
+  {
+   "nr": 57,
+   "id": "kalendarz_57",
+   "en": "recently",
+   "pl": "ostatnio",
+   "level": "A1",
+   "rank": 357,
+   "example": "I was in Poland recently.",
+   "example_pl": "Byłem ostatnio w Polsce."
+  },
+  {
+   "nr": 58,
+   "id": "kalendarz_58",
+   "en": "nowadays",
+   "pl": "obecnie",
+   "level": "A1",
+   "rank": 358,
+   "example": "Nowadays everyone has a phone.",
+   "example_pl": "Obecnie każdy ma telefon."
+  }
+ ]
+}

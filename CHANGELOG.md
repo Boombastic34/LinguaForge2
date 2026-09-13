@@ -1,5 +1,365 @@
 # LinguaForge — CHANGELOG
 
+## v3.10.0 (2026-09-09) — wersja 2: płynność (4/3/2 i shadowing)
+
+Piąty krok wdrażania dokumentu. **Wersja 1 bez zmian** (11 zestawów testów przechodzi,
+zero błędów serwera). Nowy dział jest w wersji 2 pod adresem `#fluency` — wchodzi się
+z ekranu „Dziś" (kafelek „🗣 Płynność 4/3/2") i z panelu skuteczności.
+
+## Dlaczego to w ogóle jest osobny dział
+Płynność to nie wiedza, tylko **automatyzacja** — a automatyzacji nie da się osiągnąć przez
+zrozumienie, tylko przez powtórzenie pod presją czasu. Dotąd aplikacja ćwiczyła wyłącznie
+wiedzę: nawet „mówienie" sprowadzało się do pisania. To pierwszy dział, w którym uczeń
+naprawdę mówi.
+
+## 🔁 4 / 3 / 2
+Opowiadasz to samo trzy razy: najpierw w 4 minuty, potem w 3, na końcu w 2. **Ta sama treść,
+coraz mniej czasu** — nie ma kiedy tłumaczyć w głowie, więc mózg zaczyna sięgać po gotowe
+zwroty. Technika Maurice'a, opisana przez Nationa; jedno z najlepiej udokumentowanych
+ćwiczeń płynności i praktycznie nieobecne w aplikacjach.
+
+- 12 tematów dobranych do poziomu i celu ucznia (praca / wyjazd / ogólne).
+- Przed rundą: przydatne początki zdań z lektorem i lista „powiedz o…".
+- W rundzie: duży zegar, pasek czasu, podpowiedzi pod ręką, „Skończyłem wcześniej".
+- **Licznik słów z mikrofonu** (Chrome/Edge/Android) — pokazuje tempo na żywo.
+  Bez mikrofonu uczeń sam ocenia, ile zdążył powiedzieć (cztery opcje), a wynik jest
+  oznaczany gwiazdką jako szacowany.
+- Na koniec tabela trzech rund i **wzrost tempa w procentach**.
+- Zero oceny poprawności i akcentu — w tym ćwiczeniu liczy się tylko tempo i kompletność.
+
+## 🎧 Shadowing
+Powtarzasz za nagraniem prawie równocześnie, nie czekając na koniec zdania — to trenuje
+rytm i łączenia międzywyrazowe, czyli dokładnie to, przez co native brzmi „za szybko".
+6 fragmentów po 5 zdań, regulowane tempo lektora, przycisk 🎤 „Powiedz to zdanie"
+do sprawdzenia się, i uczciwe „Trudne — dalej" obok „Nadążam".
+
+## 📈 Panel skuteczności: nowa miara
+Doszła sekcja **„4. Tempo mowy"** — słowa na minutę z ćwiczeń 4/3/2, z pierwszym wynikiem,
+rekordem i wykresem. To jedyna miara w całej aplikacji, która pokazuje płynność zamiast
+wiedzy: wzrost tempa **przy tej samej treści** nie da się nabić powtarzaniem fiszek.
+
+## Nowe API i pliki
+`GET /api/v2/fluency`, `GET /api/v2/fluency/passage/{id}`, `POST /api/v2/fluency/save` ·
+`data/plynnosc/plynnosc.json` (12 tematów + 6 fragmentów) · `tools/plynnosc.py` ·
+nowy plik ucznia `fluency.json`.
+
+## Pliki
+main.py · data/plynnosc/plynnosc.json · tools/plynnosc.py · static/css/style.css ·
+static/js/v2.js · static/js/app.js
+
+## v3.9.0 (2026-09-09) — wersja 2: panel skuteczności „Czy to działa?"
+
+Czwarty krok wdrażania dokumentu. **Wersja 1 bez zmian** (10 zestawów testów przechodzi,
+zero błędów serwera). Nowy panel jest dostępny w wersji 2 pod przyciskiem
+„📈 Czy to działa?" na ekranie „Dziś" (adres `#progress`).
+
+## Dlaczego ten panel wygląda tak, a nie inaczej
+Świadomie **nie ma tu czasu spędzonego w aplikacji ani liczby kliknięć**. Te rosną nawet
+wtedy, gdy nauka stoi — mierzą zaangażowanie, nie skuteczność. Są za to cztery miary,
+których nie da się nabić samym używaniem:
+
+**1. Pamięć trwała (retencja)** — test kontrolny wyłącznie na słowach, których nie
+widziałeś od **co najmniej 21 dni**. Wszystko świeżo powtórzone mierzy pamięć roboczą,
+nie naukę. Test nie pokazuje poprawnych odpowiedzi (to pomiar, nie lekcja), a przy każdym
+pytaniu widnieje „nie widziałeś tego od 31 dni". Wyniki lądują w historii z wykresem, więc
+porównujesz się z samym sobą sprzed miesiąca.
+
+**2. Wielkość słownika** — nie „ile fiszek zrobiłeś", tylko szacunek liczby znanych słów,
+liczony przez te same progi częstotliwości co test wstępny (0–500, 500–1000, 1000–1500,
+1500–2500, 2500–4000). Widać udział opanowanych słów w każdym progu osobno — czyli czy
+uczysz się słów częstych (przydatnych), czy rzadkich (efektownych).
+
+**3. Tempo odpowiedzi** — mediana z ostatnich 100 poprawnych odpowiedzi. Spadek czasu przy
+tej samej skuteczności to automatyzacja, czyli realna płynność. Wiedza rośnie skokami,
+płynność rośnie płynnie — dlatego to osobna miara.
+
+**4. Transfer i porównanie wersji** — skuteczność w zadaniach trudniejszych niż rozpoznanie
+(wpisywanie, zdanie z luką, dyktando). To najostrzejszy test, czy uczysz się języka, czy
+aplikacji. Obok tabela **wersja 1 kontra wersja 2** na tych samych miarach: liczba
+odpowiedzi, skuteczność, transfer, czas. Z uczciwym zastrzeżeniem: porównuj dopiero po
+kilkuset odpowiedziach w obu wersjach, wcześniej to szum.
+
+## Techniczne
+- Miary zbierane przy każdej odpowiedzi, osobno dla wersji 1 i 2 (pole `metrics` w profilu,
+  `v2_speed` — ostatnie 100 czasów).
+- Nowe API: `GET /api/v2/progress`, `GET /api/v2/checkup`, `POST /api/v2/checkup`.
+- Nowy plik ucznia: `checkups.json` (historia testów kontrolnych).
+- Test kontrolny wymaga minimum 4 słów sprzed 21 dni; proponowany co 14 dni.
+- Poprawka: `fsrs.is_mature()` wywoływane na właściwej strukturze karty.
+
+## Pliki
+main.py · static/css/style.css · static/js/v2.js · static/js/app.js
+
+## v3.8.0 (2026-09-09) — wersja 2: rotacja formatu i adaptacyjna trudność
+
+Trzeci krok wdrażania dokumentu projektowego. **Wersja 1 bez zmian** (9 zestawów testów
+regresyjnych przechodzi, zero błędów serwera).
+
+## 🔄 Rotacja formatu — to samo słowo, za każdym razem inaczej
+Słowo znane w jednym formacie to wiedza krucha. Każde kolejne spotkanie z tym samym
+słowem ma teraz inną postać, od rozpoznania po produkcję i słuch:
+
+| Etap | Format | Jak wygląda |
+|---|---|---|
+| 0 | rozpoznanie | „Co znaczy *warehouse*?" — wybór z czterech |
+| 1 | po angielsku | „Jak powiedzieć *magazyn*?" — wybór z czterech **angielskich** słów |
+| 2 | wpisz z pamięci | produkcja z tłumaczenia |
+| 3 | w zdaniu | luka w prawdziwym zdaniu przykładowym |
+| 4 | ze słuchu | dyktando zdania z tym słowem |
+
+Etap wynika z liczby spotkań ze słowem (licznik `v2_seen.json` + powtórki FSRS), więc
+rotacja jest konsekwencją nauki, a nie losu. **Pomyłka cofa o krok** — format wraca do
+łatwiejszego, zamiast dokładać trudności komuś, kto właśnie się pomylił.
+Etykieta formatu jest widoczna przy zadaniu („Mieszanka · w zdaniu").
+Słowa bez zdania przykładowego zatrzymują się na etapie 2.
+
+## 🎚 Adaptacyjna trudność — celujemy w 80–85 % poprawnych
+System pamięta **ostatnie 40 odpowiedzi** z sesji wersji 2 i steruje trzema pokrętłami:
+
+| Skuteczność | Nowe słowa w sesji | Zadania produkcyjne | Błyskawica | Format |
+|---|---|---|---|---|
+| powyżej 88 % | 45 % | 70 % | 6 s | o stopień trudniejszy |
+| 78–88 % (cel) | 30 % | 50 % | 8 s | normalny |
+| poniżej 78 % | 15 % | 30 % | 10 s | o stopień łatwiejszy |
+
+Poniżej ~70 % pojawia się frustracja, powyżej ~95 % nuda — to przełożenie teorii przepływu
+na liczby. Zmiana jest **widoczna i wyjaśniona**: na ekranie „Dziś" i w podsumowaniu sesji
+pojawia się „🎚 Ostatnio było ciężko — dziś więcej powtórek, mniej nowego" albo
+„🎚 Idzie za łatwo — dokładamy trudniejszych zadań". Rozmiar części „Mieszanka" też się
+zmienia (8 / 10 / 12 zadań).
+
+## Nowe pliki ucznia
+`v2_seen.json` (licznik spotkań ze słowem), pole `v2_recent` w profilu (ostatnie 40 odpowiedzi).
+
+## Pliki
+main.py · static/css/style.css · static/js/v2.js
+
+## v3.7.0 (2026-09-09) — wersja 2: onboarding, który zabiera pracę
+
+Drugi krok wdrażania dokumentu projektowego. **Wersja 1 nadal bez zmian** (7 zestawów
+testów regresyjnych przechodzi). Wszystko poniżej dotyczy wyłącznie wersji 2.
+
+## Onboarding — cztery ekrany zamiast testu na wejściu
+
+**1. „Po co Ci angielski?" — PRZED testem.**
+Sześć celów: praca · wyjazd · rozmowa z ludźmi · poprawić to, co umiem · egzamin · dla siebie.
+Wybór ustawia dziedziny słownictwa i wariant przykładów w Podstawach (praca → magazyn).
+Uzasadnienie: pytanie o cel buduje poczucie autonomii, pytanie o poziom buduje poczucie
+oceniania — a autonomia to pierwsza noga motywacji wewnętrznej (teoria samostanowienia).
+
+**2. „Ile czasu dziennie?"** — 5 / 15 / 30 minut, z podświetloną rekomendacją 15 i jednym
+zdaniem prawdy o tym, dlaczego codziennie po trochu bije raz w tygodniu dużo. Ustawia
+dzienny cel XP.
+
+**3. Test adaptacyjny (7–10 min, cztery bloki).**
+- **Słownictwo** — pytania w progach częstotliwości (0–500, 500–1000, 1000–1500, 1500–2500,
+  2500–4000). Dwie pomyłki na progu = przestajemy się wspinać. Stąd szacunek wielkości słownika.
+- **Gramatyka** — po dwa pytania z każdego z 12 tematów Podstaw, w kolejności programu.
+  Temat zdany = obie odpowiedzi poprawne. Dwa niezdane tematy z rzędu = koniec bloku.
+- **Słuchanie** — trzy zdania, pytanie o sens.
+- **Pisanie** — dwa zdania do napisania po angielsku.
+W teście **nie pokazujemy poprawnych odpowiedzi** (to jeszcze nie nauka) i wszędzie jest
+„🤷 Nie wiem", bo zgadywanie zafałszowałoby mapę.
+
+**4. Wynik jako MAPA, nie ocena.**
+„Znasz około 1500 słów · poziom A2", lista „✔ To już umiesz — pomijamy", lista „◐ Do poprawy",
+nazwana największa dziura, pierwszy krok i — najważniejsze —
+**„⏱ Pominęliśmy 3 ogniwa. Zaoszczędziłeś około 18 dni nauki."**
+Tematy zdane w teście są **realnie oznaczane jako pominięte na Ścieżce**, nie tylko opisane.
+
+## Drobne
+- Faza 0 (wymowa) ma teraz przycisk „Znam to — pomiń" przy każdym kontraście — ta sama zasada
+  autonomii; pominięty kontrast wraca w powtórkach.
+- Nowe API: `GET /api/v2/onboarding`, `POST .../goal`, `POST .../time`,
+  `GET .../test`, `POST .../result`. Nowy plik ucznia: `onboarding.json`.
+- Ekran „Dziś" kieruje na onboarding, dopóki nie jest ukończony.
+
+## Pliki
+main.py · static/css/style.css · static/js/v2.js
+
+## v3.6.0 (2026-09-09) — WERSJA 2 do porównania (plan oparty na badaniach)
+
+Aplikacja ma teraz **dwie wersje interfejsu do wyboru**. Przełącznik jest w ustawieniach
+na pulpicie („↔ Wypróbuj wersję 2") i w stopce ekranu „Dziś" („↔ Wróć do wersji 1").
+Ustawienie zapisuje się w profilu, więc trzyma się między urządzeniami.
+
+**Wersja 1 — klasyczna. Nie zmieniła się ani o jotę.** Wszystkie moduły, ścieżki, fiszki
+i sesje działają dokładnie jak w 3.5.0 (potwierdzone 7 zestawami testów regresyjnych).
+
+## Wersja 2 — co jest inaczej i dlaczego
+
+**Ekran główny odpowiada na jedno pytanie: „co teraz?"**
+Zamiast siatki modułów — jedna duża karta „Dziś" z nazwanym krokiem, składem sesji
+(„12 minut · słówka, dwa zdania ze słuchu, krótka rozmowa") i **jednym** przyciskiem.
+Pod nią trzy małe, neutralne kafelki: powtórki · rdza · coś lekkiego (zmienia się codziennie).
+Uzasadnienie: paradoks wyboru — każdy dodatkowy kafelek to koszt decyzji przed nauką.
+
+**Nowa paleta.** Ciepła biel `#FAF8F5` zamiast czystej bieli (niższy kontrast = mniej męczy
+oczy), tryb ciemny grafitowo-granatowy zamiast czerni, **jeden kolor akcentu (indygo)
+użyty wyłącznie na przycisku „Zacznij"** i jedna animacja na całym ekranie — efekt izolacji
+działa tylko wtedy, gdy wyróżniony element jest jeden.
+
+**Faza 0: wymowa przed resztą.** Zanim ruszy materiał, 7 kontrastów, których polski nie ma
+(`ship/sheep`, `bad/bed`, `think/sink`, `vest/west`, `full/fool`, końcówki -s/-ed, akcent
+wyrazowy) — 42 pary słów. Każdy kontrast: wyjaśnienie, wskazówka artykulacyjna, test ze
+słuchu. Dopóki uczeń nie **słyszy** różnicy, nie rozpozna jej w zdaniu.
+
+**Sesja ma łuk zamiast płaskiej listy zadań:**
+`Rozgrzewka` (3 rzeczy, które na pewno umie) → `Nowe` (blokowo, żeby złapać zasadę) →
+`Mieszanka` (przeplatana, rdzeń nauki) → `Użycie` (całe zdanie, nastawione na znaczenie) →
+`Błyskawica` (8 sekund na odpowiedź, materiał znany — ćwiczenie płynności) → `Zamknięcie`.
+Między częściami krótka plansza z nazwą i wyjaśnieniem, po co ona jest.
+
+**Przeplatanie zamiast bloków.** W części głównej ten sam format nie występuje dwa razy
+pod rząd (zweryfikowane testem: 0 powtórzeń). Bjork i Rohrer: blokowe ćwiczenie daje lepsze
+wyniki w trakcie nauki, gorsze po tygodniu.
+
+**Słownictwo mieszane między tematami.** Wersja 1 bierze jeden temat (20 kolorów naraz) —
+to najgorszy możliwy układ ze względu na interferencję semantyczną. Wersja 2 losuje z wielu
+tematów naprzemiennie.
+
+**Rdza zamiast listy zaległości.** Nie „47 powtórek do zrobienia", tylko nazwana rzecz:
+„🔥 Czasowniki nieregularne — mocno zardzewiałe · 12 słów". Grupujemy przeterminowane karty
+po temacie i pokazujemy jedną, najbardziej zardzewiałą.
+
+**Dni tygodnia mają charakter.** Poniedziałek — nowy materiał, wtorek — słuchanie, środa —
+mówienie, czwartek — mieszanka, piątek — czytanie i pisanie, weekend — powtórka skumulowana
+i dzień lekki. Przewidywalna struktura przy zmiennej treści.
+
+**Zamknięcie sesji z haczykiem.** „Dziś opanowałeś: …" (3 konkretne słowa) + zapowiedź jutra
++ komunikat o trudności, gdy wynik wypadł poza przedział 60–95 % (celujemy w 80–85 %).
+
+## Nowe API i pliki
+`GET /api/v2/today`, `GET /api/v2/session`, `POST /api/v2/complete`,
+`GET /api/v2/pron/{id}`, `POST /api/v2/pron/done` · `data/wymowa/pary.json` ·
+`tools/wymowa.py` · `static/js/v2.js` · sekcja `body.v2` w CSS ·
+nowy plik ucznia `pron.json`
+
+## Pliki
+main.py · data/wymowa/pary.json · tools/wymowa.py · static/index.html · static/css/style.css ·
+static/js/v2.js (nowy) · app.js · dashboard.js
+
+## v3.5.0 (2026-09-09) — dwie nowe ścieżki: tworzenie i słuchanie zdań
+
+## ✍️🎧 Ścieżki zdaniowe
+Nowa zakładka **„Zdania"** z dwiema osobnymi ścieżkami opartymi na wspólnym banku
+(`data/zdania/zdania.json` — **12 etapów, 144 zdania**, generator `tools/zdania.py`):
+
+- **✍️ Tworzenie zdań** — widzisz zdanie po polsku, piszesz je po angielsku.
+- **🎧 Słuchanie zdań** — słyszysz zdanie i je zapisujesz (tekst zna tylko serwer,
+  przeglądarka dostaje samo nagranie; tempo lektora i „🔁 Powtórz" pod ręką).
+
+Etapy w trzech grupach, z widoczną trudnością (●○○○ … ●●●●):
+- **Słownictwo** — 6 etapów od „Jestem kierowcą" po sprawy urzędowe,
+- **Dwa wyrazy = inne znaczenie** — 2 etapy czasowników frazowych (get up, look for,
+  turn off, break down…), każdy z wyjaśnieniem, dlaczego dosłowne tłumaczenie nie działa,
+- **Czasy podstawowe** — Present Simple, Present Continuous, Past Simple, will / going to;
+  przy zdaniach krótkie „dlaczego ten czas".
+
+Wspólne dla obu ścieżek:
+- ocena słowo po słowie (czerwone zbędne, zielone brakujące),
+- **przepisanie poprawnego zdania po błędzie** (nie liczy się do wyniku; przy pomyłce
+  w przepisaniu też widać różnice), z opcją „Pomiń →",
+- **oznaczanie nieznanych słów** — całe poprawne zdanie jest klikalne, dotknięte słowo
+  trafia do „🔥 Do utrwalenia",
+- 🎤 „Powiedz to zdanie" przy każdym wyniku,
+- zaliczenie etapu od 70 %, wynik zapamiętywany osobno dla każdej ścieżki.
+
+## 📝 Nowa talia: „Zdania do poprawy"
+- Osobna od „Do utrwalenia": tam pojedyncze słowa, **tu całe zdania**.
+- **Tworzenie zdań**: każde źle napisane zdanie trafia tam automatycznie.
+- **Słuchanie**: nic nie trafia tam samo — jest przycisk „📝 Dodaj to zdanie do poprawy",
+  a nieznane słowa dodajesz dotknięciem. Tak jak prosiłeś.
+- Karta w fiszkach pokazuje polskie zdanie i prosi o całe zdanie po angielsku;
+  zdanie wypada z talii po **2 poprawnych zapisach z rzędu**.
+- API: `GET /api/sentences/paths|session|audio|tofix`, `POST /api/sentences/answer|complete|tofix/add|tofix/remove`.
+
+## Nawigacja
+- Dolny pasek: Start · Podstawy · Ścieżka · Fiszki · **Zdania** (Czasowniki i reszta pod „☰ Więcej").
+- Kafelek „Zdania" na pulpicie.
+
+## PDF
+- `tools/zdania_pdf.py` generuje **LinguaForge_bank_zdan.pdf** — wszystkie 144 zdania
+  w układzie dwukolumnowym (angielski + polski, przy frazowych wyjaśnienie), spis etapów
+  z trudnością. Zakryj jedną kolumnę i tłumacz w obie strony. 8 stron A4.
+
+## Pliki
+main.py · data/zdania/zdania.json · tools/zdania.py · tools/zdania_pdf.py ·
+static/index.html · static/css/style.css · static/js/sentences.js (nowy) · app.js ·
+dashboard.js · flashcards.js
+
+## v3.4.0 (2026-09-06) — tworzenie zdań w każdym dziale, zakładka „Czasowniki"
+
+## 🧩 Tworzenie zdań — nowy typ zadania na Ścieżce
+- Każde ogniwo słówek ma teraz zadania **„Ułóż zdanie po angielsku"**: dostajesz polskie
+  zdanie i wymieszane klocki ze słowami, układasz kolejność (klik = do linii, klik = z powrotem,
+  „↺ Od nowa" czyści). Przycisk „Sprawdź" odblokowuje się dopiero po użyciu wszystkich klocków.
+- Po sprawdzeniu widać **słowo po słowie**, co stało w złym miejscu, i całe poprawne zdanie
+  z lektorem — a błędne słowa trafiają do „🔥 Do utrwalenia" jak przy dyktandzie.
+- Zdania budujemy z tych samych przykładów, co dyktanda i tłumaczenia, więc jedno ogniwo
+  ćwiczy teraz cztery umiejętności: słówka → **szyk zdania** → słuchanie → pisanie.
+  W sesji ~40 zadań wypada 5–9 zadań klockowych.
+- **Powtórka skumulowana** też dostaje budowanie zdań (6 zadań ze słówek z zaliczonych tematów).
+- Lektor nie czyta zdania przed ułożeniem (nie podpowiada odpowiedzi).
+
+## ⚙️ Zakładka „Czasowniki" — spis wszystkich
+- Nowa pozycja w dolnym pasku i na pulpicie. To **spis, nie kolejny trener**: miejsce, gdzie
+  sprawdzasz czasownik, tak jak zagląda się do tabeli.
+- Trzy listy: **⚙️ Z odmianą (100)** · **📖 Pozostałe (246)** · **🔗 Frazowe (144)** — łącznie 490.
+- Szukanie po angielsku i po polsku, filtry: nieregularne · jeszcze nieuczone · w powtórkach.
+  Przy każdym czasowniku widać stan powtórki („nowy", „w powtórkach", „✔ umiesz").
+- Dotknięcie czasownika z odmianą rozwija **pełną tabelę**: pięć form (podstawowa, he/she/it,
+  -ing, 2. forma, 3. forma) i osiem wierszy użycia z przykładami, tłumaczeniem i lektorem —
+  ten sam układ co na odwrocie fiszki.
+- Przy każdym: „🔥 Dodaj do utrwalenia" i przycisk „▶ Ćwicz te czasowniki w fiszkach".
+- Nowy endpoint `GET /api/verbs/all`.
+
+## Poprawki
+- Czasowniki frazowe zachowują spację w kategorii „Do utrwalenia" („pick up", nie „pickup").
+- Zadanie klockowe dostaje polskie zdanie jako wskazówkę (wcześniej pole `pl` nie było
+  przekazywane do przeglądarki).
+
+## Pliki
+main.py · static/index.html · static/css/style.css · static/js/app.js · verbs.js (napisany
+od nowa) · path.js · dashboard.js
+
+## v3.3.0 (2026-09-06) — zdania przykładowe dla całego A1, czasowniki w fiszkach
+
+## Zdania przykładowe — cały poziom A1
+- **553 nowe zdania** z tłumaczeniami dla ośmiu tematów: przymiotniki, liczebniki, kalendarz,
+  jedzenie, dom, ubrania, zwierzęta, zwroty (wcześniej: rodzina i kolory). Łącznie **745 słówek
+  ma teraz zdanie**.
+- Dzięki temu **każde ogniwo słówek na A1 miesza etapy**: słówka + 🎧 dyktando zdania +
+  ✍️ „napisz całe zdanie po angielsku" + 🎤 wymowa. Wcześniej działało to tylko na dwóch
+  pierwszych ogniwach.
+- Zdania trafiają też do ekranu „📖 Najpierw poznaj słówka", do fiszek i do kart
+  „🔥 Do utrwalenia" (jako kontekst z luką).
+- Wszystkie zdania są proste i zbudowane z gramatyki z Podstaw (TO BE, Present Simple,
+  a/an), więc nie wyprzedzają materiału. Narzędzie: `tools/przyklady_a1.py`.
+
+## Czasowniki — koniec osobnej zakładki
+- Zakładka **„⚙️ Czasowniki z czasami" usunięta** (nawigacja, pulpit, `index.html`).
+  Odmiana jest teraz **kategorią fiszek „⚙️ Odmiana czasowników"** — 100 czasowników
+  wchodzi w ten sam system powtórek co reszta słownictwa (FSRS, seria, XP).
+- **Nowa karta czasownika zamiast czterech kratek do wypełnienia**: pytanie o jedną losową
+  formę (2. forma, 3. forma, he/she/it, -ing), a po odpowiedzi **czytelna tabela całej odmiany**:
+  pięć form w kafelkach (wyróżniona ta, o którą pytaliśmy) i osiem wierszy użycia —
+  Present Simple, 3. osoba, Continuous, Past Simple, will, have + 3. forma, przeczenie, pytanie —
+  każdy z przykładem po angielsku, tłumaczeniem i lektorem.
+- Styl tabeli: spokojny, „papierowy" układ — cienkie linie zamiast ramek, jeden akcent
+  na wyróżnionej formie, kolumna „czas" po lewej, zdanie po prawej, polskie pod spodem.
+  Na telefonie układ zwija się do jednej kolumny.
+- Formy `-ing` i 3. osoby liczone automatycznie z regułami pisowni (stop → stopping,
+  open → opening, study → studying, begin → beginning, travel → travelling, lie → lying).
+- Grupa „⚙️ Czasowniki" w wyborze fiszek łączy odmianę i czasowniki-słówka.
+- Stare API `/api/verbs/*` zostaje (używają go programy i przegląd treści), więc postęp
+  z dawnej zakładki nie znika.
+
+## Pliki
+main.py · data/slownictwo/*.json (10 plików ze zdaniami) · tools/przyklady_a1.py ·
+static/index.html · static/css/style.css · static/js/app.js · dashboard.js · flashcards.js
+(`static/js/verbs.js` nie jest już ładowany — można skasować)
+
 ## v3.2.0 (2026-09-06) — pojedyncze słówka do utrwalenia, etapy razem, DO/DOES i A/AN od nowa
 
 ## Do utrwalenia — poprawki

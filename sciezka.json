@@ -1,0 +1,776 @@
+{
+ "info": "Ścieżka nauki — ogniwa odblokowują się po kolei. Co kilka ogniw powtórka skumulowana, na końcu poziomu egzamin promocyjny (próg 70%).",
+ "levels": [
+  {
+   "level": "A1",
+   "name": "Poziom A1 — Fundament",
+   "requires": [],
+   "links": [
+    {
+     "id": "a1_01",
+     "name": "Słówka: rodzina i ludzie",
+     "type": "slowka",
+     "theme": "rodzina",
+     "n": 10,
+     "emoji": "👨‍👩‍👧",
+     "section": "Rozdział 1 · Kim jestem"
+    },
+    {
+     "id": "a1_01b",
+     "type": "podstawy",
+     "topic": "to_be",
+     "name": "Podstawy: TO BE (am / is / are)",
+     "emoji": "🔤",
+     "section": "Rozdział 1 · Kim jestem"
+    },
+    {
+     "id": "a1_03",
+     "name": "Ćwiczenia: zaimki",
+     "type": "gramatyka",
+     "topic": "pronouns",
+     "n": 6,
+     "emoji": "📐",
+     "section": "Rozdział 1 · Kim jestem"
+    },
+    {
+     "id": "a1_04b",
+     "name": "💬 Rozmowa: pierwszy dzień w pracy",
+     "type": "rozmowa",
+     "dialog": "dlg_first_day",
+     "emoji": "💬",
+     "section": "Rozdział 1 · Kim jestem"
+    },
+    {
+     "id": "a1_05",
+     "name": "🔁 Powtórka skumulowana I",
+     "type": "powtorka",
+     "n": 10,
+     "emoji": "🔁",
+     "section": "Rozdział 1 · Kim jestem"
+    },
+    {
+     "id": "a1_06",
+     "name": "Słówka: kolory",
+     "type": "slowka",
+     "theme": "kolory",
+     "n": 8,
+     "emoji": "🎨",
+     "section": "Rozdział 2 · Świat wokół mnie"
+    },
+    {
+     "id": "a1_06b",
+     "section": "Rozdział 2 · Świat wokół mnie",
+     "name": "Słówka: przymiotniki",
+     "type": "slowka",
+     "theme": "przymiotniki",
+     "n": 12,
+     "emoji": "🎭"
+    },
+    {
+     "id": "a1_07",
+     "name": "Słówka: liczebniki",
+     "type": "slowka",
+     "theme": "liczebniki",
+     "n": 12,
+     "emoji": "🔢",
+     "section": "Rozdział 2 · Świat wokół mnie"
+    },
+    {
+     "id": "a1_08",
+     "name": "Słówka: kalendarz (dni, miesiące)",
+     "type": "slowka",
+     "theme": "kalendarz",
+     "n": 12,
+     "emoji": "📅",
+     "section": "Rozdział 2 · Świat wokół mnie"
+    },
+    {
+     "id": "a1_09",
+     "name": "🏆 Sprawdzian etapu 1",
+     "type": "sprawdzian",
+     "n": 12,
+     "emoji": "🏆",
+     "section": "Rozdział 2 · Świat wokół mnie"
+    },
+    {
+     "id": "a1_10",
+     "type": "podstawy",
+     "topic": "do_does",
+     "name": "Podstawy: DO i DOES (Present Simple)",
+     "emoji": "🔄",
+     "section": "Rozdział 3 · Mój dzień"
+    },
+    {
+     "id": "a1_11",
+     "name": "Ćwiczenia: Present Simple",
+     "type": "gramatyka",
+     "topic": "present_simple",
+     "n": 8,
+     "emoji": "📐",
+     "section": "Rozdział 3 · Mój dzień"
+    },
+    {
+     "id": "a1_13",
+     "name": "Słówka: jedzenie i picie",
+     "type": "slowka",
+     "theme": "jedzenie",
+     "n": 12,
+     "emoji": "🍎",
+     "section": "Rozdział 3 · Mój dzień"
+    },
+    {
+     "id": "a1_13b",
+     "section": "Rozdział 3 · Mój dzień",
+     "name": "Słówka: zwroty codzienne",
+     "type": "slowka",
+     "theme": "zwroty",
+     "n": 12,
+     "emoji": "🗣"
+    },
+    {
+     "id": "a1_14",
+     "name": "Słuchanie ze zrozumieniem",
+     "type": "sluchanie",
+     "n": 5,
+     "emoji": "🎧",
+     "section": "Rozdział 3 · Mój dzień"
+    },
+    {
+     "id": "a1_14b",
+     "section": "Rozdział 3 · Mój dzień",
+     "name": "📖 Czytanie: pierwsza zmiana",
+     "type": "czytanie",
+     "text": "r_a1_shift",
+     "emoji": "📖"
+    },
+    {
+     "id": "a1_15",
+     "name": "🔁 Powtórka skumulowana II",
+     "type": "powtorka",
+     "n": 12,
+     "emoji": "🔁",
+     "section": "Rozdział 3 · Mój dzień"
+    },
+    {
+     "id": "a1_16",
+     "type": "podstawy",
+     "topic": "a_an",
+     "name": "Podstawy: A Czy An",
+     "emoji": "🅰️",
+     "section": "Rozdział 4 · Precyzja"
+    },
+    {
+     "id": "a1_17",
+     "name": "Ćwiczenia: przedimki",
+     "type": "gramatyka",
+     "topic": "articles",
+     "n": 6,
+     "emoji": "📐",
+     "section": "Rozdział 4 · Precyzja"
+    },
+    {
+     "id": "a1_19",
+     "name": "Słówka: dom",
+     "type": "slowka",
+     "theme": "dom",
+     "n": 12,
+     "emoji": "🏠",
+     "section": "Rozdział 4 · Precyzja"
+    },
+    {
+     "id": "a1_20",
+     "name": "Słówka: zwierzęta",
+     "type": "slowka",
+     "theme": "zwierzeta",
+     "n": 10,
+     "emoji": "🐕",
+     "section": "Rozdział 4 · Precyzja"
+    },
+    {
+     "id": "a1_21",
+     "name": "🏆 Sprawdzian etapu 2",
+     "type": "sprawdzian",
+     "n": 14,
+     "emoji": "🏆",
+     "section": "Rozdział 4 · Precyzja"
+    },
+    {
+     "id": "a1_23",
+     "name": "Słówka: ubrania",
+     "type": "slowka",
+     "theme": "ubrania",
+     "n": 10,
+     "emoji": "👕",
+     "section": "Rozdział 5 · Pytam i przeczę"
+    },
+    {
+     "id": "a1_23b",
+     "name": "💬 Rozmowa: small talk w kantynie",
+     "type": "rozmowa",
+     "dialog": "dlg_canteen",
+     "emoji": "💬",
+     "section": "Rozdział 5 · Pytam i przeczę"
+    },
+    {
+     "id": "a1_23c",
+     "section": "Rozdział 5 · Pytam i przeczę",
+     "name": "✍️ Pisanie: przedstaw się",
+     "type": "pisanie",
+     "task": "w_intro",
+     "emoji": "✍️"
+    },
+    {
+     "id": "a1_24",
+     "name": "Pierwsze tłumaczenia zdań",
+     "type": "tlumaczenia",
+     "n": 5,
+     "emoji": "🌐",
+     "section": "Rozdział 5 · Pytam i przeczę"
+    },
+    {
+     "id": "a1_25",
+     "name": "🎓 EGZAMIN A1 → A2",
+     "type": "egzamin",
+     "n": 18,
+     "emoji": "🎓",
+     "section": "Rozdział 5 · Pytam i przeczę"
+    }
+   ]
+  },
+  {
+   "level": "A2",
+   "name": "Poziom A2 — Codzienność",
+   "requires": [
+    "A1"
+   ],
+   "links": [
+    {
+     "id": "a2_01",
+     "name": "Słówka: czasowniki (fala 1)",
+     "type": "slowka",
+     "theme": "czasowniki",
+     "n": 14,
+     "emoji": "🏃",
+     "section": "Rozdział 6 · Opowiadam o przeszłości"
+    },
+    {
+     "id": "a2_02",
+     "type": "podstawy",
+     "topic": "past_simple",
+     "name": "Podstawy: Past Simple",
+     "emoji": "⏪",
+     "section": "Rozdział 6 · Opowiadam o przeszłości"
+    },
+    {
+     "id": "a2_03",
+     "name": "Ćwiczenia: Past Simple",
+     "type": "gramatyka",
+     "topic": "past_simple",
+     "n": 7,
+     "emoji": "📐",
+     "section": "Rozdział 6 · Opowiadam o przeszłości"
+    },
+    {
+     "id": "a2_04",
+     "name": "Słówka: transport i podróż",
+     "type": "slowka",
+     "theme": "transport",
+     "n": 12,
+     "emoji": "🚌",
+     "section": "Rozdział 6 · Opowiadam o przeszłości"
+    },
+    {
+     "id": "a2_04b",
+     "name": "💬 Rozmowa: uszkodzona paleta",
+     "type": "rozmowa",
+     "dialog": "dlg_damaged",
+     "emoji": "💬",
+     "section": "Rozdział 6 · Opowiadam o przeszłości"
+    },
+    {
+     "id": "a2_05",
+     "name": "🔁 Powtórka skumulowana III",
+     "type": "powtorka",
+     "n": 12,
+     "emoji": "🔁",
+     "section": "Rozdział 6 · Opowiadam o przeszłości"
+    },
+    {
+     "id": "a2_06",
+     "type": "podstawy",
+     "topic": "present_simple_cont",
+     "name": "Podstawy: Present Simple Czy Continuous",
+     "emoji": "🔄",
+     "section": "Rozdział 7 · Tu i teraz"
+    },
+    {
+     "id": "a2_07",
+     "name": "Ćwiczenia: Present Continuous",
+     "type": "gramatyka",
+     "topic": "present_continuous",
+     "n": 6,
+     "emoji": "📐",
+     "section": "Rozdział 7 · Tu i teraz"
+    },
+    {
+     "id": "a2_08",
+     "name": "Słówka: miasto i zakupy",
+     "type": "slowka",
+     "theme": "miasto",
+     "n": 12,
+     "emoji": "🏪",
+     "section": "Rozdział 7 · Tu i teraz"
+    },
+    {
+     "id": "a2_08b",
+     "section": "Rozdział 7 · Tu i teraz",
+     "name": "Słówka: phrasal verbs",
+     "type": "slowka",
+     "theme": "phrasal",
+     "n": 12,
+     "emoji": "🔗"
+    },
+    {
+     "id": "a2_08d",
+     "section": "Rozdział 7 · Tu i teraz",
+     "name": "Phrasal verbs — fala 2",
+     "type": "slowka",
+     "theme": "phrasal",
+     "n": 14,
+     "emoji": "🔗"
+    },
+    {
+     "id": "a2_09",
+     "name": "🏆 Sprawdzian etapu 3",
+     "type": "sprawdzian",
+     "n": 14,
+     "emoji": "🏆",
+     "section": "Rozdział 7 · Tu i teraz"
+    },
+    {
+     "id": "a2_09b",
+     "type": "podstawy",
+     "topic": "count_uncount",
+     "name": "Podstawy: Policzalne I Niepoliczalne",
+     "emoji": "🔢",
+     "section": "Rozdział 7 · Tu i teraz"
+    },
+    {
+     "id": "a2_09c",
+     "name": "Ćwiczenia: much / many / some / any",
+     "type": "gramatyka",
+     "topic": "countable",
+     "n": 8,
+     "emoji": "📐",
+     "section": "Rozdział 7 · Tu i teraz"
+    },
+    {
+     "id": "a2_11",
+     "name": "Ćwiczenia: formy przyszłe",
+     "type": "gramatyka",
+     "topic": "future_forms",
+     "n": 5,
+     "emoji": "📐",
+     "section": "Rozdział 8 · Plany i porównania"
+    },
+    {
+     "id": "a2_12",
+     "name": "Słówka: ciało i zdrowie",
+     "type": "slowka",
+     "theme": "cialo",
+     "n": 12,
+     "emoji": "🩺",
+     "section": "Rozdział 8 · Plany i porównania"
+    },
+    {
+     "id": "a2_12b",
+     "name": "💬 Rozmowa: u lekarza",
+     "type": "rozmowa",
+     "dialog": "dlg_doctor",
+     "emoji": "💬",
+     "section": "Rozdział 8 · Plany i porównania"
+    },
+    {
+     "id": "a2_13",
+     "name": "Słuchanie: dłuższe zdania",
+     "type": "sluchanie",
+     "n": 6,
+     "emoji": "🎧",
+     "section": "Rozdział 8 · Plany i porównania"
+    },
+    {
+     "id": "a2_13b",
+     "section": "Rozdział 8 · Plany i porównania",
+     "name": "📖 Czytanie: e-mail z biura",
+     "type": "czytanie",
+     "text": "r_a2_email",
+     "emoji": "📖"
+    },
+    {
+     "id": "a2_14",
+     "name": "Słówka: uczucia i cechy",
+     "type": "slowka",
+     "theme": "uczucia",
+     "n": 10,
+     "emoji": "😊",
+     "section": "Rozdział 8 · Plany i porównania"
+    },
+    {
+     "id": "a2_15",
+     "name": "Ćwiczenia: stopniowanie",
+     "type": "gramatyka",
+     "topic": "comparatives",
+     "n": 5,
+     "emoji": "📐",
+     "section": "Rozdział 8 · Plany i porównania"
+    },
+    {
+     "id": "a2_16",
+     "name": "🔁 Powtórka skumulowana IV",
+     "type": "powtorka",
+     "n": 14,
+     "emoji": "🔁",
+     "section": "Rozdział 8 · Plany i porównania"
+    },
+    {
+     "id": "a2_17",
+     "name": "Słówka: praca i magazyn",
+     "type": "slowka",
+     "theme": "praca",
+     "n": 12,
+     "emoji": "📦",
+     "section": "Rozdział 9 · Praca i świat"
+    },
+    {
+     "id": "a2_17b",
+     "section": "Rozdział 9 · Praca i świat",
+     "name": "Słówka: praca i biuro",
+     "type": "slowka",
+     "theme": "biuro",
+     "n": 14,
+     "emoji": "💼"
+    },
+    {
+     "id": "a2_18",
+     "name": "Słówka: natura i pogoda",
+     "type": "slowka",
+     "theme": "natura",
+     "n": 10,
+     "emoji": "🌤",
+     "section": "Rozdział 9 · Praca i świat"
+    },
+    {
+     "id": "a2_18b",
+     "name": "💬 Rozmowa: prosisz o urlop",
+     "type": "rozmowa",
+     "dialog": "dlg_holiday",
+     "emoji": "💬",
+     "section": "Rozdział 9 · Praca i świat"
+    },
+    {
+     "id": "a2_19",
+     "name": "Tłumaczenia zdań",
+     "type": "tlumaczenia",
+     "n": 6,
+     "emoji": "🌐",
+     "section": "Rozdział 9 · Praca i świat"
+    },
+    {
+     "id": "a2_19b",
+     "section": "Rozdział 9 · Praca i świat",
+     "name": "✍️ Pisanie: opisz swój dzień",
+     "type": "pisanie",
+     "task": "w_day",
+     "emoji": "✍️"
+    },
+    {
+     "id": "a2_19c",
+     "section": "Rozdział 9 · Praca i świat",
+     "name": "💬 Rozmowa: telefon do agencji",
+     "type": "rozmowa",
+     "dialog": "dlg_phone",
+     "emoji": "💬"
+    },
+    {
+     "id": "a2_20",
+     "name": "🎓 EGZAMIN A2 → B1",
+     "type": "egzamin",
+     "n": 20,
+     "emoji": "🎓",
+     "section": "Rozdział 9 · Praca i świat"
+    }
+   ]
+  },
+  {
+   "level": "B1",
+   "name": "Poziom B1 — Samodzielność",
+   "requires": [
+    "A2"
+   ],
+   "links": [
+    {
+     "id": "b1_01",
+     "type": "podstawy",
+     "topic": "for_since",
+     "name": "Podstawy: For Czy Since",
+     "emoji": "⏳",
+     "section": "Rozdział 10 · Doświadczenia"
+    },
+    {
+     "id": "b1_02",
+     "section": "Rozdział 10 · Doświadczenia",
+     "name": "Ćwiczenia: Present Perfect",
+     "type": "gramatyka",
+     "topic": "present_perfect",
+     "n": 8,
+     "emoji": "📐"
+    },
+    {
+     "id": "b1_03",
+     "section": "Rozdział 10 · Doświadczenia",
+     "name": "Słówka: czasowniki (fala 2)",
+     "type": "slowka",
+     "theme": "czasowniki",
+     "n": 14,
+     "emoji": "🏃"
+    },
+    {
+     "id": "b1_03b",
+     "section": "Rozdział 10 · Doświadczenia",
+     "name": "Phrasal verbs — fala 3",
+     "type": "slowka",
+     "theme": "phrasal",
+     "n": 16,
+     "emoji": "🔗"
+    },
+    {
+     "id": "b1_04",
+     "section": "Rozdział 10 · Doświadczenia",
+     "name": "Tłumaczenia: czasy przeszłe",
+     "type": "tlumaczenia",
+     "n": 6,
+     "emoji": "🌐"
+    },
+    {
+     "id": "b1_05",
+     "section": "Rozdział 10 · Doświadczenia",
+     "name": "🔁 Powtórka skumulowana V",
+     "type": "powtorka",
+     "n": 14,
+     "emoji": "🔁"
+    },
+    {
+     "id": "b1_07",
+     "section": "Rozdział 11 · Tło zdarzeń",
+     "name": "Ćwiczenia: Past Continuous",
+     "type": "gramatyka",
+     "topic": "past_continuous",
+     "n": 5,
+     "emoji": "📐"
+    },
+    {
+     "id": "b1_08",
+     "section": "Rozdział 11 · Tło zdarzeń",
+     "name": "Słówka: przedmioty codzienne",
+     "type": "slowka",
+     "theme": "przedmioty",
+     "n": 14,
+     "emoji": "📦"
+    },
+    {
+     "id": "b1_08b",
+     "section": "Rozdział 11 · Tło zdarzeń",
+     "name": "Słówka: false friends",
+     "type": "slowka",
+     "theme": "pulapki",
+     "n": 12,
+     "emoji": "🪤"
+    },
+    {
+     "id": "b1_09",
+     "section": "Rozdział 11 · Tło zdarzeń",
+     "name": "Słuchanie: dłuższe wypowiedzi",
+     "type": "sluchanie",
+     "n": 6,
+     "emoji": "🎧"
+    },
+    {
+     "id": "b1_09b",
+     "section": "Rozdział 11 · Tło zdarzeń",
+     "name": "📖 Czytanie: roboty na hali",
+     "type": "czytanie",
+     "text": "r_b1_robots",
+     "emoji": "📖"
+    },
+    {
+     "id": "b1_10",
+     "section": "Rozdział 11 · Tło zdarzeń",
+     "name": "🏆 Sprawdzian etapu 5",
+     "type": "sprawdzian",
+     "n": 16,
+     "emoji": "🏆"
+    },
+    {
+     "id": "b1_12",
+     "section": "Rozdział 12 · Precyzja wypowiedzi",
+     "name": "Ćwiczenia: much / many / some / any",
+     "type": "gramatyka",
+     "topic": "countable",
+     "n": 12,
+     "emoji": "📐"
+    },
+    {
+     "id": "b1_13",
+     "section": "Rozdział 12 · Precyzja wypowiedzi",
+     "name": "Słówka: ogólne (fala rozszerzona)",
+     "type": "slowka",
+     "theme": "ogolne",
+     "n": 14,
+     "emoji": "🧩"
+    },
+    {
+     "id": "b1_13b",
+     "section": "Rozdział 12 · Precyzja wypowiedzi",
+     "name": "Słówka: technologia",
+     "type": "slowka",
+     "theme": "technologia",
+     "n": 14,
+     "emoji": "💻"
+    },
+    {
+     "id": "b1_14",
+     "section": "Rozdział 12 · Precyzja wypowiedzi",
+     "name": "Tłumaczenia zaawansowane",
+     "type": "tlumaczenia",
+     "n": 8,
+     "emoji": "🌐"
+    },
+    {
+     "id": "b1_14b",
+     "section": "Rozdział 12 · Precyzja wypowiedzi",
+     "name": "✍️ Pisanie: e-mail o urlop",
+     "type": "pisanie",
+     "task": "w_holiday",
+     "emoji": "✍️"
+    },
+    {
+     "id": "b1_14c",
+     "section": "Rozdział 12 · Precyzja wypowiedzi",
+     "name": "💬 Rozmowa: rozmowa o pracę",
+     "type": "rozmowa",
+     "dialog": "dlg_interview",
+     "emoji": "💬"
+    },
+    {
+     "id": "b1_15",
+     "section": "Rozdział 12 · Precyzja wypowiedzi",
+     "name": "🔁 Powtórka skumulowana VI",
+     "type": "powtorka",
+     "n": 16,
+     "emoji": "🔁"
+    },
+    {
+     "id": "b1_16",
+     "section": "Rozdział 12 · Precyzja wypowiedzi",
+     "name": "🎓 EGZAMIN B1 → B2",
+     "type": "egzamin",
+     "n": 22,
+     "emoji": "🎓"
+    }
+   ]
+  },
+  {
+   "level": "B2",
+   "name": "Poziom B2 — Swoboda",
+   "requires": [
+    "B1"
+   ],
+   "links": [
+    {
+     "id": "b2_01",
+     "section": "Rozdział 13 · Precyzja i niuanse",
+     "name": "Powtórka: wszystkie czasy",
+     "type": "powtorka",
+     "n": 16,
+     "emoji": "🔁"
+    },
+    {
+     "id": "b2_02",
+     "section": "Rozdział 13 · Precyzja i niuanse",
+     "name": "Słówka: uczucia i cechy (rozszerzenie)",
+     "type": "slowka",
+     "theme": "uczucia",
+     "n": 12,
+     "emoji": "😊"
+    },
+    {
+     "id": "b2_02b",
+     "section": "Rozdział 13 · Precyzja i niuanse",
+     "name": "Phrasal verbs — fala 4",
+     "type": "slowka",
+     "theme": "phrasal",
+     "n": 18,
+     "emoji": "🔗"
+    },
+    {
+     "id": "b2_03",
+     "section": "Rozdział 13 · Precyzja i niuanse",
+     "name": "✍️ Pisanie: zgłoszenie problemu",
+     "type": "pisanie",
+     "task": "w_problem",
+     "emoji": "✍️"
+    },
+    {
+     "id": "b2_04",
+     "section": "Rozdział 13 · Precyzja i niuanse",
+     "name": "📖 Czytanie: roboty na hali (analiza)",
+     "type": "czytanie",
+     "text": "r_b1_robots",
+     "emoji": "📖"
+    },
+    {
+     "id": "b2_05",
+     "section": "Rozdział 14 · Praca i formalności",
+     "name": "💬 Rozmowa: sklep i urząd",
+     "type": "rozmowa",
+     "dialog": "dlg_shop",
+     "emoji": "💬"
+    },
+    {
+     "id": "b2_06",
+     "section": "Rozdział 14 · Praca i formalności",
+     "name": "✍️ Pisanie: wiadomość o spóźnieniu",
+     "type": "pisanie",
+     "task": "w_late",
+     "emoji": "✍️"
+    },
+    {
+     "id": "b2_07",
+     "section": "Rozdział 14 · Praca i formalności",
+     "name": "Tłumaczenia trudniejsze",
+     "type": "tlumaczenia",
+     "n": 8,
+     "emoji": "🌐"
+    },
+    {
+     "id": "b2_08",
+     "section": "Rozdział 14 · Praca i formalności",
+     "name": "Słuchanie: pełne tempo",
+     "type": "sluchanie",
+     "n": 8,
+     "emoji": "🎧"
+    },
+    {
+     "id": "b2_09",
+     "section": "Rozdział 14 · Praca i formalności",
+     "name": "🎓 EGZAMIN B2",
+     "type": "egzamin",
+     "n": 24,
+     "emoji": "🎓"
+    }
+   ]
+  }
+ ],
+ "name": "Ścieżka nauki — struktura kursu",
+ "etykieta": "Ścieżka nauki — struktura kursu"
+}

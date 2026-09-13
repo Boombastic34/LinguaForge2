@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """LinguaForge — lokalna aplikacja do nauki angielskiego."""
-import os, io, re, csv, json, sys, time, base64, random, shutil, zipfile, threading, webbrowser, datetime
+import os, io, re, csv, json, sys, time, hashlib, base64, random, shutil, zipfile, threading, webbrowser, datetime
 
 
 # --------------------------------------------------------------------------
@@ -63,7 +63,7 @@ from fastapi.staticfiles import StaticFiles
 
 from core import storage, auth, fsrs, skills as sk, grader, placement, composer
 
-APP_VERSION = "3.2.0"
+APP_VERSION = "3.10.0"
 START_TIME = time.time()   # do sprawdzania, jak długo serwer działa
 LAN_MODE = os.environ.get("LF_LAN", "") == "1"   # tryb dostępu z telefonu
 PORT = int(os.environ.get("PORT", "8177"))   # hosting nadpisuje przez PORT
@@ -136,6 +136,63 @@ def merged_items(prefix):
     return items
 
 
+
+# ---------------------------------------------------------------- czasowniki jako fiszki
+# Odmiana przez czasy była osobną zakładką; teraz jest kategorią fiszek „⚙️ Czasowniki",
+# a karta pokazuje czytelną tabelkę odmiany zamiast czterech kratek do wypełnienia.
+def _verb_table(v):
+    """Tabela odmiany jednego czasownika — to samo, co uczeń widzi na odwrocie karty."""
+    en, past, perf = v["en"], v["past"], v["perf"]
+    return {
+        "base": en, "third": third_person(en), "ing": _ing_form(en),
+        "past": past, "perf": perf,
+        "irregular": not (past.lower() in (en.lower() + "ed", en.lower() + "d")),
+        "rows": [
+            {"tense": "teraz (Present Simple)", "en": f"I / you / we / they {en}", "pl": v["pl_pres"]},
+            {"tense": "teraz — on / ona / ono", "en": f"he / she / it {third_person(en)}", "pl": v["pl_pres"] + " (on / ona)"},
+            {"tense": "teraz właśnie (Continuous)", "en": f"I am {_ing_form(en)}", "pl": "właśnie " + v["pl_pres"]},
+            {"tense": "przeszłość (Past Simple)", "en": f"I {past}", "pl": v["pl_past"][0]},
+            {"tense": "przyszłość (will)", "en": f"I will {en}", "pl": v["pl_fut"][0]},
+            {"tense": "3. forma (have / been)", "en": f"I have {perf}", "pl": "już " + v["pl_past"][0]},
+            {"tense": "przeczenie", "en": f"I don't {en} · I didn't {en}", "pl": "nie " + v["pl_pres"] + " · nie " + v["pl_past"][0]},
+            {"tense": "pytanie", "en": f"Do you {en}? · Did you {en}?", "pl": v["pl_pres"] + "? · " + v["pl_past"][0] + "?"},
+        ],
+    }
+
+
+# akcent na ostatniej sylabie → podwojenie (begin → beginning); reszta bez
+ING_DOUBLE = {"begin", "forget", "prefer", "permit", "admit", "occur", "refer", "regret", "control"}
+
+
+def _ing_form(en):
+    if en in ING_DOUBLE:
+        return en + en[-1] + "ing"
+    if en.endswith("ie"):
+        return en[:-2] + "ying"
+    if en.endswith("e") and len(en) > 2 and not en.endswith(("ee", "oe", "ye")):
+        return en[:-1] + "ing"
+    # podwojenie spółgłoski tylko w słowach jednosylabowych (stop → stopping),
+    # oraz w brytyjskim -l (travel → travelling); open / listen NIE podwajają
+    syll = len(re.findall(r"[aeiouy]+", en))
+    if (len(en) >= 3 and en[-1] not in "aeiouwxy" and en[-2] in "aeiou"
+            and en[-3] not in "aeiou" and (syll == 1 or en.endswith("l"))):
+        return en + en[-1] + "ing"
+    return en + "ing"
+
+
+def _verb_cards():
+    """Czasowniki jako pozycje słownictwa (kategoria „czasowniki")."""
+    out = []
+    for v in storage.load_data("slownictwo/czasowniki_odmiana.json", {}).get("items", []):
+        t = _verb_table(v)
+        out.append({"id": v["id"], "en": v["en"], "pl": v["pl_inf"],
+                    "example": v.get("example", ""), "example_pl": v.get("example_pl", ""),
+                    "theme": "odmiana", "cat": "mixed", "level": v.get("level", "A2"),
+                    "deck": "verb", "nr": v.get("nr"), "verb": t,
+                    "hint": ("nieregularny" if t["irregular"] else "regularny") + f" · {v['en']} → {v['past']} → {v['perf']}"})
+    return out
+
+
 # ---------------------------------------------------------------- „Do utrwalenia" (trudne słowa)
 # Słowa, które uczeń błędnie zapisał w zdaniach (dyktando, przepisywanie, tłumaczenie),
 # które wielokrotnie mylił w fiszkach albo sam oznaczył jako nieznane. Trafiają do
@@ -155,7 +212,8 @@ one two three four five six seven eight nine ten""".split())
 
 
 def _hw_key(w):
-    return re.sub(r"[^a-z']", "", str(w or "").lower().strip())
+    # zostawiamy spacje, żeby czasowniki frazowe („pick up") nie sklejały się w „pickup"
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z' ]", "", str(w or "").lower())).strip()
 
 
 def _hw_load(username):
@@ -253,7 +311,9 @@ def vocab_pool(profile):
         it2 = dict(it)
         it2["deck"] = "custom"
         pool.append(it2)
+    pool.extend(_verb_cards())
     pool.extend(_hw_items(profile["username"]))
+    pool.extend(_bs_items(profile["username"]))
     return pool
 
 
@@ -377,7 +437,9 @@ async def api_settings(request: Request):
     for k in ("target_level", "domains"):
         if k in body:
             prof[k] = body[k]
-    for flag in ("dark", "tts_auto", "haptics", "fc_retype", "fc_learn", "path_retype"):
+    if body.get("ui_version") in (1, 2, "1", "2"):
+        prof["settings"]["ui_version"] = int(body["ui_version"])
+    for flag in ("dark", "tts_auto", "haptics", "fc_retype", "fc_learn", "path_retype", "sp_retype"):
         if flag in body:
             prof["settings"][flag] = bool(body[flag])
     if "tts_rate" in body:
@@ -436,7 +498,7 @@ async def content_stats(request: Request):
                        for f in storage.list_data_files("rozmowy/")),
         "themes": sorted({storage.load_data(f, {}).get("theme", "inne")
                           for f in storage.list_data_files("slownictwo/")
-                          if (storage.load_data(f, {}).get("items") or [{}])[0].get("pl")}),
+                          if (storage.load_data(f, {}).get("items") or [{}])[0].get("pl")} | {"odmiana"}),
         "knowledge": len(storage.load_data("wiedza/baza.json", {}).get("articles", [])),
         "reading": len(_reading_texts()),
         "writing": len(_writing_tasks()),
@@ -688,6 +750,7 @@ def _card_payload(it, c, prof, is_new=False):
             "example": it.get("example", ""), "example_pl": it.get("example_pl", ""),
             "img": it.get("img", ""), "hint": it.get("hint", ""),
             "cloze": it.get("cloze", ""), "cloze_word": it.get("cloze_word", ""), "has_pl": it.get("has_pl", True),
+            "verb": it.get("verb"),
             "deck": it.get("deck", "general"), "level": it.get("level", "A1"),
             "new": is_new, "typing": typing,
             "leech": fsrs.is_leech(c["fsrs"]), "reps": c["fsrs"]["reps"]}
@@ -717,7 +780,11 @@ async def cards_review(request: Request):
     if rating == 1:
         add_error(who["username"], "vocab_lapse", body.get("en", cid))
     hw_note = None
-    if cid.startswith("hw_"):
+    if cid.startswith("bs_"):
+        # zdanie z talii „Zdania do poprawy": dwa poprawne zapisy pod rząd i wypada
+        r = _bs_bump(who["username"], body.get("en", ""), correct)
+        hw_note = "sentence_released" if r == "released" else None
+    elif cid.startswith("hw_"):
         # karta z kategorii „Do utrwalenia": +1 / −1, przy 3 wypada z kategorii
         hw_note = _hw_bump(who["username"], cid[3:], correct)
     elif rating == 1 and body.get("en") and _hw_key(body["en"]) not in HW_STOP:
@@ -809,6 +876,51 @@ def verb_examples(v, form):
         (f"I haven't {perf} yet.", f"Jeszcze tego nie zrobiłem (yet = jeszcze)."),
         (f"It was {perf} yesterday.", f"To zostało zrobione wczoraj — strona bierna: be + 3. forma."),
     ]
+
+
+@app.get("/api/verbs/all")
+async def verbs_all(request: Request):
+    """Zakładka „Czasowniki": pełna lista czasowników.
+
+    - `conjugated` — czasowniki z pełną odmianą (tabela form i czasów),
+    - `plain` — pozostałe czasowniki-słówka (bezokolicznik + znaczenie).
+    Do każdego dołączamy stan powtórki, żeby uczeń widział, czego już się uczył.
+    """
+    who = current_user(request)
+    cards = load_cards(who["username"])
+    now = time.time()
+
+    def state(cid):
+        c = cards.get(cid)
+        if not c:
+            return {"known": False, "due": None}
+        return {"known": True, "reps": c["fsrs"]["reps"],
+                "due_in_days": max(0, round((c["fsrs"]["due"] - now) / 86400, 1)),
+                "mature": fsrs.is_mature(c)}
+
+    conj = []
+    for v in storage.load_data("slownictwo/czasowniki_odmiana.json", {}).get("items", []):
+        t = _verb_table(v)
+        conj.append({"id": v["id"], "en": v["en"], "pl": v["pl_inf"], "nr": v.get("nr"),
+                     "example": v.get("example", ""), "irregular": t["irregular"],
+                     "forms": {k: t[k] for k in ("base", "third", "ing", "past", "perf")},
+                     "rows": t["rows"], "card": state(v["id"])})
+    conj_en = {v["en"].lower() for v in conj}
+    plain = []
+    for it in storage.load_data("slownictwo/czasowniki_slowka.json", {}).get("items", []):
+        if it["en"].lower() in conj_en:
+            continue
+        plain.append({"id": it["id"], "en": it["en"], "pl": it["pl"], "nr": it.get("nr"),
+                      "level": it.get("level", "A1"), "example": it.get("example", ""),
+                      "card": state(it["id"])})
+    # + czasowniki frazowe jako trzecia lista (get up, look for…)
+    phrasal = []
+    for it in storage.load_data("slownictwo/phrasal_verbs.json", {}).get("items", []):
+        phrasal.append({"id": it["id"], "en": it["en"], "pl": it["pl"], "nr": it.get("nr"),
+                        "level": it.get("level", "A2"), "example": it.get("example", ""),
+                        "card": state(it["id"])})
+    return {"conjugated": conj, "plain": plain, "phrasal": phrasal,
+            "counts": {"conjugated": len(conj), "plain": len(plain), "phrasal": len(phrasal)}}
 
 
 @app.get("/api/verbs/forms/{vid}")
@@ -1207,7 +1319,7 @@ async def lesson_exam(request: Request):
 
 
 # ---------------------------------------------------------------- silnik luk
-THEME_NAMES = {"trudne":"🔥 Do utrwalenia","zwierzeta":"Zwierzęta","jedzenie":"Jedzenie","dom":"Dom","transport":"Transport",
+THEME_NAMES = {"trudne":"🔥 Do utrwalenia","odmiana":"⚙️ Odmiana czasowników","poprawa":"📝 Zdania do poprawy","zwierzeta":"Zwierzęta","jedzenie":"Jedzenie","dom":"Dom","transport":"Transport",
  "cialo":"Ciało i zdrowie","rodzina":"Rodzina i ludzie","ubrania":"Ubrania","miasto":"Miasto i zakupy",
  "natura":"Natura i pogoda","uczucia":"Uczucia i cechy","liczebniki":"Liczebniki","kalendarz":"Kalendarz",
  "kolory":"Kolory","czasowniki":"Czasowniki","praca":"Praca / magazyn","przedmioty":"Przedmioty codzienne",
@@ -1264,7 +1376,7 @@ async def api_continue(request: Request):
     if due >= 5:
         second = {"action": "reviews", "label": f"Powtórz {due} fiszek", "hash": "#flashcards"}
     elif vdue >= 5:
-        second = {"action": "verbs", "label": f"Powtórz {vdue} czasowników", "hash": "#verbs"}
+        second = {"action": "cards", "label": f"Powtórz {vdue} czasowników", "hash": "#flashcards?theme=odmiana"}
     nxt = _next_path_link(who["username"])
     if nxt:
         return {"action": "path", "link": nxt["id"], "link_data": nxt,
@@ -1272,6 +1384,1209 @@ async def api_continue(request: Request):
                 "hash": "#path", "second": second}
     return {"action": "free", "label": "Ścieżka ukończona — wybierz, co chcesz powtórzyć",
             "hash": "#dashboard", "second": second}
+
+
+
+
+# ================================================================ WERSJA 2 (plan badawczy)
+# Równoległa wersja aplikacji zbudowana wg dokumentu „System nauki języka".
+# Wersja 1 (klasyczna) zostaje nietknięta — przełącznik jest w ustawieniach.
+# Różnice, które realizuje ten kod:
+#   • jedna sesja dnia zamiast menu modułów (ekran „co teraz?"),
+#   • sesja ma łuk: rozgrzewka → nowe → mieszanka → użycie → płynność → zamknięcie,
+#   • przeplatanie (interleaving) zamiast bloków jednego typu,
+#   • słownictwo MIESZANE między tematami (przeciw interferencji semantycznej),
+#   • ten sam format nie występuje dwa razy pod rząd,
+#   • „rdza" — zapominanie pokazane jako nazwana rzecz, nie lista długów,
+#   • faza 0: wymowa (minimalne pary) przed resztą materiału,
+#   • runda płynności na czas na koniec sesji.
+V2_DAYS = [
+    {"key": "mix", "name": "Mieszanka", "desc": "trochę wszystkiego"},                     # pon
+    {"key": "new", "name": "Nowy materiał", "desc": "nowy rozdział i teoria"},             # wt (idx 1)
+    {"key": "listen", "name": "Dzień słuchania", "desc": "dwa razy więcej audio"},
+    {"key": "speak", "name": "Dzień mówienia", "desc": "zdania na głos i rozmowy"},
+    {"key": "mix", "name": "Mieszanka", "desc": "przeplatane zadania + gra"},
+    {"key": "write", "name": "Czytanie i pisanie", "desc": "tekst i własne zdania"},
+    {"key": "review", "name": "Powtórka skumulowana", "desc": "wszystko z ostatnich tygodni"},
+]
+# poniedziałek = indeks 0
+V2_WEEK = [1, 2, 3, 0, 5, 6, 6]     # pon: nowy materiał, wt: słuchanie, śr: mówienie, czw: mieszanka…
+
+
+def _v2_day(dt=None):
+    dt = dt or datetime.date.today()
+    return V2_DAYS[V2_WEEK[dt.weekday()]]
+
+
+def _v2_pron_state(username):
+    st = storage.user_file(username, "pron.json", {"done": []})
+    st.setdefault("done", [])
+    return st
+
+
+def _v2_rust(username, prof):
+    """„Rdza" — nazwane obszary, które blakną, zamiast listy zaległych powtórek.
+
+    Grupujemy przeterminowane karty po temacie i pokazujemy tylko te grupy,
+    w których zaległość jest realna (min. 4 karty). Zwracamy najbardziej zardzewiałą.
+    """
+    cards = load_cards(username)
+    now = time.time()
+    by_theme = {}
+    for cid, c in cards.items():
+        overdue_days = (now - c["fsrs"]["due"]) / 86400
+        if overdue_days <= 0:
+            continue
+        th = c.get("theme") or "inne"
+        g = by_theme.setdefault(th, {"theme": th, "n": 0, "days": 0.0})
+        g["n"] += 1
+        g["days"] = max(g["days"], overdue_days)
+    out = []
+    for th, g in by_theme.items():
+        if g["n"] < 4:
+            continue
+        # 0 = świeże, 1 = mocno zardzewiałe (po ~21 dniach zaległości)
+        rust = max(0.0, min(1.0, g["days"] / 21))
+        out.append({"theme": th, "name": THEME_NAMES.get(th, th.capitalize()),
+                    "n": g["n"], "rust": round(rust, 2),
+                    "label": "blaknie" if rust < 0.5 else "mocno zardzewiałe"})
+    out.sort(key=lambda x: -x["rust"])
+    return out[:3]
+
+
+
+# ---------------------------------------------------------------- WERSJA 2: onboarding
+# Kolejność ekranów wynika wprost z dokumentu projektowego:
+#   1. „Po co Ci ten język?" — PRZED testem. Pytanie o cel buduje poczucie autonomii
+#      (teoria samostanowienia); pytanie o poziom na wejściu buduje poczucie oceniania.
+#   2. „Ile czasu dziennie?" — małe zobowiązanie zamiast ambitnego postanowienia.
+#   3. Test adaptacyjny, który MAPUJE umiejętności, a nie wystawia ocenę.
+#   4. Wynik jako mapa: co umiesz, co pomijamy, ile czasu zaoszczędziłeś.
+V2_GOALS = [
+    {"id": "work", "emoji": "🏭", "name": "Dogadać się w pracy",
+     "desc": "magazyn, produkcja, budowa — konkretne zwroty z Twojej branży", "domains": ["general", "warehouse"]},
+    {"id": "travel", "emoji": "✈️", "name": "Wyjazd i wakacje",
+     "desc": "lotnisko, hotel, restauracja, kłopoty w drodze", "domains": ["general", "travel"]},
+    {"id": "people", "emoji": "💬", "name": "Rozmowa z ludźmi",
+     "desc": "small talk, znajomi, rodzina, codzienne sprawy", "domains": ["general"]},
+    {"id": "fix", "emoji": "🔧", "name": "Poprawić to, co już umiem",
+     "desc": "dogadujesz się, ale robisz błędy — chcesz mówić poprawnie", "domains": ["general"]},
+    {"id": "exam", "emoji": "🎓", "name": "Egzamin lub certyfikat",
+     "desc": "systematycznie, z gramatyką i pisaniem", "domains": ["general"]},
+    {"id": "self", "emoji": "🌱", "name": "Dla siebie",
+     "desc": "bez konkretnego celu, po prostu chcę umieć", "domains": ["general"]},
+]
+V2_TIMES = [{"id": 5, "name": "5 minut", "desc": "krótko, ale codziennie", "xp": 25},
+            {"id": 15, "name": "15 minut", "desc": "tempo, przy którym widać postęp", "xp": 50},
+            {"id": 30, "name": "30 minut", "desc": "szybciej do celu, wymaga rytmu", "xp": 90}]
+
+# progi częstotliwości do szacowania wielkości słownika (rank z listy częstotliwościowej)
+V2_BANDS = [(0, 500), (500, 1000), (1000, 1500), (1500, 2500), (2500, 4000)]
+
+
+def _v2_onb(username):
+    st = storage.user_file(username, "onboarding.json",
+                           {"step": "goal", "goal": None, "minutes": None, "test": None, "map": None})
+    return st
+
+
+def _v2_onb_save(username, st):
+    storage.save_user_file(username, "onboarding.json", st)
+
+
+@app.get("/api/v2/onboarding")
+async def v2_onb_state(request: Request):
+    who = current_user(request)
+    st = _v2_onb(who["username"])
+    return {"step": st["step"], "goals": V2_GOALS, "times": V2_TIMES,
+            "goal": st.get("goal"), "minutes": st.get("minutes"), "map": st.get("map")}
+
+
+@app.post("/api/v2/onboarding/goal")
+async def v2_onb_goal(request: Request):
+    who = current_user(request)
+    body = await request.json()
+    g = next((x for x in V2_GOALS if x["id"] == body.get("goal")), None)
+    if not g:
+        raise HTTPException(400, "Nieznany cel.")
+    st = _v2_onb(who["username"])
+    st["goal"] = g["id"]
+    st["step"] = "time"
+    _v2_onb_save(who["username"], st)
+    prof = storage.load_profile(who["username"])
+    prof["domains"] = [d for d in g["domains"]
+                       if d in ("general", "warehouse", "travel", "office")] or ["general"]
+    prof["settings"]["goal"] = g["id"]
+    # cel steruje też wariantem przykładów w Podstawach
+    prof["settings"]["bt_domain"] = "warehouse" if g["id"] == "work" else "general"
+    storage.save_profile(who["username"], prof)
+    return {"ok": True, "step": "time"}
+
+
+@app.post("/api/v2/onboarding/time")
+async def v2_onb_time(request: Request):
+    who = current_user(request)
+    body = await request.json()
+    t = next((x for x in V2_TIMES if x["id"] == int(body.get("minutes", 0))), None)
+    if not t:
+        raise HTTPException(400, "Wybierz jedną z opcji.")
+    st = _v2_onb(who["username"])
+    st["minutes"] = t["id"]
+    st["step"] = "test"
+    _v2_onb_save(who["username"], st)
+    prof = storage.load_profile(who["username"])
+    prof["settings"]["daily_goal_xp"] = t["xp"]
+    prof["settings"]["daily_minutes"] = t["id"]
+    storage.save_profile(who["username"], prof)
+    return {"ok": True, "step": "test"}
+
+
+def _v2_vocab_bands(prof):
+    """Słowa pogrupowane wg progów częstotliwości — do oszacowania wielkości słownika."""
+    pool = [it for it in vocab_pool(prof) if it.get("pl") and it.get("rank")]
+    bands = []
+    for lo, hi in V2_BANDS:
+        inb = [it for it in pool if lo <= it["rank"] < hi]
+        random.shuffle(inb)
+        bands.append(inb)
+    return bands
+
+
+@app.get("/api/v2/onboarding/test")
+async def v2_onb_test(request: Request):
+    """Test adaptacyjny w czterech blokach. Zwraca komplet pytań; adaptacja dzieje się
+    po stronie przeglądarki (dwie pomyłki z rzędu → schodzimy niżej), żeby nie trzymać
+    stanu między żądaniami i nie gubić testu przy słabym zasięgu."""
+    who = current_user(request)
+    prof = storage.load_profile(who["username"])
+    bands = _v2_vocab_bands(prof)
+
+    # 1. słownictwo — 3 pytania na każdym progu, od najczęstszych
+    vocab = []
+    for bi, items in enumerate(bands):
+        for it in items[:3]:
+            others = [x["pl"] for x in items if x["id"] != it["id"]][:3] or ["—", "—", "—"]
+            opts = others[:3] + [it["pl"]]
+            random.shuffle(opts)
+            vocab.append({"id": "v_" + it["id"], "band": bi, "kind": "vocab",
+                          "text": f"Co znaczy „{it['en']}”?", "options": opts,
+                          "answer": opts.index(it["pl"]), "en": it["en"]})
+
+    # 2. gramatyka — po 2 pytania z testu każdego tematu Podstaw, w kolejności programu
+    grammar = []
+    for t in sorted(_basics(), key=lambda x: x.get("order", 99)):
+        qs = [q for q in t.get("test", []) if q.get("type") == "choice" and q.get("options")][:2]
+        for k, q in enumerate(qs):
+            grammar.append({"id": f"g_{t['id']}_{k}", "topic": t["id"], "topic_name": t["name"],
+                            "order": t.get("order", 99), "kind": "grammar",
+                            "text": q["text"], "options": list(q["options"]), "answer": int(q["answer"])})
+
+    # 3. słuchanie — trzy zdania, pytanie o sens
+    listen = []
+    stages = _sent_data()["stages"]
+    for k, stg in enumerate([s for s in stages if s["group"] == "slownictwo"][:3]):
+        it = random.choice(stg["items"])
+        others = [x["pl"] for x in random.sample(stg["items"], min(3, len(stg["items"]))) if x["pl"] != it["pl"]][:2]
+        opts = others + [it["pl"]]
+        random.shuffle(opts)
+        listen.append({"id": "l_" + it["id"], "kind": "listen", "diff": stg["diff"],
+                       "text": "Posłuchaj. Co znaczy to zdanie?", "tts": it["en"],
+                       "options": opts, "answer": opts.index(it["pl"])})
+
+    # 4. produkcja — dwa zdania do napisania
+    produce = []
+    for stg in [s for s in stages if s["group"] == "slownictwo"][:2]:
+        it = random.choice(stg["items"])
+        produce.append({"id": "p_" + it["id"], "kind": "produce", "diff": stg["diff"],
+                        "text": f"Napisz po angielsku: „{it['pl']}”", "answer": it["en"]})
+
+    _tts_prewarm([q["tts"] for q in listen], "en")
+    return {"vocab": vocab, "grammar": grammar, "listen": listen, "produce": produce,
+            "bands": [{"from": lo, "to": hi} for lo, hi in V2_BANDS]}
+
+
+@app.post("/api/v2/onboarding/result")
+async def v2_onb_result(request: Request):
+    """Zamienia odpowiedzi na MAPĘ umiejętności i od razu odblokowuje ścieżkę.
+
+    Zasada z dokumentu: test ma ZABIERAĆ pracę. Tematy zdane w teście oznaczamy jako
+    pominięte na Ścieżce, a uczniowi mówimy wprost, ile czasu na tym zaoszczędził.
+    """
+    who = current_user(request)
+    body = await request.json()
+    answers = body.get("answers") or {}          # id pytania -> True/False
+    prof = storage.load_profile(who["username"])
+
+    # --- słownictwo: ostatni próg, na którym uczeń trafił większość
+    band_hits = {}
+    for qid, ok in answers.items():
+        if qid.startswith("v_"):
+            b = int(body.get("bands", {}).get(qid, 0))
+            g = band_hits.setdefault(b, [0, 0])
+            g[1] += 1
+            g[0] += 1 if ok else 0
+    known_words = 0
+    for bi, (lo, hi) in enumerate(V2_BANDS):
+        hit, tot = band_hits.get(bi, (0, 0))
+        if not tot:
+            continue
+        share = hit / tot
+        known_words += int((hi - lo) * share)
+    known_words = max(50, round(known_words / 50) * 50)
+
+    # --- gramatyka: temat zdany = obie odpowiedzi poprawne
+    topics = {}
+    for qid, ok in answers.items():
+        if qid.startswith("g_"):
+            tid = qid[2:].rsplit("_", 1)[0]
+            t = topics.setdefault(tid, [0, 0])
+            t[1] += 1
+            t[0] += 1 if ok else 0
+    known_topics, weak_topics = [], []
+    for t in sorted(_basics(), key=lambda x: x.get("order", 99)):
+        hit, tot = topics.get(t["id"], (0, 0))
+        if not tot:
+            continue
+        (known_topics if hit == tot else weak_topics).append(
+            {"id": t["id"], "name": t["name"], "emoji": t.get("emoji", "📘"),
+             "score": round(hit / tot, 2)})
+
+    listen_ok = sum(1 for q, ok in answers.items() if q.startswith("l_") and ok)
+    listen_all = sum(1 for q in answers if q.startswith("l_"))
+    prod_ok = sum(1 for q, ok in answers.items() if q.startswith("p_") and ok)
+    prod_all = sum(1 for q in answers if q.startswith("p_"))
+
+    # --- poziom: z liczby zdanych tematów i słownictwa
+    level = "A1"
+    if known_words >= 1500 and len(known_topics) >= 8:
+        level = "B1"
+    elif known_words >= 700 and len(known_topics) >= 4:
+        level = "A2"
+    prof["level"] = level
+    prof["placement_done"] = True
+    prof["skills"]["listening"] = sk.update_skill(prof["skills"]["listening"], level,
+                                                  listen_ok >= max(1, listen_all - 1), 5000)
+    storage.save_profile(who["username"], prof)
+
+    # --- ścieżka: pomijamy ogniwa tematów zdanych w teście
+    pst = _path_state(who["username"])
+    today = datetime.date.today().isoformat()
+    skipped = []
+    known_ids = {t["id"] for t in known_topics}
+    for lvl in _path_data()["levels"]:
+        for ln in lvl["links"]:
+            if ln["type"] == "podstawy" and ln.get("topic") in known_ids and ln["id"] not in pst["done"]:
+                pst["done"][ln["id"]] = {"score": None, "skipped": True, "date": today, "from": "test"}
+                skipped.append(ln["id"])
+    storage.save_user_file(who["username"], "path.json", pst)
+
+    # jeden temat ≈ 3 dni nauki — stąd oszczędność czasu
+    saved_days = len(known_topics) * 3
+    first = next((t for t in sorted(_basics(), key=lambda x: x.get("order", 99))
+                  if t["id"] in {w["id"] for w in weak_topics}), None)
+    mp = {"words": known_words, "level": level,
+          "strong": known_topics, "weak": weak_topics,
+          "listening": {"ok": listen_ok, "all": listen_all},
+          "production": {"ok": prod_ok, "all": prod_all},
+          "skipped": len(skipped), "saved_days": saved_days,
+          "first": ({"id": first["id"], "name": first["name"], "emoji": first.get("emoji", "📘")}
+                    if first else None),
+          "biggest_gap": ("rozumienie ze słuchu przy normalnym tempie mowy"
+                          if listen_all and listen_ok <= listen_all / 2
+                          else (weak_topics[0]["name"] if weak_topics else "utrwalenie słownictwa"))}
+    st = _v2_onb(who["username"])
+    st["map"] = mp
+    st["step"] = "done"
+    st["test"] = {"answers": len(answers)}
+    _v2_onb_save(who["username"], st)
+    storage.log_event(who["username"], {"type": "v2_onboarding", "level": level,
+                                        "words": known_words, "skipped": len(skipped)})
+    return mp
+
+
+
+# ---------------------------------------------------------------- WERSJA 2: rotacja formatu
+# Słowo znane tylko w jednym formacie to wiedza krucha (transfer-appropriate processing).
+# Dlatego każde kolejne spotkanie z tym samym słowem ma INNĄ postać — od najłatwiejszego
+# rozpoznania po produkcję i słuch:
+#   0. rozpoznanie   — „Co znaczy X?" (wybór z czterech)
+#   1. odwrotnie     — „Jak powiedzieć «Y» po angielsku?" (wybór z czterech)
+#   2. produkcja     — wpisz słowo z tłumaczenia
+#   3. w zdaniu      — luka w prawdziwym zdaniu
+#   4. ze słuchu     — dyktando zdania z tym słowem
+# Numer etapu bierze się z liczby powtórek karty (FSRS), więc rotacja jest naturalną
+# konsekwencją nauki, a nie losem.
+V2_FORMATS = ["recognize", "reverse", "produce", "in_sentence", "listen"]
+
+
+def _v2_seen(username):
+    """Ile razy uczeń widział dane słowo w sesjach wersji 2 (osobno od fiszek)."""
+    return storage.user_file(username, "v2_seen.json", {})
+
+
+def _v2_seen_bump(username, item_id, correct):
+    d = _v2_seen(username)
+    e = d.setdefault(item_id, {"n": 0, "ok": 0})
+    e["n"] += 1
+    e["ok"] += 1 if correct else 0
+    if not correct:
+        e["n"] = max(0, e["n"] - 2)       # pomyłka cofa o krok — format wraca do łatwiejszego
+    storage.save_user_file(username, "v2_seen.json", d)
+
+
+def _v2_stage(cards, item, seen=None):
+    c = cards.get(item["id"])
+    reps = c["fsrs"]["reps"] if c else 0
+    seen_n = (seen or {}).get(item["id"], {}).get("n", 0)
+    stage = min(max(reps, seen_n), len(V2_FORMATS) - 1)
+    # zdania wymagają przykładu — bez niego cofamy się o krok
+    if V2_FORMATS[stage] in ("in_sentence", "listen") and not item.get("example"):
+        stage = 2
+    return stage
+
+
+def _v2_task(item, others, stage):
+    """Buduje zadanie w formacie właściwym dla etapu tego słowa."""
+    fmt = V2_FORMATS[stage]
+    if fmt == "recognize":
+        opts = [x["pl"] for x in others[:3]] + [item["pl"]]
+        random.shuffle(opts)
+        return {"kind": "choice", "nr": item.get("nr"), "fmt": fmt,
+                "text": f"Co znaczy „{item['en']}”?", "options": opts,
+                "answer_idx": opts.index(item["pl"]), "answer": item["pl"],
+                "pl": item["pl"], "en": item["en"], "tts": _tts_text(item["en"]), "item": item}
+    if fmt == "reverse":
+        opts = [x["en"] for x in others[:3]] + [item["en"]]
+        random.shuffle(opts)
+        return {"kind": "choice", "nr": item.get("nr"), "fmt": fmt,
+                "text": f"Jak powiedzieć „{item['pl']}” po angielsku?", "options": opts,
+                "answer_idx": opts.index(item["en"]), "answer": item["en"],
+                "pl": item["pl"], "en": item["en"], "tts": _tts_text(item["en"]), "item": item}
+    if fmt == "produce":
+        return {"kind": "produce", "nr": item.get("nr"), "fmt": fmt,
+                "text": f"Napisz po angielsku: „{item['pl']}”",
+                "accept": _en_variants(item["en"]), "answer": item["en"], "pl": item["pl"],
+                "tts": _tts_text(item["en"]), "item": item}
+    if fmt == "in_sentence":
+        base = re.sub(r"\b" + re.escape(item["en"].split(" (")[0]) + r"\w*\b", "_____",
+                      item["example"], count=1, flags=re.I)
+        if "_____" not in base:
+            return _v2_task(item, others, 2)
+        return {"kind": "ggap", "nr": item.get("nr"), "fmt": fmt,
+                "text": base, "accept": _en_variants(item["en"]), "answer": item["en"],
+                "pl": item.get("example_pl", item["pl"]), "hint": item["pl"],
+                "tts": item["example"], "item": item}
+    return {"kind": "dictation", "nr": item.get("nr"), "fmt": fmt,
+            "text": "🎧 Posłuchaj i zapisz zdanie.", "tts": item["example"],
+            "target": item["example"], "pl": item.get("example_pl", ""),
+            "answer": item["example"], "item": item}
+
+
+# ---------------------------------------------------------------- WERSJA 2: adaptacyjna trudność
+# Cel: 80–85 % poprawnych odpowiedzi. Poniżej ~70 % pojawia się frustracja, powyżej ~95 %
+# nuda — to przełożenie teorii przepływu na liczbę. Sterujemy trzema pokrętłami:
+# udziałem nowych słów, udziałem zadań produkcyjnych i długością rundy na czas.
+V2_TARGET = (0.78, 0.88)
+
+
+def _v2_recent(prof):
+    return prof.get("v2_recent", [])
+
+
+def _v2_note_answer(prof, correct):
+    r = prof.setdefault("v2_recent", [])
+    r.append(1 if correct else 0)
+    del r[:-40]                       # pamiętamy ostatnie 40 odpowiedzi
+
+
+def _v2_tuning(prof):
+    r = _v2_recent(prof)
+    acc = (sum(r) / len(r)) if len(r) >= 8 else 0.82      # zanim poznamy ucznia — środek pasma
+    if acc > V2_TARGET[1]:
+        level, label = 1, "Idzie za łatwo — dokładamy trudniejszych zadań."
+    elif acc < V2_TARGET[0]:
+        level, label = -1, "Ostatnio było ciężko — dziś więcej powtórek, mniej nowego."
+    else:
+        level, label = 0, "Trudność dobrana pod Ciebie."
+    return {"acc": round(acc, 2), "level": level, "label": label,
+            "new_share": {-1: 0.15, 0: 0.3, 1: 0.45}[level],      # ile NOWYCH słów w sesji
+            "produce_ratio": {-1: 0.3, 0: 0.5, 1: 0.7}[level],    # ile zadań produkcyjnych
+            "speed": {-1: 10, 0: 8, 1: 6}[level],                 # sekundy w rundzie na czas
+            "n_mix": {-1: 8, 0: 10, 1: 12}[level]}
+
+
+
+# ---------------------------------------------------------------- WERSJA 2: panel skuteczności
+# Większość aplikacji mierzy zaangażowanie (czas w aplikacji, seria dni), bo to łatwe.
+# To NIE są miary skuteczności — można świetnie angażować i niczego nie nauczyć.
+# Mierzymy pięć rzeczy, które mówią prawdę:
+#   1. retencja po ≥21 dniach bez powtórki (test kontrolny na losowej próbce),
+#   2. szacowana wielkość słownika (te same progi częstotliwości co w teście wstępnym),
+#   3. tempo odpowiedzi na materiale znanym (płynność, nie wiedza),
+#   4. transfer — skuteczność w formatach trudniejszych niż rozpoznanie,
+#   5. porównanie wersji 1 i 2 na tych samych danych.
+CHECKUP_MIN_DAYS = 21           # ile dni bez powtórki, żeby karta liczyła się do retencji
+CHECKUP_EVERY_DAYS = 14         # jak często proponujemy test kontrolny
+
+
+def _metrics(prof):
+    m = prof.setdefault("metrics", {})
+    for v in ("v1", "v2"):
+        m.setdefault(v, {"answers": 0, "correct": 0, "ms": 0, "hard_answers": 0, "hard_correct": 0})
+    return m
+
+
+def _metrics_note(prof, version, correct, rt_ms, hard=False):
+    m = _metrics(prof)[version]
+    m["answers"] += 1
+    m["correct"] += 1 if correct else 0
+    m["ms"] += max(0, min(60000, int(rt_ms or 0)))
+    if hard:                                  # format trudniejszy niż rozpoznanie → miara transferu
+        m["hard_answers"] += 1
+        m["hard_correct"] += 1 if correct else 0
+    sp = prof.setdefault("v2_speed", [])
+    if correct and version == "v2" and rt_ms:
+        sp.append(int(rt_ms))
+        del sp[:-100]
+
+
+def _median(xs):
+    xs = sorted(xs)
+    return xs[len(xs) // 2] if xs else 0
+
+
+def _vocab_size(username, prof):
+    """Szacunek wielkości słownika: karty opanowane, przeliczone przez progi częstotliwości.
+
+    Nie liczymy „ile fiszek zrobiłeś", tylko ile słów z danego progu umiesz — i skalujemy
+    to na cały próg. Ta sama logika co w teście wstępnym, więc liczby są porównywalne.
+    """
+    cards = load_cards(username)
+    pool = {it["id"]: it for it in vocab_pool(prof) if it.get("rank")}
+    total = 0
+    detail = []
+    for lo, hi in V2_BANDS:
+        inb = [i for i, it in pool.items() if lo <= it["rank"] < hi]
+        if not inb:
+            continue
+        known = sum(1 for i in inb if i in cards and cards[i]["fsrs"]["reps"] >= 2)
+        share = known / len(inb)
+        got = int((hi - lo) * share)
+        total += got
+        detail.append({"band": f"{lo}–{hi}", "share": round(share, 2), "words": got})
+    return max(0, round(total / 50) * 50), detail
+
+
+def _fluency_summary(username):
+    """Tempo mowy z ćwiczeń 4/3/2 — miara płynności, nie wiedzy."""
+    hist = [s for s in _fluency_hist(username)["sessions"] if s.get("mode") == "432" and s.get("wpm")]
+    if not hist:
+        return {"sessions": 0, "wpm": None, "history": []}
+    return {"sessions": len(hist), "wpm": hist[-1]["wpm"],
+            "best": max(s["wpm"] for s in hist),
+            "first": hist[0]["wpm"],
+            "history": [{"date": s["date"], "wpm": s["wpm"]} for s in hist[-6:]]}
+
+
+def _checkups(username):
+    return storage.user_file(username, "checkups.json", {"history": []})
+
+
+@app.get("/api/v2/progress")
+async def v2_progress(request: Request):
+    who = current_user(request)
+    prof = storage.load_profile(who["username"])
+    cards = load_cards(who["username"])
+    now = time.time()
+    m = _metrics(prof)
+    hist = _checkups(who["username"])["history"]
+
+    words, bands = _vocab_size(who["username"], prof)
+    mature = sum(1 for c in cards.values() if fsrs.is_mature(c["fsrs"]))
+    speed = _median(prof.get("v2_speed", []))
+    stale = [c for c in cards.values() if c["fsrs"]["last"] and (now - c["fsrs"]["last"]) / 86400 >= CHECKUP_MIN_DAYS]
+    last = hist[-1] if hist else None
+    days_since = ((now - datetime.datetime.fromisoformat(last["date"]).timestamp()) / 86400) if last else 999
+
+    def ver(v):
+        d = m[v]
+        return {"answers": d["answers"],
+                "acc": round(d["correct"] / d["answers"], 3) if d["answers"] else None,
+                "minutes": round(d["ms"] / 60000),
+                "transfer": (round(d["hard_correct"] / d["hard_answers"], 3)
+                             if d["hard_answers"] >= 10 else None)}
+
+    return {
+        "words": {"value": words, "bands": bands, "mature_cards": mature, "all_cards": len(cards)},
+        "retention": {"history": hist[-6:], "last": last,
+                      "ready": len(stale) >= 8 and days_since >= CHECKUP_EVERY_DAYS,
+                      "available": len(stale), "need": 8,
+                      "days_since": None if not last else round(days_since)},
+        "speed": {"median_ms": speed, "samples": len(prof.get("v2_speed", []))},
+        "fluency": _fluency_summary(who["username"]),
+        "versions": {"v1": ver("v1"), "v2": ver("v2")},
+        "streak": prof.get("streak", 0), "xp": prof.get("xp", 0),
+        "level": prof.get("level", "A1"),
+    }
+
+
+@app.get("/api/v2/checkup")
+async def v2_checkup(request: Request):
+    """Test kontrolny: TYLKO materiał, którego uczeń nie widział od ≥21 dni.
+
+    To jedyna uczciwa miara pamięci trwałej — wszystko, co świeżo powtórzone, mierzy
+    pamięć roboczą, nie naukę.
+    """
+    who = current_user(request)
+    prof = storage.load_profile(who["username"])
+    cards = load_cards(who["username"])
+    now = time.time()
+    pool = {it["id"]: it for it in vocab_pool(prof) if it.get("pl")}
+    stale = [(cid, c) for cid, c in cards.items()
+             if cid in pool and c["fsrs"]["last"] and (now - c["fsrs"]["last"]) / 86400 >= CHECKUP_MIN_DAYS]
+    random.shuffle(stale)
+    stale = stale[:10]
+    if len(stale) < 4:
+        raise HTTPException(400, "Za mało materiału sprzed 21 dni — wróć za jakiś czas.")
+    tasks = []
+    others = list(pool.values())
+    for cid, c in stale:
+        it = pool[cid]
+        days = round((now - c["fsrs"]["last"]) / 86400)
+        opts = random.sample([x["pl"] for x in others if x["id"] != cid], 3) + [it["pl"]]
+        random.shuffle(opts)
+        tasks.append({"id": cid, "en": it["en"], "days": days,
+                      "text": f"Co znaczy „{it['en']}”?", "options": opts,
+                      "answer": opts.index(it["pl"])})
+    _tts_prewarm([t["en"] for t in tasks], "en")
+    return {"tasks": tasks, "min_days": CHECKUP_MIN_DAYS}
+
+
+@app.post("/api/v2/checkup")
+async def v2_checkup_save(request: Request):
+    who = current_user(request)
+    body = await request.json()
+    ok = int(body.get("correct", 0))
+    total = max(1, int(body.get("total", 1)))
+    prof = storage.load_profile(who["username"])
+    words, _ = _vocab_size(who["username"], prof)
+    ch = _checkups(who["username"])
+    ch["history"].append({"date": datetime.date.today().isoformat(),
+                          "retention": round(ok / total, 3), "n": total,
+                          "words": words, "speed": _median(prof.get("v2_speed", []))})
+    storage.save_user_file(who["username"], "checkups.json", ch)
+    prev = ch["history"][-2] if len(ch["history"]) > 1 else None
+    return {"retention": round(ok / total, 3), "words": words, "prev": prev,
+            "history": ch["history"][-6:]}
+
+
+
+# ---------------------------------------------------------------- WERSJA 2: płynność
+# Płynność to nie wiedza, tylko automatyzacja — a automatyzacji nie da się osiągnąć
+# przez zrozumienie, tylko przez powtórzenie pod presją czasu. Stąd dwie techniki:
+#   • 4/3/2 — to samo opowiadasz trzy razy: w 4, potem 3, potem 2 minuty. Ten sam materiał,
+#     coraz mniej czasu. Mierzymy tempo (słów na minutę) w każdej rundzie.
+#   • shadowing — powtarzasz za nagraniem z małym opóźnieniem, nie czekając na koniec zdania.
+# Oceniamy TEMPO i kompletność, nigdy akcent: cel to zrozumiałość, nie brzmienie native'a.
+FLUENCY_ROUNDS = [240, 180, 120]        # sekundy: 4 / 3 / 2 minuty
+
+
+def _fluency_data():
+    return storage.load_data("plynnosc/plynnosc.json", {"topics": [], "passages": []})
+
+
+def _fluency_hist(username):
+    h = storage.user_file(username, "fluency.json", {"sessions": []})
+    h.setdefault("sessions", [])
+    return h
+
+
+@app.get("/api/v2/fluency")
+async def v2_fluency(request: Request):
+    who = current_user(request)
+    prof = storage.load_profile(who["username"])
+    d = _fluency_data()
+    lvl = prof.get("level", "A1")
+    doms = set(prof.get("domains") or ["general"])
+    goal = prof["settings"].get("goal", "")
+    if goal == "work":
+        doms.add("work")
+    elif goal == "travel":
+        doms.add("travel")
+
+    def fits(x):
+        return (x.get("level", "A1") <= lvl or x.get("level") == "A1") and \
+               (x.get("domain", "general") in doms or x.get("domain") == "general")
+
+    hist = _fluency_hist(who["username"])["sessions"]
+    best = max([s["wpm"] for s in hist if s.get("mode") == "432" and s.get("wpm")], default=0)
+    done = {s.get("topic") for s in hist}
+    topics = [dict(t, done=t["id"] in done) for t in d["topics"] if fits(t)]
+    passages = [dict(p, done=p["id"] in done) for p in d["passages"]
+                if p.get("level", "A1") <= lvl or p.get("level") == "A1"]
+    return {"topics": topics, "passages": passages, "rounds": FLUENCY_ROUNDS,
+            "best_wpm": best, "history": hist[-8:]}
+
+
+@app.get("/api/v2/fluency/passage/{pid}")
+async def v2_fluency_passage(pid: str, request: Request):
+    current_user(request)
+    p = next((x for x in _fluency_data()["passages"] if x["id"] == pid), None)
+    if not p:
+        raise HTTPException(404, "Nie ma takiego fragmentu.")
+    _tts_prewarm([ln[0] for ln in p["lines"]], "en")
+    return p
+
+
+@app.post("/api/v2/fluency/save")
+async def v2_fluency_save(request: Request):
+    """Zapisuje wynik ćwiczenia płynności. W 4/3/2 liczy się TEMPO, nie poprawność."""
+    who = current_user(request)
+    body = await request.json()
+    mode = "432" if body.get("mode") == "432" else "shadow"
+    rounds = body.get("rounds") or []
+    wpm = 0
+    if mode == "432" and rounds:
+        last = rounds[-1]
+        wpm = round(last.get("words", 0) / max(0.5, last.get("seconds", 1) / 60))
+    hist = _fluency_hist(who["username"])
+    prev = [s for s in hist["sessions"] if s.get("mode") == "432" and s.get("wpm")]
+    hist["sessions"].append({"date": datetime.date.today().isoformat(), "mode": mode,
+                             "topic": body.get("topic", ""), "rounds": rounds,
+                             "wpm": wpm, "lines": int(body.get("lines", 0)),
+                             "matched": int(body.get("matched", 0))})
+    storage.save_user_file(who["username"], "fluency.json", hist)
+    prof = storage.load_profile(who["username"])
+    xp = 30 if mode == "432" else 20
+    sk.register_activity(prof, True, xp)
+    prof["skills"]["speaking"] = sk.update_skill(prof["skills"].get("speaking", 15.0),
+                                                 prof.get("level", "A1"), True, 4000)
+    storage.save_profile(who["username"], prof)
+    growth = None
+    if mode == "432" and len(rounds) >= 2:
+        first = rounds[0]
+        w1 = first.get("words", 0) / max(0.5, first.get("seconds", 1) / 60)
+        if w1:
+            growth = round((wpm - w1) / w1 * 100)
+    return {"ok": True, "wpm": wpm, "xp": xp, "growth": growth,
+            "best_prev": max([s["wpm"] for s in prev], default=0)}
+
+
+@app.get("/api/v2/today")
+async def v2_today(request: Request):
+    """Ekran główny wersji 2: jedna karta „Dziś" + trzy małe kafelki."""
+    who = current_user(request)
+    prof = storage.load_profile(who["username"])
+    onb = _v2_onb(who["username"])
+    if onb["step"] != "done":
+        return {"onboarding": onb["step"], "day": _v2_day(),
+                "main": {"type": "onboarding", "id": onb["step"], "title": "Zacznijmy od Ciebie",
+                         "subtitle": "trzy pytania i krótki test — 8 minut",
+                         "parts": ["cel", "ile czasu dziennie", "test, który zabiera pracę"],
+                         "minutes": 8, "step": None, "steps": None,
+                         "why": "Test nie wystawia oceny — sprawdza, co już umiesz, żeby to pominąć."},
+                "review": {"due": 0, "minutes": 0}, "rust": None,
+                "light": _V2_LIGHT[0], "streak": 0, "goal": {"done": 0, "target": 50}}
+    day = _v2_day()
+    pron = _v2_pron_state(who["username"])
+    pron_all = _sent_pron_count()
+
+    # faza 0 — dopóki uczeń nie przeszedł kontrastów wymowy, to jest krok dnia
+    if len(pron["done"]) < pron_all:
+        nxt = _v2_next_pron(who["username"])
+        main = {"type": "pron", "id": nxt["id"], "title": "Wymowa: " + nxt["name"],
+                "subtitle": nxt["title"],
+                "parts": ["6 par słów", "słuchanie i rozróżnianie", "3 minuty"],
+                "minutes": 3, "step": len(pron["done"]) + 1, "steps": pron_all,
+                "why": "Zaczynamy od ucha: dopóki nie słyszysz różnicy, nie da się jej wymówić ani rozpoznać w zdaniu."}
+    else:
+        ln = _next_path_link(who["username"])
+        parts = {"mix": ["słówka", "zdania", "krótka runda na czas"],
+                 "new": ["teoria", "nowe słówka", "ćwiczenia"],
+                 "listen": ["dyktanda", "zdania ze słuchu", "słówka"],
+                 "speak": ["zdania na głos", "rozmowa", "powtórki"],
+                 "write": ["tekst", "własne zdania", "słówka"],
+                 "review": ["wszystko z ostatnich tygodni", "losowe formaty"]}[day["key"]]
+        main = {"type": "day", "id": day["key"],
+                "title": (ln["name"] if ln else "Powtórka wszystkiego"),
+                "subtitle": day["name"] + " · " + day["desc"],
+                "parts": parts, "minutes": 15,
+                "step": None, "steps": None, "why": ""}
+
+    cards = load_cards(who["username"])
+    due = sum(1 for c in cards.values() if c["fsrs"]["due"] <= time.time())
+    rust = _v2_rust(who["username"], prof)
+    light = _V2_LIGHT[datetime.date.today().toordinal() % len(_V2_LIGHT)]
+    tune = _v2_tuning(prof)
+    return {"day": day, "main": main, "tuning": tune,
+            "review": {"due": due, "minutes": max(1, round(due * 12 / 60))},
+            "rust": rust[0] if rust else None,
+            "light": light,
+            "streak": prof.get("streak", 0),
+            "goal": {"done": prof.get("daily", {}).get(datetime.date.today().isoformat(), {}).get("xp", 0),
+                     "target": prof["settings"].get("daily_goal_xp", 50)}}
+
+
+_V2_LIGHT = [
+    {"id": "fluency", "emoji": "🗣", "name": "Płynność 4/3/2", "minutes": 9, "hash": "#fluency"},
+    {"id": "pairs", "emoji": "🧩", "name": "Gra: pary", "minutes": 3, "hash": "#games"},
+    {"id": "dialog", "emoji": "💬", "name": "Krótka rozmowa", "minutes": 4, "hash": "#dialogs"},
+    {"id": "sentences", "emoji": "✍️", "name": "Trzy zdania", "minutes": 3, "hash": "#sentences"},
+    {"id": "verbs", "emoji": "⚙️", "name": "Czasowniki na czas", "minutes": 3, "hash": "#verbs"},
+    {"id": "reading", "emoji": "📖", "name": "Krótki tekst", "minutes": 5, "hash": "#reading"},
+]
+
+
+def _sent_pron_count():
+    return len(storage.load_data("wymowa/pary.json", {"contrasts": []})["contrasts"])
+
+
+def _v2_next_pron(username):
+    done = set(_v2_pron_state(username)["done"])
+    for c in storage.load_data("wymowa/pary.json", {"contrasts": []})["contrasts"]:
+        if c["id"] not in done:
+            return c
+    return storage.load_data("wymowa/pary.json", {"contrasts": []})["contrasts"][0]
+
+
+@app.get("/api/v2/pron/{cid}")
+async def v2_pron(cid: str, request: Request):
+    who = current_user(request)
+    c = next((x for x in storage.load_data("wymowa/pary.json", {"contrasts": []})["contrasts"]
+              if x["id"] == cid), None)
+    if not c:
+        raise HTTPException(404, "Nie ma takiego kontrastu.")
+    _tts_prewarm([w for p in c["pairs"] for w in (p[0], p[2])], "en")
+    return c
+
+
+@app.post("/api/v2/pron/done")
+async def v2_pron_done(request: Request):
+    who = current_user(request)
+    body = await request.json()
+    st = _v2_pron_state(who["username"])
+    if body.get("id") and body["id"] not in st["done"]:
+        st["done"].append(body["id"])
+        storage.save_user_file(who["username"], "pron.json", st)
+    prof = storage.load_profile(who["username"])
+    sk.register_activity(prof, True, 15)
+    storage.save_profile(who["username"], prof)
+    return {"ok": True, "done": len(st["done"]), "all": _sent_pron_count()}
+
+
+def _v2_interleave(tasks):
+    """Przeplatanie: ten sam format nie może wystąpić dwa razy pod rząd."""
+    rest = tasks[:]
+    random.shuffle(rest)
+    out = []
+    while rest:
+        pick = next((t for t in rest if not out or t["kind"] != out[-1]["kind"]), rest[0])
+        rest.remove(pick)
+        out.append(pick)
+    return out
+
+
+def _v2_mixed_vocab(prof, username, n, known_only=False):
+    """Słownictwo MIESZANE między tematami.
+
+    W wersji 1 sesja słówek bierze jeden temat (20 kolorów naraz). Badania nad
+    interferencją semantyczną mówią, że to najgorszy możliwy układ — słowa z jednego
+    pola mieszają się ze sobą. Tutaj losujemy z wielu tematów naraz.
+    """
+    pool = [it for it in vocab_pool(prof) if it.get("pl") and it.get("theme") not in ("odmiana", "poprawa")]
+    cards = load_cards(username)
+    if known_only:
+        pool = [it for it in pool if it["id"] in cards] or pool
+    by_theme = {}
+    for it in pool:
+        by_theme.setdefault(it["theme"], []).append(it)
+    themes = list(by_theme)
+    random.shuffle(themes)
+    out, i = [], 0
+    while len(out) < n and themes:
+        th = themes[i % len(themes)]
+        if by_theme[th]:
+            out.append(by_theme[th].pop(random.randrange(len(by_theme[th]))))
+        else:
+            themes.remove(th)
+            continue
+        i += 1
+    return out
+
+
+@app.get("/api/v2/session")
+async def v2_session(request: Request):
+    """Sesja dnia zbudowana jak dobry odcinek: łuk zamiast płaskiej listy zadań.
+
+    rozgrzewka (łatwe, znane) → nowe (blokowo, żeby złapać zasadę) →
+    mieszanka (przeplatana, rdzeń nauki) → użycie (zdanie, znaczenie) →
+    płynność (runda na czas, materiał znany) → zamknięcie.
+    """
+    who = current_user(request)
+    prof = storage.load_profile(who["username"])
+    day = _v2_day()
+    tune = _v2_tuning(prof)
+    cards = load_cards(who["username"])
+    seen = _v2_seen(who["username"])
+    sections = []
+
+    def mk(items, force_stage=None):
+        """Zadania z rotacją formatu — etap zależy od liczby powtórek danego słowa."""
+        out = []
+        for it in items:
+            others = [x for x in items if x["id"] != it["id"]] or items
+            st = force_stage if force_stage is not None else _v2_stage(cards, it, seen)
+            if force_stage is None and tune["level"] == 1 and st < 2 and it.get("pl"):
+                st = min(st + 1, len(V2_FORMATS) - 1)     # idzie za łatwo → format o stopień trudniejszy
+            if force_stage is None and tune["level"] == -1 and st > 0:
+                st = max(0, st - 1)                        # było ciężko → łagodniejszy format
+            if V2_FORMATS[st] in ("in_sentence", "listen") and not it.get("example"):
+                st = 2
+            out.append(_v2_task(it, others, st))
+        return out
+
+    # 1. ROZGRZEWKA — 3 rzeczy, które uczeń na pewno umie (poczucie kompetencji na start)
+    warm = mk(_v2_mixed_vocab(prof, who["username"], 3, known_only=True), force_stage=0)
+    sections.append({"name": "Rozgrzewka", "why": "trzy rzeczy, które już umiesz", "tasks": warm})
+
+    # 2. NOWE — blokowo (3–4 zadania z rzędu na jednej zasadzie)
+    ln = _next_path_link(who["username"])
+    new_tasks, theory = [], None
+    if ln and ln["type"] == "podstawy":
+        topic = next((t for t in _basics() if t["id"] == ln.get("topic")), None)
+        if topic:
+            theory = {"topic": topic["id"], "name": topic["name"], "emoji": topic.get("emoji", "📘")}
+            for q in (topic.get("practice") or [])[:4]:
+                bt = _basics_task(q, topic)
+                if bt:
+                    new_tasks.append(bt)
+    if not new_tasks:
+        new_tasks = mk(_v2_mixed_vocab(prof, who["username"], 4), force_stage=0)
+    sections.append({"name": "Nowe", "why": "najpierw blokiem, żeby złapać zasadę",
+                     "theory": theory, "tasks": new_tasks})
+
+    # 3. MIESZANKA — przeplatana, główna część.
+    # Proporcja nowych do znanych zależy od ostatniej skuteczności (celujemy w 80–85 %).
+    n_mix = tune["n_mix"]
+    n_new = max(1, round(n_mix * tune["new_share"]))
+    mix_items = _v2_mixed_vocab(prof, who["username"], n_new) +                 _v2_mixed_vocab(prof, who["username"], n_mix - n_new, known_only=True)
+    mix = mk(mix_items)
+    ex_items = [it for it in _v2_mixed_vocab(prof, who["username"], 14) if it.get("example")]
+    for it in ex_items[:2]:
+        mix.append(_order_task(it["example"], it.get("example_pl", ""), it))
+    if day["key"] in ("listen", "mix", "review"):
+        for it in ex_items[2:4]:
+            mix.append({"kind": "dictation", "text": "🎧 Posłuchaj i zapisz zdanie.",
+                        "tts": it["example"], "target": it["example"],
+                        "pl": it.get("example_pl", ""), "answer": it["example"], "item": it})
+    themes, gtopics, _ = _covered_content(who["username"])
+    gex = [(e, t) for t in gtopics for e in storage.load_data(f"gramatyka/{t}.json", {}).get("items", [])][:40]
+    random.shuffle(gex)
+    for e, t in gex[:3]:
+        mix.append(_grammar_task(e, t))
+    sections.append({"name": "Mieszanka", "why": "przeplatane — za każdym razem musisz zdecydować",
+                     "tasks": _v2_interleave(mix)})
+
+    # 4. UŻYCIE — jedno zadanie „prawdziwe", nastawione na znaczenie
+    use = []
+    stages = _sent_data()["stages"]
+    if stages:
+        stg = stages[min(len(stages) - 1, max(0, len(_sent_state(who['username'])["done"])))]
+        for it in random.sample(stg["items"], min(3, len(stg["items"]))):
+            if day["key"] == "listen":
+                use.append({"kind": "dictation", "text": "🎧 Posłuchaj i zapisz zdanie.",
+                            "tts": it["en"], "target": it["en"], "pl": it["pl"], "answer": it["en"]})
+            else:
+                use.append({"kind": "translate", "text": f"✍️ Napisz po angielsku: „{it['pl']}”",
+                            "item_data": {"pl": it["pl"], "en_ref": it["en"], "level": "A2",
+                                          "keywords": _content_words(it["en"])},
+                            "answer": it["en"], "pl": it["pl"]})
+    sections.append({"name": "Użycie", "why": "całe zdanie — tu chodzi o znaczenie, nie o formę",
+                     "tasks": use})
+
+    # 5. PŁYNNOŚĆ — runda na czas, wyłącznie materiał dobrze znany
+    speed = mk(_v2_mixed_vocab(prof, who["username"], 6, known_only=True), force_stage=0)
+    sections.append({"name": "Błyskawica",
+                     "why": f"znane słowa, {tune['speed']} sekund na odpowiedź — to ćwiczenie płynności",
+                     "speed": tune["speed"], "tasks": speed})
+
+    tasks, plan = [], []
+    for sec in sections:
+        start = len(tasks)
+        tasks.extend(sec["tasks"])
+        plan.append({"name": sec["name"], "why": sec["why"], "from": start, "to": len(tasks),
+                     "speed": sec.get("speed"), "theory": sec.get("theory")})
+    sess = {"link": "v2day", "lid": "v2day", "tasks": tasks, "results": [], "answered": {},
+            "started": time.time(), "kind": "v2"}
+    PATH_SESS[who["username"]] = sess
+    _tts_prewarm([t.get("tts") or t.get("en") or "" for t in tasks], "en")
+    pub = []
+    for i, t in enumerate(tasks):
+        pt = {"idx": i, "kind": t["kind"], "text": t["text"], "nr": t.get("nr"), "fmt": t.get("fmt")}
+        for k in ("options", "tts", "hint", "words", "pl"):
+            if k in t and not (k in ("tts", "pl") and t["kind"] in ("produce", "ggap")):
+                pt[k] = t[k]
+        pub.append(pt)
+    return {"tasks": pub, "plan": plan, "day": day, "minutes": 15,
+            "tuning": tune, "title": (ln["name"] if ln else "Powtórka")}
+
+
+@app.post("/api/v2/complete")
+async def v2_complete(request: Request):
+    """Zamknięcie sesji: co dziś opanowałeś + zapowiedź jutra (haczyk na kolejny dzień)."""
+    who = current_user(request)
+    sess = PATH_SESS.get(who["username"])
+    res = (sess or {}).get("results") or []
+    score = round(sum(res) / len(res), 3) if res else 0.0
+    learned = []
+    for i, t in enumerate((sess or {}).get("tasks", [])):
+        if (sess or {}).get("answered", {}).get(str(i), 0) >= 1 and t.get("item"):
+            learned.append(t["item"]["en"])
+    day = _v2_day(datetime.date.today() + datetime.timedelta(days=1))
+    prof = storage.load_profile(who["username"])
+    # trudność: celujemy w 80–85 % poprawnych (teoria przepływu). Podpowiedź dla ucznia.
+    tune = _v2_tuning(prof)
+    hint = tune["label"] if tune["level"] != 0 else ""
+    return {"score": score, "learned": sorted(set(learned))[:3],
+            "tomorrow": {"name": day["name"], "desc": day["desc"]},
+            "hint": hint, "streak": prof.get("streak", 0)}
+
+
+# ================================================================ ŚCIEŻKI ZDANIOWE
+# Dwie osobne ścieżki oparte na jednym banku zdań (data/zdania/zdania.json):
+#   „build"  — tworzenie zdań: uczeń widzi zdanie po polsku i pisze je po angielsku,
+#   „listen" — słuchanie zdań: uczeń słyszy zdanie i je zapisuje.
+# Etapy podzielone są wg trudności słownictwa oraz osobno: czasowniki frazowe
+# (dwa wyrazy = inne znaczenie) i podstawowe czasy.
+SPATH_MODES = {"build": "✍️ Tworzenie zdań", "listen": "🎧 Słuchanie zdań"}
+SPATH_GROUPS = {"slownictwo": "Słownictwo — poziom trudności",
+                "phrasal": "Dwa wyrazy = inne znaczenie",
+                "czasy": "Czasy podstawowe"}
+SPATH_PASS = 0.7
+
+
+def _sent_data():
+    return storage.load_data("zdania/zdania.json", {"stages": []})
+
+
+def _sent_stage(sid):
+    return next((s for s in _sent_data()["stages"] if s["id"] == sid), None)
+
+
+def _sent_state(username):
+    st = storage.user_file(username, "sentences.json", {"done": {}})
+    st.setdefault("done", {})
+    return st
+
+
+# ---------------------------------------------------------------- „Zdania do poprawy"
+# Osobna talia od „Do utrwalenia": tam pojedyncze słowa, tu CAŁE zdania, które uczeń
+# napisał źle. Wypadają po 2 poprawnych zapisach z rzędu.
+BS_EXIT = 2
+
+
+def _bs_load(username):
+    return storage.user_file(username, "bad_sentences.json", {})
+
+
+def _bs_save(username, d):
+    storage.save_user_file(username, "bad_sentences.json", d)
+
+
+def _bs_key(en):
+    return hashlib.md5(_norm_en(en).encode()).hexdigest()[:10]
+
+
+def _bs_add(username, en, pl, note="", source="build"):
+    d = _bs_load(username)
+    k = _bs_key(en)
+    if k in d:
+        d[k]["net"] = 0                       # znowu błąd → licznik od zera
+    else:
+        d[k] = {"en": en, "pl": pl, "note": note, "net": 0,
+                "added": time.time(), "source": source}
+    _bs_save(username, d)
+    return d[k]
+
+
+def _bs_bump(username, en, ok):
+    d = _bs_load(username)
+    k = _bs_key(en)
+    if k not in d:
+        return None
+    d[k]["net"] = d[k].get("net", 0) + 1 if ok else 0
+    if d[k]["net"] >= BS_EXIT:
+        del d[k]
+        _bs_save(username, d)
+        return "released"
+    _bs_save(username, d)
+    return d[k]["net"]
+
+
+def _bs_items(username):
+    out = []
+    for k, w in _bs_load(username).items():
+        out.append({"id": "bs_" + k, "en": w["en"], "pl": w["pl"], "example": w.get("note", ""),
+                    "theme": "poprawa", "cat": "mixed", "level": "A2", "deck": "sentence",
+                    "hint": "zdanie do poprawy (%d/%d)" % (w.get("net", 0), BS_EXIT)})
+    return out
+
+
+@app.get("/api/sentences/paths")
+async def sentences_paths(request: Request):
+    """Lista etapów obu ścieżek zdaniowych wraz z postępem ucznia."""
+    who = current_user(request)
+    st = _sent_state(who["username"])
+    groups = {}
+    for stg in _sent_data()["stages"]:
+        g = groups.setdefault(stg["group"], {"id": stg["group"],
+                                             "name": SPATH_GROUPS.get(stg["group"], stg["group"]),
+                                             "stages": []})
+        g["stages"].append({k: stg[k] for k in ("id", "name", "emoji", "short", "diff", "level")}
+                           | {"n": len(stg["items"]),
+                              "scores": {m: st["done"].get(m + ":" + stg["id"]) for m in SPATH_MODES}})
+    order = ["slownictwo", "phrasal", "czasy"]
+    return {"modes": SPATH_MODES, "pass": SPATH_PASS,
+            "groups": [groups[g] for g in order if g in groups],
+            "to_fix": len(_bs_load(who["username"]))}
+
+
+@app.get("/api/sentences/session/{mode}/{sid}")
+async def sentences_session(mode: str, sid: str, request: Request, n: str = ""):
+    who = current_user(request)
+    if mode not in SPATH_MODES:
+        raise HTTPException(404, "Nieznany tryb.")
+    stg = _sent_stage(sid)
+    if not stg:
+        raise HTTPException(404, "Brak etapu.")
+    items = stg["items"][:]
+    random.shuffle(items)
+    if not n:
+        return {"choose": True, "pool": len(items), "suggested": min(10, len(items)),
+                "name": stg["name"], "mode": mode, "short": stg["short"]}
+    limit = len(items) if n == "all" else max(1, min(len(items), int(n)))
+    items = items[:limit]
+    tasks = []
+    for it in items:
+        tasks.append({"kind": mode, "en": it["en"], "pl": it["pl"], "note": it.get("note", ""),
+                      "sid": sid, "iid": it["id"]})
+    sess = {"link": mode + ":" + sid, "mode": mode, "sid": sid, "tasks": tasks,
+            "results": [], "answered": {}, "started": time.time(), "kind": "sentences"}
+    PATH_SESS[who["username"]] = sess
+    _tts_prewarm([t["en"] for t in tasks], "en")
+    pub = []
+    for i, t in enumerate(tasks):
+        pt = {"idx": i, "kind": t["kind"], "note": t["note"]}
+        if mode == "build":
+            pt["pl"] = t["pl"]                 # w tworzeniu pokazujemy polskie zdanie
+        pub.append(pt)                          # w słuchaniu nie zdradzamy niczego
+    return {"tasks": pub, "name": stg["name"], "mode": mode, "sid": sid,
+            "emoji": stg["emoji"], "short": stg["short"]}
+
+
+@app.get("/api/sentences/audio/{idx}")
+async def sentences_audio(idx: int, request: Request):
+    """Tekst do przeczytania przez lektora w trybie słuchania (bez pokazywania go)."""
+    who = current_user(request)
+    sess = PATH_SESS.get(who["username"])
+    if not sess or sess.get("kind") != "sentences" or idx >= len(sess["tasks"]):
+        raise HTTPException(404, "Brak zadania.")
+    return {"tts": sess["tasks"][idx]["en"]}
+
+
+@app.post("/api/sentences/answer")
+async def sentences_answer(request: Request):
+    """Ocena zdania. Zwraca poprawne zdanie, wynik i informację, czy trafiło do poprawy."""
+    who = current_user(request)
+    body = await request.json()
+    sess = PATH_SESS.get(who["username"])
+    if not sess or sess.get("kind") != "sentences":
+        raise HTTPException(400, "Sesja wygasła — zacznij etap od nowa.")
+    idx = int(body["idx"])
+    if idx >= len(sess["tasks"]):
+        raise HTTPException(400, "Złe zadanie.")
+    t = sess["tasks"][idx]
+    unknown = bool(body.get("unknown"))
+    val = "" if unknown else str(body.get("answer", ""))
+    res = grader.grade_dictation(val, t["en"])
+    score = 0.0 if unknown else res["score"]
+    correct = score >= 0.85
+    prof = storage.load_profile(who["username"])
+    # Tworzenie zdań: błędne zdanie trafia do talii „📝 Zdania do poprawy" (całe zdanie).
+    # Słuchanie: NIC nie trafia tam automatycznie — uczeń sam decyduje (przyciskiem
+    # „dodaj to zdanie" albo dotykając nieznanych słów).
+    added = None
+    if not correct and sess["mode"] == "build":
+        _bs_add(who["username"], t["en"], t["pl"], t.get("note", ""), source=sess["mode"])
+        added = t["en"]
+    elif correct:
+        _bs_bump(who["username"], t["en"], True)
+    answered = sess.setdefault("answered", {})
+    if str(idx) not in answered:
+        answered[str(idx)] = round(score, 3)
+        sess["results"] = list(answered.values())
+    PATH_SESS[who["username"]] = sess
+    xp = round(8 * score) if correct else (0 if unknown else 1)
+    sk.register_activity(prof, correct, xp)
+    key = "writing" if sess["mode"] == "build" else "listening"
+    prof["skills"][key] = sk.update_skill(prof["skills"][key], "A2", correct, body.get("rt", 9999))
+    storage.save_profile(who["username"], prof)
+    storage.log_event(who["username"], {"type": "sentence_answer", "mode": sess["mode"],
+                                        "stage": sess["sid"], "correct": correct, "score": score})
+    return {"correct": correct, "score": round(score, 2), "answer": t["en"], "pl": t["pl"],
+            "note": t.get("note", ""), "xp": xp, "to_fix": added,
+            "unknown": unknown}
+
+
+@app.post("/api/sentences/tofix/add")
+async def sentences_tofix_add(request: Request):
+    """Ręczne dodanie zdania do talii — używane w ścieżce słuchania."""
+    who = current_user(request)
+    body = await request.json()
+    en = str(body.get("en", "")).strip()
+    if not en:
+        raise HTTPException(400, "Brak zdania.")
+    _bs_add(who["username"], en, str(body.get("pl", "")), str(body.get("note", "")), source="manual")
+    return {"ok": True, "count": len(_bs_load(who["username"]))}
+
+
+@app.post("/api/sentences/complete")
+async def sentences_complete(request: Request):
+    who = current_user(request)
+    sess = PATH_SESS.get(who["username"])
+    if not sess or sess.get("kind") != "sentences":
+        raise HTTPException(400, "Brak sesji.")
+    res = sess.get("results") or []
+    score = round(sum(res) / len(res), 3) if res else 0.0
+    st = _sent_state(who["username"])
+    key = sess["mode"] + ":" + sess["sid"]
+    prev = st["done"].get(key) or {}
+    if score >= (prev.get("score") or 0):
+        st["done"][key] = {"score": score, "date": datetime.date.today().isoformat()}
+        storage.save_user_file(who["username"], "sentences.json", st)
+    prof = storage.load_profile(who["username"])
+    if score >= SPATH_PASS:
+        prof["xp"] = prof.get("xp", 0) + 25
+        storage.save_profile(who["username"], prof)
+    return {"score": score, "passed": score >= SPATH_PASS, "need": SPATH_PASS,
+            "to_fix": len(_bs_load(who["username"]))}
+
+
+@app.get("/api/sentences/tofix")
+async def sentences_tofix(request: Request):
+    who = current_user(request)
+    d = _bs_load(who["username"])
+    return {"items": sorted(d.values(), key=lambda x: -x.get("added", 0)), "exit_net": BS_EXIT}
+
+
+@app.post("/api/sentences/tofix/remove")
+async def sentences_tofix_remove(request: Request):
+    who = current_user(request)
+    body = await request.json()
+    d = _bs_load(who["username"])
+    d.pop(_bs_key(body.get("en", "")), None)
+    _bs_save(who["username"], d)
+    return {"ok": True}
 
 
 # ---------------------------------------------------------------- ścieżka nauki
@@ -1422,8 +2737,12 @@ async def path_session(lid: str, request: Request, n: str = ""):
         # pisanie) i przekład zdania (czytanie + pisanie). Bierzemy je ze zdań przykładowych.
         with_ex = [it for it in items if it.get("example")]
         random.shuffle(with_ex)
-        for k, it in enumerate(with_ex[: max(4, len(items) // 3)]):
-            if k % 2 == 0:
+        for k, it in enumerate(with_ex[: max(6, len(items) // 2)]):
+            if k % 3 == 0:
+                # 🧩 tworzenie zdania z klocków — najłatwiejszy sposób na wejście w budowanie
+                # zdań: uczeń nie musi nic pisać, uczy się szyku i tego, gdzie stoi słówko.
+                tasks.append(_order_task(it["example"], it.get("example_pl", ""), it))
+            elif k % 3 == 1:
                 tasks.append({"kind": "dictation", "text": "🎧 Posłuchaj i zapisz zdanie.",
                               "tts": it["example"], "target": it["example"], "pl": it.get("example_pl", ""),
                               "answer": it["example"], "item": it, "nr": it.get("nr")})
@@ -1506,6 +2825,11 @@ async def path_session(lid: str, request: Request, n: str = ""):
         for it in dict_items[:6]:
             tasks.append({"kind": "dictation", "text": "Posłuchaj i zapisz zdanie.",
                           "tts": it["en"], "target": it["en"], "pl": it.get("pl", ""), "answer": it["en"]})
+        # + budowanie zdań ze słówek z zaliczonych tematów
+        ex_pool = [it for it in pool if it.get("example") and it.get("theme") in themes]
+        random.shuffle(ex_pool)
+        for it in ex_pool[:6]:
+            tasks.append(_order_task(it["example"], it.get("example_pl", ""), it))
         random.shuffle(tasks)
     pool_size = len(tasks)
     suggested = ln.get("n") or min(10, pool_size)
@@ -1524,8 +2848,8 @@ async def path_session(lid: str, request: Request, n: str = ""):
     pub = []
     for i, t in enumerate(tasks):
         pt = {"idx": i, "kind": t["kind"], "text": t["text"], "nr": t.get("nr")}
-        for k in ("options", "tts", "hint", "words"):
-            if k in t and not (k == "tts" and t["kind"] == "produce"):
+        for k in ("options", "tts", "hint", "words", "pl"):
+            if k in t and not (k in ("tts", "pl") and t["kind"] == "produce"):
                 pt[k] = t[k]
         pub.append(pt)
     # lektor: nagrania dla tej sesji przygotowujemy w tle już teraz,
@@ -1535,6 +2859,19 @@ async def path_session(lid: str, request: Request, n: str = ""):
     return {"link": {k: ln.get(k) for k in ("id", "name", "type")} if ln else {"id": lid},
             "tasks": pub, "pool": pool_size, **extra}
 
+
+
+def _order_task(en, pl, item=None):
+    """🧩 Ułóż zdanie z klocków. Serwer podaje wymieszane słowa, uczeń układa kolejność."""
+    words = str(en).split()
+    mixed = words[:]
+    for _ in range(6):
+        random.shuffle(mixed)
+        if mixed != words or len(words) < 3:
+            break
+    return {"kind": "order", "text": "🧩 Ułóż zdanie po angielsku:", "words": mixed,
+            "answer": en, "pl": pl, "item": item,
+            "nr": (item or {}).get("nr")}
 
 
 def _basics_task(q, topic):
@@ -1604,6 +2941,11 @@ async def path_answer(request: Request):
         score = 1.0 if correct else 0.0
         if t["kind"] == "produce":
             en = t["answer"]
+    elif t["kind"] == "order":
+        # porównujemy słowo po słowie; interpunkcja i wielkość liter nie decydują
+        correct = _norm_en(val) == _norm_en(t["answer"])
+        score = 1.0 if correct else 0.0
+        en = t["answer"]
     elif t["kind"] == "translate":
         res = grader.grade_translation(str(val), t["item_data"])
         score = res["score"]; correct = score >= grader.PASS
@@ -1631,6 +2973,14 @@ async def path_answer(request: Request):
         tm = prof["skills"].setdefault("themes", {})
         th = it.get("theme", "inne")
         tm[th] = round(min(100, max(0, tm.get(th, 55) + (3 if correct else -5))), 1)
+    hard_fmt = t.get("fmt") in ("produce", "in_sentence", "listen") or t["kind"] in ("dictation", "translate", "order")
+    if sess.get("kind") == "v2":
+        _v2_note_answer(prof, correct)          # do strojenia trudności następnej sesji
+        _metrics_note(prof, "v2", correct, body.get("rt", 0), hard_fmt)
+        if t.get("item"):
+            _v2_seen_bump(who["username"], t["item"]["id"], correct)   # rotacja formatu
+    else:
+        _metrics_note(prof, "v1", correct, body.get("rt", 0), hard_fmt)
     storage.save_profile(who["username"], prof)
     hard_added = None
     if not correct and t["kind"] in ("choice", "produce") and t.get("item"):

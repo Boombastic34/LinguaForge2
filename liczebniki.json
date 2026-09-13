@@ -1,0 +1,410 @@
+{
+ "name": "Liczebniki",
+ "domain": "general",
+ "cat": "nouns",
+ "theme": "liczebniki",
+ "level": "A1",
+ "items": [
+  {
+   "nr": 1,
+   "id": "liczebniki_1",
+   "en": "zero",
+   "pl": "zero",
+   "level": "A1",
+   "rank": 620,
+   "example": "The temperature is zero.",
+   "example_pl": "Temperatura wynosi zero."
+  },
+  {
+   "nr": 2,
+   "id": "liczebniki_2",
+   "en": "one",
+   "pl": "jeden",
+   "level": "A1",
+   "rank": 621,
+   "example": "I have one brother.",
+   "example_pl": "Mam jednego brata."
+  },
+  {
+   "nr": 3,
+   "id": "liczebniki_3",
+   "en": "two",
+   "pl": "dwa",
+   "level": "A1",
+   "rank": 622,
+   "example": "We have two cats.",
+   "example_pl": "Mamy dwa koty."
+  },
+  {
+   "nr": 4,
+   "id": "liczebniki_4",
+   "en": "three",
+   "pl": "trzy",
+   "level": "A1",
+   "rank": 623,
+   "example": "The lesson is three hours long.",
+   "example_pl": "Lekcja trwa trzy godziny."
+  },
+  {
+   "nr": 5,
+   "id": "liczebniki_5",
+   "en": "four",
+   "pl": "cztery",
+   "level": "A1",
+   "rank": 624,
+   "example": "There are four chairs.",
+   "example_pl": "Są cztery krzesła."
+  },
+  {
+   "nr": 6,
+   "id": "liczebniki_6",
+   "en": "five",
+   "pl": "pięć",
+   "level": "A1",
+   "rank": 625,
+   "example": "I work five days a week.",
+   "example_pl": "Pracuję pięć dni w tygodniu."
+  },
+  {
+   "nr": 7,
+   "id": "liczebniki_7",
+   "en": "six",
+   "pl": "sześć",
+   "level": "A1",
+   "rank": 626,
+   "example": "The shift starts at six.",
+   "example_pl": "Zmiana zaczyna się o szóstej."
+  },
+  {
+   "nr": 8,
+   "id": "liczebniki_8",
+   "en": "seven",
+   "pl": "siedem",
+   "level": "A1",
+   "rank": 627,
+   "example": "A week has seven days.",
+   "example_pl": "Tydzień ma siedem dni."
+  },
+  {
+   "nr": 9,
+   "id": "liczebniki_9",
+   "en": "eight",
+   "pl": "osiem",
+   "level": "A1",
+   "rank": 628,
+   "example": "I sleep eight hours.",
+   "example_pl": "Śpię osiem godzin."
+  },
+  {
+   "nr": 10,
+   "id": "liczebniki_10",
+   "en": "nine",
+   "pl": "dziewięć",
+   "level": "A1",
+   "rank": 629,
+   "example": "The shop opens at nine.",
+   "example_pl": "Sklep otwiera się o dziewiątej."
+  },
+  {
+   "nr": 11,
+   "id": "liczebniki_11",
+   "en": "ten",
+   "pl": "dziesięć",
+   "level": "A1",
+   "rank": 630,
+   "example": "Ten people work here.",
+   "example_pl": "Pracuje tu dziesięć osób."
+  },
+  {
+   "nr": 12,
+   "id": "liczebniki_12",
+   "en": "eleven",
+   "pl": "jedenaście",
+   "level": "A1",
+   "rank": 631,
+   "example": "My son is eleven.",
+   "example_pl": "Mój syn ma jedenaście lat."
+  },
+  {
+   "nr": 13,
+   "id": "liczebniki_13",
+   "en": "twelve",
+   "pl": "dwanaście",
+   "level": "A1",
+   "rank": 632,
+   "example": "A year has twelve months.",
+   "example_pl": "Rok ma dwanaście miesięcy."
+  },
+  {
+   "nr": 14,
+   "id": "liczebniki_14",
+   "en": "thirteen",
+   "pl": "trzynaście",
+   "level": "A1",
+   "rank": 633,
+   "example": "Room thirteen is free.",
+   "example_pl": "Pokój trzynaście jest wolny."
+  },
+  {
+   "nr": 15,
+   "id": "liczebniki_15",
+   "en": "fourteen",
+   "pl": "czternaście",
+   "level": "A1",
+   "rank": 634,
+   "example": "The bus is fourteen minutes late.",
+   "example_pl": "Autobus jest spóźniony czternaście minut."
+  },
+  {
+   "nr": 16,
+   "id": "liczebniki_16",
+   "en": "fifteen",
+   "pl": "piętnaście",
+   "level": "A1",
+   "rank": 635,
+   "example": "The break is fifteen minutes.",
+   "example_pl": "Przerwa trwa piętnaście minut."
+  },
+  {
+   "nr": 17,
+   "id": "liczebniki_17",
+   "en": "sixteen",
+   "pl": "szesnaście",
+   "level": "A1",
+   "rank": 636,
+   "example": "My daughter is sixteen.",
+   "example_pl": "Moja córka ma szesnaście lat."
+  },
+  {
+   "nr": 18,
+   "id": "liczebniki_18",
+   "en": "seventeen",
+   "pl": "siedemnaście",
+   "level": "A1",
+   "rank": 637,
+   "example": "Take bus number seventeen.",
+   "example_pl": "Weź autobus numer siedemnaście."
+  },
+  {
+   "nr": 19,
+   "id": "liczebniki_19",
+   "en": "eighteen",
+   "pl": "osiemnaście",
+   "level": "A1",
+   "rank": 638,
+   "example": "You must be eighteen.",
+   "example_pl": "Musisz mieć osiemnaście lat."
+  },
+  {
+   "nr": 20,
+   "id": "liczebniki_20",
+   "en": "nineteen",
+   "pl": "dziewiętnaście",
+   "level": "A1",
+   "rank": 639,
+   "example": "It costs nineteen pounds.",
+   "example_pl": "To kosztuje dziewiętnaście funtów."
+  },
+  {
+   "nr": 21,
+   "id": "liczebniki_21",
+   "en": "twenty",
+   "pl": "dwadzieścia",
+   "level": "A1",
+   "rank": 640,
+   "example": "I am twenty years old.",
+   "example_pl": "Mam dwadzieścia lat."
+  },
+  {
+   "nr": 22,
+   "id": "liczebniki_22",
+   "en": "thirty",
+   "pl": "trzydzieści",
+   "level": "A1",
+   "rank": 641,
+   "example": "Thirty people are waiting.",
+   "example_pl": "Trzydzieści osób czeka."
+  },
+  {
+   "nr": 23,
+   "id": "liczebniki_23",
+   "en": "forty",
+   "pl": "czterdzieści",
+   "level": "A1",
+   "rank": 642,
+   "example": "My mother is forty.",
+   "example_pl": "Moja mama ma czterdzieści lat."
+  },
+  {
+   "nr": 24,
+   "id": "liczebniki_24",
+   "en": "fifty",
+   "pl": "pięćdziesiąt",
+   "level": "A1",
+   "rank": 643,
+   "example": "The box weighs fifty kilos.",
+   "example_pl": "Pudło waży pięćdziesiąt kilo."
+  },
+  {
+   "nr": 25,
+   "id": "liczebniki_25",
+   "en": "sixty",
+   "pl": "sześćdziesiąt",
+   "level": "A1",
+   "rank": 644,
+   "example": "An hour has sixty minutes.",
+   "example_pl": "Godzina ma sześćdziesiąt minut."
+  },
+  {
+   "nr": 26,
+   "id": "liczebniki_26",
+   "en": "seventy",
+   "pl": "siedemdziesiąt",
+   "level": "A1",
+   "rank": 645,
+   "example": "My grandfather is seventy.",
+   "example_pl": "Mój dziadek ma siedemdziesiąt lat."
+  },
+  {
+   "nr": 27,
+   "id": "liczebniki_27",
+   "en": "eighty",
+   "pl": "osiemdziesiąt",
+   "level": "A1",
+   "rank": 646,
+   "example": "The ticket is eighty pounds.",
+   "example_pl": "Bilet kosztuje osiemdziesiąt funtów."
+  },
+  {
+   "nr": 28,
+   "id": "liczebniki_28",
+   "en": "ninety",
+   "pl": "dziewięćdziesiąt",
+   "level": "A1",
+   "rank": 647,
+   "example": "Ninety percent is very good.",
+   "example_pl": "Dziewięćdziesiąt procent to bardzo dobrze."
+  },
+  {
+   "nr": 29,
+   "id": "liczebniki_29",
+   "en": "hundred",
+   "pl": "sto",
+   "level": "A1",
+   "rank": 648,
+   "example": "There are a hundred boxes.",
+   "example_pl": "Jest sto pudeł."
+  },
+  {
+   "nr": 30,
+   "id": "liczebniki_30",
+   "en": "thousand",
+   "pl": "tysiąc",
+   "level": "A1",
+   "rank": 649,
+   "example": "The car costs five thousand pounds.",
+   "example_pl": "Samochód kosztuje pięć tysięcy funtów."
+  },
+  {
+   "nr": 31,
+   "id": "liczebniki_31",
+   "en": "million",
+   "pl": "milion",
+   "level": "A1",
+   "rank": 650,
+   "example": "London has nine million people.",
+   "example_pl": "Londyn ma dziewięć milionów ludzi."
+  },
+  {
+   "nr": 32,
+   "id": "liczebniki_32",
+   "en": "first",
+   "pl": "pierwszy",
+   "level": "A1",
+   "rank": 651,
+   "example": "This is my first day.",
+   "example_pl": "To mój pierwszy dzień."
+  },
+  {
+   "nr": 33,
+   "id": "liczebniki_33",
+   "en": "second",
+   "pl": "drugi",
+   "level": "A1",
+   "rank": 652,
+   "hint": "liczebnik porządkowy",
+   "example": "Just a second!",
+   "example_pl": "Sekundkę!"
+  },
+  {
+   "nr": 34,
+   "id": "liczebniki_34",
+   "en": "third",
+   "pl": "trzeci",
+   "level": "A1",
+   "rank": 653,
+   "example": "I live on the third floor.",
+   "example_pl": "Mieszkam na trzecim piętrze."
+  },
+  {
+   "nr": 35,
+   "id": "liczebniki_35",
+   "en": "fourth",
+   "pl": "czwarty",
+   "level": "A1",
+   "rank": 654,
+   "example": "It is the fourth of May.",
+   "example_pl": "Jest czwarty maja."
+  },
+  {
+   "nr": 36,
+   "id": "liczebniki_36",
+   "en": "fifth",
+   "pl": "piąty",
+   "level": "A1",
+   "rank": 655,
+   "example": "This is my fifth coffee today.",
+   "example_pl": "To moja piąta kawa dzisiaj."
+  },
+  {
+   "nr": 37,
+   "id": "liczebniki_37",
+   "en": "tenth",
+   "pl": "dziesiąty",
+   "level": "A1",
+   "rank": 656,
+   "example": "It is my tenth year here.",
+   "example_pl": "To mój dziesiąty rok tutaj."
+  },
+  {
+   "nr": 38,
+   "id": "liczebniki_38",
+   "en": "half",
+   "pl": "połowa / pół",
+   "level": "A1",
+   "rank": 657,
+   "example": "Half of the team is ill.",
+   "example_pl": "Połowa zespołu jest chora."
+  },
+  {
+   "nr": 39,
+   "id": "liczebniki_39",
+   "en": "quarter",
+   "pl": "ćwierć / kwadrans",
+   "level": "A1",
+   "rank": 658,
+   "example": "It is a quarter past two.",
+   "example_pl": "Jest kwadrans po drugiej."
+  },
+  {
+   "nr": 40,
+   "id": "liczebniki_40",
+   "en": "double",
+   "pl": "podwójny",
+   "level": "A1",
+   "rank": 659,
+   "example": "I want a double room.",
+   "example_pl": "Chcę pokój dwuosobowy."
+  }
+ ]
+}

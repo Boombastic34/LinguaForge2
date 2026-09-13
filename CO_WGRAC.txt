@@ -1,12 +1,18 @@
-LinguaForge v3.2.0 - POJEDYNCZE SLOWKA DO UTRWALENIA, ETAPY RAZEM, DO/DOES i A/AN
+LinguaForge v3.10.0 - WERSJA 2: PLYNNOSC (4/3/2 + shadowing)
 
 Paczka zawiera wszystkie zmiany od v2.9.0 - zastap pliki w repozytorium:
   main.py, CHANGELOG.md, CO_WGRAC.txt                 -> korzen
+  data/plynnosc/plynnosc.json                         -> data/plynnosc  (NOWY KATALOG)
+  data/wymowa/pary.json, data/zdania/zdania.json      -> data/...
   data/sciezka.json, data/podstawy/kursy.json         -> data/...
-  data/slownictwo/rodzina_ludzie.json, kolory.json    -> data/slownictwo  (dopisane zdania przykladowe)
-  tools/*.py                                          -> tools (generatory tresci)
+  data/slownictwo/*.json (10 plikow ze zdaniami)      -> data/slownictwo
+  tools/*.py                                          -> tools
   static/index.html, static/css/style.css
-  static/js/*.js (15 plikow)
+  static/js/*.js (17 plikow, w tym v2.js)
 
-MOZNA SKASOWAC: static/js/knowledge.js, lessons.js, training.js
-Po wdrozeniu: Ctrl+F5. W rogu ma byc v3.2.0.
+WERSJA 1 (klasyczna) jest domyslna i NIC sie w niej nie zmienia.
+Wersja 2: Pulpit -> Ustawienia -> "Wypróbuj wersję 2".
+Plynnosc: ekran "Dzis" -> kafelek "Plynnosc 4/3/2" albo adres #fluency.
+Licznik slow dziala na Chrome/Edge/Android (mikrofon); gdzie indziej samoocena.
+
+Po wdrozeniu: Ctrl+F5. W rogu ma byc v3.10.0.

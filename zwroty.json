@@ -1,0 +1,410 @@
+{
+ "name": "Zwroty i wyrażenia codzienne",
+ "etykieta": "Zwroty i wyrażenia codzienne",
+ "domain": "general",
+ "cat": "nouns",
+ "theme": "zwroty",
+ "level": "A1",
+ "items": [
+  {
+   "nr": 1,
+   "id": "zwroty_1",
+   "en": "Excuse me",
+   "pl": "przepraszam / przepraszam pana / przepraszam panią",
+   "level": "A1",
+   "rank": 800,
+   "example": "Excuse me, where is the station?",
+   "example_pl": "Przepraszam, gdzie jest dworzec?"
+  },
+  {
+   "nr": 2,
+   "id": "zwroty_2",
+   "en": "I'm sorry",
+   "pl": "przepraszam / przykro mi",
+   "level": "A1",
+   "rank": 801,
+   "example": "I'm sorry, it is my fault.",
+   "example_pl": "Przepraszam, to moja wina."
+  },
+  {
+   "nr": 3,
+   "id": "zwroty_3",
+   "en": "Thank you",
+   "pl": "Dziękuję",
+   "level": "A1",
+   "rank": 802,
+   "example": "Thank you for your help.",
+   "example_pl": "Dziękuję za pomoc."
+  },
+  {
+   "nr": 4,
+   "id": "zwroty_4",
+   "en": "You're welcome",
+   "pl": "proszę bardzo / nie ma za co",
+   "level": "A1",
+   "rank": 803,
+   "example": "Thanks! — You're welcome.",
+   "example_pl": "Dzięki! — Nie ma za co."
+  },
+  {
+   "nr": 5,
+   "id": "zwroty_5",
+   "en": "Please",
+   "pl": "Proszę (prośba)",
+   "level": "A1",
+   "rank": 804,
+   "example": "Two coffees, please.",
+   "example_pl": "Dwie kawy, proszę."
+  },
+  {
+   "nr": 6,
+   "id": "zwroty_6",
+   "en": "Here you are",
+   "pl": "Proszę (podając)",
+   "level": "A1",
+   "rank": 805,
+   "example": "Here you are, that's your change.",
+   "example_pl": "Proszę, to twoja reszta."
+  },
+  {
+   "nr": 7,
+   "id": "zwroty_7",
+   "en": "Nice to meet you",
+   "pl": "miło mi cię poznać / miło cię poznać / miło mi",
+   "level": "A1",
+   "rank": 806,
+   "example": "Nice to meet you, I'm Tom.",
+   "example_pl": "Miło mi, jestem Tom."
+  },
+  {
+   "nr": 8,
+   "id": "zwroty_8",
+   "en": "See you later",
+   "pl": "do zobaczenia / na razie / do zobaczenia później",
+   "level": "A1",
+   "rank": 807,
+   "example": "See you later!",
+   "example_pl": "Do zobaczenia później!"
+  },
+  {
+   "nr": 9,
+   "id": "zwroty_9",
+   "en": "Take care",
+   "pl": "trzymaj się / uważaj na siebie",
+   "level": "A1",
+   "rank": 808,
+   "example": "Take care, drive safely.",
+   "example_pl": "Trzymaj się, jedź ostrożnie."
+  },
+  {
+   "nr": 10,
+   "id": "zwroty_10",
+   "en": "Have a nice day",
+   "pl": "miłego dnia",
+   "level": "A1",
+   "rank": 809,
+   "example": "Have a nice day!",
+   "example_pl": "Miłego dnia!"
+  },
+  {
+   "nr": 11,
+   "id": "zwroty_11",
+   "en": "Good luck",
+   "pl": "powodzenia / połamania nóg",
+   "level": "A1",
+   "rank": 810,
+   "example": "Good luck with your test!",
+   "example_pl": "Powodzenia na teście!"
+  },
+  {
+   "nr": 12,
+   "id": "zwroty_12",
+   "en": "Never mind",
+   "pl": "nieważne / nie szkodzi",
+   "level": "A1",
+   "rank": 811,
+   "example": "Never mind, it's not important.",
+   "example_pl": "Nieważne, to nie jest ważne."
+  },
+  {
+   "nr": 13,
+   "id": "zwroty_13",
+   "en": "No problem",
+   "pl": "żaden problem / nie ma sprawy",
+   "level": "A1",
+   "rank": 812,
+   "example": "Can you help me? — No problem.",
+   "example_pl": "Możesz mi pomóc? — Nie ma sprawy."
+  },
+  {
+   "nr": 14,
+   "id": "zwroty_14",
+   "en": "Of course",
+   "pl": "oczywiście / jasne",
+   "level": "A1",
+   "rank": 813,
+   "example": "Of course I can help you.",
+   "example_pl": "Oczywiście, że mogę ci pomóc."
+  },
+  {
+   "nr": 15,
+   "id": "zwroty_15",
+   "en": "Sure",
+   "pl": "Jasne",
+   "level": "A1",
+   "rank": 814,
+   "example": "Sure, take my pen.",
+   "example_pl": "Jasne, weź mój długopis."
+  },
+  {
+   "nr": 16,
+   "id": "zwroty_16",
+   "en": "I agree",
+   "pl": "zgadzam się",
+   "level": "A1",
+   "rank": 815,
+   "example": "I agree with you.",
+   "example_pl": "Zgadzam się z tobą."
+  },
+  {
+   "nr": 17,
+   "id": "zwroty_17",
+   "en": "I don't agree",
+   "pl": "nie zgadzam się",
+   "level": "A1",
+   "rank": 816,
+   "example": "Sorry, I don't agree.",
+   "example_pl": "Przykro mi, nie zgadzam się."
+  },
+  {
+   "nr": 18,
+   "id": "zwroty_18",
+   "en": "I think so",
+   "pl": "chyba tak / myślę, że tak",
+   "level": "A1",
+   "rank": 817,
+   "example": "Is he at home? — I think so.",
+   "example_pl": "Czy on jest w domu? — Chyba tak."
+  },
+  {
+   "nr": 19,
+   "id": "zwroty_19",
+   "en": "I don't know",
+   "pl": "nie wiem",
+   "level": "A1",
+   "rank": 818,
+   "example": "I don't know his name.",
+   "example_pl": "Nie znam jego imienia."
+  },
+  {
+   "nr": 20,
+   "id": "zwroty_20",
+   "en": "I'm not sure",
+   "pl": "nie jestem pewien / nie jestem pewna",
+   "level": "A1",
+   "rank": 819,
+   "example": "I'm not sure about this.",
+   "example_pl": "Nie jestem tego pewien."
+  },
+  {
+   "nr": 21,
+   "id": "zwroty_21",
+   "en": "Could you repeat that?",
+   "pl": "Możesz powtórzyć?",
+   "level": "A1",
+   "rank": 820,
+   "example": "Sorry, could you repeat that?",
+   "example_pl": "Przepraszam, możesz powtórzyć?"
+  },
+  {
+   "nr": 22,
+   "id": "zwroty_22",
+   "en": "Could you speak slower?",
+   "pl": "Możesz mówić wolniej?",
+   "level": "A1",
+   "rank": 821,
+   "example": "Could you speak slower, please?",
+   "example_pl": "Możesz mówić wolniej, proszę?"
+  },
+  {
+   "nr": 23,
+   "id": "zwroty_23",
+   "en": "What does it mean?",
+   "pl": "Co to znaczy?",
+   "level": "A1",
+   "rank": 822,
+   "example": "What does this word mean?",
+   "example_pl": "Co znaczy to słowo?"
+  },
+  {
+   "nr": 24,
+   "id": "zwroty_24",
+   "en": "How do you say... in English?",
+   "pl": "Jak powiedzieć... po angielsku?",
+   "level": "A1",
+   "rank": 823,
+   "example": "How do you say 'magazyn' in English?",
+   "example_pl": "Jak powiedzieć „magazyn” po angielsku?"
+  },
+  {
+   "nr": 25,
+   "id": "zwroty_25",
+   "en": "I don't understand",
+   "pl": "nie rozumiem",
+   "level": "A1",
+   "rank": 824,
+   "example": "Sorry, I don't understand.",
+   "example_pl": "Przepraszam, nie rozumiem."
+  },
+  {
+   "nr": 26,
+   "id": "zwroty_26",
+   "en": "Can you help me?",
+   "pl": "Możesz mi pomóc?",
+   "level": "A1",
+   "rank": 825,
+   "example": "Can you help me, please?",
+   "example_pl": "Możesz mi pomóc, proszę?"
+  },
+  {
+   "nr": 27,
+   "id": "zwroty_27",
+   "en": "Just a moment",
+   "pl": "chwileczkę / chwilę / momencik",
+   "level": "A1",
+   "rank": 826,
+   "example": "Just a moment, please.",
+   "example_pl": "Chwileczkę, proszę."
+  },
+  {
+   "nr": 28,
+   "id": "zwroty_28",
+   "en": "Let me check",
+   "pl": "niech sprawdzę / zaraz sprawdzę",
+   "level": "A1",
+   "rank": 827,
+   "example": "Let me check the schedule.",
+   "example_pl": "Niech sprawdzę harmonogram."
+  },
+  {
+   "nr": 29,
+   "id": "zwroty_29",
+   "en": "It depends",
+   "pl": "to zależy",
+   "level": "A1",
+   "rank": 828,
+   "example": "It depends on the weather.",
+   "example_pl": "To zależy od pogody."
+  },
+  {
+   "nr": 30,
+   "id": "zwroty_30",
+   "en": "That's right",
+   "pl": "zgadza się / właśnie tak / dokładnie",
+   "level": "A1",
+   "rank": 829,
+   "example": "That's right, well done.",
+   "example_pl": "Zgadza się, dobra robota."
+  },
+  {
+   "nr": 31,
+   "id": "zwroty_31",
+   "en": "I'm afraid not",
+   "pl": "niestety nie / obawiam się, że nie",
+   "level": "A1",
+   "rank": 830,
+   "example": "Is the shop open? — I'm afraid not.",
+   "example_pl": "Czy sklep jest otwarty? — Niestety nie."
+  },
+  {
+   "nr": 32,
+   "id": "zwroty_32",
+   "en": "Never mind that",
+   "pl": "Nieważne",
+   "level": "A1",
+   "rank": 831,
+   "example": "Never mind that, let's start.",
+   "example_pl": "Nieważne, zaczynajmy."
+  },
+  {
+   "nr": 33,
+   "id": "zwroty_33",
+   "en": "What's up?",
+   "pl": "co słychać? / co tam? / jak leci?",
+   "level": "A1",
+   "rank": 832,
+   "example": "Hi Tom, what's up?",
+   "example_pl": "Cześć Tom, co słychać?"
+  },
+  {
+   "nr": 34,
+   "id": "zwroty_34",
+   "en": "How are you?",
+   "pl": "jak się masz? / co słychać? / jak leci?",
+   "level": "A1",
+   "rank": 833,
+   "example": "Hello! How are you?",
+   "example_pl": "Cześć! Jak się masz?"
+  },
+  {
+   "nr": 35,
+   "id": "zwroty_35",
+   "en": "I'm fine, thanks",
+   "pl": "w porządku, dzięki / dobrze, dziękuję",
+   "level": "A1",
+   "rank": 834,
+   "example": "How are you? — I'm fine, thanks.",
+   "example_pl": "Jak się masz? — W porządku, dzięki."
+  },
+  {
+   "nr": 36,
+   "id": "zwroty_36",
+   "en": "Long time no see",
+   "pl": "dawno się nie widzieliśmy / kopę lat",
+   "level": "A1",
+   "rank": 835,
+   "example": "Hi! Long time no see!",
+   "example_pl": "Cześć! Kopę lat!"
+  },
+  {
+   "nr": 37,
+   "id": "zwroty_37",
+   "en": "Well done",
+   "pl": "dobra robota / brawo / świetnie",
+   "level": "A1",
+   "rank": 836,
+   "example": "Well done, that was perfect.",
+   "example_pl": "Dobra robota, to było świetne."
+  },
+  {
+   "nr": 38,
+   "id": "zwroty_38",
+   "en": "Watch out!",
+   "pl": "uważaj! / ostrożnie!",
+   "level": "A1",
+   "rank": 837,
+   "example": "Watch out! The floor is wet.",
+   "example_pl": "Uważaj! Podłoga jest mokra."
+  },
+  {
+   "nr": 39,
+   "id": "zwroty_39",
+   "en": "Hurry up!",
+   "pl": "pospiesz się! / szybciej!",
+   "level": "A1",
+   "rank": 838,
+   "example": "Hurry up, the bus is here!",
+   "example_pl": "Pospiesz się, autobus już jest!"
+  },
+  {
+   "nr": 40,
+   "id": "zwroty_40",
+   "en": "Cheers",
+   "pl": "dzięki / na zdrowie",
+   "level": "A1",
+   "rank": 839,
+   "example": "Cheers, thanks a lot!",
+   "example_pl": "Dzięki, wielkie dzięki!"
+  }
+ ]
+}

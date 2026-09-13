@@ -1,0 +1,731 @@
+{
+ "name": "Dom i mieszkanie",
+ "domain": "general",
+ "cat": "nouns",
+ "theme": "dom",
+ "level": "A1",
+ "items": [
+  {
+   "nr": 1,
+   "id": "dom_1",
+   "en": "living room",
+   "pl": "salon",
+   "level": "A1",
+   "rank": 380,
+   "example": "We watch TV in the living room.",
+   "example_pl": "Oglądamy telewizję w salonie."
+  },
+  {
+   "nr": 2,
+   "id": "dom_2",
+   "en": "bedroom",
+   "pl": "sypialnia",
+   "level": "A1",
+   "rank": 381,
+   "example": "My bedroom is small.",
+   "example_pl": "Moja sypialnia jest mała."
+  },
+  {
+   "nr": 3,
+   "id": "dom_3",
+   "en": "bathroom",
+   "pl": "łazienka",
+   "level": "A1",
+   "rank": 382,
+   "example": "The bathroom is upstairs.",
+   "example_pl": "Łazienka jest na górze."
+  },
+  {
+   "nr": 4,
+   "id": "dom_4",
+   "en": "toilet",
+   "pl": "toaleta",
+   "level": "A1",
+   "rank": 383,
+   "example": "Where is the toilet?",
+   "example_pl": "Gdzie jest toaleta?"
+  },
+  {
+   "nr": 5,
+   "id": "dom_5",
+   "en": "garage",
+   "pl": "garaż",
+   "level": "A1",
+   "rank": 384,
+   "example": "The car is in the garage.",
+   "example_pl": "Samochód jest w garażu."
+  },
+  {
+   "nr": 6,
+   "id": "dom_6",
+   "en": "garden",
+   "pl": "ogród",
+   "level": "A1",
+   "rank": 385,
+   "example": "We have a small garden.",
+   "example_pl": "Mamy mały ogród."
+  },
+  {
+   "nr": 7,
+   "id": "dom_7",
+   "en": "stairs",
+   "pl": "schody",
+   "level": "A1",
+   "rank": 386,
+   "example": "Be careful on the stairs.",
+   "example_pl": "Uważaj na schodach."
+  },
+  {
+   "nr": 8,
+   "id": "dom_8",
+   "en": "roof",
+   "pl": "dach",
+   "level": "A1",
+   "rank": 387,
+   "example": "The roof is old.",
+   "example_pl": "Dach jest stary."
+  },
+  {
+   "nr": 9,
+   "id": "dom_9",
+   "en": "ceiling",
+   "pl": "sufit",
+   "level": "A1",
+   "rank": 388,
+   "example": "The ceiling is white.",
+   "example_pl": "Sufit jest biały."
+  },
+  {
+   "nr": 10,
+   "id": "dom_10",
+   "en": "lamp",
+   "pl": "lampa",
+   "level": "A1",
+   "rank": 389,
+   "example": "Turn on the lamp, please.",
+   "example_pl": "Włącz lampę, proszę."
+  },
+  {
+   "nr": 11,
+   "id": "dom_11",
+   "en": "mirror",
+   "pl": "lustro",
+   "level": "A1",
+   "rank": 390,
+   "example": "There is a mirror in the hall.",
+   "example_pl": "W przedpokoju jest lustro."
+  },
+  {
+   "nr": 12,
+   "id": "dom_12",
+   "en": "towel",
+   "pl": "ręcznik",
+   "level": "A1",
+   "rank": 391,
+   "example": "Where is my towel?",
+   "example_pl": "Gdzie jest mój ręcznik?"
+  },
+  {
+   "nr": 13,
+   "id": "dom_13",
+   "en": "soap",
+   "pl": "mydło",
+   "level": "A1",
+   "rank": 392,
+   "example": "We need soap.",
+   "example_pl": "Potrzebujemy mydła."
+  },
+  {
+   "nr": 14,
+   "id": "dom_14",
+   "en": "shower",
+   "pl": "prysznic",
+   "level": "A1",
+   "rank": 393,
+   "example": "I take a shower every morning.",
+   "example_pl": "Codziennie rano biorę prysznic."
+  },
+  {
+   "nr": 15,
+   "id": "dom_15",
+   "en": "bath",
+   "pl": "wanna / kąpiel",
+   "level": "A1",
+   "rank": 394,
+   "example": "The bath is full.",
+   "example_pl": "Wanna jest pełna."
+  },
+  {
+   "nr": 16,
+   "id": "dom_16",
+   "en": "fridge",
+   "pl": "lodówka",
+   "level": "A1",
+   "rank": 395,
+   "example": "The milk is in the fridge.",
+   "example_pl": "Mleko jest w lodówce."
+  },
+  {
+   "nr": 17,
+   "id": "dom_17",
+   "en": "cooker",
+   "pl": "kuchenka",
+   "level": "A1",
+   "rank": 396,
+   "example": "The cooker is new.",
+   "example_pl": "Kuchenka jest nowa."
+  },
+  {
+   "nr": 18,
+   "id": "dom_18",
+   "en": "oven",
+   "pl": "piekarnik",
+   "level": "A1",
+   "rank": 397,
+   "example": "The cake is in the oven.",
+   "example_pl": "Ciasto jest w piekarniku."
+  },
+  {
+   "nr": 19,
+   "id": "dom_19",
+   "en": "washing machine",
+   "pl": "pralka",
+   "level": "A1",
+   "rank": 398,
+   "example": "The washing machine is broken.",
+   "example_pl": "Pralka jest zepsuta."
+  },
+  {
+   "nr": 20,
+   "id": "dom_20",
+   "en": "sink",
+   "pl": "zlew / umywalka",
+   "level": "A1",
+   "rank": 399,
+   "example": "The plates are in the sink.",
+   "example_pl": "Talerze są w zlewie."
+  },
+  {
+   "nr": 21,
+   "id": "dom_21",
+   "en": "cup",
+   "pl": "kubek / filiżanka",
+   "level": "A1",
+   "rank": 400,
+   "example": "I want a cup of tea.",
+   "example_pl": "Chcę filiżankę herbaty."
+  },
+  {
+   "nr": 22,
+   "id": "dom_22",
+   "en": "glass",
+   "pl": "szklanka",
+   "level": "A1",
+   "rank": 401,
+   "example": "Can I have a glass of water?",
+   "example_pl": "Mogę prosić szklankę wody?"
+  },
+  {
+   "nr": 23,
+   "id": "dom_23",
+   "en": "plate",
+   "pl": "talerz",
+   "level": "A1",
+   "rank": 402,
+   "example": "Put the plate on the table.",
+   "example_pl": "Postaw talerz na stole."
+  },
+  {
+   "nr": 24,
+   "id": "dom_24",
+   "en": "bowl",
+   "pl": "miska",
+   "level": "A1",
+   "rank": 403,
+   "example": "The soup is in a bowl.",
+   "example_pl": "Zupa jest w misce."
+  },
+  {
+   "nr": 25,
+   "id": "dom_25",
+   "en": "knife",
+   "pl": "nóż",
+   "level": "A1",
+   "rank": 404,
+   "example": "This knife is sharp.",
+   "example_pl": "Ten nóż jest ostry."
+  },
+  {
+   "nr": 26,
+   "id": "dom_26",
+   "en": "fork",
+   "pl": "widelec",
+   "level": "A1",
+   "rank": 405,
+   "example": "I need a fork.",
+   "example_pl": "Potrzebuję widelca."
+  },
+  {
+   "nr": 27,
+   "id": "dom_27",
+   "en": "spoon",
+   "pl": "łyżka",
+   "level": "A1",
+   "rank": 406,
+   "example": "Use a spoon for the soup.",
+   "example_pl": "Użyj łyżki do zupy."
+  },
+  {
+   "nr": 28,
+   "id": "dom_28",
+   "en": "pot",
+   "pl": "garnek",
+   "level": "A1",
+   "rank": 407,
+   "example": "The pot is on the cooker.",
+   "example_pl": "Garnek jest na kuchence."
+  },
+  {
+   "nr": 29,
+   "id": "dom_29",
+   "en": "pan",
+   "pl": "patelnia",
+   "level": "A1",
+   "rank": 408,
+   "example": "Put the eggs in the pan.",
+   "example_pl": "Włóż jajka na patelnię."
+  },
+  {
+   "nr": 30,
+   "id": "dom_30",
+   "en": "bin",
+   "pl": "kosz na śmieci",
+   "level": "A1",
+   "rank": 409,
+   "example": "The bin is full.",
+   "example_pl": "Kosz jest pełny."
+  },
+  {
+   "nr": 31,
+   "id": "dom_31",
+   "en": "shelf",
+   "pl": "półka",
+   "level": "A1",
+   "rank": 410,
+   "example": "The books are on the shelf.",
+   "example_pl": "Książki są na półce."
+  },
+  {
+   "nr": 32,
+   "id": "dom_32",
+   "en": "carpet",
+   "pl": "dywan",
+   "level": "A1",
+   "rank": 411,
+   "example": "The carpet is dirty.",
+   "example_pl": "Dywan jest brudny."
+  },
+  {
+   "nr": 33,
+   "id": "dom_33",
+   "en": "furniture",
+   "pl": "meble",
+   "level": "A1",
+   "rank": 333,
+   "example": "The furniture is old.",
+   "example_pl": "Meble są stare."
+  },
+  {
+   "nr": 34,
+   "id": "dom_34",
+   "en": "sofa",
+   "pl": "kanapa",
+   "level": "A1",
+   "rank": 334,
+   "example": "The cat sleeps on the sofa.",
+   "example_pl": "Kot śpi na kanapie."
+  },
+  {
+   "nr": 35,
+   "id": "dom_35",
+   "en": "armchair",
+   "pl": "fotel",
+   "level": "A1",
+   "rank": 335,
+   "example": "My father sits in the armchair.",
+   "example_pl": "Mój tata siedzi w fotelu."
+  },
+  {
+   "nr": 36,
+   "id": "dom_36",
+   "en": "wardrobe",
+   "pl": "szafa",
+   "level": "A1",
+   "rank": 336,
+   "example": "My clothes are in the wardrobe.",
+   "example_pl": "Moje ubrania są w szafie."
+  },
+  {
+   "nr": 37,
+   "id": "dom_37",
+   "en": "drawer",
+   "pl": "szuflada",
+   "level": "A1",
+   "rank": 337,
+   "example": "The keys are in the drawer.",
+   "example_pl": "Klucze są w szufladzie."
+  },
+  {
+   "nr": 38,
+   "id": "dom_38",
+   "en": "cupboard",
+   "pl": "szafka",
+   "level": "A1",
+   "rank": 338,
+   "example": "The cups are in the cupboard.",
+   "example_pl": "Kubki są w szafce."
+  },
+  {
+   "nr": 39,
+   "id": "dom_39",
+   "en": "curtain",
+   "pl": "zasłona",
+   "level": "A1",
+   "rank": 339,
+   "example": "Close the curtains, please.",
+   "example_pl": "Zasuń zasłony, proszę."
+  },
+  {
+   "nr": 40,
+   "id": "dom_40",
+   "en": "blanket",
+   "pl": "koc",
+   "level": "A1",
+   "rank": 340,
+   "example": "I need another blanket.",
+   "example_pl": "Potrzebuję kolejnego koca."
+  },
+  {
+   "nr": 41,
+   "id": "dom_41",
+   "en": "pillow",
+   "pl": "poduszka",
+   "level": "A1",
+   "rank": 341,
+   "example": "This pillow is too soft.",
+   "example_pl": "Ta poduszka jest za miękka."
+  },
+  {
+   "nr": 42,
+   "id": "dom_42",
+   "en": "sheet",
+   "pl": "prześcieradło",
+   "level": "A1",
+   "rank": 342,
+   "example": "The sheets are clean.",
+   "example_pl": "Prześcieradła są czyste."
+  },
+  {
+   "nr": 43,
+   "id": "dom_43",
+   "en": "mattress",
+   "pl": "materac",
+   "level": "A1",
+   "rank": 343,
+   "example": "The mattress is new.",
+   "example_pl": "Materac jest nowy."
+  },
+  {
+   "nr": 44,
+   "id": "dom_44",
+   "en": "heater",
+   "pl": "grzejnik",
+   "level": "A1",
+   "rank": 344,
+   "example": "Turn on the heater.",
+   "example_pl": "Włącz grzejnik."
+  },
+  {
+   "nr": 45,
+   "id": "dom_45",
+   "en": "air conditioner",
+   "pl": "klimatyzacja",
+   "level": "A1",
+   "rank": 345,
+   "example": "The air conditioner is loud.",
+   "example_pl": "Klimatyzacja jest głośna."
+  },
+  {
+   "nr": 46,
+   "id": "dom_46",
+   "en": "socket",
+   "pl": "gniazdko",
+   "level": "A1",
+   "rank": 346,
+   "example": "Is there a socket here?",
+   "example_pl": "Czy jest tu gniazdko?"
+  },
+  {
+   "nr": 47,
+   "id": "dom_47",
+   "en": "switch",
+   "pl": "włącznik",
+   "level": "A1",
+   "rank": 347,
+   "hint": "rzeczownik: włącznik światła",
+   "example": "The switch is near the door.",
+   "example_pl": "Włącznik jest przy drzwiach."
+  },
+  {
+   "nr": 48,
+   "id": "dom_48",
+   "en": "bulb",
+   "pl": "żarówka",
+   "level": "A1",
+   "rank": 348,
+   "example": "The bulb is broken.",
+   "example_pl": "Żarówka jest przepalona."
+  },
+  {
+   "nr": 49,
+   "id": "dom_49",
+   "en": "candle",
+   "pl": "świeca",
+   "level": "A1",
+   "rank": 349,
+   "example": "Light a candle.",
+   "example_pl": "Zapal świecę."
+  },
+  {
+   "nr": 50,
+   "id": "dom_50",
+   "en": "clock",
+   "pl": "zegar",
+   "level": "A1",
+   "rank": 350,
+   "example": "The clock is slow.",
+   "example_pl": "Zegar się spóźnia."
+  },
+  {
+   "nr": 51,
+   "id": "dom_51",
+   "en": "vacuum cleaner",
+   "pl": "odkurzacz",
+   "level": "A1",
+   "rank": 351,
+   "example": "The vacuum cleaner is in the cupboard.",
+   "example_pl": "Odkurzacz jest w szafce."
+  },
+  {
+   "nr": 52,
+   "id": "dom_52",
+   "en": "iron",
+   "pl": "żelazko",
+   "level": "A1",
+   "rank": 352,
+   "example": "The iron is hot.",
+   "example_pl": "Żelazko jest gorące."
+  },
+  {
+   "nr": 53,
+   "id": "dom_53",
+   "en": "kettle",
+   "pl": "czajnik",
+   "level": "A1",
+   "rank": 353,
+   "example": "Put the kettle on.",
+   "example_pl": "Nastaw czajnik."
+  },
+  {
+   "nr": 54,
+   "id": "dom_54",
+   "en": "microwave",
+   "pl": "mikrofalówka",
+   "level": "A1",
+   "rank": 354,
+   "example": "Heat it in the microwave.",
+   "example_pl": "Podgrzej to w mikrofalówce."
+  },
+  {
+   "nr": 55,
+   "id": "dom_55",
+   "en": "dishwasher",
+   "pl": "zmywarka",
+   "level": "A1",
+   "rank": 355,
+   "example": "The dishwasher is full.",
+   "example_pl": "Zmywarka jest pełna."
+  },
+  {
+   "nr": 56,
+   "id": "dom_56",
+   "en": "freezer",
+   "pl": "zamrażarka",
+   "level": "A1",
+   "rank": 356,
+   "example": "The meat is in the freezer.",
+   "example_pl": "Mięso jest w zamrażarce."
+  },
+  {
+   "nr": 57,
+   "id": "dom_57",
+   "en": "tap",
+   "pl": "kran",
+   "level": "A1",
+   "rank": 357,
+   "example": "The tap is dripping.",
+   "example_pl": "Kran cieknie."
+  },
+  {
+   "nr": 58,
+   "id": "dom_58",
+   "en": "pipe",
+   "pl": "rura",
+   "level": "A1",
+   "rank": 358,
+   "example": "The pipe is broken.",
+   "example_pl": "Rura jest pęknięta."
+  },
+  {
+   "nr": 59,
+   "id": "dom_59",
+   "en": "lock",
+   "pl": "zamek",
+   "level": "A1",
+   "rank": 359,
+   "hint": "rzeczownik: zamek w drzwiach",
+   "example": "The lock is old.",
+   "example_pl": "Zamek jest stary."
+  },
+  {
+   "nr": 60,
+   "id": "dom_60",
+   "en": "doorbell",
+   "pl": "dzwonek do drzwi",
+   "level": "A1",
+   "rank": 360,
+   "example": "The doorbell doesn't work.",
+   "example_pl": "Dzwonek do drzwi nie działa."
+  },
+  {
+   "nr": 61,
+   "id": "dom_61",
+   "en": "balcony",
+   "pl": "balkon",
+   "level": "A1",
+   "rank": 361,
+   "example": "We have coffee on the balcony.",
+   "example_pl": "Pijemy kawę na balkonie."
+  },
+  {
+   "nr": 62,
+   "id": "dom_62",
+   "en": "basement",
+   "pl": "piwnica",
+   "level": "A1",
+   "rank": 362,
+   "example": "The bikes are in the basement.",
+   "example_pl": "Rowery są w piwnicy."
+  },
+  {
+   "nr": 63,
+   "id": "dom_63",
+   "en": "attic",
+   "pl": "strych",
+   "level": "A1",
+   "rank": 363,
+   "example": "The old boxes are in the attic.",
+   "example_pl": "Stare pudła są na strychu."
+  },
+  {
+   "nr": 64,
+   "id": "dom_64",
+   "en": "fence",
+   "pl": "płot",
+   "level": "A1",
+   "rank": 364,
+   "example": "The fence is white.",
+   "example_pl": "Płot jest biały."
+  },
+  {
+   "nr": 65,
+   "id": "dom_65",
+   "en": "gate (garden)",
+   "pl": "furtka",
+   "level": "A1",
+   "rank": 365,
+   "example": "Close the gate, please.",
+   "example_pl": "Zamknij furtkę, proszę."
+  },
+  {
+   "nr": 66,
+   "id": "dom_66",
+   "en": "rent (housing)",
+   "pl": "czynsz",
+   "level": "A1",
+   "rank": 366,
+   "example": "The rent is high here.",
+   "example_pl": "Czynsz jest tu wysoki."
+  },
+  {
+   "nr": 67,
+   "id": "dom_67",
+   "en": "landlord",
+   "pl": "właściciel mieszkania",
+   "level": "A1",
+   "rank": 367,
+   "example": "My landlord is nice.",
+   "example_pl": "Mój właściciel mieszkania jest miły."
+  },
+  {
+   "nr": 68,
+   "id": "dom_68",
+   "en": "neighbourhood",
+   "pl": "okolica",
+   "level": "A1",
+   "rank": 368,
+   "example": "This is a quiet neighbourhood.",
+   "example_pl": "To spokojna okolica."
+  },
+  {
+   "nr": 69,
+   "id": "dom_69",
+   "en": "cleaning",
+   "pl": "sprzątanie",
+   "level": "A1",
+   "rank": 369,
+   "example": "Cleaning takes two hours.",
+   "example_pl": "Sprzątanie zajmuje dwie godziny."
+  },
+  {
+   "nr": 70,
+   "id": "dom_70",
+   "en": "rubbish",
+   "pl": "śmieci",
+   "level": "A1",
+   "rank": 370,
+   "example": "Take out the rubbish, please.",
+   "example_pl": "Wynieś śmieci, proszę."
+  },
+  {
+   "nr": 71,
+   "id": "dom_71",
+   "en": "laundry",
+   "pl": "pranie",
+   "level": "A1",
+   "rank": 371,
+   "example": "I do the laundry on Sunday.",
+   "example_pl": "Piorę w niedzielę."
+  },
+  {
+   "nr": 72,
+   "id": "dom_72",
+   "en": "tidy",
+   "pl": "posprzątany / uporządkowany",
+   "level": "A1",
+   "rank": 372,
+   "example": "My room is tidy.",
+   "example_pl": "Mój pokój jest posprzątany."
+  }
+ ]
+}
